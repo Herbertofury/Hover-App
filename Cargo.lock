@@ -139,6 +139,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "hover-formats"
+version = "0.1.0"
+dependencies = [
+ "hover-core",
+ "thiserror",
+]
+
+[[package]]
 name = "hover-render"
 version = "0.1.0"
 dependencies = [
@@ -158,6 +166,7 @@ dependencies = [
  "crossbeam-channel",
  "hover-core",
  "hover-decode",
+ "hover-formats",
  "hover-render",
  "hover-settings",
  "windows",

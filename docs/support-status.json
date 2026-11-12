@@ -40,8 +40,10 @@
       "name": "Sims 4",
       "milestone": 4,
       "url": "https://github.com/Herbertofury/Hover-App/milestone/4",
-      "state": "partial metadata code, unverified DBPF 2.1 only",
-      "verifiedFixtureVersions": [],
+      "state": "partial DBPF 2.1 index metadata; LlamaLogic 5.3.0 comparison on 20-entry test fixture",
+      "verifiedFixtureVersions": [
+        "DBPF 2.1 upstream test package; game/build not established; index metadata only"
+      ],
       "embeddedImageVerified": false,
       "decodedAssetVerified": false,
       "interactiveRenderVerified": false,
