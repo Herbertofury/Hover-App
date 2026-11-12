@@ -21,5 +21,7 @@ jobs:
         run: cargo +${{ matrix.rust }} clippy --workspace --all-targets --locked -- -D warnings
       - name: Test native Windows readers
         run: cargo +${{ matrix.rust }} test --workspace --locked
+      - name: Test Hover window lifecycle on dedicated Windows runner
+        run: cargo +${{ matrix.rust }} test -p hover-win --locked platform::tests::pinned_native_window_lifecycle -- --ignored --exact --nocapture
       - name: Build release
         run: cargo +${{ matrix.rust }} build --release --workspace --locked

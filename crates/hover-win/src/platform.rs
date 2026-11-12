@@ -18,7 +18,7 @@ use std::os::windows::process::CommandExt;
 use std::path::{Path, PathBuf};
 use std::process::{Child, Command, Stdio};
 use std::ptr::{null, null_mut};
-use std::sync::atomic::{AtomicI32, AtomicIsize, AtomicU32, Ordering};
+use std::sync::atomic::{AtomicBool, AtomicI32, AtomicIsize, AtomicU32, Ordering};
 use std::sync::{Mutex, OnceLock};
 use std::time::{Duration, Instant};
 use windows_sys::Win32::Foundation::{ERROR_SUCCESS, HWND, LPARAM, LRESULT, POINT, RECT, WPARAM};
@@ -30,12 +30,18 @@ use windows_sys::Win32::Graphics::Gdi::{
     ScreenToClient, SetBkMode, SetBrushOrgEx, SetStretchBltMode, SetTextColor, StretchDIBits,
     TRANSPARENT,
 };
+use windows_sys::Win32::Graphics::Gdi::{
+    ClientToScreen, DC_BRUSH, DEFAULT_GUI_FONT, GetStockObject, IntersectClipRect, RestoreDC,
+    SaveDC, SetBkColor, SetDCBrushColor,
+};
 use windows_sys::Win32::System::LibraryLoader::GetModuleHandleW;
 use windows_sys::Win32::System::Registry::{
     HKEY, HKEY_CURRENT_USER, KEY_READ, KEY_SET_VALUE, REG_SZ, RegCloseKey, RegDeleteValueW,
     RegOpenKeyExW, RegQueryValueExW, RegSetValueExW,
 };
+use windows_sys::Win32::System::SystemServices::{SS_CENTERIMAGE, SS_ENDELLIPSIS, SS_NOPREFIX};
 use windows_sys::Win32::UI::Accessibility::{HWINEVENTHOOK, SetWinEventHook, UnhookWinEvent};
+use windows_sys::Win32::UI::Input::KeyboardAndMouse::{EnableWindow, SetFocus};
 use windows_sys::Win32::UI::Input::KeyboardAndMouse::{
     GetAsyncKeyState, GetKeyState, VK_CONTROL, VK_DOWN, VK_ESCAPE, VK_LBUTTON, VK_LEFT, VK_RIGHT,
     VK_SHIFT, VK_SPACE, VK_UP,
@@ -64,6 +70,12 @@ use windows_sys::Win32::UI::WindowsAndMessaging::{
     WS_CAPTION, WS_CHILD, WS_EX_LAYERED, WS_EX_NOACTIVATE, WS_EX_TOOLWINDOW, WS_EX_TOPMOST,
     WS_POPUP, WS_SYSMENU, WS_VISIBLE,
 };
+use windows_sys::Win32::UI::WindowsAndMessaging::{
+    GA_ROOT, GWL_STYLE, GetAncestor, IsDialogMessageW, IsIconic, IsWindow, MA_NOACTIVATE,
+    MF_GRAYED, SWP_FRAMECHANGED, TPM_RETURNCMD, WM_CTLCOLORSTATIC, WM_LBUTTONDOWN,
+    WM_MOUSEACTIVATE, WM_MOVE, WM_SETFONT, WM_SIZE, WS_CLIPCHILDREN, WS_EX_APPWINDOW,
+    WS_OVERLAPPEDWINDOW, WS_TABSTOP,
+};
 use windows_sys::core::BOOL;
 use zip::ZipArchive;
 use zip::read::{ArchiveOffset, Config as ZipConfig};
@@ -75,6 +87,14 @@ const WM_HOVER_FOREGROUND_CHANGED: u32 = WM_APP + 10;
 const WM_TRAYICON: u32 = WM_APP + 11;
 const WM_PREVIEW_READY: u32 = WM_APP + 12;
 const WM_MEDIA_PLAY: u32 = WM_APP + 13;
+const WM_PREVIEW_ACTION: u32 = WM_APP + 14;
+const ID_PREVIEW_PIN: usize = 1201;
+const ID_PREVIEW_RELOAD: usize = 1202;
+const ID_PREVIEW_CLOSE: usize = 1203;
+const ID_PREVIEW_TITLE: i32 = 1204;
+const ID_PREVIEW_SYNC: usize = 1205;
+const PREVIEW_CHROME_HEIGHT: i32 = 40;
+const TIMER_MEDIA: usize = 4;
 const ID_TRAY_ENABLE: usize = 1001;
 const ID_TRAY_STARTUP: usize = 1002;
 const ID_TRAY_OPTIONS: usize = 1003;
@@ -129,6 +149,8 @@ static VIDEO_RECT_RIGHT: AtomicI32 = AtomicI32::new(0);
 static VIDEO_RECT_BOTTOM: AtomicI32 = AtomicI32::new(0);
 static VIDEO_SEEK_SECONDS: AtomicU32 = AtomicU32::new(DEFAULT_VIDEO_SEEK_SECONDS);
 static OVERLAY_MODEL: OnceLock<Mutex<Option<OverlayModel>>> = OnceLock::new();
+static PREVIEW_PINNED: AtomicBool = AtomicBool::new(false);
+static TRAY_MENU_OPEN: AtomicBool = AtomicBool::new(false);
 
 #[derive(Clone)]
 struct OverlayFrame {
@@ -143,6 +165,60 @@ struct OverlayModel {
     content: OverlayContent,
     current_frame: usize,
     scroll_offset: usize,
+}
+
+#[derive(Clone, Copy)]
+enum SavedView {
+    Image { zoom: ZoomState, frame: usize },
+    Text { scroll: usize },
+    List { scroll: usize },
+}
+
+impl OverlayModel {
+    fn save_view(&self) -> SavedView {
+        match &self.content {
+            OverlayContent::Frames { zoom, .. } => SavedView::Image {
+                zoom: *zoom,
+                frame: self.current_frame,
+            },
+            OverlayContent::Text { .. } => SavedView::Text {
+                scroll: self.scroll_offset,
+            },
+            OverlayContent::List { .. } => SavedView::List {
+                scroll: self.scroll_offset,
+            },
+        }
+    }
+
+    fn restore_view(&mut self, saved: SavedView, viewport: Size, visible_rows: usize) -> bool {
+        match (&mut self.content, saved) {
+            (OverlayContent::Frames { frames, zoom }, SavedView::Image { zoom: old, frame })
+                if frames.first().is_some_and(|image| {
+                    old.image_size == Size::new(image.width as f32, image.height as f32)
+                }) =>
+            {
+                *zoom = old;
+                zoom.set_viewport(viewport, ZoomConfig::default());
+                self.current_frame = frame.min(frames.len().saturating_sub(1));
+                true
+            }
+            (
+                OverlayContent::Text {
+                    lines, truncated, ..
+                },
+                SavedView::Text { scroll },
+            ) => {
+                self.scroll_offset = scroll
+                    .min(text_virtual_line_count(lines, *truncated).saturating_sub(visible_rows));
+                true
+            }
+            (OverlayContent::List { entries, .. }, SavedView::List { scroll }) => {
+                self.scroll_offset = scroll.min(entries.len().saturating_sub(visible_rows));
+                true
+            }
+            _ => false,
+        }
+    }
 }
 
 enum OverlayContent {
@@ -239,40 +315,7 @@ enum OverlayWheelAction {
 
 pub fn run() -> Result<(), i32> {
     unsafe {
-        let hinstance = GetModuleHandleW(null());
-        if hinstance.is_null() {
-            return Err(1);
-        }
-
-        register_window_class(hinstance, CONTROL_CLASS, Some(control_window_proc))?;
-        register_window_class(hinstance, OVERLAY_CLASS, Some(overlay_window_proc))?;
-        register_window_class(hinstance, OPTIONS_CLASS, Some(options_window_proc))?;
-
-        let control_hwnd = CreateWindowExW(
-            WS_EX_TOOLWINDOW,
-            wide(CONTROL_CLASS).as_ptr(),
-            wide("Hover Control").as_ptr(),
-            WS_POPUP,
-            0,
-            0,
-            0,
-            0,
-            null_mut(),
-            null_mut(),
-            hinstance,
-            null_mut(),
-        );
-        if control_hwnd.is_null() {
-            return Err(1);
-        }
-        CONTROL_HWND.store(control_hwnd as isize, Ordering::Release);
-
-        let app = Box::new(App::new(control_hwnd));
-        windows_sys::Win32::UI::WindowsAndMessaging::SetWindowLongPtrW(
-            control_hwnd,
-            windows_sys::Win32::UI::WindowsAndMessaging::GWLP_USERDATA,
-            Box::into_raw(app) as isize,
-        );
+        let control_hwnd = create_app_window()?;
 
         let hook = SetWinEventHook(
             EVENT_SYSTEM_FOREGROUND,
@@ -286,6 +329,9 @@ pub fn run() -> Result<(), i32> {
 
         let mut msg = MSG::default();
         while GetMessageW(&mut msg, null_mut(), 0, 0) > 0 {
+            if preprocess_preview_message(&msg) {
+                continue;
+            }
             TranslateMessage(&msg);
             DispatchMessageW(&msg);
         }
@@ -293,8 +339,53 @@ pub fn run() -> Result<(), i32> {
         if !hook.is_null() {
             UnhookWinEvent(hook);
         }
+        if IsWindow(control_hwnd) != 0 {
+            DestroyWindow(control_hwnd);
+        }
         Ok(())
     }
+}
+
+unsafe fn create_app_window() -> Result<HWND, i32> {
+    let _ = windows::Win32::UI::Shell::SetCurrentProcessExplicitAppUserModelID(
+        windows::core::PCWSTR(wide("Herbertofury.Hover").as_ptr()),
+    );
+    let hinstance = GetModuleHandleW(null());
+    if hinstance.is_null() {
+        return Err(1);
+    }
+
+    register_window_class(hinstance, CONTROL_CLASS, Some(control_window_proc))?;
+    register_window_class(hinstance, OVERLAY_CLASS, Some(overlay_window_proc))?;
+    register_window_class(hinstance, OPTIONS_CLASS, Some(options_window_proc))?;
+
+    let control_hwnd = CreateWindowExW(
+        WS_EX_TOOLWINDOW,
+        wide(CONTROL_CLASS).as_ptr(),
+        wide("Hover Control").as_ptr(),
+        WS_POPUP,
+        0,
+        0,
+        0,
+        0,
+        null_mut(),
+        null_mut(),
+        hinstance,
+        null_mut(),
+    );
+    if control_hwnd.is_null() {
+        return Err(1);
+    }
+    CONTROL_HWND.store(control_hwnd as isize, Ordering::Release);
+
+    let app = Box::new(App::new(control_hwnd));
+    windows_sys::Win32::UI::WindowsAndMessaging::SetWindowLongPtrW(
+        control_hwnd,
+        windows_sys::Win32::UI::WindowsAndMessaging::GWLP_USERDATA,
+        Box::into_raw(app) as isize,
+    );
+
+    Ok(control_hwnd)
 }
 
 struct App {
@@ -318,6 +409,11 @@ struct App {
     keyboard_hook: HHOOK,
     tray_icon: HICON,
     tray_icon_owned: bool,
+    pinned: bool,
+    origin_foreground: HWND,
+    preview_anchor: Option<HoverPoint>,
+    reload_view: Option<(PathBuf, SavedView)>,
+    glance_rect: Option<HoverRect>,
 }
 
 impl App {
@@ -349,6 +445,11 @@ impl App {
             keyboard_hook: null_mut(),
             tray_icon,
             tray_icon_owned,
+            pinned: false,
+            origin_foreground: null_mut(),
+            preview_anchor: None,
+            reload_view: None,
+            glance_rect: None,
         };
         if app.settings.general.show_tray_icon {
             app.tray_added = add_tray_icon(hwnd, app.tray_icon);
@@ -359,6 +460,9 @@ impl App {
     unsafe fn on_foreground_changed(&mut self) {
         if !self.settings.general.enabled {
             self.enter_dormant();
+            return;
+        }
+        if self.pinned {
             return;
         }
         if self.keep_active_preview_during_media_foreground() {
@@ -388,6 +492,7 @@ impl App {
     }
 
     unsafe fn enter_foreground_eligible(&mut self) {
+        self.origin_foreground = GetForegroundWindow();
         if self.state == HoverState::ForegroundEligible {
             return;
         }
@@ -399,7 +504,17 @@ impl App {
 
     unsafe fn on_timer(&mut self, timer_id: usize) {
         match timer_id {
+            TIMER_MEDIA => {
+                if self.pinned {
+                    self.maintain_active_video();
+                    self.maintain_active_audio();
+                    self.sync_pinned_media();
+                }
+            }
             TIMER_CURSOR => {
+                if self.pinned || TRAY_MENU_OPEN.load(Ordering::Acquire) {
+                    return;
+                }
                 if !self.state.allows_cursor_timer()
                     || (!foreground_is_eligible()
                         && !self.keep_active_preview_during_media_foreground())
@@ -430,6 +545,9 @@ impl App {
     }
 
     unsafe fn update_hover_target(&mut self) {
+        if self.pinned {
+            return;
+        }
         if self.current_path.is_some() && self.cursor_inside_active_preview() {
             return;
         }
@@ -482,6 +600,9 @@ impl App {
     }
 
     unsafe fn start_decode(&mut self, path: PathBuf) {
+        if self.reload_view.is_none() {
+            self.preview_anchor = Some(current_cursor_point());
+        }
         if self.decode_worker.is_none() {
             match PreviewWorker::new(
                 |(path, preview_types): (PathBuf, PreviewTypeSettings), token| PreviewResult {
@@ -510,19 +631,22 @@ impl App {
                 }
             }
         }
-        self.show_payload(
-            path.clone(),
-            PreviewPayload::Text {
-                title: path
-                    .file_name()
-                    .unwrap_or_default()
-                    .to_string_lossy()
-                    .into_owned(),
-                subtitle: "Loading preview".into(),
-                lines: vec!["Reading this file. Move away or press Escape to cancel.".into()],
-                truncated: false,
-            },
-        );
+        if self.reload_view.is_none() {
+            self.show_payload(
+                path.clone(),
+                PreviewPayload::Text {
+                    title: path
+                        .file_name()
+                        .unwrap_or_default()
+                        .to_string_lossy()
+                        .into_owned(),
+                    subtitle: "Loading preview".into(),
+                    lines: vec!["Reading this file. Move away or press Escape to cancel.".into()],
+                    truncated: false,
+                },
+            );
+        }
+        update_preview_chrome(self.overlay, &path, self.pinned, true, "");
         self.decode_generation = self
             .decode_worker
             .as_ref()
@@ -553,11 +677,32 @@ impl App {
         };
         let result = match completed.value {
             Ok(result) if result.path == path => result.result,
-            Ok(_) => return,
+            Ok(_) => Err(
+                "Preview identity changed; the result was discarded. Reload to try again.".into(),
+            ),
             Err(_) => Err("The preview decoder failed. This file was not changed.".into()),
         };
         match result {
-            Ok(payload) => self.show_payload(path, payload),
+            Ok(payload) => {
+                self.show_payload(path.clone(), payload);
+                if let Some((identity, saved)) = self.reload_view.take()
+                    && identity == path
+                {
+                    let restored = restore_overlay_view(self.overlay, saved);
+                    update_preview_chrome(
+                        self.overlay,
+                        &path,
+                        self.pinned,
+                        false,
+                        if restored {
+                            "View restored"
+                        } else {
+                            "View reset: preview type or dimensions changed"
+                        },
+                    );
+                    InvalidateRect(self.overlay, null(), 0);
+                }
+            }
             Err(message) => self.show_payload(
                 path.clone(),
                 PreviewPayload::Text {
@@ -572,6 +717,7 @@ impl App {
                 },
             ),
         }
+        self.reload_view = None;
     }
 
     unsafe fn cancel_decode(&mut self) {
@@ -582,6 +728,7 @@ impl App {
             self.counters.worker_threads_awake = busy;
         }
         self.pending_path = None;
+        self.reload_view = None;
     }
 
     unsafe fn show_payload(&mut self, path: PathBuf, payload: PreviewPayload) {
@@ -619,14 +766,20 @@ impl App {
         self.stop_audio();
         self.uninstall_preview_hooks();
         KillTimer(self.hwnd, TIMER_ANIMATION);
-        let cursor = current_cursor_point();
-        let desired_size = payload_size(&payload);
-        let rect = place_preview(
-            cursor,
-            screen_work_area(cursor),
-            desired_size,
-            PlacementConfig::default(),
-        );
+        let cursor = self.preview_anchor.unwrap_or_else(current_cursor_point);
+        let mut desired_size = payload_size(&payload);
+        desired_size.width = desired_size.width.max(380.0);
+        desired_size.height += PREVIEW_CHROME_HEIGHT as f32;
+        let rect = if self.pinned && IsWindowVisible(self.overlay) != 0 {
+            overlay_screen_rect(self.overlay)
+        } else {
+            place_preview(
+                cursor,
+                screen_work_area(cursor),
+                desired_size,
+                PlacementConfig::default(),
+            )
+        };
         match payload {
             PreviewPayload::Frames { frames } => {
                 configure_overlay_for_image(self.overlay);
@@ -635,7 +788,14 @@ impl App {
                     .first()
                     .map(|frame| Size::new(frame.width as f32, frame.height as f32))
                     .unwrap_or_else(|| Size::new(1.0, 1.0));
-                let zoom = ZoomState::new(image_size, rect.size(), ZoomConfig::default());
+                let zoom = ZoomState::new(
+                    image_size,
+                    Size::new(
+                        rect.width(),
+                        (rect.height() - PREVIEW_CHROME_HEIGHT as f32).max(1.0),
+                    ),
+                    ZoomConfig::default(),
+                );
                 set_overlay_model(Some(OverlayModel {
                     content: OverlayContent::Frames { frames, zoom },
                     current_frame: 0,
@@ -691,12 +851,22 @@ impl App {
             }
             PreviewPayload::Video { path: video_path } => {
                 configure_overlay_for_panel(self.overlay);
-                match start_video_playback(&video_path, rect, &self.settings.video) {
+                if self.pinned {
+                    self.place_overlay(rect);
+                }
+                let player_rect = if self.pinned {
+                    overlay_media_rect(self.overlay)
+                } else {
+                    rect
+                };
+                match start_video_playback(&video_path, player_rect, &self.settings.video) {
                     Ok(video) => {
                         self.video = Some(video);
                         self.install_mouse_hook();
-                        self.install_keyboard_hook();
-                        ShowWindow(self.overlay, SW_HIDE);
+                        if !self.pinned {
+                            self.install_keyboard_hook();
+                            ShowWindow(self.overlay, SW_HIDE);
+                        }
                     }
                     Err(message) => {
                         set_overlay_model(Some(OverlayModel {
@@ -757,8 +927,14 @@ impl App {
                 }
             }
         }
+        update_preview_chrome(self.overlay, &path, self.pinned, false, "");
         self.current_path = Some(path);
-        self.state = HoverState::PreviewVisible;
+        self.state = if self.pinned {
+            HoverState::PreviewLocked
+        } else {
+            HoverState::PreviewVisible
+        };
+        self.sync_pinned_media();
     }
 
     unsafe fn place_overlay(&self, rect: HoverRect) {
@@ -776,7 +952,15 @@ impl App {
     }
 
     unsafe fn hide_preview(&mut self) {
+        self.pinned = false;
+        PREVIEW_PINNED.store(false, Ordering::Release);
+        self.preview_anchor = None;
+        self.reload_view = None;
+        self.glance_rect = None;
+        set_overlay_pinned_style(self.overlay, false);
         self.media_ready = None;
+        KillTimer(self.hwnd, TIMER_MEDIA);
+        KillTimer(self.hwnd, TIMER_ZOOM_SETTLE);
         KillTimer(self.hwnd, TIMER_ANIMATION);
         self.uninstall_preview_hooks();
         self.stop_video();
@@ -954,6 +1138,127 @@ impl App {
         }
     }
 
+    unsafe fn toggle_pin(&mut self) {
+        let Some(path) = self.current_path.clone() else {
+            return;
+        };
+        if !self.pinned {
+            self.glance_rect = Some(overlay_screen_rect(self.overlay));
+        }
+        self.pinned = !self.pinned;
+        PREVIEW_PINNED.store(self.pinned, Ordering::Release);
+        set_overlay_pinned_style(self.overlay, self.pinned);
+        update_preview_chrome(
+            self.overlay,
+            &path,
+            self.pinned,
+            self.pending_path.is_some(),
+            "",
+        );
+        if self.pinned {
+            KillTimer(self.hwnd, TIMER_CURSOR);
+            self.uninstall_keyboard_hook();
+            self.state = HoverState::PreviewLocked;
+            ShowWindow(self.overlay, SW_SHOWNOACTIVATE);
+            SetForegroundWindow(self.overlay);
+            SetFocus(self.overlay);
+            self.sync_pinned_media();
+        } else {
+            KillTimer(self.hwnd, TIMER_MEDIA);
+            if let Some(rect) = self.glance_rect.take() {
+                let cursor = current_cursor_point();
+                self.place_overlay(place_preview(
+                    cursor,
+                    screen_work_area(cursor),
+                    rect.size(),
+                    PlacementConfig::default(),
+                ));
+            }
+            if GetAncestor(GetForegroundWindow(), GA_ROOT) == self.overlay
+                && IsWindow(self.origin_foreground) != 0
+            {
+                SetForegroundWindow(self.origin_foreground);
+            }
+            self.on_foreground_changed();
+        }
+    }
+
+    unsafe fn reload_current(&mut self) {
+        if self.pending_path.is_some() {
+            return;
+        }
+        let Some(path) = self.current_path.clone() else {
+            return;
+        };
+        let saved = OVERLAY_MODEL
+            .get_or_init(|| Mutex::new(None))
+            .lock()
+            .unwrap()
+            .as_ref()
+            .map(OverlayModel::save_view);
+        self.cancel_decode();
+        if let Some(saved) = saved {
+            self.reload_view = Some((path.clone(), saved));
+        }
+        self.start_decode(path);
+        if self.pinned {
+            KillTimer(self.hwnd, TIMER_CURSOR);
+        }
+    }
+
+    unsafe fn dismiss_current(&mut self) {
+        self.dismissed_path = self.current_path.clone();
+        self.cancel_decode();
+        self.hide_preview();
+        self.candidate_path = None;
+        self.on_foreground_changed();
+    }
+
+    unsafe fn sync_pinned_media(&mut self) {
+        if !self.pinned {
+            return;
+        }
+        if let Some(video) = self.video.as_mut() {
+            if IsIconic(self.overlay) != 0 {
+                let hwnd = current_video_window();
+                if !hwnd.is_null() {
+                    ShowWindow(hwnd, SW_HIDE);
+                }
+            } else {
+                video.rect = overlay_media_rect(self.overlay);
+                store_video_control_state(video.rect, self.settings.video.seek_seconds);
+                // Re-evaluate placement on move/resize, without a cursor poll.
+                ensure_video_window_topmost(video.rect);
+            }
+        }
+        if self.video.is_some() || self.audio.is_some() {
+            SetTimer(self.hwnd, TIMER_MEDIA, 250, None);
+        } else {
+            KillTimer(self.hwnd, TIMER_MEDIA);
+        }
+        if IsIconic(self.overlay) != 0 {
+            KillTimer(self.hwnd, TIMER_ANIMATION);
+        } else if let Some(delay) = current_overlay_frame_delay_ms() {
+            SetTimer(self.hwnd, TIMER_ANIMATION, delay, None);
+        }
+    }
+
+    unsafe fn reposition_pinned(&mut self) {
+        if !self.pinned {
+            self.enter_dormant();
+            return;
+        }
+        let old = overlay_screen_rect(self.overlay);
+        let center = HoverPoint::new((old.left + old.right) * 0.5, (old.top + old.bottom) * 0.5);
+        let work = screen_work_area(center);
+        let width = old.width().min(work.width()).max(1.0);
+        let height = old.height().min(work.height()).max(1.0);
+        let left = old.left.clamp(work.left, work.right - width);
+        let top = old.top.clamp(work.top, work.bottom - height);
+        self.place_overlay(HoverRect::new(left, top, left + width, top + height));
+        self.sync_pinned_media();
+    }
+
     unsafe fn toggle_startup(&mut self) {
         let enabled = !self.settings.general.start_with_windows;
         self.settings.general.start_with_windows = set_startup_enabled(enabled);
@@ -964,7 +1269,12 @@ impl App {
     }
 
     unsafe fn destroy(&mut self) {
+        CONTROL_HWND.store(0, Ordering::Release);
         self.enter_dormant();
+        OVERLAY_HWND.store(0, Ordering::Release);
+        if IsWindow(self.overlay) != 0 {
+            DestroyWindow(self.overlay);
+        }
         let options = OPTIONS_HWND.swap(0, Ordering::AcqRel) as HWND;
         if !options.is_null() {
             DestroyWindow(options);
@@ -979,6 +1289,342 @@ impl App {
             self.tray_icon_owned = false;
         }
     }
+}
+
+unsafe fn post_preview_action(action: usize) {
+    let control = CONTROL_HWND.load(Ordering::Acquire) as HWND;
+    if !control.is_null() {
+        PostMessageW(control, WM_PREVIEW_ACTION, action, 0);
+    }
+}
+
+unsafe fn content_client_rect(hwnd: HWND) -> RECT {
+    let mut rect = RECT::default();
+    GetClientRect(hwnd, &mut rect);
+    rect.right = rect.right.max(1);
+    rect.bottom = rect.bottom.max(1);
+    rect.top = PREVIEW_CHROME_HEIGHT.min(rect.bottom - 1);
+    rect
+}
+
+unsafe fn overlay_screen_rect(hwnd: HWND) -> HoverRect {
+    let mut rect = RECT::default();
+    GetWindowRect(hwnd, &mut rect);
+    HoverRect::new(
+        rect.left as f32,
+        rect.top as f32,
+        rect.right.max(rect.left + 1) as f32,
+        rect.bottom.max(rect.top + 1) as f32,
+    )
+}
+
+unsafe fn overlay_media_rect(hwnd: HWND) -> HoverRect {
+    let rect = content_client_rect(hwnd);
+    let mut origin = POINT {
+        x: rect.left,
+        y: rect.top,
+    };
+    ClientToScreen(hwnd, &mut origin);
+    HoverRect::new(
+        origin.x as f32,
+        origin.y as f32,
+        (origin.x + rect.right - rect.left) as f32,
+        (origin.y + rect.bottom - rect.top) as f32,
+    )
+}
+
+unsafe fn set_overlay_pinned_style(hwnd: HWND, pinned: bool) {
+    if IsWindow(hwnd) == 0 {
+        return;
+    }
+    let visible = GetWindowLongPtrW(hwnd, GWL_STYLE) as u32 & WS_VISIBLE;
+    let style = if pinned {
+        WS_OVERLAPPEDWINDOW
+    } else {
+        WS_POPUP
+    } | visible
+        | WS_CLIPCHILDREN;
+    let extended = WS_EX_LAYERED
+        | WS_EX_TOPMOST
+        | if pinned {
+            WS_EX_APPWINDOW
+        } else {
+            WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE
+        };
+    SetWindowLongPtrW(hwnd, GWL_STYLE, style as isize);
+    SetWindowLongPtrW(hwnd, GWL_EXSTYLE, extended as isize);
+    SetWindowPos(
+        hwnd,
+        HWND_TOPMOST,
+        0,
+        0,
+        0,
+        0,
+        SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_FRAMECHANGED,
+    );
+}
+
+unsafe fn create_preview_chrome(hwnd: HWND) {
+    let font = GetStockObject(DEFAULT_GUI_FONT);
+    for (id, class, text, extra) in [
+        (
+            ID_PREVIEW_TITLE as usize,
+            "STATIC",
+            "Hover",
+            SS_CENTERIMAGE | SS_ENDELLIPSIS | SS_NOPREFIX,
+        ),
+        (
+            ID_PREVIEW_PIN,
+            "BUTTON",
+            "Pin",
+            BS_PUSHBUTTON as u32 | WS_TABSTOP,
+        ),
+        (
+            ID_PREVIEW_RELOAD,
+            "BUTTON",
+            "Reload",
+            BS_PUSHBUTTON as u32 | WS_TABSTOP,
+        ),
+        (
+            ID_PREVIEW_CLOSE,
+            "BUTTON",
+            "Close",
+            BS_PUSHBUTTON as u32 | WS_TABSTOP,
+        ),
+    ] {
+        let child = CreateWindowExW(
+            0,
+            wide(class).as_ptr(),
+            wide(text).as_ptr(),
+            WS_CHILD | WS_VISIBLE | extra,
+            0,
+            6,
+            1,
+            28,
+            hwnd,
+            id as *mut _,
+            GetModuleHandleW(null()),
+            null_mut(),
+        );
+        if !child.is_null() {
+            SendMessageW(child, WM_SETFONT, font as usize, 1);
+        }
+    }
+}
+
+unsafe fn layout_preview_chrome(hwnd: HWND) {
+    let mut rect = RECT::default();
+    GetClientRect(hwnd, &mut rect);
+    let mut right = rect.right - 8;
+    for (id, width) in [
+        (ID_PREVIEW_CLOSE, 52),
+        (ID_PREVIEW_RELOAD, 66),
+        (ID_PREVIEW_PIN, 66),
+    ] {
+        let child = GetDlgItem(hwnd, id as i32);
+        let left = right - width;
+        if left < 8 {
+            ShowWindow(child, SW_HIDE);
+        } else {
+            SetWindowPos(child, null_mut(), left, 6, width, 28, SWP_NOACTIVATE);
+            ShowWindow(child, SW_SHOWNOACTIVATE);
+            right = left - 6;
+        }
+    }
+    let title = GetDlgItem(hwnd, ID_PREVIEW_TITLE);
+    SetWindowPos(
+        title,
+        null_mut(),
+        12,
+        6,
+        (right - 20).max(1),
+        28,
+        SWP_NOACTIVATE,
+    );
+    ShowWindow(
+        title,
+        if right > 32 {
+            SW_SHOWNOACTIVATE
+        } else {
+            SW_HIDE
+        },
+    );
+}
+
+unsafe fn update_preview_chrome(hwnd: HWND, path: &Path, pinned: bool, busy: bool, status: &str) {
+    let name = path.file_name().unwrap_or_default().to_string_lossy();
+    let detail = if busy { "Reloading / loading" } else { status };
+    let title = if detail.is_empty() {
+        name.to_string()
+    } else {
+        format!("{name} · {detail}")
+    };
+    SetWindowTextW(
+        hwnd,
+        wide(&format!(
+            "{title} · Hover{}",
+            if pinned { " (Pinned)" } else { "" }
+        ))
+        .as_ptr(),
+    );
+    SetWindowTextW(GetDlgItem(hwnd, ID_PREVIEW_TITLE), wide(&title).as_ptr());
+    SetWindowTextW(
+        GetDlgItem(hwnd, ID_PREVIEW_PIN as i32),
+        wide(if pinned { "Unpin" } else { "Pin" }).as_ptr(),
+    );
+    EnableWindow(GetDlgItem(hwnd, ID_PREVIEW_RELOAD as i32), i32::from(!busy));
+    layout_preview_chrome(hwnd);
+}
+
+unsafe fn resize_overlay_view(hwnd: HWND) {
+    if IsIconic(hwnd) != 0 {
+        return;
+    }
+    let rect = content_client_rect(hwnd);
+    if let Some(model) = OVERLAY_MODEL
+        .get_or_init(|| Mutex::new(None))
+        .lock()
+        .unwrap()
+        .as_mut()
+    {
+        match &mut model.content {
+            OverlayContent::Frames { zoom, .. } => zoom.set_viewport(
+                Size::new(
+                    (rect.right - rect.left) as f32,
+                    (rect.bottom - rect.top) as f32,
+                ),
+                ZoomConfig::default(),
+            ),
+            OverlayContent::Text {
+                lines, truncated, ..
+            } => {
+                model.scroll_offset = model.scroll_offset.min(
+                    text_virtual_line_count(lines, *truncated)
+                        .saturating_sub(text_visible_rows(&rect)),
+                )
+            }
+            OverlayContent::List { entries, .. } => {
+                model.scroll_offset = model
+                    .scroll_offset
+                    .min(entries.len().saturating_sub(list_visible_rows(&rect)))
+            }
+        }
+    }
+    InvalidateRect(hwnd, null(), 0);
+}
+
+unsafe fn restore_overlay_view(hwnd: HWND, saved: SavedView) -> bool {
+    let rect = content_client_rect(hwnd);
+    let mut guard = OVERLAY_MODEL
+        .get_or_init(|| Mutex::new(None))
+        .lock()
+        .unwrap();
+    let Some(model) = guard.as_mut() else {
+        return false;
+    };
+    let rows = if matches!(model.content, OverlayContent::List { .. }) {
+        list_visible_rows(&rect)
+    } else {
+        text_visible_rows(&rect)
+    };
+    model.restore_view(
+        saved,
+        Size::new(
+            (rect.right - rect.left) as f32,
+            (rect.bottom - rect.top) as f32,
+        ),
+        rows,
+    )
+}
+
+unsafe fn preprocess_preview_message(msg: &MSG) -> bool {
+    let hwnd = OVERLAY_HWND.load(Ordering::Acquire) as HWND;
+    if hwnd.is_null()
+        || !PREVIEW_PINNED.load(Ordering::Acquire)
+        || GetAncestor(msg.hwnd, GA_ROOT) != hwnd
+    {
+        return false;
+    }
+    if msg.message == WM_KEYDOWN {
+        let control = GetKeyState(VK_CONTROL as i32) < 0;
+        let action = match msg.wParam {
+            key if key == VK_ESCAPE as usize => Some(ID_PREVIEW_CLOSE),
+            0x74 => Some(ID_PREVIEW_RELOAD), // F5
+            0x52 if control => Some(ID_PREVIEW_RELOAD),
+            0x50 if control => Some(ID_PREVIEW_PIN),
+            _ => None,
+        };
+        if let Some(action) = action {
+            post_preview_action(action);
+            return true;
+        }
+        if msg.hwnd == hwnd && preview_content_key(hwnd, msg.wParam as u32) {
+            return true;
+        }
+    }
+    IsDialogMessageW(hwnd, msg) != 0
+}
+
+unsafe fn preview_content_key(hwnd: HWND, key: u32) -> bool {
+    if VIDEO_PID.load(Ordering::Acquire) != 0 && is_video_control_key(key) {
+        return post_video_key_tap(key);
+    }
+    let rect = content_client_rect(hwnd);
+    let mut guard = OVERLAY_MODEL
+        .get_or_init(|| Mutex::new(None))
+        .lock()
+        .unwrap();
+    let Some(model) = guard.as_mut() else {
+        return false;
+    };
+    let rows = match &mut model.content {
+        OverlayContent::Frames { zoom, .. } => {
+            match key {
+                0x25 => zoom.pan_by(48.0, 0.0, ZoomConfig::default()),
+                0x27 => zoom.pan_by(-48.0, 0.0, ZoomConfig::default()),
+                0x26 => zoom.pan_by(0.0, 48.0, ZoomConfig::default()),
+                0x28 => zoom.pan_by(0.0, -48.0, ZoomConfig::default()),
+                0x30 | 0x60 => zoom.set_mode(hover_core::ScaleMode::FitAll, ZoomConfig::default()),
+                0x31 | 0x61 => zoom.set_mode(hover_core::ScaleMode::Native, ZoomConfig::default()),
+                0xbb | 0x6b | 0xbd | 0x6d => zoom.apply_wheel(
+                    HoverPoint::new(
+                        zoom.viewport_size.width * 0.5,
+                        zoom.viewport_size.height * 0.5,
+                    ),
+                    if matches!(key, 0xbb | 0x6b) {
+                        1.0
+                    } else {
+                        -1.0
+                    },
+                    WheelModifier::Plain,
+                    ZoomConfig::default(),
+                ),
+                _ => return false,
+            }
+            zoom.settle_quality();
+            InvalidateRect(hwnd, null(), 0);
+            return true;
+        }
+        OverlayContent::Text {
+            lines, truncated, ..
+        } => (
+            text_virtual_line_count(lines, *truncated),
+            text_visible_rows(&rect),
+        ),
+        OverlayContent::List { entries, .. } => (entries.len(), list_visible_rows(&rect)),
+    };
+    let max = rows.0.saturating_sub(rows.1);
+    model.scroll_offset = match key {
+        0x26 => model.scroll_offset.saturating_sub(1),
+        0x28 => model.scroll_offset.saturating_add(1).min(max),
+        0x21 => model.scroll_offset.saturating_sub(rows.1.max(1)),
+        0x22 => model.scroll_offset.saturating_add(rows.1.max(1)).min(max),
+        0x24 => 0,
+        0x23 => max,
+        _ => return false,
+    };
+    InvalidateRect(hwnd, null(), 0);
+    true
 }
 
 unsafe extern "system" fn foreground_event_proc(
@@ -1018,6 +1664,18 @@ unsafe extern "system" fn control_window_proc(
             }
             0
         }
+        WM_PREVIEW_ACTION => {
+            if let Some(app) = ptr.as_mut() {
+                match wparam {
+                    ID_PREVIEW_PIN => app.toggle_pin(),
+                    ID_PREVIEW_RELOAD => app.reload_current(),
+                    ID_PREVIEW_CLOSE => app.dismiss_current(),
+                    ID_PREVIEW_SYNC => app.sync_pinned_media(),
+                    _ => {}
+                }
+            }
+            0
+        }
         WM_PREVIEW_READY => {
             if let Some(app) = ptr.as_mut() {
                 if app.state != HoverState::Dormant {
@@ -1043,9 +1701,15 @@ unsafe extern "system" fn control_window_proc(
             let event = lparam as u32;
             if (event == WM_RBUTTONUP || event == WM_LBUTTONUP)
                 && !ptr.is_null()
-                && let Some(app) = ptr.as_mut()
+                && let Some(app) = ptr.as_ref()
             {
-                show_tray_menu(app);
+                let snapshot = (
+                    app.settings.general.enabled,
+                    app.settings.general.start_with_windows,
+                    app.pinned,
+                    app.current_path.is_some(),
+                );
+                show_tray_menu(hwnd, snapshot);
             }
             0
         }
@@ -1055,13 +1719,22 @@ unsafe extern "system" fn control_window_proc(
                     ID_TRAY_ENABLE => app.toggle_enabled(),
                     ID_TRAY_STARTUP => app.toggle_startup(),
                     ID_TRAY_OPTIONS => app.show_options(),
+                    ID_PREVIEW_PIN => app.toggle_pin(),
+                    ID_PREVIEW_RELOAD => app.reload_current(),
+                    ID_PREVIEW_CLOSE => app.dismiss_current(),
                     ID_TRAY_EXIT => PostQuitMessage(0),
                     _ => {}
                 }
             }
             0
         }
-        WM_DISPLAYCHANGE | WM_DPICHANGED | WM_POWERBROADCAST => {
+        WM_DISPLAYCHANGE | WM_DPICHANGED => {
+            if let Some(app) = ptr.as_mut() {
+                app.reposition_pinned();
+            }
+            0
+        }
+        WM_POWERBROADCAST => {
             if let Some(app) = ptr.as_mut() {
                 app.enter_dormant();
             }
@@ -1069,6 +1742,11 @@ unsafe extern "system" fn control_window_proc(
         }
         WM_DESTROY => {
             if !ptr.is_null() {
+                SetWindowLongPtrW(
+                    hwnd,
+                    windows_sys::Win32::UI::WindowsAndMessaging::GWLP_USERDATA,
+                    0,
+                );
                 let mut app = Box::from_raw(ptr);
                 app.destroy();
             }
@@ -1086,7 +1764,42 @@ unsafe extern "system" fn overlay_window_proc(
     lparam: LPARAM,
 ) -> LRESULT {
     match msg {
+        WM_COMMAND => {
+            if matches!(
+                wparam & 0xffff,
+                ID_PREVIEW_PIN | ID_PREVIEW_RELOAD | ID_PREVIEW_CLOSE
+            ) {
+                post_preview_action(wparam & 0xffff);
+                return 0;
+            }
+            DefWindowProcW(hwnd, msg, wparam, lparam)
+        }
+        WM_CLOSE => {
+            post_preview_action(ID_PREVIEW_CLOSE);
+            0
+        }
+        WM_SIZE | WM_MOVE => {
+            layout_preview_chrome(hwnd);
+            resize_overlay_view(hwnd);
+            post_preview_action(ID_PREVIEW_SYNC);
+            DefWindowProcW(hwnd, msg, wparam, lparam)
+        }
+        WM_MOUSEACTIVATE if !PREVIEW_PINNED.load(Ordering::Acquire) => MA_NOACTIVATE as LRESULT,
+        WM_LBUTTONDOWN if PREVIEW_PINNED.load(Ordering::Acquire) => {
+            SetFocus(hwnd);
+            0
+        }
+        WM_CTLCOLORSTATIC => {
+            let hdc = wparam as windows_sys::Win32::Graphics::Gdi::HDC;
+            SetTextColor(hdc, rgb(241, 242, 244));
+            SetBkColor(hdc, rgb(20, 22, 25));
+            SetDCBrushColor(hdc, rgb(20, 22, 25));
+            GetStockObject(DC_BRUSH) as LRESULT
+        }
         WM_LBUTTONUP => {
+            if signed_hiword_isize(lparam) < PREVIEW_CHROME_HEIGHT {
+                return 0;
+            }
             let control = CONTROL_HWND.load(Ordering::Acquire) as HWND;
             if !control.is_null() {
                 PostMessageW(control, WM_MEDIA_PLAY, 0, 0);
@@ -1548,29 +2261,19 @@ unsafe fn remove_tray_icon(hwnd: HWND) {
     Shell_NotifyIconW(NIM_DELETE, &nid);
 }
 
-unsafe fn show_tray_menu(app: &mut App) {
+unsafe fn show_tray_menu(hwnd: HWND, snapshot: (bool, bool, bool, bool)) {
     let menu = CreatePopupMenu();
     if menu.is_null() {
         return;
     }
-    let enabled_flags = MF_STRING
-        | if app.settings.general.enabled {
-            MF_CHECKED
-        } else {
-            MF_UNCHECKED
-        };
+    let enabled_flags = MF_STRING | if snapshot.0 { MF_CHECKED } else { MF_UNCHECKED };
     AppendMenuW(
         menu,
         enabled_flags,
         ID_TRAY_ENABLE,
         wide("Enable Hover").as_ptr(),
     );
-    let startup_flags = MF_STRING
-        | if app.settings.general.start_with_windows {
-            MF_CHECKED
-        } else {
-            MF_UNCHECKED
-        };
+    let startup_flags = MF_STRING | if snapshot.1 { MF_CHECKED } else { MF_UNCHECKED };
     AppendMenuW(
         menu,
         startup_flags,
@@ -1578,6 +2281,30 @@ unsafe fn show_tray_menu(app: &mut App) {
         wide("Run at Startup").as_ptr(),
     );
     AppendMenuW(menu, MF_SEPARATOR, 0, null());
+    let preview_flags = MF_STRING | if snapshot.3 { 0 } else { MF_GRAYED };
+    AppendMenuW(
+        menu,
+        preview_flags,
+        ID_PREVIEW_PIN,
+        wide(if snapshot.2 {
+            "Unpin preview"
+        } else {
+            "Pin current preview"
+        })
+        .as_ptr(),
+    );
+    AppendMenuW(
+        menu,
+        preview_flags,
+        ID_PREVIEW_RELOAD,
+        wide("Reload preview").as_ptr(),
+    );
+    AppendMenuW(
+        menu,
+        preview_flags,
+        ID_PREVIEW_CLOSE,
+        wide("Close preview").as_ptr(),
+    );
     AppendMenuW(
         menu,
         MF_STRING,
@@ -1589,17 +2316,23 @@ unsafe fn show_tray_menu(app: &mut App) {
 
     let mut point = POINT::default();
     GetCursorPos(&mut point);
-    SetForegroundWindow(app.hwnd);
-    TrackPopupMenu(
+    TRAY_MENU_OPEN.store(true, Ordering::Release);
+    SetForegroundWindow(hwnd);
+    let command = TrackPopupMenu(
         menu,
-        TPM_LEFTALIGN | TPM_BOTTOMALIGN,
+        TPM_LEFTALIGN | TPM_BOTTOMALIGN | TPM_RETURNCMD,
         point.x,
         point.y,
         0,
-        app.hwnd,
+        hwnd,
         null(),
     );
+    TRAY_MENU_OPEN.store(false, Ordering::Release);
     DestroyMenu(menu);
+    if command != 0 {
+        PostMessageW(hwnd, WM_COMMAND, command as usize, 0);
+    }
+    PostMessageW(hwnd, WM_HOVER_FOREGROUND_CHANGED, 0, 0);
 }
 
 unsafe fn create_overlay_window() -> HWND {
@@ -1608,7 +2341,7 @@ unsafe fn create_overlay_window() -> HWND {
         WS_EX_LAYERED | WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW | WS_EX_TOPMOST,
         wide(OVERLAY_CLASS).as_ptr(),
         wide("Hover Overlay").as_ptr(),
-        WS_POPUP,
+        WS_POPUP | WS_CLIPCHILDREN,
         CW_USEDEFAULT,
         CW_USEDEFAULT,
         1,
@@ -1619,6 +2352,7 @@ unsafe fn create_overlay_window() -> HWND {
         null_mut(),
     );
     if !hwnd.is_null() {
+        create_preview_chrome(hwnd);
         OVERLAY_HWND.store(hwnd as isize, Ordering::Release);
         SetLayeredWindowAttributes(hwnd, 0, 245, LWA_ALPHA);
         ShowWindow(hwnd, SW_HIDE);
@@ -2210,10 +2944,10 @@ fn current_overlay_frame_delay_ms() -> Option<u32> {
         .unwrap();
     let model = guard.as_ref()?;
     match &model.content {
-        OverlayContent::Frames { frames, .. } => frames
+        OverlayContent::Frames { frames, .. } if frames.len() > 1 => frames
             .get(model.current_frame)
             .map(|frame| frame.delay_ms.max(33)),
-        OverlayContent::Text { .. } | OverlayContent::List { .. } => None,
+        _ => None,
     }
 }
 
@@ -2257,10 +2991,7 @@ unsafe fn apply_overlay_wheel_at_screen(
         return OverlayWheelAction::None;
     }
 
-    let mut client = RECT::default();
-    if GetClientRect(hwnd, &mut client) == 0 {
-        return OverlayWheelAction::None;
-    }
+    let client = content_client_rect(hwnd);
     if point.x < client.left
         || point.x >= client.right
         || point.y < client.top
@@ -2287,7 +3018,10 @@ unsafe fn apply_overlay_wheel_at_screen(
                 ZoomConfig::default(),
             );
             zoom.apply_wheel(
-                HoverPoint::new(point.x as f32, point.y as f32),
+                HoverPoint::new(
+                    (point.x - client.left) as f32,
+                    (point.y - client.top) as f32,
+                ),
                 wheel_delta,
                 modifier,
                 ZoomConfig::default(),
@@ -2451,10 +3185,21 @@ unsafe fn paint_overlay(
     let brush = CreateSolidBrush(background);
     FillRect(hdc, &client, brush);
     DeleteObject(brush);
+    fill_rect(
+        hdc,
+        client.left,
+        client.top,
+        client.right,
+        PREVIEW_CHROME_HEIGHT.min(client.bottom),
+        rgb(20, 22, 25),
+    );
+    client = content_client_rect(hwnd);
+    let saved_dc = SaveDC(hdc);
+    IntersectClipRect(hdc, client.left, client.top, client.right, client.bottom);
     match &model.content {
         OverlayContent::Frames { frames, zoom } => {
             if let Some(frame) = frames.get(model.current_frame) {
-                paint_frame(hdc, frame, *zoom);
+                paint_frame(hdc, frame, *zoom, client.top);
             }
         }
         OverlayContent::Text {
@@ -2486,12 +3231,16 @@ unsafe fn paint_overlay(
             model.scroll_offset,
         ),
     }
+    if saved_dc != 0 {
+        RestoreDC(hdc, saved_dc);
+    }
 }
 
 unsafe fn paint_frame(
     hdc: windows_sys::Win32::Graphics::Gdi::HDC,
     frame: &OverlayFrame,
     zoom: ZoomState,
+    origin_y: i32,
 ) {
     let tight_stride = frame.width.saturating_mul(4);
     let expected_pixels = frame.stride as usize * frame.height as usize;
@@ -2531,7 +3280,7 @@ unsafe fn paint_frame(
     StretchDIBits(
         hdc,
         top_left.x.round() as i32,
-        top_left.y.round() as i32,
+        top_left.y.round() as i32 + origin_y,
         dst_width,
         dst_height,
         0,
@@ -3673,7 +4422,8 @@ unsafe fn post_video_key_tap(key: u32) -> bool {
 }
 
 unsafe fn forward_video_key(message: u32, keyboard: &KBDLLHOOKSTRUCT) -> bool {
-    if VIDEO_PID.load(Ordering::Acquire) == 0 {
+    let pid = VIDEO_PID.load(Ordering::Acquire);
+    if pid == 0 || foreground_process_id() != Some(pid) {
         return false;
     }
     let hwnd = current_video_window();
@@ -3854,4 +4604,178 @@ fn copy_wide_fixed(value: &str, dest: &mut [u16]) {
 
 const fn rgb(red: u8, green: u8, blue: u8) -> u32 {
     red as u32 | ((green as u32) << 8) | ((blue as u32) << 16)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn image_model(width: u32, height: u32) -> OverlayModel {
+        OverlayModel {
+            content: OverlayContent::Frames {
+                frames: vec![OverlayFrame {
+                    width,
+                    height,
+                    stride: width * 4,
+                    pixels_bgra: Vec::new(),
+                    delay_ms: 0,
+                }],
+                zoom: ZoomState::new(
+                    Size::new(width as f32, height as f32),
+                    Size::new(400.0, 300.0),
+                    ZoomConfig::default(),
+                ),
+            },
+            current_frame: 0,
+            scroll_offset: 0,
+        }
+    }
+
+    #[test]
+    fn reload_preserves_actual_custom_zoom_pan_and_clamps_animation_frame() {
+        let mut old = image_model(1000, 800);
+        if let OverlayContent::Frames { zoom, .. } = &mut old.content {
+            zoom.set_mode(hover_core::ScaleMode::Native, ZoomConfig::default());
+            zoom.pan_by(120.0, -80.0, ZoomConfig::default());
+        }
+        old.current_frame = 8;
+        let saved = old.save_view();
+        let mut new = image_model(1000, 800);
+        assert!(new.restore_view(saved, Size::new(500.0, 400.0), 10));
+        if let OverlayContent::Frames { zoom, .. } = new.content {
+            assert_eq!(zoom.scale, 1.0);
+            assert_eq!((zoom.pan_x, zoom.pan_y), (120.0, -80.0));
+            assert_eq!(zoom.viewport_size, Size::new(500.0, 400.0));
+        } else {
+            panic!("image view lost");
+        }
+        assert_eq!(new.current_frame, 0);
+    }
+
+    #[test]
+    fn changed_dimensions_or_content_kind_do_not_inherit_stale_view() {
+        let old = image_model(1000, 800).save_view();
+        let mut changed = image_model(200, 100);
+        assert!(!changed.restore_view(old, Size::new(400.0, 300.0), 10));
+        let mut text = OverlayModel {
+            content: OverlayContent::Text {
+                title: String::new(),
+                subtitle: String::new(),
+                lines: vec!["new".into()],
+                truncated: false,
+            },
+            current_frame: 0,
+            scroll_offset: 0,
+        };
+        assert!(!text.restore_view(old, Size::new(400.0, 300.0), 10));
+        assert_eq!(text.scroll_offset, 0);
+    }
+
+    #[test]
+    fn text_and_list_reload_keep_scroll_only_within_the_new_content() {
+        let mut text = OverlayModel {
+            content: OverlayContent::Text {
+                title: String::new(),
+                subtitle: String::new(),
+                lines: vec!["line".into(); 50],
+                truncated: false,
+            },
+            current_frame: 0,
+            scroll_offset: 0,
+        };
+        assert!(text.restore_view(SavedView::Text { scroll: 99 }, Size::new(500.0, 300.0), 10));
+        assert_eq!(text.scroll_offset, 40);
+        let mut list = OverlayModel {
+            content: OverlayContent::List {
+                title: String::new(),
+                subtitle: String::new(),
+                entries: Vec::new(),
+                omitted: 0,
+            },
+            current_frame: 0,
+            scroll_offset: 99,
+        };
+        assert!(list.restore_view(SavedView::List { scroll: 99 }, Size::new(500.0, 300.0), 10));
+        assert_eq!(list.scroll_offset, 0);
+    }
+
+    #[test]
+    #[ignore = "Dedicated hosted Windows runner only: creates Hover's own native window; not an Explorer or physical-input test"]
+    fn pinned_native_window_lifecycle() {
+        assert_eq!(
+            std::env::var("GITHUB_ACTIONS").as_deref(),
+            Ok("true"),
+            "Do not open test windows on the user's shared desktop"
+        );
+        std::thread::spawn(|| unsafe {
+            use windows_sys::Win32::UI::WindowsAndMessaging::{GetWindowTextW, PM_REMOVE, PeekMessageW, WM_QUIT};
+            fn caption(hwnd: HWND) -> String {
+                let mut text = [0u16; 1024];
+                let count = unsafe { GetWindowTextW(hwnd, text.as_mut_ptr(), text.len() as i32) };
+                String::from_utf16_lossy(&text[..count.max(0) as usize])
+            }
+            unsafe fn pump_until(mut predicate: impl FnMut() -> bool) {
+                let start = Instant::now();
+                loop {
+                    let mut msg = MSG::default();
+                    while PeekMessageW(&mut msg, null_mut(), 0, 0, PM_REMOVE) != 0 {
+                        assert_ne!(msg.message, WM_QUIT, "Closing preview quit the resident app");
+                        if !preprocess_preview_message(&msg) { TranslateMessage(&msg); DispatchMessageW(&msg); }
+                    }
+                    if predicate() { return; }
+                    assert!(start.elapsed() < Duration::from_secs(10), "Native preview action did not settle");
+                    std::thread::sleep(Duration::from_millis(5));
+                }
+            }
+            struct Cleanup(HWND, PathBuf);
+            impl Drop for Cleanup {
+                fn drop(&mut self) {
+                    unsafe { if IsWindow(self.0) != 0 { DestroyWindow(self.0); } }
+                    let _ = std::fs::remove_file(&self.1);
+                }
+            }
+            let path = std::env::temp_dir().join(format!("hover-native-preview-{}.txt", std::process::id()));
+            let initial = (0..100).map(|i| format!("initial {i}\n")).collect::<String>();
+            let mut fixture = std::fs::OpenOptions::new().write(true).create_new(true).open(&path).unwrap();
+            fixture.write_all(initial.as_bytes()).unwrap();
+            drop(fixture);
+            let control = create_app_window().unwrap();
+            let _cleanup = Cleanup(control, path.clone());
+            let ptr = GetWindowLongPtrW(control, windows_sys::Win32::UI::WindowsAndMessaging::GWLP_USERDATA) as *mut App;
+            let overlay = (*ptr).overlay;
+            (*ptr).preview_anchor = Some(HoverPoint::new(100.0, 100.0));
+            (*ptr).show_payload(path.clone(), PreviewPayload::Text { title: "fixture".into(), subtitle: "native test".into(), lines: initial.lines().map(str::to_string).collect(), truncated: false });
+            assert_ne!(GetWindowLongPtrW(overlay, GWL_EXSTYLE) as u32 & WS_EX_NOACTIVATE, 0);
+            assert_eq!(caption(GetDlgItem(overlay, ID_PREVIEW_PIN as i32)), "Pin");
+            SendMessageW(overlay, WM_COMMAND, ID_PREVIEW_PIN, 0);
+            pump_until(|| (*ptr).pinned);
+            assert_eq!(GetWindowLongPtrW(overlay, GWL_EXSTYLE) as u32 & WS_EX_NOACTIVATE, 0);
+            assert_ne!(GetWindowLongPtrW(overlay, GWL_STYLE) as u32 & WS_CAPTION, 0);
+            assert_eq!(caption(GetDlgItem(overlay, ID_PREVIEW_PIN as i32)), "Unpin");
+            (*ptr).on_foreground_changed();
+            (*ptr).update_hover_target();
+            assert_eq!((*ptr).current_path.as_ref(), Some(&path));
+            OVERLAY_MODEL.get().unwrap().lock().unwrap().as_mut().unwrap().scroll_offset = 20;
+            let changed = (0..100).map(|i| format!("updated {i}\n")).collect::<String>();
+            std::fs::write(&path, &changed).unwrap();
+            PostMessageW(overlay, WM_KEYDOWN, 0x74, 0); // F5 through the production message path.
+            pump_until(|| (*ptr).pending_path.is_none() && caption(overlay).contains("View restored"));
+            assert!((*ptr).pinned);
+            assert_eq!((*ptr).state, HoverState::PreviewLocked);
+            {
+                let guard = OVERLAY_MODEL.get().unwrap().lock().unwrap();
+                let model = guard.as_ref().unwrap();
+                assert_eq!(model.scroll_offset, 20);
+                assert!(matches!(&model.content, OverlayContent::Text { lines, .. } if lines[0] == "updated 0"));
+            }
+            assert_eq!(std::fs::read(&path).unwrap(), changed.as_bytes());
+            PostMessageW(overlay, WM_CLOSE, 0, 0);
+            pump_until(|| (*ptr).current_path.is_none());
+            assert!(IsWindow(control) != 0 && IsWindow(overlay) != 0);
+            assert_eq!(IsWindowVisible(overlay), 0);
+            DestroyWindow(control);
+            assert_eq!(IsWindow(overlay), 0);
+            assert_eq!(CONTROL_HWND.load(Ordering::Acquire), 0);
+        }).join().unwrap();
+    }
 }
