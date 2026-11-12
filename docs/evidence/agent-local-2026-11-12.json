@@ -1,0 +1,5395 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "fixtureType": "generated synthetic files on disk",
+  "execution": "real Windows app via private stdio and native UI thread",
+  "excludes": [
+    "Explorer targeting",
+    "physical input",
+    "screen reader",
+    "mixed DPI",
+    "installer/update/rollback",
+    "real game fidelity"
+  ],
+  "executableSha256": "6FD36C4AF4DF9A46C37A1CBF077DAF404A0B7EE50990BE1926E8FD11DC35C6AB",
+  "entrypoint": "hover.exe --agent-stdio",
+  "os": "Microsoft Windows NT 10.0.22631.0",
+  "processArchitecture": "AMD64",
+  "checks": [
+    "Real app exposes versioned private stdio control",
+    "Agent session isolates real user settings and startup registry",
+    "Agent exposes truthful bundled status for every game milestone",
+    "Effective settings ignore the deliberately disabled disk profile",
+    "Status belongs to the owned native Windows process",
+    "Malformed request shape reports an error and the session remains usable",
+    "Unknown fields are rejected before opening a preview",
+    "Open uses actual native pinned window styles and exact Unicode identity",
+    "Generated text file decoded through the real worker and UI loop",
+    "Inspect returns the actual decoded text",
+    "Native text view scroll changes",
+    "Actual preview painter and native controls export a bounded bitmap",
+    "Capture refuses to overwrite an existing file",
+    "External save reloads with real scroll continuity",
+    "Rename succeeds during preview; missing source produces a named error",
+    "WIC decodes generated BMP through the real application",
+    "Production zoom and pan operate in the real native viewport",
+    "Capture has a valid 32-bit BMP header",
+    "Native painter retains all four known decoded quadrant colors; capture is not a blank surrogate",
+    "Compatible image reload preserves actual zoom and pan",
+    "Reload leaves the real window minimized without losing its image view",
+    "Minimized capture fails without creating a file",
+    "Restore uses the real native window",
+    "Agent focus inspection reads real native content focus",
+    "Native focus reaches Unpin control",
+    "Native focus reaches Reload control",
+    "Native focus reaches Close control",
+    "Native focus returns to interactive content",
+    "Rapid real-app replacement retains only the latest requested identity and content",
+    "Cancelled native decode cannot reopen a closed preview",
+    "Corrupt/unsupported input terminates in an explicit error",
+    "Media recognition never starts an external player without explicit play",
+    "Close hides the preview and retains the resident application",
+    "Source image remains byte-identical",
+    "Externally updated source text remains byte-identical after preview/reload",
+    "Existing settings fixture remains byte-identical throughout the session",
+    "Quit closes the owned real app cleanly",
+    "EOF closes only its owned Hover session",
+    "Oversized protocol input receives a bounded error",
+    "Oversized request stops its owned session without an unbounded allocation"
+  ],
+  "commandRoundTrips": [
+    {
+      "command": "capabilities",
+      "roundTripMs": 24.0729
+    },
+    {
+      "command": "support",
+      "roundTripMs": 0.5536
+    },
+    {
+      "command": "settings",
+      "roundTripMs": 0.2936
+    },
+    {
+      "command": "status",
+      "roundTripMs": 0.3407
+    },
+    {
+      "command": "open",
+      "roundTripMs": 0.5983
+    },
+    {
+      "command": "open",
+      "roundTripMs": 41.2973
+    },
+    {
+      "command": "wait",
+      "roundTripMs": 4.0461
+    },
+    {
+      "command": "inspect",
+      "roundTripMs": 0.3847
+    },
+    {
+      "command": "scroll",
+      "roundTripMs": 0.3656
+    },
+    {
+      "command": "capture",
+      "roundTripMs": 3.1131
+    },
+    {
+      "command": "capture",
+      "roundTripMs": 2.6582
+    },
+    {
+      "command": "reload",
+      "roundTripMs": 7.892
+    },
+    {
+      "command": "wait",
+      "roundTripMs": 20.5931
+    },
+    {
+      "command": "inspect",
+      "roundTripMs": 0.3232
+    },
+    {
+      "command": "reload",
+      "roundTripMs": 8.3541
+    },
+    {
+      "command": "wait",
+      "roundTripMs": 4.7519
+    },
+    {
+      "command": "reload",
+      "roundTripMs": 5.4462
+    },
+    {
+      "command": "wait",
+      "roundTripMs": 12.4792
+    },
+    {
+      "command": "open",
+      "roundTripMs": 33.3282
+    },
+    {
+      "command": "wait",
+      "roundTripMs": 18.7551
+    },
+    {
+      "command": "resize",
+      "roundTripMs": 10.3748
+    },
+    {
+      "command": "zoom",
+      "roundTripMs": 1.3848
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 0.869
+    },
+    {
+      "command": "capture",
+      "roundTripMs": 6.1898
+    },
+    {
+      "command": "reload",
+      "roundTripMs": 7.0015
+    },
+    {
+      "command": "wait",
+      "roundTripMs": 21.1714
+    },
+    {
+      "command": "minimize",
+      "roundTripMs": 11.9381
+    },
+    {
+      "command": "reload",
+      "roundTripMs": 2.1937
+    },
+    {
+      "command": "wait",
+      "roundTripMs": 20.6434
+    },
+    {
+      "command": "capture",
+      "roundTripMs": 1.5427
+    },
+    {
+      "command": "restore",
+      "roundTripMs": 19.0507
+    },
+    {
+      "command": "focus",
+      "roundTripMs": 33.8282
+    },
+    {
+      "command": "focus",
+      "roundTripMs": 1.997
+    },
+    {
+      "command": "focus",
+      "roundTripMs": 4.3184
+    },
+    {
+      "command": "focus",
+      "roundTripMs": 1.9192
+    },
+    {
+      "command": "focus",
+      "roundTripMs": 1.6649
+    },
+    {
+      "command": "open",
+      "roundTripMs": 90.301
+    },
+    {
+      "command": "open",
+      "roundTripMs": 86.6057
+    },
+    {
+      "command": "open",
+      "roundTripMs": 98.1948
+    },
+    {
+      "command": "open",
+      "roundTripMs": 183.1197
+    },
+    {
+      "command": "open",
+      "roundTripMs": 152.5206
+    },
+    {
+      "command": "open",
+      "roundTripMs": 97.5107
+    },
+    {
+      "command": "open",
+      "roundTripMs": 82.8523
+    },
+    {
+      "command": "open",
+      "roundTripMs": 94.9489
+    },
+    {
+      "command": "open",
+      "roundTripMs": 127.9565
+    },
+    {
+      "command": "open",
+      "roundTripMs": 97.4464
+    },
+    {
+      "command": "open",
+      "roundTripMs": 71.6102
+    },
+    {
+      "command": "open",
+      "roundTripMs": 94.703
+    },
+    {
+      "command": "open",
+      "roundTripMs": 116.9158
+    },
+    {
+      "command": "open",
+      "roundTripMs": 73.2903
+    },
+    {
+      "command": "open",
+      "roundTripMs": 54.252
+    },
+    {
+      "command": "open",
+      "roundTripMs": 74.7778
+    },
+    {
+      "command": "open",
+      "roundTripMs": 69.4508
+    },
+    {
+      "command": "open",
+      "roundTripMs": 60.7657
+    },
+    {
+      "command": "open",
+      "roundTripMs": 65.2441
+    },
+    {
+      "command": "open",
+      "roundTripMs": 79.415
+    },
+    {
+      "command": "open",
+      "roundTripMs": 71.7922
+    },
+    {
+      "command": "open",
+      "roundTripMs": 82.8407
+    },
+    {
+      "command": "open",
+      "roundTripMs": 95.5158
+    },
+    {
+      "command": "open",
+      "roundTripMs": 74.4537
+    },
+    {
+      "command": "open",
+      "roundTripMs": 75.6775
+    },
+    {
+      "command": "open",
+      "roundTripMs": 93.3281
+    },
+    {
+      "command": "open",
+      "roundTripMs": 59.7123
+    },
+    {
+      "command": "open",
+      "roundTripMs": 57.7089
+    },
+    {
+      "command": "open",
+      "roundTripMs": 67.3202
+    },
+    {
+      "command": "open",
+      "roundTripMs": 47.3544
+    },
+    {
+      "command": "open",
+      "roundTripMs": 63.8299
+    },
+    {
+      "command": "wait",
+      "roundTripMs": 14.2767
+    },
+    {
+      "command": "inspect",
+      "roundTripMs": 1.4519
+    },
+    {
+      "command": "open",
+      "roundTripMs": 41.9913
+    },
+    {
+      "command": "close",
+      "roundTripMs": 23.8247
+    },
+    {
+      "command": "status",
+      "roundTripMs": 1.451
+    },
+    {
+      "command": "open",
+      "roundTripMs": 42.6977
+    },
+    {
+      "command": "wait",
+      "roundTripMs": 22.954
+    },
+    {
+      "command": "open",
+      "roundTripMs": 80.6902
+    },
+    {
+      "command": "wait",
+      "roundTripMs": 43.7981
+    },
+    {
+      "command": "close",
+      "roundTripMs": 24.6806
+    },
+    {
+      "command": "quit",
+      "roundTripMs": 1.3853
+    }
+  ],
+  "responses": [
+    {
+      "id": 1,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "commands": [
+          "capabilities",
+          "support",
+          "settings",
+          "status",
+          "inspect",
+          "open",
+          "pin",
+          "reload",
+          "close",
+          "wait",
+          "zoom",
+          "pan",
+          "scroll",
+          "resize",
+          "minimize",
+          "restore",
+          "focus",
+          "play",
+          "activation",
+          "capture",
+          "quit"
+        ],
+        "configuration": "ephemeral_defaults_no_startup_mutation",
+        "limitations": [
+          "No external-window input injection",
+          "Controlled activation by default; activation can enable production shell targeting",
+          "No claim of physical-input, accessibility or packaged-release certification"
+        ],
+        "owns_session": true,
+        "protocol": 1,
+        "transport": "private_stdio"
+      }
+    },
+    {
+      "id": 2,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "asOf": "2026-11-12",
+        "core": {
+          "artist3D": "not implemented",
+          "browser": "skeleton, no remote preview fetch",
+          "folder": "bounded enumeration, shell interaction unverified",
+          "gif": "implemented, fidelity and limits need expanded tests",
+          "image": "WIC BMP pixel test with generated fixture",
+          "media": "external playback after explicit click, interaction/security unverified",
+          "text": "implemented, shell interaction unverified",
+          "zip": "bounded metadata index, reader tests with generated fixtures"
+        },
+        "games": [
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 2,
+            "name": "Skyrim",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/2",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 3,
+            "name": "Starfield",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/3",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 4,
+            "name": "Sims 4",
+            "state": "partial DBPF 2.1 index metadata; LlamaLogic 5.3.0 comparison on 20-entry test fixture",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/4",
+            "verifiedFixtureVersions": [
+              "DBPF 2.1 upstream test package; game/build not established; index metadata only"
+            ]
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 5,
+            "name": "Minecraft Java",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/5",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 6,
+            "name": "Minecraft Bedrock",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/6",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 7,
+            "name": "Hytale",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/7",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 8,
+            "name": "Fallout 4",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/8",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 9,
+            "name": "Unreal Engine",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/9",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 10,
+            "name": "Unity",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/10",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 11,
+            "name": "Cyberpunk 2077",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/11",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 12,
+            "name": "The Witcher 3",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/12",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 13,
+            "name": "Oblivion original",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/13",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 14,
+            "name": "Oblivion Remastered",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/14",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 15,
+            "name": "Terraria and tModLoader",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/15",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 16,
+            "name": "Stardew Valley",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/16",
+            "verifiedFixtureVersions": []
+          },
+          {
+            "decodedAssetVerified": false,
+            "dependencyFidelityVerified": false,
+            "embeddedImageVerified": false,
+            "interactiveRenderVerified": false,
+            "milestone": 17,
+            "name": "Baldurs Gate 3",
+            "state": "not implemented",
+            "url": "https://github.com/Herbertofury/Hover-App/milestone/17",
+            "verifiedFixtureVersions": []
+          }
+        ],
+        "note": "States reflect current source/evidence, not milestone completion. All per-game fixture and packaged-release gates remain open.",
+        "releaseVerified": false,
+        "schemaVersion": 1
+      }
+    },
+    {
+      "id": 3,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "effective_ini": "[general]\nenabled = true\nshow_tray_icon = true\n\n[preview_types]\nimages = true\nvideos = true\naudio = true\nfolders = true\nzips = true\ntext = true\nsims_packages = true\n\n[video]\naudio_enabled = true\nseek_seconds = 5\n",
+        "persisted": false,
+        "startup_mutation": false
+      }
+    },
+    {
+      "id": 4,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "Hover Overlay",
+        "content": null,
+        "content_focused": false,
+        "content_rect": {
+          "height": 1,
+          "width": 1
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Pin",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": false
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": true,
+        "path": null,
+        "pending_path": null,
+        "phase": "empty",
+        "pid": 242648,
+        "pinned": false,
+        "profile": "release",
+        "rect": {
+          "height": 1.0,
+          "left": 0.0,
+          "top": 0.0,
+          "width": 1.0
+        },
+        "scroll": null,
+        "state": "Dormant",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": false,
+        "worker_busy": false
+      }
+    },
+    {
+      "error": "Unknown field: unexpected",
+      "id": 5,
+      "ok": false,
+      "protocol": 1
+    },
+    {
+      "id": 6,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 7,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 120,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 8,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "lines": [
+            "original line 0",
+            "original line 1"
+          ],
+          "offset": 0,
+          "source_truncated": false,
+          "subtitle": "Text file - 2.1 KB",
+          "title": "fixture-雪.txt",
+          "total_rows": 120
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 9,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 120,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 20,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 10,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "bytes": 776790,
+        "desktop_screenshot": false,
+        "height": 261,
+        "path": "[fixtures]\\text-preview.bmp",
+        "representation": "native_preview_client_render",
+        "width": 744
+      }
+    },
+    {
+      "error": "Output was not overwritten: The file exists. (os error 80)",
+      "id": 11,
+      "ok": false,
+      "protocol": 1
+    },
+    {
+      "id": 12,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 120,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 20,
+        "state": "DecodePending",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": true
+      }
+    },
+    {
+      "id": 13,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · View restored · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 120,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 20,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 14,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · View restored · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "lines": [
+            "updated line 0",
+            "updated line 1"
+          ],
+          "offset": 0,
+          "source_truncated": false,
+          "subtitle": "Text file - 2.0 KB",
+          "title": "fixture-雪.txt",
+          "total_rows": 120
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 20,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 15,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 120,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 20,
+        "state": "DecodePending",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": true
+      }
+    },
+    {
+      "id": 16,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": "The system cannot find the file specified. (os error 2)",
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": null,
+        "phase": "error",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 17,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "DecodePending",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": true
+      }
+    },
+    {
+      "id": 18,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · View restored · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 120,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 19,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 20,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 0.0,
+          "pan_y": 0.0,
+          "scale": 0.4333333373069763,
+          "viewport_height": 260.0,
+          "viewport_width": 760.0
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 21,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 0.0,
+          "pan_y": 0.0,
+          "scale": 0.5350000262260437,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 321,
+          "width": 484
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 400.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 500.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 22,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 0.0,
+          "pan_y": 0.0,
+          "scale": 1.0,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 321,
+          "width": 484
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 400.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 500.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 23,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 90.0,
+          "pan_y": -60.0,
+          "scale": 1.0,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 321,
+          "width": 484
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 400.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 500.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 24,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "bytes": 698950,
+        "desktop_screenshot": false,
+        "height": 361,
+        "path": "[fixtures]\\image-preview.bmp",
+        "representation": "native_preview_client_render",
+        "width": 484
+      }
+    },
+    {
+      "id": 25,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 90.0,
+          "pan_y": -60.0,
+          "scale": 1.0,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 321,
+          "width": 484
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 400.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 500.0
+        },
+        "scroll": 0,
+        "state": "DecodePending",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": true
+      }
+    },
+    {
+      "id": 26,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · View restored · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 90.0,
+          "pan_y": -60.0,
+          "scale": 1.0,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 321,
+          "width": 484
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 400.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 500.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 27,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · View restored · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 90.0,
+          "pan_y": -60.0,
+          "scale": 1.0,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 1,
+          "width": 1
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": false
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": true,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 28.0,
+          "left": -32000.0,
+          "top": -32000.0,
+          "width": 160.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 28,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 90.0,
+          "pan_y": -60.0,
+          "scale": 1.0,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 1,
+          "width": 1
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": false
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": false
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": true,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 28.0,
+          "left": -32000.0,
+          "top": -32000.0,
+          "width": 160.0
+        },
+        "scroll": 0,
+        "state": "DecodePending",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": true
+      }
+    },
+    {
+      "id": 29,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · View restored · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 90.0,
+          "pan_y": -60.0,
+          "scale": 1.0,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 1,
+          "width": 1
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": false
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": true,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 28.0,
+          "left": -32000.0,
+          "top": -32000.0,
+          "width": 160.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "error": "Open and restore the preview before capturing",
+      "id": 30,
+      "ok": false,
+      "protocol": 1
+    },
+    {
+      "id": 31,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · View restored · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 90.0,
+          "pan_y": -60.0,
+          "scale": 1.0,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 321,
+          "width": 484
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 400.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 500.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 32,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · View restored · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 90.0,
+          "pan_y": -60.0,
+          "scale": 1.0,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": true,
+        "content_rect": {
+          "height": 321,
+          "width": 484
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 400.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 500.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 33,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · View restored · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 90.0,
+          "pan_y": -60.0,
+          "scale": 1.0,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 321,
+          "width": 484
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": true,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 400.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 500.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 34,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · View restored · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 90.0,
+          "pan_y": -60.0,
+          "scale": 1.0,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 321,
+          "width": 484
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": true,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 400.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 500.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 35,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · View restored · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 90.0,
+          "pan_y": -60.0,
+          "scale": 1.0,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 321,
+          "width": 484
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": true,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 400.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 500.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 36,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · View restored · Hover (Pinned)",
+        "content": {
+          "frame": 0,
+          "frames": 1,
+          "image_height": 600.0,
+          "image_width": 800.0,
+          "kind": "image",
+          "pan_x": 90.0,
+          "pan_y": -60.0,
+          "scale": 1.0,
+          "viewport_height": 321.0,
+          "viewport_width": 484.0
+        },
+        "content_focused": true,
+        "content_rect": {
+          "height": 321,
+          "width": 484
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 400.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 500.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 37,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 38,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 39,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1658.0,
+          "top": 552.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 40,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1650.0,
+          "top": 565.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 41,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 42,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 43,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 44,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 45,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 46,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 47,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 48,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 49,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 50,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 51,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 52,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 53,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 54,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 55,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 56,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 57,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 58,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 59,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 60,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 61,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 62,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 63,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 64,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 65,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 66,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 67,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": "[fixtures]\\fixture-雪.txt",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 68,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 120,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 69,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "fixture-雪.txt · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "lines": [
+            "updated line 0"
+          ],
+          "offset": 0,
+          "source_truncated": false,
+          "subtitle": "Text file - 2.0 KB",
+          "title": "fixture-雪.txt",
+          "total_rows": 120
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\fixture-雪.txt",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 70,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\quadrants.bmp",
+        "pending_path": "[fixtures]\\quadrants.bmp",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 71,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Hover (Pinned)",
+        "content": null,
+        "content_focused": false,
+        "content_rect": {
+          "height": 260,
+          "width": 760
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": false
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": true,
+        "path": null,
+        "pending_path": null,
+        "phase": "empty",
+        "pid": 242648,
+        "pinned": false,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": null,
+        "state": "Dormant",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": false,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 72,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "quadrants.bmp · Hover (Pinned)",
+        "content": null,
+        "content_focused": false,
+        "content_rect": {
+          "height": 260,
+          "width": 760
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": false
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": true,
+        "path": null,
+        "pending_path": null,
+        "phase": "empty",
+        "pid": 242648,
+        "pinned": false,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": null,
+        "state": "Dormant",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": false,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 73,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "corrupt.bin · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\corrupt.bin",
+        "pending_path": "[fixtures]\\corrupt.bin",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 74,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "corrupt.bin · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": "unsupported image format",
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\corrupt.bin",
+        "pending_path": null,
+        "phase": "error",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1640.0,
+          "top": 579.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 75,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "paused.mp4 · Reloading / loading · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 1,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": false,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": true,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\paused.mp4",
+        "pending_path": "[fixtures]\\paused.mp4",
+        "phase": "loading",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1625.0,
+          "top": 586.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 76,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "paused.mp4 · Hover (Pinned)",
+        "content": {
+          "kind": "text",
+          "rows": 2,
+          "truncated": false
+        },
+        "content_focused": false,
+        "content_rect": {
+          "height": 221,
+          "width": 744
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": true
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": true
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": true,
+        "minimized": false,
+        "no_activate": false,
+        "path": "[fixtures]\\paused.mp4",
+        "pending_path": null,
+        "phase": "ready",
+        "pid": 242648,
+        "pinned": true,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1625.0,
+          "top": 586.0,
+          "width": 760.0
+        },
+        "scroll": 0,
+        "state": "PreviewLocked",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": true,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 77,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "paused.mp4 · Hover (Pinned)",
+        "content": null,
+        "content_focused": false,
+        "content_rect": {
+          "height": 260,
+          "width": 760
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": false
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": true,
+        "path": null,
+        "pending_path": null,
+        "phase": "empty",
+        "pid": 242648,
+        "pinned": false,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1625.0,
+          "top": 586.0,
+          "width": 760.0
+        },
+        "scroll": null,
+        "state": "Dormant",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": false,
+        "worker_busy": false
+      }
+    },
+    {
+      "id": 78,
+      "ok": true,
+      "protocol": 1,
+      "result": {
+        "audio_running": false,
+        "automatic_activation": false,
+        "caption": "paused.mp4 · Hover (Pinned)",
+        "content": null,
+        "content_focused": false,
+        "content_rect": {
+          "height": 260,
+          "width": 760
+        },
+        "controls": [
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1201,
+            "label": "Unpin",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1202,
+            "label": "Reload",
+            "visible": false
+          },
+          {
+            "enabled": true,
+            "focused": false,
+            "id": 1203,
+            "label": "Close",
+            "visible": false
+          }
+        ],
+        "error": null,
+        "loading": false,
+        "media_waiting": false,
+        "minimized": false,
+        "no_activate": true,
+        "path": null,
+        "pending_path": null,
+        "phase": "empty",
+        "pid": 242648,
+        "pinned": false,
+        "profile": "release",
+        "rect": {
+          "height": 300.0,
+          "left": 1625.0,
+          "top": 586.0,
+          "width": 760.0
+        },
+        "scroll": null,
+        "state": "Dormant",
+        "version": "0.1.0",
+        "video_running": false,
+        "visible": false,
+        "worker_busy": false
+      }
+    }
+  ]
+}

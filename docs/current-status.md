@@ -44,6 +44,14 @@ were inspected; their scopes remain required and open.
 
 ## Current evidence
 
+The app-native `hover-agent --stdio` interface can launch/control its own real
+Windows session independently of Computer Use. The first release-build test
+passed 40 checks using generated files on disk, including decoded content,
+native view/focus, reload continuity, rename/source hashes, cancellation,
+nonblank renderer color checks and shutdown. Hosted CI results are pending.
+See [agent control and boundaries](agent-control.md). This advances app-native
+testing; actual Explorer, physical input and packaged release gates remain open.
+
 The approved Git-history metadata cleanup replaced personal author addresses
 with GitHub no-reply identities without changing source trees. Local backups
 are retained. GitHub PR/internal/cache references can still retain old commits;

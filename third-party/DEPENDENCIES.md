@@ -18,6 +18,7 @@ Generated from the exact Cargo.lock by scripts/collect-licenses.ps1. Includes al
 - [gif-0.13.3](registry/gif-0.13.3/): MIT OR Apache-2.0; [upstream](https://github.com/image-rs/image-gif).
 - [hashbrown-0.17.0](registry/hashbrown-0.17.0/): MIT OR Apache-2.0; [upstream](https://github.com/rust-lang/hashbrown).
 - [indexmap-2.14.0](registry/indexmap-2.14.0/): Apache-2.0 OR MIT; [upstream](https://github.com/indexmap-rs/indexmap).
+- [itoa-1.0.19](registry/itoa-1.0.19/): MIT OR Apache-2.0; [upstream](https://github.com/dtolnay/itoa).
 - [js-sys-0.3.107](registry/js-sys-0.3.107/): MIT OR Apache-2.0; [upstream](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/js-sys).
 - [libc-0.2.191](registry/libc-0.2.191/): MIT OR Apache-2.0; [upstream](https://github.com/rust-lang/libc).
 - [log-0.4.29](registry/log-0.4.29/): MIT OR Apache-2.0; [upstream](https://github.com/rust-lang/log).
@@ -28,6 +29,10 @@ Generated from the exact Cargo.lock by scripts/collect-licenses.ps1. Includes al
 - [quote-1.0.45](registry/quote-1.0.45/): MIT OR Apache-2.0; [upstream](https://github.com/dtolnay/quote).
 - [r-efi-6.0.0](registry/r-efi-6.0.0/): MIT OR Apache-2.0 OR LGPL-2.1-or-later; [upstream](https://github.com/r-efi/r-efi).
 - [rustversion-1.0.23](registry/rustversion-1.0.23/): MIT OR Apache-2.0; [upstream](https://github.com/dtolnay/rustversion).
+- [serde-1.0.229](registry/serde-1.0.229/): MIT OR Apache-2.0; [upstream](https://github.com/serde-rs/serde).
+- [serde_core-1.0.229](registry/serde_core-1.0.229/): MIT OR Apache-2.0; [upstream](https://github.com/serde-rs/serde).
+- [serde_derive-1.0.229](registry/serde_derive-1.0.229/): MIT OR Apache-2.0; [upstream](https://github.com/serde-rs/serde).
+- [serde_json-1.0.154](registry/serde_json-1.0.154/): MIT OR Apache-2.0; [upstream](https://github.com/serde-rs/json).
 - [simd-adler32-0.3.9](registry/simd-adler32-0.3.9/): MIT; [upstream](https://github.com/mcountryman/simd-adler32).
 - [syn-2.0.117](registry/syn-2.0.117/): MIT OR Apache-2.0; [upstream](https://github.com/dtolnay/syn).
 - [syn-3.0.10](registry/syn-3.0.10/): MIT OR Apache-2.0; [upstream](https://github.com/dtolnay/syn).
@@ -56,4 +61,5 @@ Generated from the exact Cargo.lock by scripts/collect-licenses.ps1. Includes al
 - [zeroize_derive-1.5.0](registry/zeroize_derive-1.5.0/): Apache-2.0 OR MIT; [upstream](https://github.com/RustCrypto/utils).
 - [zip-9.5.1](registry/zip-9.5.1/): MIT; [upstream](https://github.com/zip-rs/zip2).
 - [zlib-rs-0.6.8](registry/zlib-rs-0.6.8/): Zlib; [upstream](https://github.com/trifectatechfoundation/zlib-rs).
+- [zmij-1.0.23](registry/zmij-1.0.23/): MIT; [upstream](https://github.com/dtolnay/zmij).
 - [zopfli-0.8.3](registry/zopfli-0.8.3/): Apache-2.0; [upstream](https://github.com/zopfli-rs/zopfli).
