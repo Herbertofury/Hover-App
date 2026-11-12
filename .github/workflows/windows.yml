@@ -1,7 +1,7 @@
 name: Windows source checks
 on:
   push:
-    branches: [main, work/hover-foundation]
+    branches: [main, 'work/**']
   pull_request:
 permissions:
   contents: read
