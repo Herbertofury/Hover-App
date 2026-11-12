@@ -29,6 +29,10 @@ were inspected; their scopes remain required and open.
   device paths, reparse links and cloud-recall attributes.
 - Unicode Explorer URLs decode as UTF-8 bytes; malformed escapes/NUL are
   rejected. COM initialization is balanced.
+- Preview placement asks Windows for the cursor monitor's work area, including
+  its taskbar reservation and negative coordinates. Geometry tests cover small
+  work areas and invalid numeric inputs. Actual mixed-DPI/monitor UI behavior
+  is still unverified; this is not a DPI/accessibility completion claim.
 - ZIP upgraded from 2.4.2 to 9.5.1 after four RustSec advisories. Full reference
   and Cargo license notices are retained. Advisory scans do not prove safety.
 

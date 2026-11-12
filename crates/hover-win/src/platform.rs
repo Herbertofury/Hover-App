@@ -25,9 +25,10 @@ use windows_sys::Win32::Foundation::{ERROR_SUCCESS, HWND, LPARAM, LRESULT, POINT
 use windows_sys::Win32::Graphics::Gdi::{
     BI_RGB, BITMAPINFO, BITMAPINFOHEADER, BeginPaint, COLORONCOLOR, CreateSolidBrush,
     DIB_RGB_COLORS, DT_END_ELLIPSIS, DT_LEFT, DT_NOPREFIX, DT_SINGLELINE, DT_TOP, DT_WORDBREAK,
-    DeleteObject, DrawTextW, EndPaint, FillRect, FrameRect, HALFTONE, InvalidateRect, PAINTSTRUCT,
-    SRCCOPY, ScreenToClient, SetBkMode, SetBrushOrgEx, SetStretchBltMode, SetTextColor,
-    StretchDIBits, TRANSPARENT,
+    DeleteObject, DrawTextW, EndPaint, FillRect, FrameRect, GetMonitorInfoW, HALFTONE,
+    InvalidateRect, MONITOR_DEFAULTTONEAREST, MONITORINFO, MonitorFromPoint, PAINTSTRUCT, SRCCOPY,
+    ScreenToClient, SetBkMode, SetBrushOrgEx, SetStretchBltMode, SetTextColor, StretchDIBits,
+    TRANSPARENT,
 };
 use windows_sys::Win32::System::LibraryLoader::GetModuleHandleW;
 use windows_sys::Win32::System::Registry::{
@@ -622,7 +623,7 @@ impl App {
         let desired_size = payload_size(&payload);
         let rect = place_preview(
             cursor,
-            screen_work_area(),
+            screen_work_area(cursor),
             desired_size,
             PlacementConfig::default(),
         );
@@ -2916,13 +2917,35 @@ fn current_cursor_point() -> HoverPoint {
     }
 }
 
-fn screen_work_area() -> HoverRect {
+fn screen_work_area(cursor: HoverPoint) -> HoverRect {
     unsafe {
+        let monitor = MonitorFromPoint(
+            POINT {
+                x: cursor.x.round() as i32,
+                y: cursor.y.round() as i32,
+            },
+            MONITOR_DEFAULTTONEAREST,
+        );
+        let mut info = MONITORINFO {
+            cbSize: std::mem::size_of::<MONITORINFO>() as u32,
+            ..Default::default()
+        };
+        if !monitor.is_null() && GetMonitorInfoW(monitor, &mut info) != 0 {
+            let rect = info.rcWork;
+            if rect.right > rect.left && rect.bottom > rect.top {
+                return HoverRect::new(
+                    rect.left as f32,
+                    rect.top as f32,
+                    rect.right as f32,
+                    rect.bottom as f32,
+                );
+            }
+        }
         HoverRect::new(
             0.0,
             0.0,
-            GetSystemMetrics(SM_CXSCREEN) as f32,
-            GetSystemMetrics(SM_CYSCREEN) as f32,
+            GetSystemMetrics(SM_CXSCREEN).max(1) as f32,
+            GetSystemMetrics(SM_CYSCREEN).max(1) as f32,
         )
     }
 }
