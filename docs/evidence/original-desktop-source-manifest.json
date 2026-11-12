@@ -1,0 +1,166 @@
+[
+  {
+    "path": "browser-extension/background.js",
+    "sha256": "4A58F1B13F69273DCFC8CB712983E78D4740DE4DB3DB8A1B1EBB772FDCD5A061"
+  },
+  {
+    "path": "browser-extension/content.js",
+    "sha256": "2A013A6B7565A823456E3B417DF367418B37F3EE7F35E7C4A93CE581E947AF96"
+  },
+  {
+    "path": "browser-extension/manifest.json",
+    "sha256": "A8EA0829CEF7DBB5B5484A33731E8B789CBA76BFECD0021004F7265BF90022C3"
+  },
+  {
+    "path": "browser-extension/native-messaging-host.example.json",
+    "sha256": "1FBC3967444D71C7920AC19189ACEB6CE3DA8B70ACE66497E780E4769E32DF1A"
+  },
+  {
+    "path": "crates/hover-browser-host/Cargo.toml",
+    "sha256": "0752A62A51DC35DAFCD83C711CA52A509987C3028F9AEE1BF0DC8CF7D1092600"
+  },
+  {
+    "path": "crates/hover-browser-host/src/lib.rs",
+    "sha256": "84FDF1CBF5CBB92622D9B1FFBE5222F3B3B5852E6DC201C4DF928D20A5B02D80"
+  },
+  {
+    "path": "crates/hover-browser-host/src/main.rs",
+    "sha256": "779305102C5DD4505D07E1B557AE9083149374491144B14871FECF556FD20340"
+  },
+  {
+    "path": "crates/hover-core/Cargo.toml",
+    "sha256": "EBD179B1FD410BE40EC682FDF41DEC4D60AB4078F69E08A1E4F2094DEC6859FC"
+  },
+  {
+    "path": "crates/hover-core/src/cache.rs",
+    "sha256": "6B89ED006302CE39AEB8C06FE40C285DA210FA0820E11079C3B08C33F775ACE1"
+  },
+  {
+    "path": "crates/hover-core/src/decode_job.rs",
+    "sha256": "91C225E5CD374AD65C69D05E84DAC1B74FB6EE87C643F730B5DAFE8DDA172B85"
+  },
+  {
+    "path": "crates/hover-core/src/geometry.rs",
+    "sha256": "DE377E500165A24A9C24A4F3714872A847BB72DEBE593244BDFD22ADC8C64135"
+  },
+  {
+    "path": "crates/hover-core/src/lib.rs",
+    "sha256": "930AF0988DFA733FF968D05226C7CFD0AAEA79BAA2FB97F3F8195F88B9C826C7"
+  },
+  {
+    "path": "crates/hover-core/src/placement.rs",
+    "sha256": "BD03794C502323934CAD4735933AC631F60E417A3D7F4AF639D3F6EF718D2E0F"
+  },
+  {
+    "path": "crates/hover-core/src/state.rs",
+    "sha256": "5B3824A27A7F4A8FFF1A4868FD09E10C15CC87A652316FB4FC099B7F728EB27C"
+  },
+  {
+    "path": "crates/hover-core/src/target.rs",
+    "sha256": "E9E72232315113CA1305633D42A93ADDB8CE0098B9A67FDAD5CE3C0FCC0D731A"
+  },
+  {
+    "path": "crates/hover-core/src/zoom.rs",
+    "sha256": "AE8226F876F5BB2CA90D43AC0E4EBCF745FC8BD784343730CE9422EBFC3FECD6"
+  },
+  {
+    "path": "crates/hover-decode/Cargo.toml",
+    "sha256": "E5E68E5B5274ABA5C6BFE25F863DA0E1C1708892AFCB0862A1D7C4D3B845D9D4"
+  },
+  {
+    "path": "crates/hover-decode/src/lib.rs",
+    "sha256": "3CA64C92C7F9D5363E46D5633591A79BDA9C23E122F43A1ACF5D240CCA3147EB"
+  },
+  {
+    "path": "crates/hover-decode/src/wic.rs",
+    "sha256": "A8194E87A924E94D471A8CF7BE716FD344DFCADBF6515A4026E04FB0FE6BED2A"
+  },
+  {
+    "path": "crates/hover-render/Cargo.toml",
+    "sha256": "E800434F7C6A0E2BA989966035436037493F27240193C1F4061753F51611E9AE"
+  },
+  {
+    "path": "crates/hover-render/src/lib.rs",
+    "sha256": "0DB186B47A9D949786E2990F98A650FCF3EC780B2C11917BFDC2FDA216011BCC"
+  },
+  {
+    "path": "crates/hover-settings/Cargo.toml",
+    "sha256": "19FC4725B08A850542C4A675CBBC6F819A2E71F209FD7694A43E5798D483261C"
+  },
+  {
+    "path": "crates/hover-settings/src/lib.rs",
+    "sha256": "9D1E8A23B14AA9113501F116F997F5300617ECA38CF306229F6F7A5A1E1D4745"
+  },
+  {
+    "path": "crates/hover-win/Cargo.toml",
+    "sha256": "50AD53A7325D6E7EE51DF3FB9435C16D9554EECC076D4B5F0BEDE2F4C1AF5666"
+  },
+  {
+    "path": "crates/hover-win/src/lib.rs",
+    "sha256": "0526E649494A7EC878FA9D6055F1B3533BE05A3C5AF45D087033513EDB03BA85"
+  },
+  {
+    "path": "crates/hover-win/src/main.rs",
+    "sha256": "A957FC93095C317FC535179F054A0A5CCE3B80F0987A158E08BEB406EDA9D356"
+  },
+  {
+    "path": "crates/hover-win/src/platform.rs",
+    "sha256": "A9AF3B2471F1D96BF6F25DDA6C54CEB71D76FA2241660A4197CAD78B91FB7C3C"
+  },
+  {
+    "path": "crates/hover-win/src/resolver.rs",
+    "sha256": "71B95B744A00B5647699A736EC9269E351A119663AC790D8DD75940B19623F80"
+  },
+  {
+    "path": "docs/architecture.md",
+    "sha256": "0416FAC582037C9450C64676CE58F11A7CE8106C9A4D4DAFF9532447C4C2F3C9"
+  },
+  {
+    "path": "docs/decoder-fallback-order.md",
+    "sha256": "7DAB2D3C04EDE13E6715F2D0E44F786C5C35ADCCFB476BB1583D0F5D3B304FAB"
+  },
+  {
+    "path": "docs/dependency-notes.md",
+    "sha256": "7FD650128CD44B95D9D3420CCCF2F07BBEB83288AB1BE6A50A02CAE2B939ED78"
+  },
+  {
+    "path": "docs/image-format-matrix.md",
+    "sha256": "E2AA8A653FA992D8A3B7833926F2150D36B6688EC9F21FA85ACA4A83A1A341CA"
+  },
+  {
+    "path": "docs/input-behavior.md",
+    "sha256": "1740165570ED1D452D5CA69A50DCDA2BDC2F8A23916BE9FD83C25B976CD37F6B"
+  },
+  {
+    "path": "docs/performance-budget.md",
+    "sha256": "151012417B1D1F2071CAFD4663D335C2400E5BE0829BC4C5348537085FB0B394"
+  },
+  {
+    "path": "docs/progress.md",
+    "sha256": "D700E7F922485C8EA1F28A1176033EE93CCA3000D0DBE74817E2D92E05D74496"
+  },
+  {
+    "path": "docs/reference-rust-hover-preview-audit.md",
+    "sha256": "E7063C927AEFCD3FA4E7D55048A3E2D64A31D808B91530DB98DEE42F103FFEBE"
+  },
+  {
+    "path": "docs/testing.md",
+    "sha256": "9F6350CF785B92046B154CC2014F5DD50A0E1E4667FF4F970EF836934BC0BCDE"
+  },
+  {
+    "path": "docs/zero-resource-exceptions.md",
+    "sha256": "6E22C77FCAF3DF201C8692DE58EBFF7F5C8A77DEB4576EA8F4E927E93472C2A9"
+  },
+  {
+    "path": "installer/msix/AppxManifest.xml",
+    "sha256": "E19C7B8A08D24B15BB1C474B379D979BE74775578F2E2C2753912A69F3473F0E"
+  },
+  {
+    "path": "installer/wix/Product.wxs",
+    "sha256": "F5EAE1A19911B6DE8E3CDC1E2D536F46C9819C5AEBDB8214BAB75E1A9E2D2370"
+  },
+  {
+    "path": "tests/integration/README.md",
+    "sha256": "8C05143CFB5BA0E6356CABA86C4FB1566DF8C0E753A8EF11FEE22D48B63AD9B2"
+  }
+]

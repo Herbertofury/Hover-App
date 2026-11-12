@@ -1,0 +1,40 @@
+[package]
+name = "hover-win"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+hover-core = { path = "../hover-core" }
+hover-decode = { path = "../hover-decode" }
+hover-render = { path = "../hover-render" }
+hover-settings = { path = "../hover-settings" }
+crossbeam-channel.workspace = true
+zip.workspace = true
+windows = { workspace = true, features = [
+    "Win32_Foundation",
+    "Win32_System_Com",
+    "Win32_System_Ole",
+    "Win32_System_Variant",
+    "Win32_UI_Accessibility",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+] }
+windows-sys = { workspace = true, features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Gdi",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Com",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Power",
+    "Win32_System_Registry",
+    "Win32_UI_Accessibility",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+] }
+
+[[bin]]
+name = "hover"
+path = "src/main.rs"

@@ -1,0 +1,59 @@
+# Cargo dependency notices
+
+Generated from the exact Cargo.lock by scripts/collect-licenses.ps1. Includes all resolved targets, including build tools. No runtime media players are bundled.
+
+- [adler2-2.0.1](registry/adler2-2.0.1/): 0BSD OR MIT OR Apache-2.0; [upstream](https://github.com/oyvindln/adler2).
+- [bitflags-2.13.2](registry/bitflags-2.13.2/): MIT OR Apache-2.0; [upstream](https://github.com/bitflags/bitflags).
+- [bumpalo-3.20.2](registry/bumpalo-3.20.2/): MIT OR Apache-2.0; [upstream](https://github.com/fitzgen/bumpalo).
+- [cfg_aliases-0.2.2](registry/cfg_aliases-0.2.2/): MIT; [upstream](https://github.com/katharostech/cfg_aliases).
+- [cfg-if-1.0.4](registry/cfg-if-1.0.4/): MIT OR Apache-2.0; [upstream](https://github.com/rust-lang/cfg-if).
+- [color_quant-1.1.0](registry/color_quant-1.1.0/): MIT; [upstream](https://github.com/image-rs/color_quant.git).
+- [constant_time_eq-0.6.1](registry/constant_time_eq-0.6.1/): CC0-1.0 OR MIT-0 OR Apache-2.0; [upstream](https://codeberg.org/cesarb/constant_time_eq).
+- [crc32fast-1.5.0](registry/crc32fast-1.5.0/): MIT OR Apache-2.0; [upstream](https://github.com/srijs/rust-crc32fast).
+- [crossbeam-channel-0.5.15](registry/crossbeam-channel-0.5.15/): MIT OR Apache-2.0; [upstream](https://github.com/crossbeam-rs/crossbeam).
+- [crossbeam-utils-0.8.21](registry/crossbeam-utils-0.8.21/): MIT OR Apache-2.0; [upstream](https://github.com/crossbeam-rs/crossbeam).
+- [equivalent-1.0.2](registry/equivalent-1.0.2/): Apache-2.0 OR MIT; [upstream](https://github.com/indexmap-rs/equivalent).
+- [flate2-1.1.9](registry/flate2-1.1.9/): MIT OR Apache-2.0; [upstream](https://github.com/rust-lang/flate2-rs).
+- [getrandom-0.4.3](registry/getrandom-0.4.3/): MIT OR Apache-2.0; [upstream](https://github.com/rust-random/getrandom).
+- [gif-0.13.3](registry/gif-0.13.3/): MIT OR Apache-2.0; [upstream](https://github.com/image-rs/image-gif).
+- [hashbrown-0.17.0](registry/hashbrown-0.17.0/): MIT OR Apache-2.0; [upstream](https://github.com/rust-lang/hashbrown).
+- [indexmap-2.14.0](registry/indexmap-2.14.0/): Apache-2.0 OR MIT; [upstream](https://github.com/indexmap-rs/indexmap).
+- [js-sys-0.3.107](registry/js-sys-0.3.107/): MIT OR Apache-2.0; [upstream](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/js-sys).
+- [libc-0.2.191](registry/libc-0.2.191/): MIT OR Apache-2.0; [upstream](https://github.com/rust-lang/libc).
+- [log-0.4.29](registry/log-0.4.29/): MIT OR Apache-2.0; [upstream](https://github.com/rust-lang/log).
+- [memchr-2.8.0](registry/memchr-2.8.0/): Unlicense OR MIT; [upstream](https://github.com/BurntSushi/memchr).
+- [miniz_oxide-0.8.9](registry/miniz_oxide-0.8.9/): MIT OR Zlib OR Apache-2.0; [upstream](https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide).
+- [nix-0.31.3](registry/nix-0.31.3/): MIT; [upstream](https://github.com/nix-rust/nix).
+- [proc-macro2-1.0.106](registry/proc-macro2-1.0.106/): MIT OR Apache-2.0; [upstream](https://github.com/dtolnay/proc-macro2).
+- [quote-1.0.45](registry/quote-1.0.45/): MIT OR Apache-2.0; [upstream](https://github.com/dtolnay/quote).
+- [r-efi-6.0.0](registry/r-efi-6.0.0/): MIT OR Apache-2.0 OR LGPL-2.1-or-later; [upstream](https://github.com/r-efi/r-efi).
+- [rustversion-1.0.23](registry/rustversion-1.0.23/): MIT OR Apache-2.0; [upstream](https://github.com/dtolnay/rustversion).
+- [simd-adler32-0.3.9](registry/simd-adler32-0.3.9/): MIT; [upstream](https://github.com/mcountryman/simd-adler32).
+- [syn-2.0.117](registry/syn-2.0.117/): MIT OR Apache-2.0; [upstream](https://github.com/dtolnay/syn).
+- [syn-3.0.10](registry/syn-3.0.10/): MIT OR Apache-2.0; [upstream](https://github.com/dtolnay/syn).
+- [thiserror-2.0.18](registry/thiserror-2.0.18/): MIT OR Apache-2.0; [upstream](https://github.com/dtolnay/thiserror).
+- [thiserror-impl-2.0.18](registry/thiserror-impl-2.0.18/): MIT OR Apache-2.0; [upstream](https://github.com/dtolnay/thiserror).
+- [typed-path-0.13.0](registry/typed-path-0.13.0/): MIT OR Apache-2.0; [upstream](https://github.com/chipsenkbeil/typed-path).
+- [unicode-ident-1.0.24](registry/unicode-ident-1.0.24/): (MIT OR Apache-2.0) AND Unicode-3.0; [upstream](https://github.com/dtolnay/unicode-ident).
+- [wasm-bindgen-0.2.130](registry/wasm-bindgen-0.2.130/): MIT OR Apache-2.0; [upstream](https://github.com/wasm-bindgen/wasm-bindgen).
+- [wasm-bindgen-macro-0.2.130](registry/wasm-bindgen-macro-0.2.130/): MIT OR Apache-2.0; [upstream](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro).
+- [wasm-bindgen-macro-support-0.2.130](registry/wasm-bindgen-macro-support-0.2.130/): MIT OR Apache-2.0; [upstream](https://github.com/wasm-bindgen/wasm-bindgen/tree/main/crates/macro-support).
+- [wasm-bindgen-shared-0.2.130](registry/wasm-bindgen-shared-0.2.130/): MIT OR Apache-2.0; [upstream](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/shared).
+- [weezl-0.1.12](registry/weezl-0.1.12/): MIT OR Apache-2.0; [upstream](https://github.com/image-rs/weezl).
+- [windows-0.62.2](registry/windows-0.62.2/): MIT OR Apache-2.0; [upstream](https://github.com/microsoft/windows-rs).
+- [windows-collections-0.3.2](registry/windows-collections-0.3.2/): MIT OR Apache-2.0; [upstream](https://github.com/microsoft/windows-rs).
+- [windows-core-0.62.2](registry/windows-core-0.62.2/): MIT OR Apache-2.0; [upstream](https://github.com/microsoft/windows-rs).
+- [windows-future-0.3.2](registry/windows-future-0.3.2/): MIT OR Apache-2.0; [upstream](https://github.com/microsoft/windows-rs).
+- [windows-implement-0.60.2](registry/windows-implement-0.60.2/): MIT OR Apache-2.0; [upstream](https://github.com/microsoft/windows-rs).
+- [windows-interface-0.59.3](registry/windows-interface-0.59.3/): MIT OR Apache-2.0; [upstream](https://github.com/microsoft/windows-rs).
+- [windows-link-0.2.1](registry/windows-link-0.2.1/): MIT OR Apache-2.0; [upstream](https://github.com/microsoft/windows-rs).
+- [windows-numerics-0.3.1](registry/windows-numerics-0.3.1/): MIT OR Apache-2.0; [upstream](https://github.com/microsoft/windows-rs).
+- [windows-result-0.4.1](registry/windows-result-0.4.1/): MIT OR Apache-2.0; [upstream](https://github.com/microsoft/windows-rs).
+- [windows-strings-0.5.1](registry/windows-strings-0.5.1/): MIT OR Apache-2.0; [upstream](https://github.com/microsoft/windows-rs).
+- [windows-sys-0.61.2](registry/windows-sys-0.61.2/): MIT OR Apache-2.0; [upstream](https://github.com/microsoft/windows-rs).
+- [windows-threading-0.2.1](registry/windows-threading-0.2.1/): MIT OR Apache-2.0; [upstream](https://github.com/microsoft/windows-rs).
+- [zeroize-1.9.1](registry/zeroize-1.9.1/): Apache-2.0 OR MIT; [upstream](https://github.com/RustCrypto/utils).
+- [zeroize_derive-1.5.0](registry/zeroize_derive-1.5.0/): Apache-2.0 OR MIT; [upstream](https://github.com/RustCrypto/utils).
+- [zip-9.5.1](registry/zip-9.5.1/): MIT; [upstream](https://github.com/zip-rs/zip2).
+- [zlib-rs-0.6.8](registry/zlib-rs-0.6.8/): Zlib; [upstream](https://github.com/trifectatechfoundation/zlib-rs).
+- [zopfli-0.8.3](registry/zopfli-0.8.3/): Apache-2.0; [upstream](https://github.com/zopfli-rs/zopfli).
