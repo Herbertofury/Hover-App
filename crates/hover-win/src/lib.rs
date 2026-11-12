@@ -1,9 +1,16 @@
 #[cfg(windows)]
+mod agent;
+#[cfg(windows)]
 mod platform;
 #[cfg(windows)]
 mod resolver;
 #[cfg(windows)]
 mod zip_limits;
+
+#[cfg(windows)]
+pub fn run_agent_stdio() -> i32 {
+    agent::serve()
+}
 
 #[cfg(windows)]
 pub fn run() -> Result<(), i32> {

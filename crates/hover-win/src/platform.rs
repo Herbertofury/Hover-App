@@ -1,5 +1,7 @@
 #![allow(unsafe_op_in_unsafe_fn)]
 
+mod agent_control;
+
 use crate::resolver::resolve_hover_path;
 use hover_core::{
     CancellationToken, HoverState, PlacementConfig, Point as HoverPoint, PreviewWorker,
@@ -316,8 +318,33 @@ enum OverlayWheelAction {
 }
 
 pub fn run() -> Result<(), i32> {
+    run_inner(None)
+}
+
+pub(crate) fn run_agent(launch: crate::agent::Launch) -> Result<(), i32> {
+    run_inner(Some(launch))
+}
+
+fn run_inner(agent: Option<crate::agent::Launch>) -> Result<(), i32> {
     unsafe {
-        let control_hwnd = create_app_window()?;
+        let control_hwnd = match create_app_window() {
+            Ok(hwnd) => hwnd,
+            Err(code) => {
+                if let Some(agent) = agent {
+                    let _ = agent.ready.try_send(Err(code));
+                }
+                return Err(code);
+            }
+        };
+        if let Some(agent) = agent {
+            let ptr = GetWindowLongPtrW(
+                control_hwnd,
+                windows_sys::Win32::UI::WindowsAndMessaging::GWLP_USERDATA,
+            ) as *mut App;
+            (*ptr).agent_controlled = true;
+            (*ptr).agent_requests = Some(agent.receiver);
+            let _ = agent.ready.try_send(Ok(control_hwnd as isize));
+        }
 
         let hook = SetWinEventHook(
             EVENT_SYSTEM_FOREGROUND,
@@ -328,6 +355,8 @@ pub fn run() -> Result<(), i32> {
             0,
             WINEVENT_OUTOFCONTEXT | WINEVENT_SKIPOWNPROCESS,
         );
+        // Launching with Explorer already active needs initial evaluation too.
+        PostMessageW(control_hwnd, WM_HOVER_FOREGROUND_CHANGED, 0, 0);
 
         let mut msg = MSG::default();
         while GetMessageW(&mut msg, null_mut(), 0, 0) > 0 {
@@ -416,6 +445,9 @@ struct App {
     preview_anchor: Option<HoverPoint>,
     reload_view: Option<(PathBuf, SavedView)>,
     glance_rect: Option<HoverRect>,
+    agent_controlled: bool,
+    agent_requests: Option<std::sync::mpsc::Receiver<crate::agent::Request>>,
+    preview_error: Option<String>,
 }
 
 impl App {
@@ -452,6 +484,9 @@ impl App {
             preview_anchor: None,
             reload_view: None,
             glance_rect: None,
+            agent_controlled: false,
+            agent_requests: None,
+            preview_error: None,
         };
         if app.settings.general.show_tray_icon {
             app.tray_added = add_tray_icon(hwnd, app.tray_icon);
@@ -460,6 +495,9 @@ impl App {
     }
 
     unsafe fn on_foreground_changed(&mut self) {
+        if self.agent_controlled {
+            return;
+        }
         if !self.settings.general.enabled {
             self.enter_dormant();
             return;
@@ -545,7 +583,7 @@ impl App {
     }
 
     unsafe fn update_hover_target(&mut self) {
-        if self.pinned {
+        if self.pinned || self.agent_controlled {
             return;
         }
         if self.current_path.is_some() && self.cursor_inside_active_preview() {
@@ -600,6 +638,7 @@ impl App {
     }
 
     unsafe fn start_decode(&mut self, path: PathBuf) {
+        self.preview_error = None;
         if self.reload_view.is_none() {
             self.preview_anchor = Some(current_cursor_point());
         }
@@ -618,6 +657,7 @@ impl App {
             ) {
                 Ok(worker) => self.decode_worker = Some(worker),
                 Err(error) => {
+                    self.preview_error = Some(error.to_string());
                     self.show_payload(
                         path,
                         PreviewPayload::Text {
@@ -703,19 +743,22 @@ impl App {
                     InvalidateRect(self.overlay, null(), 0);
                 }
             }
-            Err(message) => self.show_payload(
-                path.clone(),
-                PreviewPayload::Text {
-                    title: path
-                        .file_name()
-                        .unwrap_or_default()
-                        .to_string_lossy()
-                        .into_owned(),
-                    subtitle: "Preview unavailable".into(),
-                    lines: vec![message],
-                    truncated: false,
-                },
-            ),
+            Err(message) => {
+                self.preview_error = Some(message.clone());
+                self.show_payload(
+                    path.clone(),
+                    PreviewPayload::Text {
+                        title: path
+                            .file_name()
+                            .unwrap_or_default()
+                            .to_string_lossy()
+                            .into_owned(),
+                        subtitle: "Preview unavailable".into(),
+                        lines: vec![message],
+                        truncated: false,
+                    },
+                );
+            }
         }
         self.reload_view = None;
     }
@@ -927,6 +970,9 @@ impl App {
                 }
             }
         }
+        // Pinning adds a caption/border. A same-outer-size payload replacement
+        // need not generate WM_SIZE, so use the actual client viewport here.
+        resize_overlay_view(self.overlay);
         update_preview_chrome(self.overlay, &path, self.pinned, false, "");
         self.current_path = Some(path);
         self.state = if self.pinned {
@@ -958,6 +1004,7 @@ impl App {
     }
 
     unsafe fn hide_preview(&mut self) {
+        self.preview_error = None;
         self.pinned = false;
         PREVIEW_PINNED.store(false, Ordering::Release);
         self.preview_anchor = None;
@@ -1150,6 +1197,10 @@ impl App {
     }
 
     unsafe fn toggle_pin(&mut self) {
+        self.toggle_pin_with_activation(true);
+    }
+
+    unsafe fn toggle_pin_with_activation(&mut self, activate: bool) {
         let Some(path) = self.current_path.clone() else {
             return;
         };
@@ -1171,8 +1222,10 @@ impl App {
             self.uninstall_keyboard_hook();
             self.state = HoverState::PreviewLocked;
             ShowWindow(self.overlay, SW_SHOWNOACTIVATE);
-            SetForegroundWindow(self.overlay);
-            SetFocus(self.overlay);
+            if activate {
+                SetForegroundWindow(self.overlay);
+                SetFocus(self.overlay);
+            }
             self.sync_pinned_media();
         } else {
             KillTimer(self.hwnd, TIMER_MEDIA);
@@ -1191,6 +1244,9 @@ impl App {
                 SetForegroundWindow(self.origin_foreground);
             }
             self.on_foreground_changed();
+            if self.agent_controlled {
+                self.state = HoverState::PreviewVisible;
+            }
         }
     }
 
@@ -1223,6 +1279,9 @@ impl App {
         self.hide_preview();
         self.candidate_path = None;
         self.on_foreground_changed();
+        if self.agent_controlled {
+            self.state = HoverState::Dormant;
+        }
     }
 
     unsafe fn sync_pinned_media(&mut self) {
@@ -1708,6 +1767,19 @@ unsafe extern "system" fn control_window_proc(
         windows_sys::Win32::UI::WindowsAndMessaging::GWLP_USERDATA,
     ) as *mut App;
     match msg {
+        crate::agent::WM_AGENT_REQUEST => {
+            if let Some(app) = ptr.as_mut() {
+                let request = app
+                    .agent_requests
+                    .as_ref()
+                    .and_then(|rx| rx.try_recv().ok());
+                if let Some(request) = request {
+                    let result = app.execute_agent_command(request.command);
+                    let _ = request.reply.try_send(result);
+                }
+            }
+            0
+        }
         WM_MEDIA_PLAY => {
             if let Some(app) = ptr.as_mut() {
                 app.play_ready_media();
@@ -4414,6 +4486,9 @@ fn save_settings(settings: &Settings) {
 }
 
 fn settings_path() -> Option<PathBuf> {
+    if crate::agent::is_session() {
+        return None;
+    }
     env::var_os("APPDATA")
         .map(PathBuf::from)
         .map(|base| base.join("Hover").join("settings.ini"))
@@ -4516,6 +4591,9 @@ fn format_bytes(bytes: u64) -> String {
 }
 
 unsafe fn set_startup_enabled(enabled: bool) -> bool {
+    if crate::agent::is_session() {
+        return false;
+    }
     if enabled {
         enable_startup()
     } else {
@@ -4555,6 +4633,9 @@ unsafe fn disable_startup() {
 }
 
 unsafe fn startup_enabled() -> bool {
+    if crate::agent::is_session() {
+        return false;
+    }
     with_startup_key(KEY_READ, |hkey| {
         let value_name = wide(STARTUP_VALUE_NAME);
         RegQueryValueExW(

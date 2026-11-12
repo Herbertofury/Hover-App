@@ -39,6 +39,11 @@ text/list scroll restore after compatible same-file reloads. See
 [pinned-preview behavior and test limits](docs/pinned-preview.md); actual
 Explorer, physical-keyboard and accessibility verification remains pending.
 
+For repeatable tests without Computer Use, build `hover-agent.exe --stdio` and
+use its private JSON command interface. It owns a real native Hover session and
+can inspect/control previews and export the actual painter's output. Run
+`./scripts/test-agent.ps1`; see the [agent protocol and evidence limits](docs/agent-control.md).
+
 Native automated tests use generated fixtures; they do not prove Explorer,
 visual, accessibility, real-game fidelity or installation behavior. Every game
 milestone remains an acceptance requirement, not a supported-games list.
