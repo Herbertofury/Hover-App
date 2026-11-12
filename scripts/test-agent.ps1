@@ -1,6 +1,7 @@
 param(
     [string]$Executable = (Join-Path $PSScriptRoot '../target/release/hover.exe'),
     [string]$AgentArguments = '--agent-stdio',
+    [string]$DbpfFixture = '',
     [string]$OutputDirectory = (Join-Path $PSScriptRoot '../target/agent-evidence')
 )
 $ErrorActionPreference = 'Stop'
@@ -128,6 +129,10 @@ try {
     Assert-That ($capture.bytes -gt 10000 -and $capture.representation -eq 'native_preview_client_render') 'Actual preview painter and native controls export a bounded bitmap'
     $duplicate = Invoke-Hover @{command='capture';path=(Join-Path $runDirectory 'text-preview.bmp')} -AllowError
     Assert-That (-not $duplicate.ok) 'Capture refuses to overwrite an existing file'
+    foreach ($deviceName in @('CON.bmp','CON .bmp',('COM'+[char]0xb9+'.bmp'),('LPT'+[char]0xb2+'.bmp'))) {
+        $device = Invoke-Hover @{command='capture';path=(Join-Path $runDirectory $deviceName)} -AllowError
+        Assert-That (-not $device.ok -and $device.error -like 'Device/stream*') 'Capture rejects a reserved Windows device alias before file I/O'
+    }
     [IO.File]::WriteAllLines($textPath, (0..119 | ForEach-Object { "updated line $_" }), [Text.UTF8Encoding]::new($false))
     $textHash = (Get-FileHash -LiteralPath $textPath -Algorithm SHA256).Hash
     $null = Invoke-Hover @{command='reload'}
@@ -145,6 +150,7 @@ try {
     $null = Invoke-Hover @{command='open';path=$imagePath}
     $state = Invoke-Hover @{command='wait'}
     Assert-That ($state.phase -eq 'ready' -and $state.content.kind -eq 'image' -and $state.content.image_width -eq 800 -and $state.content.image_height -eq 600) 'WIC decodes generated BMP through the real application'
+    Assert-That ($state.content.viewport_width -eq $state.content_rect.width -and $state.content.viewport_height -eq $state.content_rect.height) 'First pinned image fits the actual native client area including caption and border'
     $null = Invoke-Hover @{command='resize';width=500;height=400}
     $null = Invoke-Hover @{command='zoom';mode='native'}
     $state = Invoke-Hover @{command='pan';dx=90;dy=-60}
@@ -199,6 +205,18 @@ try {
     $null = Invoke-Hover @{command='open';path=$videoPath}
     $state = Invoke-Hover @{command='wait'}
     Assert-That ($state.media_waiting -and -not $state.video_running -and -not $state.audio_running) 'Media recognition never starts an external player without explicit play'
+    if ($DbpfFixture) {
+        $dbpfPath = (Resolve-Path -LiteralPath $DbpfFixture).Path
+        $dbpfHash = (Get-FileHash -LiteralPath $dbpfPath -Algorithm SHA256).Hash
+        Assert-That ($dbpfHash -eq '63466BD02E9FEBFD6B02D823D2BEF4FF301167D94A1A9B1657AF7DCCCB0251C2') 'Public DBPF fixture matches the reviewed pinned upstream bytes'
+        $null = Invoke-Hover @{command='open';path=$dbpfPath}
+        $state = Invoke-Hover @{command='wait'}
+        $content = Invoke-Hover @{command='inspect';limit=32}
+        Assert-That ($state.phase -eq 'ready' -and $content.content.subtitle -like '*20/20 index entries inspected*') 'Actual Hover app loads every index entry of the specialist DBPF fixture'
+        Assert-That (@($content.content.entries | Where-Object { $_.name -like '* 0x*' }).Count -eq 20 -and @($content.content.entries | Where-Object { $_.name -like 'String Table 0x*' }).Count -eq 18) 'Native metadata view exposes all 20 resource rows including 18 string tables'
+        $null = Invoke-Hover @{command='capture';path=(Join-Path $runDirectory 'dbpf-preview.bmp')}
+        Assert-That ((Get-FileHash -LiteralPath $dbpfPath -Algorithm SHA256).Hash -eq $dbpfHash) 'Real upstream package remains byte-identical after native inspection and capture'
+    }
     $state = Invoke-Hover @{command='close'}
     Assert-That ($state.phase -eq 'empty' -and -not $state.visible -and -not $script:agentProcess.HasExited) 'Close hides the preview and retains the resident application'
     Assert-That ((Get-FileHash -LiteralPath $imagePath -Algorithm SHA256).Hash -eq $imageHash) 'Source image remains byte-identical'
@@ -226,7 +244,8 @@ try {
 } finally {
     Stop-OwnedAgent $script:agentProcess
     $evidence = [ordered]@{
-        schemaVersion=1; passed=$success; fixtureType='generated synthetic files on disk'; execution='real Windows app via private stdio and native UI thread';
+        schemaVersion=1; passed=$success; fixtureType=$(if ($DbpfFixture) {'generated files plus pinned public DBPF index fixture'} else {'generated synthetic files on disk'}); execution='real Windows app via private stdio and native UI thread';
+        dbpfFixture=$(if ($DbpfFixture) { [ordered]@{source='https://github.com/Llama-Logic/LlamaLogic/blob/4a3d576f0afb776aba783db561760afb5b5de8b7/LlamaLogic.Packages.UnitTests/TestPackage.package';sha256=$dbpfHash;stage='DBPF 2.1 index metadata only';gameBuild='not established'} } else {$null});
         excludes=@('Explorer targeting','physical input','screen reader','mixed DPI','installer/update/rollback','real game fidelity');
         executableSha256=(Get-FileHash -LiteralPath $executablePath -Algorithm SHA256).Hash;
         entrypoint=([IO.Path]::GetFileName($executablePath) + ' ' + $AgentArguments);
@@ -237,3 +256,4 @@ try {
     Write-Output "Agent test evidence: $runDirectory"
     Write-Output "Passed checks: $($script:checks.Count); success: $success"
 }
+exit 0

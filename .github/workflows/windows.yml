@@ -27,4 +27,8 @@ jobs:
       - name: Build release
         run: cargo +${{ matrix.rust }} build --release --workspace --locked
       - name: Test real Hover through private agent control
-        run: ./scripts/test-agent.ps1
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path target/agent-fixtures -Force | Out-Null
+          Invoke-WebRequest -Uri https://raw.githubusercontent.com/Llama-Logic/LlamaLogic/4a3d576f0afb776aba783db561760afb5b5de8b7/LlamaLogic.Packages.UnitTests/TestPackage.package -OutFile target/agent-fixtures/TestPackage.package
+          ./scripts/test-agent.ps1 -DbpfFixture target/agent-fixtures/TestPackage.package

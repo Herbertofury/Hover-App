@@ -26,10 +26,19 @@ The test generates its own on-disk files and keeps evidence in
 `target/agent-evidence`. It starts real Windows processes and windows, checking
 identity, decode output, native styles/focus, reload continuity, rename and byte
 preservation, cancellation, malformed requests, no autoplay, minimize/restore,
-render capture and owned shutdown. The local release build passed 40 assertions.
+render capture and owned shutdown. The local release build passed 45 generated
+fixture assertions, or 49 with the optional pinned DBPF fixture below.
 CI invokes the same script after each toolchain's build; check its actual result
 before claiming hosted success. The test does not send physical input or operate
 Explorer.
+
+Use `-DbpfFixture <path>` with the reviewed LlamaLogic TestPackage.package from
+[DBPF evidence](dbpf-evidence.md) to add native metadata/capture/hash checks.
+The script requires its exact SHA-256. CI explicitly downloads this single file
+at the pinned upstream revision and verifies it; Hover never downloads fixtures
+on hover. This checks 20 package index resources, not real-game rendering or a
+known Sims game/build. The earlier 40-check CI run passed both toolchains;
+expanded 49-check hosted results are pending.
 
 Example batch (replace the local input/output paths):
 

@@ -970,6 +970,9 @@ impl App {
                 }
             }
         }
+        // Pinning adds a caption/border. A same-outer-size payload replacement
+        // need not generate WM_SIZE, so use the actual client viewport here.
+        resize_overlay_view(self.overlay);
         update_preview_chrome(self.overlay, &path, self.pinned, false, "");
         self.current_path = Some(path);
         self.state = if self.pinned {

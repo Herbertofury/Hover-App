@@ -358,16 +358,29 @@ unsafe fn capture_preview(hwnd: HWND, path: &Path) -> Result<Value, String> {
         .split('.')
         .next()
         .unwrap_or("")
+        .trim_end_matches(' ')
         .to_ascii_uppercase();
-    if file_name.contains(':')
+    // Windows also reserves COM/LPT names with superscript digits:
+    // https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file
+    let numbered_device = stem
+        .strip_prefix("COM")
+        .or_else(|| stem.strip_prefix("LPT"))
+        .is_some_and(|suffix| {
+            suffix.chars().count() == 1
+                && suffix
+                    .chars()
+                    .next()
+                    .is_some_and(|c| matches!(c, '0'..='9' | '¹' | '²' | '³'))
+        });
+    if file_name
+        .chars()
+        .any(|c| c < ' ' || r#"<>:"/\|?*"#.contains(c))
         || file_name.ends_with(['.', ' '])
         || matches!(
             stem.as_str(),
             "CON" | "PRN" | "AUX" | "NUL" | "CONIN$" | "CONOUT$"
         )
-        || (stem.len() == 4
-            && (stem.starts_with("COM") || stem.starts_with("LPT"))
-            && stem.as_bytes()[3].is_ascii_digit())
+        || numbered_device
     {
         return Err("Device/stream output names are not allowed".into());
     }
