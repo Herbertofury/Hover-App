@@ -41,7 +41,9 @@ use windows_sys::Win32::System::Registry::{
 };
 use windows_sys::Win32::System::SystemServices::{SS_CENTERIMAGE, SS_ENDELLIPSIS, SS_NOPREFIX};
 use windows_sys::Win32::UI::Accessibility::{HWINEVENTHOOK, SetWinEventHook, UnhookWinEvent};
-use windows_sys::Win32::UI::Input::KeyboardAndMouse::{EnableWindow, SetFocus};
+use windows_sys::Win32::UI::Input::KeyboardAndMouse::{
+    EnableWindow, GetFocus, IsWindowEnabled, SetFocus,
+};
 use windows_sys::Win32::UI::Input::KeyboardAndMouse::{
     GetAsyncKeyState, GetKeyState, VK_CONTROL, VK_DOWN, VK_ESCAPE, VK_LBUTTON, VK_LEFT, VK_RIGHT,
     VK_SHIFT, VK_SPACE, VK_UP,
@@ -1555,6 +1557,12 @@ unsafe fn preprocess_preview_message(msg: &MSG) -> bool {
         return false;
     }
     if msg.message == WM_KEYDOWN {
+        if msg.wParam == 0x09 {
+            // Include content in the tab order; IsDialogMessage otherwise
+            // cycles only the native child buttons, trapping keyboard users.
+            cycle_preview_focus(hwnd, GetKeyState(VK_SHIFT as i32) < 0);
+            return true;
+        }
         let control = GetKeyState(VK_CONTROL as i32) < 0;
         let action = match msg.wParam {
             key if key == VK_ESCAPE as usize => Some(ID_PREVIEW_CLOSE),
@@ -1572,6 +1580,32 @@ unsafe fn preprocess_preview_message(msg: &MSG) -> bool {
         }
     }
     IsDialogMessageW(hwnd, msg) != 0
+}
+
+unsafe fn cycle_preview_focus(hwnd: HWND, backwards: bool) {
+    let targets = [
+        hwnd,
+        GetDlgItem(hwnd, ID_PREVIEW_PIN as i32),
+        GetDlgItem(hwnd, ID_PREVIEW_RELOAD as i32),
+        GetDlgItem(hwnd, ID_PREVIEW_CLOSE as i32),
+    ];
+    let focused = GetFocus();
+    let current = targets
+        .iter()
+        .position(|target| *target == focused)
+        .unwrap_or(0);
+    for step in 1..=targets.len() {
+        let index = if backwards {
+            (current + targets.len() - step) % targets.len()
+        } else {
+            (current + step) % targets.len()
+        };
+        let target = targets[index];
+        if !target.is_null() && IsWindowVisible(target) != 0 && IsWindowEnabled(target) != 0 {
+            SetFocus(target);
+            return;
+        }
+    }
 }
 
 unsafe fn preview_content_key(hwnd: HWND, key: u32) -> bool {
@@ -4780,6 +4814,14 @@ mod tests {
             assert_eq!(GetWindowLongPtrW(overlay, GWL_EXSTYLE) as u32 & WS_EX_NOACTIVATE, 0);
             assert_ne!(GetWindowLongPtrW(overlay, GWL_STYLE) as u32 & WS_CAPTION, 0);
             assert_eq!(caption(GetDlgItem(overlay, ID_PREVIEW_PIN as i32)), "Unpin");
+            for target in [GetDlgItem(overlay, ID_PREVIEW_PIN as i32), GetDlgItem(overlay, ID_PREVIEW_RELOAD as i32), GetDlgItem(overlay, ID_PREVIEW_CLOSE as i32), overlay] {
+                PostMessageW(GetFocus(), WM_KEYDOWN, 0x09, 0);
+                pump_until(|| GetFocus() == target);
+            }
+            cycle_preview_focus(overlay, true);
+            assert_eq!(GetFocus(), GetDlgItem(overlay, ID_PREVIEW_CLOSE as i32));
+            cycle_preview_focus(overlay, false);
+            assert_eq!(GetFocus(), overlay);
             (*ptr).on_foreground_changed();
             (*ptr).update_hover_target();
             assert_eq!((*ptr).current_path.as_ref(), Some(&path));
