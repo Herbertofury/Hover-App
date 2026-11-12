@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Hover Companion",
+  "version": "0.1.0",
+  "description": "Detects browser image hover targets for the native Hover preview app.",
+  "permissions": ["nativeMessaging"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

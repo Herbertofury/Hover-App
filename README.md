@@ -1,6 +1,6 @@
 # Hover
 
-Lightweight Rust-native desktop previews and useful mod-file inspection.
+Native Rust Windows previews for players, modders and artists.
 
 The app is called **Hover**. This public repository is named **Hover-App**.
 
@@ -10,12 +10,34 @@ See the [Hover wiki](https://github.com/Herbertofury/Hover-App/wiki) for goals, 
 
 ## Status
 
-This repository is newly initialized. Existing local source has not yet been imported or validated here. No ready-to-use release is claimed.
+**In development. No verified installer or release is available.** The existing desktop source has been recovered here, preserving its development features. See [current evidence and remaining gates](docs/current-status.md).
 
 The goal is responsive desktop previews with minimal idle CPU, memory, and disk activity, including useful mod-file metadata. Performance and file-format support must be demonstrated with repeatable tests, not assumed.
 
-## Next steps
+## Build and verify
 
-1. Safely import and review the existing source, excluding secrets, personal data, generated artifacts, and unlicensed third-party content.
-2. Preserve existing behavior and validate file-format support, malformed-file handling, and resource limits.
-3. Test installation, updates, rollback, and launch behavior against the exact release build before publishing binaries.
+Use Windows, Visual Studio C++ build tools/Windows SDK and Rust (declared minimum 1.95; locally verified with 1.99.0).
+
+```powershell
+cargo build --release --workspace --locked
+./target/release/hover.exe
+./scripts/verify.ps1
+cargo audit
+```
+
+Hover starts in the notification area. Use its tray menu for options/exit.
+Explorer hover is the intended activation path. Image zoom, scrolling panels,
+GIF, folder/ZIP lists, bounded text, DBPF metadata and optional external media
+paths exist in source. Media waits for a click. Separately installed ffplay,
+mpv or VLC are optional and not bundled. Full game support, 3D rendering,
+dependency resolution, pinning and comparisons remain unfinished.
+
+Native automated tests use generated fixtures; they do not prove Explorer,
+visual, accessibility, real-game fidelity or installation behavior. Every game
+milestone remains an acceptance requirement, not a supported-games list.
+
+Source is MIT licensed. Retain [third-party notices](THIRD-PARTY-NOTICES.md)
+with distributions. The original desktop project is preserved separately;
+build output, reference checkouts, private saves and game/creator assets are
+excluded. Publish only after exact packaged install, hover, update, restart
+and rollback gates pass with representative Windows evidence.

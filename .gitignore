@@ -1,0 +1,11 @@
+/target/
+/reference/
+/dist/
+/artifacts/
+.env
+.env.*
+settings.ini
+*.pdb
+*.ilk
+*.user
+*.log
