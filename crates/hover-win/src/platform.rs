@@ -936,6 +936,12 @@ impl App {
     }
 
     unsafe fn place_overlay(&self, rect: HoverRect) {
+        if self.pinned && IsIconic(self.overlay) != 0 {
+            // Completion and player-exit notifications must not restore a
+            // window the user minimized while work was pending.
+            InvalidateRect(self.overlay, null(), 0);
+            return;
+        }
         SetWindowPos(
             self.overlay,
             HWND_TOPMOST,
@@ -1530,14 +1536,14 @@ unsafe fn restore_overlay_view(hwnd: HWND, saved: SavedView) -> bool {
     } else {
         text_visible_rows(&rect)
     };
-    model.restore_view(
-        saved,
-        Size::new(
+    let viewport = match saved {
+        SavedView::Image { zoom, .. } if IsIconic(hwnd) != 0 => zoom.viewport_size,
+        _ => Size::new(
             (rect.right - rect.left) as f32,
             (rect.bottom - rect.top) as f32,
         ),
-        rows,
-    )
+    };
+    model.restore_view(saved, viewport, rows)
 }
 
 unsafe fn preprocess_preview_message(msg: &MSG) -> bool {
@@ -4803,6 +4809,9 @@ mod tests {
             assert!(IsIconic(overlay) != 0);
             assert!(!point_inside_video_rect(media_point), "Minimized preview captured wheel input");
             clear_video_window_state();
+            PostMessageW(overlay, WM_KEYDOWN, 0x74, 0);
+            pump_until(|| (*ptr).pending_path.is_none() && caption(overlay).contains("View restored"));
+            assert!(IsIconic(overlay) != 0, "Reload completion restored a minimized preview");
             PostMessageW(overlay, WM_CLOSE, 0, 0);
             pump_until(|| (*ptr).current_path.is_none());
             assert!(IsWindow(control) != 0 && IsWindow(overlay) != 0);
