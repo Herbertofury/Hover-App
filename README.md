@@ -30,7 +30,14 @@ Explorer hover is the intended activation path. Image zoom, scrolling panels,
 GIF, folder/ZIP lists, bounded text, DBPF metadata and optional external media
 paths exist in source. Media waits for a click. Separately installed ffplay,
 mpv or VLC are optional and not bundled. Full game support, 3D rendering,
-dependency resolution, pinning and comparisons remain unfinished.
+dependency resolution and comparisons remain unfinished.
+
+The development preview now has Pin, Reload and Close controls. Pin opens an
+activated, resizable inspection window that survives app switches. F5/Ctrl+R
+reloads; Ctrl+P toggles pin; Escape closes the preview. Image zoom/pan and
+text/list scroll restore after compatible same-file reloads. See
+[pinned-preview behavior and test limits](docs/pinned-preview.md); actual
+Explorer, physical-keyboard and accessibility verification remains pending.
 
 Native automated tests use generated fixtures; they do not prove Explorer,
 visual, accessibility, real-game fidelity or installation behavior. Every game
