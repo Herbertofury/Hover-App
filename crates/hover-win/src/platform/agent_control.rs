@@ -290,7 +290,11 @@ impl App {
         };
         let controls = [ID_PREVIEW_PIN,ID_PREVIEW_RELOAD,ID_PREVIEW_CLOSE].map(|id| {
             let hwnd = GetDlgItem(self.overlay,id as i32);
-            json!({"id":id,"label":window_text(hwnd),"visible":IsWindowVisible(hwnd)!=0,"enabled":IsWindowEnabled(hwnd)!=0,"focused":GetFocus()==hwnd})
+            let mut rect = RECT::default();
+            GetWindowRect(hwnd, &mut rect);
+            let mut origin = POINT { x:rect.left, y:rect.top };
+            ScreenToClient(self.overlay, &mut origin);
+            json!({"id":id,"label":window_text(hwnd),"visible":IsWindowVisible(hwnd)!=0,"enabled":IsWindowEnabled(hwnd)!=0,"focused":GetFocus()==hwnd,"rect":{"x":origin.x,"y":origin.y,"width":rect.right-rect.left,"height":rect.bottom-rect.top}})
         });
         json!({"pid":std::process::id(),"version":env!("CARGO_PKG_VERSION"),"profile":if cfg!(debug_assertions){"debug"}else{"release"},
             "state":format!("{:?}",self.state),"phase":if self.pending_path.is_some(){"loading"}else if self.preview_error.is_some(){"error"}else if self.current_path.is_some(){"ready"}else{"empty"},
@@ -341,7 +345,7 @@ unsafe fn capture_preview(hwnd: HWND, path: &Path) -> Result<Value, String> {
         SetViewportOrgEx,
     };
     use windows_sys::Win32::UI::WindowsAndMessaging::{
-        PRF_CHILDREN, PRF_CLIENT, PRF_ERASEBKGND, PRF_NONCLIENT, WM_PRINT,
+        PRF_CHILDREN, PRF_CLIENT, PRF_ERASEBKGND, PRF_NONCLIENT, WM_PRINTCLIENT,
     };
     if !path.is_absolute()
         || path
@@ -477,15 +481,19 @@ unsafe fn capture_preview(hwnd: HWND, path: &Path) -> Result<Value, String> {
             y: child_rect.top,
         };
         ScreenToClient(hwnd, &mut point);
+        let saved = SaveDC(surface.dc);
+        if saved == 0 {
+            return Err("Could not preserve native control capture state".into());
+        }
         let mut old = POINT::default();
         SetViewportOrgEx(surface.dc, point.x, point.y, &mut old);
         SendMessageW(
             child,
-            WM_PRINT,
+            WM_PRINTCLIENT,
             surface.dc as usize,
             (PRF_CLIENT | PRF_CHILDREN | PRF_NONCLIENT | PRF_ERASEBKGND) as isize,
         );
-        SetViewportOrgEx(surface.dc, old.x, old.y, null_mut());
+        RestoreDC(surface.dc, saved);
     }
     windows_sys::Win32::Graphics::Gdi::GdiFlush();
     let mut image = Vec::with_capacity(54 + bytes);

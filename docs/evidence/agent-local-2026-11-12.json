@@ -17,7 +17,7 @@
     "installer/update/rollback",
     "real game fidelity"
   ],
-  "executableSha256": "64C1BF35949F71D98C7A5F96893C5C35E166750A43C014DDDB8EE3DC9F7E63E0",
+  "executableSha256": "345820C1952193CA673DECABC55BD9C4F1BE393EA23D6D8CF15A2BD0FB480FE3",
   "entrypoint": "hover.exe --agent-stdio",
   "os": "Microsoft Windows NT 10.0.22631.0",
   "processArchitecture": "AMD64",
@@ -62,6 +62,7 @@
     "Public DBPF fixture matches the reviewed pinned upstream bytes",
     "Actual Hover app loads every index entry of the specialist DBPF fixture",
     "Native metadata view exposes all 20 resource rows including 18 string tables",
+    "Every native header control renders fully after view/focus/type changes",
     "Real upstream package remains byte-identical after native inspection and capture",
     "Close hides the preview and retains the resident application",
     "Source image remains byte-identical",
@@ -75,347 +76,347 @@
   "commandRoundTrips": [
     {
       "command": "capabilities",
-      "roundTripMs": 28.0149
+      "roundTripMs": 24.1439
     },
     {
       "command": "support",
-      "roundTripMs": 0.5272
+      "roundTripMs": 0.4595
     },
     {
       "command": "settings",
-      "roundTripMs": 0.377
+      "roundTripMs": 0.2409
     },
     {
       "command": "status",
-      "roundTripMs": 0.5061
+      "roundTripMs": 0.3116
     },
     {
       "command": "open",
-      "roundTripMs": 0.5228
+      "roundTripMs": 0.6299
     },
     {
       "command": "open",
-      "roundTripMs": 40.0249
+      "roundTripMs": 48.3727
     },
     {
       "command": "wait",
-      "roundTripMs": 4.355
+      "roundTripMs": 3.3228
     },
     {
       "command": "inspect",
-      "roundTripMs": 0.3713
+      "roundTripMs": 2.0066
     },
     {
       "command": "scroll",
-      "roundTripMs": 0.431
+      "roundTripMs": 1.4265
     },
     {
       "command": "capture",
-      "roundTripMs": 3.2411
+      "roundTripMs": 8.0588
     },
     {
       "command": "capture",
-      "roundTripMs": 3.3341
+      "roundTripMs": 2.3074
     },
     {
       "command": "capture",
-      "roundTripMs": 0.2652
+      "roundTripMs": 0.2307
     },
     {
       "command": "capture",
-      "roundTripMs": 0.2236
+      "roundTripMs": 0.2767
     },
     {
       "command": "capture",
-      "roundTripMs": 0.1607
+      "roundTripMs": 0.2402
     },
     {
       "command": "capture",
-      "roundTripMs": 0.1437
+      "roundTripMs": 0.1757
     },
     {
       "command": "reload",
-      "roundTripMs": 6.6882
+      "roundTripMs": 5.3833
     },
     {
       "command": "wait",
-      "roundTripMs": 8.8252
+      "roundTripMs": 22.4786
     },
     {
       "command": "inspect",
-      "roundTripMs": 0.9775
+      "roundTripMs": 0.8456
     },
     {
       "command": "reload",
-      "roundTripMs": 5.9923
+      "roundTripMs": 4.3984
     },
     {
       "command": "wait",
-      "roundTripMs": 10.4456
+      "roundTripMs": 2.0911
     },
     {
       "command": "reload",
-      "roundTripMs": 7.9547
+      "roundTripMs": 5.1081
     },
     {
       "command": "wait",
-      "roundTripMs": 20.808
+      "roundTripMs": 5.8799
     },
     {
       "command": "open",
-      "roundTripMs": 65.6317
+      "roundTripMs": 37.0472
     },
     {
       "command": "wait",
-      "roundTripMs": 20.0874
+      "roundTripMs": 20.3343
     },
     {
       "command": "resize",
-      "roundTripMs": 9.8046
+      "roundTripMs": 5.925
     },
     {
       "command": "zoom",
-      "roundTripMs": 1.8271
+      "roundTripMs": 1.6959
     },
     {
       "command": "pan",
-      "roundTripMs": 0.6804
+      "roundTripMs": 0.9447
     },
     {
       "command": "capture",
-      "roundTripMs": 7.7596
+      "roundTripMs": 7.0612
     },
     {
       "command": "reload",
-      "roundTripMs": 6.8784
+      "roundTripMs": 6.9789
     },
     {
       "command": "wait",
-      "roundTripMs": 28.4715
+      "roundTripMs": 21.5829
     },
     {
       "command": "minimize",
-      "roundTripMs": 14.5116
+      "roundTripMs": 9.9465
     },
     {
       "command": "reload",
-      "roundTripMs": 8.1564
+      "roundTripMs": 2.2933
     },
     {
       "command": "wait",
-      "roundTripMs": 21.1026
+      "roundTripMs": 21.0989
     },
     {
       "command": "capture",
-      "roundTripMs": 3.7737
+      "roundTripMs": 2.2036
     },
     {
       "command": "restore",
-      "roundTripMs": 30.0532
+      "roundTripMs": 15.3474
     },
     {
       "command": "focus",
-      "roundTripMs": 26.9011
+      "roundTripMs": 39.5257
     },
     {
       "command": "focus",
-      "roundTripMs": 3.8528
+      "roundTripMs": 2.9822
     },
     {
       "command": "focus",
-      "roundTripMs": 3.3587
+      "roundTripMs": 3.6615
     },
     {
       "command": "focus",
-      "roundTripMs": 1.5235
+      "roundTripMs": 1.7548
     },
     {
       "command": "focus",
-      "roundTripMs": 2.0512
+      "roundTripMs": 2.3569
     },
     {
       "command": "open",
-      "roundTripMs": 103.092
+      "roundTripMs": 101.1208
     },
     {
       "command": "open",
-      "roundTripMs": 81.1345
+      "roundTripMs": 90.6505
     },
     {
       "command": "open",
-      "roundTripMs": 137.1198
+      "roundTripMs": 106.7831
     },
     {
       "command": "open",
-      "roundTripMs": 101.5137
+      "roundTripMs": 137.6385
     },
     {
       "command": "open",
-      "roundTripMs": 100.8426
+      "roundTripMs": 196.397
     },
     {
       "command": "open",
-      "roundTripMs": 97.9013
+      "roundTripMs": 105.3892
     },
     {
       "command": "open",
-      "roundTripMs": 90.6613
+      "roundTripMs": 132.1516
     },
     {
       "command": "open",
-      "roundTripMs": 108.2772
+      "roundTripMs": 114.1991
     },
     {
       "command": "open",
-      "roundTripMs": 91.3835
+      "roundTripMs": 118.1722
     },
     {
       "command": "open",
-      "roundTripMs": 93.0679
+      "roundTripMs": 160.358
     },
     {
       "command": "open",
-      "roundTripMs": 87.4283
+      "roundTripMs": 127.1074
     },
     {
       "command": "open",
-      "roundTripMs": 108.7348
+      "roundTripMs": 143.9367
     },
     {
       "command": "open",
-      "roundTripMs": 155.0989
+      "roundTripMs": 142.6517
     },
     {
       "command": "open",
-      "roundTripMs": 106.6418
+      "roundTripMs": 103.6253
     },
     {
       "command": "open",
-      "roundTripMs": 86.0811
+      "roundTripMs": 60.2891
     },
     {
       "command": "open",
-      "roundTripMs": 76.4177
+      "roundTripMs": 80.5724
     },
     {
       "command": "open",
-      "roundTripMs": 84.8649
+      "roundTripMs": 91.4805
     },
     {
       "command": "open",
-      "roundTripMs": 103.9115
+      "roundTripMs": 62.304
     },
     {
       "command": "open",
-      "roundTripMs": 128.2586
+      "roundTripMs": 65.7803
     },
     {
       "command": "open",
-      "roundTripMs": 101.4357
+      "roundTripMs": 59.3398
     },
     {
       "command": "open",
-      "roundTripMs": 95.4423
+      "roundTripMs": 83.3745
     },
     {
       "command": "open",
-      "roundTripMs": 94.3292
+      "roundTripMs": 70.5001
     },
     {
       "command": "open",
-      "roundTripMs": 153.4139
+      "roundTripMs": 51.5599
     },
     {
       "command": "open",
-      "roundTripMs": 77.4869
+      "roundTripMs": 79.4207
     },
     {
       "command": "open",
-      "roundTripMs": 81.3934
+      "roundTripMs": 64.2902
     },
     {
       "command": "open",
-      "roundTripMs": 86.4411
+      "roundTripMs": 53.4308
     },
     {
       "command": "open",
-      "roundTripMs": 107.8457
+      "roundTripMs": 61.592
     },
     {
       "command": "open",
-      "roundTripMs": 107.4607
+      "roundTripMs": 46.5676
     },
     {
       "command": "open",
-      "roundTripMs": 102.3225
+      "roundTripMs": 59.9922
     },
     {
       "command": "open",
-      "roundTripMs": 96.5208
+      "roundTripMs": 60.47
     },
     {
       "command": "open",
-      "roundTripMs": 124.5336
+      "roundTripMs": 64.9838
     },
     {
       "command": "wait",
-      "roundTripMs": 22.8743
+      "roundTripMs": 10.1338
     },
     {
       "command": "inspect",
-      "roundTripMs": 1.8417
+      "roundTripMs": 2.3257
     },
     {
       "command": "open",
-      "roundTripMs": 117.5305
+      "roundTripMs": 49.9924
     },
     {
       "command": "close",
-      "roundTripMs": 64.0628
+      "roundTripMs": 24.2589
     },
     {
       "command": "status",
-      "roundTripMs": 0.5072
+      "roundTripMs": 0.4973
     },
     {
       "command": "open",
-      "roundTripMs": 57.127
+      "roundTripMs": 23.1806
     },
     {
       "command": "wait",
-      "roundTripMs": 17.5589
+      "roundTripMs": 14.9516
     },
     {
       "command": "open",
-      "roundTripMs": 121.2675
+      "roundTripMs": 52.2104
     },
     {
       "command": "wait",
-      "roundTripMs": 60.1861
+      "roundTripMs": 11.8213
     },
     {
       "command": "open",
-      "roundTripMs": 207.4906
+      "roundTripMs": 42.6778
     },
     {
       "command": "wait",
-      "roundTripMs": 63.967
+      "roundTripMs": 27.5138
     },
     {
       "command": "inspect",
-      "roundTripMs": 3.6664
+      "roundTripMs": 1.2799
     },
     {
       "command": "capture",
-      "roundTripMs": 10.7566
+      "roundTripMs": 2.778
     },
     {
       "command": "close",
-      "roundTripMs": 34.9824
+      "roundTripMs": 12.2649
     },
     {
       "command": "quit",
-      "roundTripMs": 1.097
+      "roundTripMs": 0.3159
     }
   ],
   "responses": [
@@ -689,6 +690,12 @@
             "focused": false,
             "id": 1201,
             "label": "Pin",
+            "rect": {
+              "height": 28,
+              "width": 1,
+              "x": 0,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -696,6 +703,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 1,
+              "x": 0,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -703,6 +716,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 1,
+              "x": 0,
+              "y": 6
+            },
             "visible": false
           }
         ],
@@ -714,7 +733,7 @@
         "path": null,
         "pending_path": null,
         "phase": "empty",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": false,
         "profile": "release",
         "rect": {
@@ -761,6 +780,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -768,6 +793,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -775,6 +806,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -786,13 +823,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4017.0,
-          "top": 1108.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -827,6 +864,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -834,6 +877,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -841,6 +890,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -852,13 +907,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4017.0,
-          "top": 1108.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -900,6 +955,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -907,6 +968,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -914,6 +981,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -925,13 +998,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4017.0,
-          "top": 1108.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -966,6 +1039,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -973,6 +1052,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -980,6 +1065,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -991,13 +1082,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4017.0,
-          "top": 1108.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 20,
@@ -1075,6 +1166,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1082,6 +1179,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1089,6 +1192,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -1100,13 +1209,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4017.0,
-          "top": 1108.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 20,
@@ -1141,6 +1250,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1148,6 +1263,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1155,6 +1276,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -1166,13 +1293,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4017.0,
-          "top": 1108.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 20,
@@ -1214,6 +1341,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1221,6 +1354,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1228,6 +1367,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -1239,13 +1384,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4017.0,
-          "top": 1108.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 20,
@@ -1280,6 +1425,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1287,6 +1438,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1294,6 +1451,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -1305,13 +1468,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4017.0,
-          "top": 1108.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 20,
@@ -1346,6 +1509,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1353,6 +1522,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1360,6 +1535,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -1371,13 +1552,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "error",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4017.0,
-          "top": 1108.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -1412,6 +1593,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1419,6 +1606,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1426,6 +1619,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -1437,13 +1636,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4017.0,
-          "top": 1108.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -1478,6 +1677,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1485,6 +1690,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1492,6 +1703,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -1503,13 +1720,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4017.0,
-          "top": 1108.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -1544,6 +1761,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1551,6 +1774,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1558,6 +1787,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -1569,13 +1804,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -1617,6 +1852,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1624,6 +1865,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1631,6 +1878,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -1642,13 +1895,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -1690,6 +1943,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1697,6 +1956,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1704,6 +1969,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -1715,13 +1986,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -1763,6 +2034,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1770,6 +2047,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1777,6 +2060,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -1788,13 +2077,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -1836,6 +2125,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1843,6 +2138,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1850,6 +2151,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -1861,13 +2168,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -1922,6 +2229,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1929,6 +2242,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -1936,6 +2255,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -1947,13 +2272,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -1995,6 +2320,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2002,6 +2333,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2009,6 +2346,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -2020,13 +2363,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2068,6 +2411,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -2075,6 +2424,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -2082,6 +2437,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": false
           }
         ],
@@ -2093,7 +2454,7 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
@@ -2141,6 +2502,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -2148,6 +2515,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -2155,6 +2528,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": false
           }
         ],
@@ -2166,7 +2545,7 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
@@ -2214,6 +2593,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -2221,6 +2606,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -2228,6 +2619,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": false
           }
         ],
@@ -2239,7 +2636,7 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
@@ -2293,6 +2690,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2300,6 +2703,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2307,6 +2716,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -2318,13 +2733,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2366,6 +2781,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2373,6 +2794,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2380,6 +2807,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -2391,13 +2824,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2439,6 +2872,12 @@
             "focused": true,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2446,6 +2885,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2453,6 +2898,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -2464,13 +2915,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2512,6 +2963,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2519,6 +2976,12 @@
             "focused": true,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2526,6 +2989,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -2537,13 +3006,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2585,6 +3054,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2592,6 +3067,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2599,6 +3080,12 @@
             "focused": true,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -2610,13 +3097,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2658,6 +3145,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 280,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2665,6 +3158,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 352,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2672,6 +3171,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 424,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -2683,13 +3188,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2724,6 +3229,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2731,6 +3242,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2738,6 +3255,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -2749,13 +3272,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -2790,6 +3313,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2797,6 +3326,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2804,6 +3339,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -2815,13 +3356,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -2856,6 +3397,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2863,6 +3410,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2870,6 +3423,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -2881,13 +3440,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -2922,6 +3481,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2929,6 +3494,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2936,6 +3507,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -2947,13 +3524,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -2988,6 +3565,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -2995,6 +3578,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3002,6 +3591,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3013,13 +3608,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3054,6 +3649,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3061,6 +3662,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3068,6 +3675,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3079,13 +3692,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3120,6 +3733,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3127,6 +3746,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3134,6 +3759,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3145,13 +3776,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3186,6 +3817,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3193,6 +3830,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3200,6 +3843,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3211,13 +3860,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3252,6 +3901,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3259,6 +3914,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3266,6 +3927,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3277,13 +3944,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3318,6 +3985,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3325,6 +3998,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3332,6 +4011,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3343,13 +4028,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3384,6 +4069,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3391,6 +4082,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3398,6 +4095,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3409,13 +4112,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3450,6 +4153,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3457,6 +4166,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3464,6 +4179,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3475,13 +4196,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1098.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3516,6 +4237,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3523,6 +4250,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3530,6 +4263,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3541,13 +4280,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3582,6 +4321,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3589,6 +4334,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3596,6 +4347,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3607,13 +4364,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3648,6 +4405,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3655,6 +4418,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3662,6 +4431,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3673,13 +4448,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3714,6 +4489,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3721,6 +4502,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3728,6 +4515,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3739,13 +4532,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3780,6 +4573,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3787,6 +4586,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3794,6 +4599,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3805,13 +4616,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3846,6 +4657,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3853,6 +4670,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3860,6 +4683,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3871,13 +4700,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3912,6 +4741,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3919,6 +4754,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3926,6 +4767,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -3937,13 +4784,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3978,6 +4825,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3985,6 +4838,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -3992,6 +4851,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4003,13 +4868,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4044,6 +4909,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4051,6 +4922,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4058,6 +4935,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4069,13 +4952,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4110,6 +4993,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4117,6 +5006,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4124,6 +5019,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4135,13 +5036,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4176,6 +5077,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4183,6 +5090,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4190,6 +5103,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4201,13 +5120,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4242,6 +5161,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4249,6 +5174,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4256,6 +5187,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4267,13 +5204,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4308,6 +5245,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4315,6 +5258,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4322,6 +5271,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4333,13 +5288,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4374,6 +5329,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4381,6 +5342,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4388,6 +5355,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4399,13 +5372,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4440,6 +5413,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4447,6 +5426,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4454,6 +5439,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4465,13 +5456,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4506,6 +5497,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4513,6 +5510,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4520,6 +5523,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4531,13 +5540,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4572,6 +5581,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4579,6 +5594,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4586,6 +5607,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4597,13 +5624,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4638,6 +5665,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4645,6 +5678,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4652,6 +5691,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4663,13 +5708,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4704,6 +5749,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4711,6 +5762,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4718,6 +5775,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4729,13 +5792,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4770,6 +5833,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4777,6 +5846,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4784,6 +5859,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4795,13 +5876,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4842,6 +5923,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4849,6 +5936,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4856,6 +5949,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4867,13 +5966,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4908,6 +6007,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4915,6 +6020,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -4922,6 +6033,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -4933,13 +6050,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4970,6 +6087,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 556,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -4977,6 +6100,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 628,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -4984,6 +6113,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 700,
+              "y": 6
+            },
             "visible": false
           }
         ],
@@ -4995,13 +6130,13 @@
         "path": null,
         "pending_path": null,
         "phase": "empty",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": false,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": null,
@@ -5032,6 +6167,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 556,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -5039,6 +6180,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 628,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -5046,6 +6193,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 700,
+              "y": 6
+            },
             "visible": false
           }
         ],
@@ -5057,13 +6210,13 @@
         "path": null,
         "pending_path": null,
         "phase": "empty",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": false,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": null,
@@ -5098,6 +6251,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5105,6 +6264,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5112,6 +6277,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -5123,13 +6294,13 @@
         "path": "[fixtures]\\corrupt.bin",
         "pending_path": "[fixtures]\\corrupt.bin",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5164,6 +6335,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5171,6 +6348,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5178,6 +6361,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -5189,13 +6378,13 @@
         "path": "[fixtures]\\corrupt.bin",
         "pending_path": null,
         "phase": "error",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5230,6 +6419,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5237,6 +6432,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5244,6 +6445,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -5255,13 +6462,13 @@
         "path": "[fixtures]\\paused.mp4",
         "pending_path": "[fixtures]\\paused.mp4",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5296,6 +6503,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5303,6 +6516,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5310,6 +6529,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -5321,13 +6546,13 @@
         "path": "[fixtures]\\paused.mp4",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5362,6 +6587,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5369,6 +6600,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5376,6 +6613,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -5387,13 +6630,13 @@
         "path": "[upstream-fixture]\\TestPackage.package",
         "pending_path": "[upstream-fixture]\\TestPackage.package",
         "phase": "loading",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5428,6 +6671,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5435,6 +6684,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5442,6 +6697,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -5453,13 +6714,13 @@
         "path": "[upstream-fixture]\\TestPackage.package",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5619,6 +6880,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 540,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5626,6 +6893,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 612,
+              "y": 6
+            },
             "visible": true
           },
           {
@@ -5633,6 +6906,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 684,
+              "y": 6
+            },
             "visible": true
           }
         ],
@@ -5644,13 +6923,13 @@
         "path": "[upstream-fixture]\\TestPackage.package",
         "pending_path": null,
         "phase": "ready",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5694,6 +6973,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 556,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -5701,6 +6986,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 628,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -5708,6 +6999,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 700,
+              "y": 6
+            },
             "visible": false
           }
         ],
@@ -5719,13 +7016,13 @@
         "path": null,
         "pending_path": null,
         "phase": "empty",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": false,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": null,
@@ -5756,6 +7053,12 @@
             "focused": false,
             "id": 1201,
             "label": "Unpin",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 556,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -5763,6 +7066,12 @@
             "focused": false,
             "id": 1202,
             "label": "Reload",
+            "rect": {
+              "height": 28,
+              "width": 66,
+              "x": 628,
+              "y": 6
+            },
             "visible": false
           },
           {
@@ -5770,6 +7079,12 @@
             "focused": false,
             "id": 1203,
             "label": "Close",
+            "rect": {
+              "height": 28,
+              "width": 52,
+              "x": 700,
+              "y": 6
+            },
             "visible": false
           }
         ],
@@ -5781,13 +7096,13 @@
         "path": null,
         "pending_path": null,
         "phase": "empty",
-        "pid": 252092,
+        "pid": 251528,
         "pinned": false,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 4018.0,
-          "top": 1097.0,
+          "left": 934.0,
+          "top": 1021.0,
           "width": 760.0
         },
         "scroll": null,

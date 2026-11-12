@@ -27,7 +27,7 @@ The test generates its own on-disk files and keeps evidence in
 identity, decode output, native styles/focus, reload continuity, rename and byte
 preservation, cancellation, malformed requests, no autoplay, minimize/restore,
 render capture and owned shutdown. The local release build passed 45 generated
-fixture assertions, or 49 with the optional pinned DBPF fixture below.
+fixture assertions, or 50 with the optional pinned DBPF fixture below.
 CI invokes the same script after each toolchain's build; check its actual result
 before claiming hosted success. The test does not send physical input or operate
 Explorer.
@@ -38,7 +38,7 @@ The script requires its exact SHA-256. CI explicitly downloads this single file
 at the pinned upstream revision and verifies it; Hover never downloads fixtures
 on hover. This checks 20 package index resources, not real-game rendering or a
 known Sims game/build. The earlier 40-check CI run passed both toolchains;
-expanded 49-check hosted results are pending.
+The 49-check hosted suite passed both toolchains (run 43321096978); final native-control render regression CI is pending.
 
 Example batch (replace the local input/output paths):
 

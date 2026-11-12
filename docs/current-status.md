@@ -46,7 +46,7 @@ were inspected; their scopes remain required and open.
 
 The app-native `hover-agent --stdio` interface can launch/control its own real
 Windows session independently of Computer Use. The first release-build test
-passed 49 checks using generated files and the pinned public DBPF index fixture, including decoded content,
+passed 50 checks using generated files and the pinned public DBPF index fixture, including decoded content,
 native view/focus, reload continuity, rename/source hashes, cancellation,
 nonblank renderer color checks and shutdown. Hosted CI results are pending.
 See [agent control and boundaries](agent-control.md). This advances app-native

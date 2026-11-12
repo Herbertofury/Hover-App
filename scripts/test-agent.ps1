@@ -215,6 +215,20 @@ try {
         Assert-That ($state.phase -eq 'ready' -and $content.content.subtitle -like '*20/20 index entries inspected*') 'Actual Hover app loads every index entry of the specialist DBPF fixture'
         Assert-That (@($content.content.entries | Where-Object { $_.name -like '* 0x*' }).Count -eq 20 -and @($content.content.entries | Where-Object { $_.name -like 'String Table 0x*' }).Count -eq 18) 'Native metadata view exposes all 20 resource rows including 18 string tables'
         $null = Invoke-Hover @{command='capture';path=(Join-Path $runDirectory 'dbpf-preview.bmp')}
+        $dbpfCaptureBytes = [IO.File]::ReadAllBytes((Join-Path $runDirectory 'dbpf-preview.bmp'))
+        $captureWidth = [BitConverter]::ToInt32($dbpfCaptureBytes,18)
+        $completeHeader = $true
+        foreach ($control in $state.controls) {
+            $ink = 0
+            for ($y=$control.rect.y; $y -lt ($control.rect.y+$control.rect.height); $y++) {
+                for ($x=$control.rect.x; $x -lt ($control.rect.x+$control.rect.width); $x++) {
+                    $pixel = 54+($y*$captureWidth+$x)*4
+                    if ($dbpfCaptureBytes[$pixel] -ne 25 -or $dbpfCaptureBytes[$pixel+1] -ne 22 -or $dbpfCaptureBytes[$pixel+2] -ne 20) { $ink++ }
+                }
+            }
+            if ($ink -le 100) { $completeHeader=$false }
+        }
+        Assert-That ($completeHeader) 'Every native header control renders fully after view/focus/type changes'
         Assert-That ((Get-FileHash -LiteralPath $dbpfPath -Algorithm SHA256).Hash -eq $dbpfHash) 'Real upstream package remains byte-identical after native inspection and capture'
     }
     $state = Invoke-Hover @{command='close'}
