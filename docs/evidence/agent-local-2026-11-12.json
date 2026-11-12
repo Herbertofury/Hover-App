@@ -17,7 +17,7 @@
     "installer/update/rollback",
     "real game fidelity"
   ],
-  "executableSha256": "345820C1952193CA673DECABC55BD9C4F1BE393EA23D6D8CF15A2BD0FB480FE3",
+  "executableSha256": "19C2C753059D600F449CF06D6D1D1EED56D0757FAAC3B0CE8D456271E6883F5A",
   "entrypoint": "hover.exe --agent-stdio",
   "os": "Microsoft Windows NT 10.0.22631.0",
   "processArchitecture": "AMD64",
@@ -76,347 +76,347 @@
   "commandRoundTrips": [
     {
       "command": "capabilities",
-      "roundTripMs": 24.1439
+      "roundTripMs": 40.2156
     },
     {
       "command": "support",
-      "roundTripMs": 0.4595
+      "roundTripMs": 0.6954
     },
     {
       "command": "settings",
-      "roundTripMs": 0.2409
+      "roundTripMs": 1.0701
     },
     {
       "command": "status",
-      "roundTripMs": 0.3116
+      "roundTripMs": 0.5223
     },
     {
       "command": "open",
-      "roundTripMs": 0.6299
+      "roundTripMs": 0.706
     },
     {
       "command": "open",
-      "roundTripMs": 48.3727
+      "roundTripMs": 82.8993
     },
     {
       "command": "wait",
-      "roundTripMs": 3.3228
+      "roundTripMs": 18.1103
     },
     {
       "command": "inspect",
-      "roundTripMs": 2.0066
+      "roundTripMs": 2.118
     },
     {
       "command": "scroll",
-      "roundTripMs": 1.4265
+      "roundTripMs": 0.7249
     },
     {
       "command": "capture",
-      "roundTripMs": 8.0588
+      "roundTripMs": 6.4958
     },
     {
       "command": "capture",
-      "roundTripMs": 2.3074
+      "roundTripMs": 3.5837
     },
     {
       "command": "capture",
-      "roundTripMs": 0.2307
+      "roundTripMs": 0.3529
     },
     {
       "command": "capture",
-      "roundTripMs": 0.2767
+      "roundTripMs": 0.422
     },
     {
       "command": "capture",
-      "roundTripMs": 0.2402
+      "roundTripMs": 0.2181
     },
     {
       "command": "capture",
-      "roundTripMs": 0.1757
+      "roundTripMs": 0.5428
     },
     {
       "command": "reload",
-      "roundTripMs": 5.3833
+      "roundTripMs": 9.0909
     },
     {
       "command": "wait",
-      "roundTripMs": 22.4786
+      "roundTripMs": 10.4876
     },
     {
       "command": "inspect",
-      "roundTripMs": 0.8456
+      "roundTripMs": 0.5641
     },
     {
       "command": "reload",
-      "roundTripMs": 4.3984
+      "roundTripMs": 13.9439
     },
     {
       "command": "wait",
-      "roundTripMs": 2.0911
+      "roundTripMs": 7.6568
     },
     {
       "command": "reload",
-      "roundTripMs": 5.1081
+      "roundTripMs": 15.886
     },
     {
       "command": "wait",
-      "roundTripMs": 5.8799
+      "roundTripMs": 24.0475
     },
     {
       "command": "open",
-      "roundTripMs": 37.0472
+      "roundTripMs": 73.9292
     },
     {
       "command": "wait",
-      "roundTripMs": 20.3343
+      "roundTripMs": 28.6693
     },
     {
       "command": "resize",
-      "roundTripMs": 5.925
+      "roundTripMs": 23.6861
     },
     {
       "command": "zoom",
-      "roundTripMs": 1.6959
+      "roundTripMs": 2.9021
     },
     {
       "command": "pan",
-      "roundTripMs": 0.9447
+      "roundTripMs": 2.1883
     },
     {
       "command": "capture",
-      "roundTripMs": 7.0612
+      "roundTripMs": 4.1956
     },
     {
       "command": "reload",
-      "roundTripMs": 6.9789
+      "roundTripMs": 6.1344
     },
     {
       "command": "wait",
-      "roundTripMs": 21.5829
+      "roundTripMs": 29.7019
     },
     {
       "command": "minimize",
-      "roundTripMs": 9.9465
+      "roundTripMs": 13.9188
     },
     {
       "command": "reload",
-      "roundTripMs": 2.2933
+      "roundTripMs": 4.2103
     },
     {
       "command": "wait",
-      "roundTripMs": 21.0989
+      "roundTripMs": 21.1339
     },
     {
       "command": "capture",
-      "roundTripMs": 2.2036
+      "roundTripMs": 0.8725
     },
     {
       "command": "restore",
-      "roundTripMs": 15.3474
+      "roundTripMs": 22.2182
     },
     {
       "command": "focus",
-      "roundTripMs": 39.5257
+      "roundTripMs": 47.954
     },
     {
       "command": "focus",
-      "roundTripMs": 2.9822
+      "roundTripMs": 8.0003
     },
     {
       "command": "focus",
-      "roundTripMs": 3.6615
+      "roundTripMs": 4.3536
     },
     {
       "command": "focus",
-      "roundTripMs": 1.7548
+      "roundTripMs": 1.831
     },
     {
       "command": "focus",
-      "roundTripMs": 2.3569
+      "roundTripMs": 1.9153
     },
     {
       "command": "open",
-      "roundTripMs": 101.1208
+      "roundTripMs": 125.1635
     },
     {
       "command": "open",
-      "roundTripMs": 90.6505
+      "roundTripMs": 141.0184
     },
     {
       "command": "open",
-      "roundTripMs": 106.7831
+      "roundTripMs": 125.4973
     },
     {
       "command": "open",
-      "roundTripMs": 137.6385
+      "roundTripMs": 133.2072
     },
     {
       "command": "open",
-      "roundTripMs": 196.397
+      "roundTripMs": 131.2496
     },
     {
       "command": "open",
-      "roundTripMs": 105.3892
+      "roundTripMs": 112.1436
     },
     {
       "command": "open",
-      "roundTripMs": 132.1516
+      "roundTripMs": 80.9265
     },
     {
       "command": "open",
-      "roundTripMs": 114.1991
+      "roundTripMs": 111.0109
     },
     {
       "command": "open",
-      "roundTripMs": 118.1722
+      "roundTripMs": 110.2593
     },
     {
       "command": "open",
-      "roundTripMs": 160.358
+      "roundTripMs": 189.0688
     },
     {
       "command": "open",
-      "roundTripMs": 127.1074
+      "roundTripMs": 108.7234
     },
     {
       "command": "open",
-      "roundTripMs": 143.9367
+      "roundTripMs": 101.656
     },
     {
       "command": "open",
-      "roundTripMs": 142.6517
+      "roundTripMs": 108.0553
     },
     {
       "command": "open",
-      "roundTripMs": 103.6253
+      "roundTripMs": 57.3104
     },
     {
       "command": "open",
-      "roundTripMs": 60.2891
+      "roundTripMs": 57.9623
     },
     {
       "command": "open",
-      "roundTripMs": 80.5724
+      "roundTripMs": 83.6773
     },
     {
       "command": "open",
-      "roundTripMs": 91.4805
+      "roundTripMs": 79.7618
     },
     {
       "command": "open",
-      "roundTripMs": 62.304
+      "roundTripMs": 88.8832
     },
     {
       "command": "open",
-      "roundTripMs": 65.7803
+      "roundTripMs": 66.0543
     },
     {
       "command": "open",
-      "roundTripMs": 59.3398
+      "roundTripMs": 55.9014
     },
     {
       "command": "open",
-      "roundTripMs": 83.3745
+      "roundTripMs": 66.2409
     },
     {
       "command": "open",
-      "roundTripMs": 70.5001
+      "roundTripMs": 49.1522
     },
     {
       "command": "open",
-      "roundTripMs": 51.5599
+      "roundTripMs": 48.0812
     },
     {
       "command": "open",
-      "roundTripMs": 79.4207
+      "roundTripMs": 65.9434
     },
     {
       "command": "open",
-      "roundTripMs": 64.2902
+      "roundTripMs": 57.866
     },
     {
       "command": "open",
-      "roundTripMs": 53.4308
+      "roundTripMs": 61.1747
     },
     {
       "command": "open",
-      "roundTripMs": 61.592
+      "roundTripMs": 61.2561
     },
     {
       "command": "open",
-      "roundTripMs": 46.5676
+      "roundTripMs": 58.327
     },
     {
       "command": "open",
-      "roundTripMs": 59.9922
+      "roundTripMs": 50.6287
     },
     {
       "command": "open",
-      "roundTripMs": 60.47
+      "roundTripMs": 62.1364
     },
     {
       "command": "open",
-      "roundTripMs": 64.9838
+      "roundTripMs": 46.6956
     },
     {
       "command": "wait",
-      "roundTripMs": 10.1338
+      "roundTripMs": 11.7034
     },
     {
       "command": "inspect",
-      "roundTripMs": 2.3257
+      "roundTripMs": 2.2816
     },
     {
       "command": "open",
-      "roundTripMs": 49.9924
+      "roundTripMs": 41.1074
     },
     {
       "command": "close",
-      "roundTripMs": 24.2589
+      "roundTripMs": 24.6864
     },
     {
       "command": "status",
-      "roundTripMs": 0.4973
+      "roundTripMs": 0.6201
     },
     {
       "command": "open",
-      "roundTripMs": 23.1806
+      "roundTripMs": 45.7909
     },
     {
       "command": "wait",
-      "roundTripMs": 14.9516
+      "roundTripMs": 17.3155
     },
     {
       "command": "open",
-      "roundTripMs": 52.2104
+      "roundTripMs": 86.0127
     },
     {
       "command": "wait",
-      "roundTripMs": 11.8213
+      "roundTripMs": 22.0228
     },
     {
       "command": "open",
-      "roundTripMs": 42.6778
+      "roundTripMs": 62.3494
     },
     {
       "command": "wait",
-      "roundTripMs": 27.5138
+      "roundTripMs": 17.9851
     },
     {
       "command": "inspect",
-      "roundTripMs": 1.2799
+      "roundTripMs": 0.6215
     },
     {
       "command": "capture",
-      "roundTripMs": 2.778
+      "roundTripMs": 5.8067
     },
     {
       "command": "close",
-      "roundTripMs": 12.2649
+      "roundTripMs": 15.1346
     },
     {
       "command": "quit",
-      "roundTripMs": 0.3159
+      "roundTripMs": 1.5183
     }
   ],
   "responses": [
@@ -466,11 +466,13 @@
       "result": {
         "asOf": "2026-11-12",
         "core": {
+          "agent": "private stdio controls real hover.exe; decoded/native state and client render exports; see docs/agent-control.md",
           "artist3D": "not implemented",
           "browser": "skeleton, no remote preview fetch",
           "folder": "bounded enumeration, shell interaction unverified",
           "gif": "implemented, fidelity and limits need expanded tests",
-          "image": "WIC BMP pixel test with generated fixture",
+          "image": "WIC BMP pixel test and native-app color/viewport validation with generated fixtures",
+          "interaction": "native pin/reload/keyboard/view continuity; actual Windows app tests; shell/physical accessibility/DPI gates open",
           "media": "external playback after explicit click, interaction/security unverified",
           "text": "implemented, shell interaction unverified",
           "zip": "bounded metadata index, reader tests with generated fixtures"
@@ -733,7 +735,7 @@
         "path": null,
         "pending_path": null,
         "phase": "empty",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": false,
         "profile": "release",
         "rect": {
@@ -823,13 +825,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -907,13 +909,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -998,13 +1000,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -1082,13 +1084,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 760.0
         },
         "scroll": 20,
@@ -1209,13 +1211,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 760.0
         },
         "scroll": 20,
@@ -1293,13 +1295,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 760.0
         },
         "scroll": 20,
@@ -1384,13 +1386,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 760.0
         },
         "scroll": 20,
@@ -1468,13 +1470,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 760.0
         },
         "scroll": 20,
@@ -1552,13 +1554,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "error",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -1636,13 +1638,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -1720,13 +1722,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -1804,13 +1806,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -1895,13 +1897,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -1986,13 +1988,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2077,13 +2079,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2168,13 +2170,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2272,13 +2274,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2363,13 +2365,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2454,7 +2456,7 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
@@ -2545,7 +2547,7 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
@@ -2636,7 +2638,7 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
@@ -2733,13 +2735,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2824,13 +2826,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -2915,13 +2917,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -3006,13 +3008,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -3097,13 +3099,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -3188,13 +3190,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 400.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 632.0,
+          "top": 956.0,
           "width": 500.0
         },
         "scroll": 0,
@@ -3272,13 +3274,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 624.0,
+          "top": 964.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3356,13 +3358,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 624.0,
+          "top": 964.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3440,13 +3442,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 624.0,
+          "top": 964.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3524,13 +3526,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 624.0,
+          "top": 964.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3608,13 +3610,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 624.0,
+          "top": 964.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3692,13 +3694,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 624.0,
+          "top": 964.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3776,13 +3778,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 624.0,
+          "top": 964.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3860,13 +3862,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 624.0,
+          "top": 964.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -3944,13 +3946,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 623.0,
+          "top": 965.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4028,13 +4030,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4112,13 +4114,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4196,13 +4198,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4280,13 +4282,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4364,13 +4366,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4448,13 +4450,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4532,13 +4534,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4616,13 +4618,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4700,13 +4702,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4784,13 +4786,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4868,13 +4870,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -4952,13 +4954,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5036,13 +5038,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5120,13 +5122,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5204,13 +5206,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5288,13 +5290,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5372,13 +5374,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5456,13 +5458,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5540,13 +5542,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5624,13 +5626,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5708,13 +5710,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5792,13 +5794,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": "[fixtures]\\fixture-雪.txt",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5876,13 +5878,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -5966,13 +5968,13 @@
         "path": "[fixtures]\\fixture-雪.txt",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -6050,13 +6052,13 @@
         "path": "[fixtures]\\quadrants.bmp",
         "pending_path": "[fixtures]\\quadrants.bmp",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -6130,13 +6132,13 @@
         "path": null,
         "pending_path": null,
         "phase": "empty",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": false,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": null,
@@ -6210,13 +6212,13 @@
         "path": null,
         "pending_path": null,
         "phase": "empty",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": false,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": null,
@@ -6294,13 +6296,13 @@
         "path": "[fixtures]\\corrupt.bin",
         "pending_path": "[fixtures]\\corrupt.bin",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -6378,13 +6380,13 @@
         "path": "[fixtures]\\corrupt.bin",
         "pending_path": null,
         "phase": "error",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -6462,13 +6464,13 @@
         "path": "[fixtures]\\paused.mp4",
         "pending_path": "[fixtures]\\paused.mp4",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -6546,13 +6548,13 @@
         "path": "[fixtures]\\paused.mp4",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -6630,13 +6632,13 @@
         "path": "[upstream-fixture]\\TestPackage.package",
         "pending_path": "[upstream-fixture]\\TestPackage.package",
         "phase": "loading",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -6714,13 +6716,13 @@
         "path": "[upstream-fixture]\\TestPackage.package",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -6923,13 +6925,13 @@
         "path": "[upstream-fixture]\\TestPackage.package",
         "pending_path": null,
         "phase": "ready",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": true,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": 0,
@@ -7016,13 +7018,13 @@
         "path": null,
         "pending_path": null,
         "phase": "empty",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": false,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": null,
@@ -7096,13 +7098,13 @@
         "path": null,
         "pending_path": null,
         "phase": "empty",
-        "pid": 251528,
+        "pid": 215872,
         "pinned": false,
         "profile": "release",
         "rect": {
           "height": 300.0,
-          "left": 934.0,
-          "top": 1021.0,
+          "left": 619.0,
+          "top": 973.0,
           "width": 760.0
         },
         "scroll": null,

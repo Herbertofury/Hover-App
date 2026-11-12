@@ -4,7 +4,9 @@
   "releaseVerified": false,
   "note": "States reflect current source/evidence, not milestone completion. All per-game fixture and packaged-release gates remain open.",
   "core": {
-    "image": "WIC BMP pixel test with generated fixture",
+    "image": "WIC BMP pixel test and native-app color/viewport validation with generated fixtures",
+    "interaction": "native pin/reload/keyboard/view continuity; actual Windows app tests; shell/physical accessibility/DPI gates open",
+    "agent": "private stdio controls real hover.exe; decoded/native state and client render exports; see docs/agent-control.md",
     "browser": "skeleton, no remote preview fetch",
     "artist3D": "not implemented",
     "folder": "bounded enumeration, shell interaction unverified",

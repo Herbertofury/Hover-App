@@ -37,8 +37,15 @@ Use `-DbpfFixture <path>` with the reviewed LlamaLogic TestPackage.package from
 The script requires its exact SHA-256. CI explicitly downloads this single file
 at the pinned upstream revision and verifies it; Hover never downloads fixtures
 on hover. This checks 20 package index resources, not real-game rendering or a
-known Sims game/build. The earlier 40-check CI run passed both toolchains;
-The 49-check hosted suite passed both toolchains (run 43321096978); final native-control render regression CI is pending.
+known Sims game/build. The final 50-check suite passed on both Rust 1.95.0
+and 1.99.0 in [Windows CI run 43324046891](https://github.com/Herbertofury/Hover-App/actions/runs/43324046891),
+at source revision `3402b6ed70feb3ff65413937ed597e267a707a06`, before the
+qualified merge. [Retained CI summary](evidence/agent-ci-2026-11-12.json) and
+[native-app log](evidence/agent-native-ci-2026-11-12.txt) record both actual runs.
+The readable log has trailing whitespace removed; the linked run retains the
+original. See also [local raw results](evidence/agent-local-2026-11-12.json).
+
+![Native DBPF metadata client render](evidence/agent-dbpf-preview-2026-11-12.png)
 
 Example batch (replace the local input/output paths):
 
