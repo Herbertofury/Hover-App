@@ -1,36 +1,36 @@
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	﻿2026-11-12T21:52:27.0311029Z ##[group]Run cargo +1.95.0 test -p hover-win --locked platform::tests::pinned_native_window_lifecycle -- --ignored --exact --nocapture
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.0312048Z ^[[36;1mcargo +1.95.0 test -p hover-win --locked platform::tests::pinned_native_window_lifecycle -- --ignored --exact --nocapture^[[0m
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.0383756Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.0384117Z ##[endgroup]
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.4259533Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.4312565Z      Running unittests src\lib.rs (target\debug\deps\hover_win-f534cdee68c7cab6.exe)
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.4401054Z 
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.4401258Z running 1 test
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.5374202Z test platform::tests::pinned_native_window_lifecycle ... ok
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.5377300Z 
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.5378400Z test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.10s
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.5379102Z 
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.5471004Z      Running unittests src\main.rs (target\debug\deps\hover-9cedeae5e2c1a12c.exe)
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.5540180Z 
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.5540604Z running 0 tests
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.5541068Z 
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.5541644Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:27.5542245Z 
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	﻿2026-11-12T21:52:21.2318056Z ##[group]Run cargo +1.99.0 test -p hover-win --locked platform::tests::pinned_native_window_lifecycle -- --ignored --exact --nocapture
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.2319090Z ^[[36;1mcargo +1.99.0 test -p hover-win --locked platform::tests::pinned_native_window_lifecycle -- --ignored --exact --nocapture^[[0m
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.2389057Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.2389430Z ##[endgroup]
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.6178656Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.6216351Z      Running unittests src\lib.rs (target\debug\deps\hover_win-48a0e63af7e028fe.exe)
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.6323834Z 
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.6324081Z running 1 test
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.7362207Z test platform::tests::pinned_native_window_lifecycle ... ok
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.7368542Z 
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.7370733Z test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.10s
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.7371422Z 
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.7459702Z      Running unittests src\main.rs (target\debug\deps\hover-e91d2193d8365da8.exe)
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.7550942Z 
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.7551394Z running 0 tests
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.7586484Z 
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.7588553Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
-verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:52:21.7589418Z 
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	﻿2026-11-12T21:59:11.6973361Z ##[group]Run cargo +1.99.0 test -p hover-win --locked platform::tests::pinned_native_window_lifecycle -- --ignored --exact --nocapture
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:11.6974406Z ^[[36;1mcargo +1.99.0 test -p hover-win --locked platform::tests::pinned_native_window_lifecycle -- --ignored --exact --nocapture^[[0m
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:11.7046073Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:11.7046443Z ##[endgroup]
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.0764848Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.0801935Z      Running unittests src\lib.rs (target\debug\deps\hover_win-48a0e63af7e028fe.exe)
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.0908737Z
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.0908970Z running 1 test
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.2050066Z test platform::tests::pinned_native_window_lifecycle ... ok
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.2051030Z
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.2052225Z test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.11s
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.2055331Z
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.2174710Z      Running unittests src\main.rs (target\debug\deps\hover-e91d2193d8365da8.exe)
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.2262507Z
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.2262911Z running 0 tests
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.2263157Z
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.2263593Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+verify (1.99.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:59:12.2264189Z
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	﻿2026-11-12T21:58:47.8951787Z ##[group]Run cargo +1.95.0 test -p hover-win --locked platform::tests::pinned_native_window_lifecycle -- --ignored --exact --nocapture
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:47.8952390Z ^[[36;1mcargo +1.95.0 test -p hover-win --locked platform::tests::pinned_native_window_lifecycle -- --ignored --exact --nocapture^[[0m
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:47.9000948Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:47.9001189Z ##[endgroup]
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.1477189Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.04s
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.1504948Z      Running unittests src\lib.rs (target\debug\deps\hover_win-f534cdee68c7cab6.exe)
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.1591032Z
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.1591502Z running 1 test
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.2361570Z test platform::tests::pinned_native_window_lifecycle ... ok
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.2362957Z
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.2364158Z test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.08s
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.2364757Z
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.2421658Z      Running unittests src\main.rs (target\debug\deps\hover-9cedeae5e2c1a12c.exe)
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.2465846Z
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.2466077Z running 0 tests
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.2466362Z
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.2466640Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+verify (1.95.0)	Test Hover window lifecycle on dedicated Windows runner	2026-11-12T21:58:48.2466927Z

@@ -37,15 +37,17 @@ Local source checks include view-model regressions for custom zoom/pan,
 dimension/type changes, frame clamping and shrinking text/list content. These
 tests do not prove native control usability or visual correctness.
 
-Source revision `62caa6d323826ef6897e71228d74d9af16e7d32b` passed formatting,
+Source revision `71b38a7960b84ca92b700f1f319afa0208b8776b` passed formatting,
 strict Clippy, 39 workspace parent tests plus the source-sharing subprocess,
 the dedicated native lifecycle test and release builds on Windows with both
-Rust 1.95.0 and 1.99.0 in [CI run 43314243304](https://github.com/Herbertofury/Hover-App/actions/runs/43314243304).
-Each toolchain actually ran one lifecycle test; its recorded 0.10 seconds is
-test duration, not preview latency. Local verification output (workspace paths
+Rust 1.95.0 and 1.99.0 in [CI run 43315323528](https://github.com/Herbertofury/Hover-App/actions/runs/43315323528).
+Each toolchain actually ran one lifecycle test; its logged duration measures
+test execution, not preview latency. Local verification output (workspace paths
 redacted) is in [pin verification](evidence/pin-verification-2026-11-12.txt);
 hosted evidence is in [CI summary](evidence/pin-ci-2026-11-12.json) and
 [lifecycle log](evidence/pin-native-lifecycle-2026-11-12.txt).
+The displayed CI log has trailing whitespace stripped; substantive output is
+retained, with the original log available from the linked run.
 
 The first CI attempt stopped at a Rust 1.95 Clippy warning before native tests.
 The match was corrected without relaxing warnings; the succeeding run above
@@ -57,6 +59,10 @@ GitHub Actions workflow. It creates Hover's own window on that dedicated runner,
 checks actual Win32 styles/control labels, routes Pin and F5 through production
 message handling, verifies pinned retention and same-file scroll restoration,
 checks unchanged fixture bytes, then checks preview close and resident cleanup.
+It also minimizes its own window and checks that stale video geometry cannot
+capture wheel input and that reload completion leaves the preview minimized.
+The wheel guard uses the test's own window as a player stand-in, not a real
+media backend or injected wheel input.
 It refuses to run locally without the CI environment guard. It neither injects
 physical user input nor operates Explorer; it does not replace release UI tests.
 
