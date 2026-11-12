@@ -4320,6 +4320,18 @@ fn store_video_control_state(rect: HoverRect, seek_seconds: u32) {
 }
 
 fn point_inside_video_rect(point: POINT) -> bool {
+    // A retained geometry is not proof of a visible player. In particular,
+    // pinned minimization must leave wheel input to the app now underneath it.
+    unsafe {
+        let overlay = OVERLAY_HWND.load(Ordering::Acquire) as HWND;
+        if PREVIEW_PINNED.load(Ordering::Acquire) && IsIconic(overlay) != 0 {
+            return false;
+        }
+        let player = current_video_window();
+        if player.is_null() || IsWindowVisible(player) == 0 {
+            return false;
+        }
+    }
     let left = VIDEO_RECT_LEFT.load(Ordering::Acquire);
     let top = VIDEO_RECT_TOP.load(Ordering::Acquire);
     let right = VIDEO_RECT_RIGHT.load(Ordering::Acquire);
@@ -4779,6 +4791,18 @@ mod tests {
                 assert!(matches!(&model.content, OverlayContent::Text { lines, .. } if lines[0] == "updated 0"));
             }
             assert_eq!(std::fs::read(&path).unwrap(), changed.as_bytes());
+            // Exercise the wheel eligibility guard without launching a player
+            // or injecting any physical input on the runner.
+            let media_rect = overlay_media_rect(overlay);
+            store_video_control_state(media_rect, 5);
+            VIDEO_PID.store(std::process::id(), Ordering::Release);
+            VIDEO_HWND.store(overlay as isize, Ordering::Release);
+            let media_point = POINT { x: media_rect.left as i32 + 1, y: media_rect.top as i32 + 1 };
+            assert!(point_inside_video_rect(media_point));
+            ShowWindow(overlay, windows_sys::Win32::UI::WindowsAndMessaging::SW_SHOWMINNOACTIVE);
+            assert!(IsIconic(overlay) != 0);
+            assert!(!point_inside_video_rect(media_point), "Minimized preview captured wheel input");
+            clear_video_window_state();
             PostMessageW(overlay, WM_CLOSE, 0, 0);
             pump_until(|| (*ptr).current_path.is_none());
             assert!(IsWindow(control) != 0 && IsWindow(overlay) != 0);
