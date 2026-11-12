@@ -1,5 +1,11 @@
 # Third-party notices
 
+The DBPF 2.1 metadata reader was checked against LlamaLogic revision
+`4a3d576f0afb776aba783db561760afb5b5de8b7` (MIT). Its notice is retained in
+[third-party/LlamaLogic-LICENSE.txt](third-party/LlamaLogic-LICENSE.txt).
+LlamaLogic and its .NET/codec dependencies are not embedded in Hover; the
+external comparison and its limits are documented in [DBPF evidence](docs/dbpf-evidence.md).
+
 Hover's original desktop source identifies rust-hover-preview as the reference
 for its MSAA/Shell target resolution, Win32 overlay, GIF compositing and media
 command approach. The reference is MIT licensed at revision

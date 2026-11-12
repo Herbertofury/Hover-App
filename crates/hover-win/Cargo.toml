@@ -8,6 +8,7 @@ license.workspace = true
 [dependencies]
 hover-core = { path = "../hover-core" }
 hover-decode = { path = "../hover-decode" }
+hover-formats = { path = "../hover-formats" }
 hover-render = { path = "../hover-render" }
 hover-settings = { path = "../hover-settings" }
 crossbeam-channel.workspace = true

@@ -12,7 +12,7 @@ use std::collections::HashMap;
 use std::env;
 use std::ffi::c_void;
 use std::fs::{self, File};
-use std::io::{Read, Seek, SeekFrom, Write};
+use std::io::{Read, Write};
 use std::os::windows::ffi::OsStrExt;
 use std::os::windows::process::CommandExt;
 use std::path::{Path, PathBuf};
@@ -1668,7 +1668,7 @@ fn build_preview_payload(
         if !preview_types.sims_packages {
             return Err("Sims package previews are disabled in Hover options.".to_string());
         }
-        return sims_package_preview(path);
+        return sims_package_preview(path, token);
     }
     if is_video_path(path) {
         if !preview_types.videos {
@@ -1884,29 +1884,21 @@ fn zip_preview(path: &Path, token: &CancellationToken) -> Result<PreviewPayload,
     })
 }
 
-#[derive(Clone)]
-struct DbpfEntry {
-    type_id: u32,
-    group_id: u32,
-    instance_id: u64,
-    position: u32,
-    size: u32,
-    decompressed_size: u32,
-    compression: Option<u16>,
-}
+type DbpfEntry = hover_formats::dbpf::Entry;
 
-fn sims_package_preview(path: &Path) -> Result<PreviewPayload, String> {
+fn sims_package_preview(path: &Path, token: &CancellationToken) -> Result<PreviewPayload, String> {
     let metadata = fs::metadata(path).map_err(|error| error.to_string())?;
-    let entries = read_dbpf_entries(path, MAX_SIM_PACKAGE_INDEX_ENTRIES)?;
+    let index = read_dbpf_entries(path, token)?;
+    let entries = &index.entries;
     let mut type_counts: HashMap<u32, usize> = HashMap::new();
-    for entry in &entries {
+    for entry in entries {
         *type_counts.entry(entry.type_id).or_default() += 1;
     }
 
     let mut rows = Vec::new();
-    let package_tags = infer_sims_package_tags(path, &entries, &type_counts);
+    let package_tags = infer_sims_package_tags(entries, &type_counts);
     rows.push(ListEntry {
-        name: "Studio view".to_string(),
+        name: "Resource index · metadata only".to_string(),
         detail: package_tags.join(", "),
         path: None,
         kind: EntryKind::File,
@@ -1922,6 +1914,7 @@ fn sims_package_preview(path: &Path) -> Result<PreviewPayload, String> {
             kind: EntryKind::File,
         });
     }
+    let summary_rows = rows.len();
     for entry in entries
         .iter()
         .take(MAX_PREVIEW_ENTRIES.saturating_sub(rows.len()))
@@ -1948,6 +1941,7 @@ fn sims_package_preview(path: &Path) -> Result<PreviewPayload, String> {
         });
     }
 
+    let omitted = (index.declared_count as usize).saturating_sub(rows.len() - summary_rows);
     Ok(PreviewPayload::List {
         title: path
             .file_name()
@@ -1955,96 +1949,34 @@ fn sims_package_preview(path: &Path) -> Result<PreviewPayload, String> {
             .unwrap_or("Sims 4 package")
             .to_string(),
         subtitle: format!(
-            "Sims 4 package - {} resources scanned - {}",
+            "DBPF 2.1 metadata · {}/{} index entries inspected{} · {}",
             entries.len(),
+            index.declared_count,
+            if index.truncated { " (partial)" } else { "" },
             format_bytes(metadata.len())
         ),
         entries: rows,
-        omitted: entries.len().saturating_sub(MAX_PREVIEW_ENTRIES),
+        omitted,
     })
 }
 
-fn read_dbpf_entries(path: &Path, max_entries: usize) -> Result<Vec<DbpfEntry>, String> {
+fn read_dbpf_entries(
+    path: &Path,
+    token: &CancellationToken,
+) -> Result<hover_formats::dbpf::Index, String> {
     let mut file = open_preview_file(path).map_err(|error| error.to_string())?;
-    let mut header = [0u8; 96];
-    file.read_exact(&mut header)
-        .map_err(|error| error.to_string())?;
-    if &header[0..4] != b"DBPF" {
-        return Err("Not a DBPF Sims package.".to_string());
-    }
-    let major = le_u32(&header, 4);
-    let minor = le_u32(&header, 8);
-    if major != 2 || minor != 1 {
-        return Err(format!("Unsupported DBPF version {major}.{minor}."));
-    }
-    let entry_count = le_u32(&header, 36) as usize;
-    let index_position_low = le_u32(&header, 40) as u64;
-    let index_position = le_u64(&header, 64).max(index_position_low);
-    file.seek(SeekFrom::Start(index_position))
-        .map_err(|error| error.to_string())?;
-
-    let mut flags_bytes = [0u8; 4];
-    file.read_exact(&mut flags_bytes)
-        .map_err(|error| error.to_string())?;
-    let flags = flags_bytes[0];
-    let constant_type = if flags & 0b001 != 0 {
-        Some(read_u32(&mut file)?)
-    } else {
-        None
-    };
-    let constant_group = if flags & 0b010 != 0 {
-        Some(read_u32(&mut file)?)
-    } else {
-        None
-    };
-    let constant_instance_hi = if flags & 0b100 != 0 {
-        Some(read_u32(&mut file)?)
-    } else {
-        None
-    };
-
-    let mut entries = Vec::new();
-    for _ in 0..entry_count.min(max_entries) {
-        let type_id = match constant_type {
-            Some(value) => value,
-            None => read_u32(&mut file)?,
-        };
-        let group_id = match constant_group {
-            Some(value) => value,
-            None => read_u32(&mut file)?,
-        };
-        let instance_hi = match constant_instance_hi {
-            Some(value) => value,
-            None => read_u32(&mut file)?,
-        };
-        let instance_lo = read_u32(&mut file)?;
-        let position = read_u32(&mut file)?;
-        let size_and_compression = read_u32(&mut file)?;
-        let size = size_and_compression & 0x7FFF_FFFF;
-        let decompressed_size = read_u32(&mut file)?;
-        let compression = if size_and_compression & 0x8000_0000 != 0 {
-            Some(read_u16(&mut file)?)
-        } else {
-            None
-        };
-        let mut committed = [0u8; 2];
-        file.read_exact(&mut committed)
-            .map_err(|error| error.to_string())?;
-        entries.push(DbpfEntry {
-            type_id,
-            group_id,
-            instance_id: ((instance_hi as u64) << 32) | instance_lo as u64,
-            position,
-            size,
-            decompressed_size,
-            compression,
-        });
-    }
-    Ok(entries)
+    hover_formats::dbpf::read_index(
+        &mut file,
+        hover_formats::dbpf::Limits {
+            max_preview_entries: MAX_SIM_PACKAGE_INDEX_ENTRIES,
+            ..Default::default()
+        },
+        token,
+    )
+    .map_err(|error| error.to_string())
 }
 
 fn infer_sims_package_tags(
-    path: &Path,
     entries: &[DbpfEntry],
     type_counts: &HashMap<u32, usize>,
 ) -> Vec<String> {
@@ -2062,27 +1994,7 @@ fn infer_sims_package_tags(
         tags.push("Mesh/model".to_string());
     }
     if entries.len() >= MAX_SIM_PACKAGE_INDEX_ENTRIES {
-        tags.push("Large/merged".to_string());
-    }
-    let name = path
-        .file_stem()
-        .and_then(|value| value.to_str())
-        .unwrap_or_default()
-        .to_ascii_lowercase();
-    for (needle, label) in [
-        ("female", "Female"),
-        ("male", "Male"),
-        ("toddler", "Toddler"),
-        ("child", "Child"),
-        ("infant", "Infant"),
-        ("teen", "Teen"),
-        ("adult", "Adult"),
-        ("elder", "Elder"),
-        ("merged", "Merged package"),
-    ] {
-        if name.contains(needle) && !tags.iter().any(|tag| tag == label) {
-            tags.push(label.to_string());
-        }
+        tags.push("Index sample capped at 5,000 entries".to_string());
     }
     if tags.is_empty() {
         tags.push("Warehouse".to_string());
@@ -2129,42 +2041,6 @@ fn sims_resource_label(type_id: u32) -> &'static str {
         0x025E_D6F4 => "Sim Info",
         _ => "Warehouse Resource",
     }
-}
-
-fn le_u32(bytes: &[u8], offset: usize) -> u32 {
-    u32::from_le_bytes([
-        bytes[offset],
-        bytes[offset + 1],
-        bytes[offset + 2],
-        bytes[offset + 3],
-    ])
-}
-
-fn le_u64(bytes: &[u8], offset: usize) -> u64 {
-    u64::from_le_bytes([
-        bytes[offset],
-        bytes[offset + 1],
-        bytes[offset + 2],
-        bytes[offset + 3],
-        bytes[offset + 4],
-        bytes[offset + 5],
-        bytes[offset + 6],
-        bytes[offset + 7],
-    ])
-}
-
-fn read_u32(file: &mut File) -> Result<u32, String> {
-    let mut bytes = [0u8; 4];
-    file.read_exact(&mut bytes)
-        .map_err(|error| error.to_string())?;
-    Ok(u32::from_le_bytes(bytes))
-}
-
-fn read_u16(file: &mut File) -> Result<u16, String> {
-    let mut bytes = [0u8; 2];
-    file.read_exact(&mut bytes)
-        .map_err(|error| error.to_string())?;
-    Ok(u16::from_le_bytes(bytes))
 }
 
 fn text_preview(path: &Path) -> Result<PreviewPayload, String> {

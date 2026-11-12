@@ -56,8 +56,9 @@ through that runtime. Unsupported UI injection is not a substitute.
   concurrent changes, external media security and parser fuzz/stress coverage
   remain incomplete. Existing settings/checklists do not prove these features.
 - Each game milestone with pinned licensed specialists, versioned permitted
-  fixtures and retained differential/visual failures. DBPF is unverified partial
-  metadata, not CC resolution, image extraction or 3D. Bethesda, Minecraft,
+  fixtures and retained differential/visual failures. DBPF 2.1 has partial index
+  metadata tests and a 20-entry specialist comparison, not CC resolution, image
+  extraction or 3D; see [DBPF evidence](dbpf-evidence.md). Bethesda, Minecraft,
   Hytale, Unreal, Unity, Cyberpunk, Witcher, Terraria, Stardew and BG3 adapters
   remain unimplemented. Engine and community research queues remain in scope.
 - Artist formats, actual 2D/3D/animation/material/texture inspection and faithful
