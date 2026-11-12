@@ -1,0 +1,12 @@
+{
+  "Kind": "single-process idle smoke, foreground not verified",
+  "InputIdleReached": true,
+  "Alive": true,
+  "ElapsedSeconds": 10.0311572,
+  "CpuSecondsDelta": 0.0,
+  "WorkingSetBytes": 9760768,
+  "PrivateBytes": 1617920,
+  "Handles": 145,
+  "Threads": 4,
+  "BinarySha256": "BB364975783BA787E73784AE6E5DD494252B2C66D515EACE6688AF3EEF339D29"
+}
