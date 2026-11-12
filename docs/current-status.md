@@ -33,6 +33,12 @@ were inspected; their scopes remain required and open.
   its taskbar reservation and negative coordinates. Geometry tests cover small
   work areas and invalid numeric inputs. Actual mixed-DPI/monitor UI behavior
   is still unverified; this is not a DPI/accessibility completion claim.
+- Native Pin/Unpin, Reload and Close controls support an explicitly activated,
+  resizable preview that retains its identity across app switches. Compatible
+  same-file reloads restore image zoom/pan and clamped animation frame or
+  text/list scroll; changed kinds/dimensions explain their reset. Window-scoped
+  keyboard controls and tray commands are implemented. These are development
+  features with source tests; see [pinned-preview evidence](pinned-preview.md).
 - ZIP upgraded from 2.4.2 to 9.5.1 after four RustSec advisories. Full reference
   and Cargo license notices are retained. Advisory scans do not prove safety.
 
@@ -61,8 +67,9 @@ through that runtime. Unsupported UI injection is not a substitute.
 ## Required remaining gates
 
 - Actual shell targeting and safe activation during typing, rename, IME, drag
-  and modal flows; pinning, keyboard, accessibility/high contrast, DPI/monitors,
-  reload continuity, shelf, copying and synchronized multi-file comparison.
+  and modal flows; physical pinning/keyboard/reload interaction verification,
+  accessibility/high contrast, DPI/monitors, deeper camera/swatch continuity,
+  shelf, copying and synchronized multi-file comparison.
 - Hard decoder isolation and time/memory/process limits. Cooperative worker
   cancellation cannot terminate a stuck native codec. Native codec allocation,
   concurrent changes, external media security and parser fuzz/stress coverage

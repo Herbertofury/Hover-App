@@ -37,6 +37,21 @@ Local source checks include view-model regressions for custom zoom/pan,
 dimension/type changes, frame clamping and shrinking text/list content. These
 tests do not prove native control usability or visual correctness.
 
+Source revision `62caa6d323826ef6897e71228d74d9af16e7d32b` passed formatting,
+strict Clippy, 39 workspace parent tests plus the source-sharing subprocess,
+the dedicated native lifecycle test and release builds on Windows with both
+Rust 1.95.0 and 1.99.0 in [CI run 43314243304](https://github.com/Herbertofury/Hover-App/actions/runs/43314243304).
+Each toolchain actually ran one lifecycle test; its recorded 0.10 seconds is
+test duration, not preview latency. Local verification output (workspace paths
+redacted) is in [pin verification](evidence/pin-verification-2026-11-12.txt);
+hosted evidence is in [CI summary](evidence/pin-ci-2026-11-12.json) and
+[lifecycle log](evidence/pin-native-lifecycle-2026-11-12.txt).
+
+The first CI attempt stopped at a Rust 1.95 Clippy warning before native tests.
+The match was corrected without relaxing warnings; the succeeding run above
+passed both toolchains. External media behavior still needs actual player
+fixtures and visual interaction tests; the lifecycle fixture is plain text.
+
 An explicitly ignored native lifecycle test is invoked only by the Windows
 GitHub Actions workflow. It creates Hover's own window on that dedicated runner,
 checks actual Win32 styles/control labels, routes Pin and F5 through production

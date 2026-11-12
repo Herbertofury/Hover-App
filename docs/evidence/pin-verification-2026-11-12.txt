@@ -1,0 +1,154 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.11s
+   Compiling hover-win v0.1.0 ([workspace]\crates\hover-win)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.37s
+     Running unittests src\lib.rs (target\debug\deps\hover_browser_host-54f9d081d4dc9f7d.exe)
+
+running 2 tests
+test tests::parses_hover_message ... ok
+test tests::validates_only_http_and_https_without_credentials ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\main.rs (target\debug\deps\hover_browser_host-53b5e6402ebce9d3.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\debug\deps\hover_core-861e3beb700e8ad8.exe)
+
+running 14 tests
+test placement::tests::placement_flips_near_monitor_edges ... ok
+test cache::tests::cache_evicts_to_hard_cap ... ok
+test cache::tests::cache_rejects_item_larger_than_cap ... ok
+test decode_job::tests::replacement_slot_only_keeps_newest_request ... ok
+test placement::tests::placement_stays_inside_negative_secondary_and_tiny_work_areas ... ok
+test state::tests::dormant_non_zero_counter_is_defect_without_exception ... ok
+test state::tests::dormant_zero_counters_pass ... ok
+test placement::tests::invalid_numeric_inputs_do_not_panic_or_create_invalid_bounds ... ok
+test zoom::tests::fit_scales_are_correct ... ok
+test zoom::tests::pan_clamps_to_image_edges ... ok
+test zoom::tests::zoom_never_becomes_invalid ... ok
+test zoom::tests::wheel_zoom_preserves_cursor_anchor ... ok
+test worker::tests::cancel_discards_late_result_and_worker_recovers_from_panic ... ok
+test worker::tests::rapid_requests_keep_only_the_latest_and_never_decode_concurrently ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\debug\deps\hover_decode-d51be0c058fe200e.exe)
+
+running 6 tests
+test tests::converts_rgba_to_bgra ... ok
+test local_io::tests::refuses_cloud_recall_and_links_but_allows_normal_local_files ... ok
+test tests::enforces_pixel_limit ... ok
+test tests::sniffs_common_formats ... ok
+test tests::rejects_unknown_header ... ok
+test wic::tests::fit_decode_size_preserves_aspect ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\windows_sources.rs (target\debug\deps\windows_sources-7ff54b15629221d0.exe)
+
+running 4 tests
+test concurrent_file_probe ... ignored, Subprocess fixture helper; invoked by source_sharing test
+test bounded_snapshot_and_cancel_and_corrupt_input_fail_precisely ... ok
+test real_wic_pixels_are_correct_source_unchanged_and_file_is_unlocked ... ok
+
+running 1 test
+test concurrent_file_probe ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s
+
+test source_sharing_allows_another_process_to_rename_replace_and_delete ... ok
+
+test result: ok. 3 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running unittests src\lib.rs (target\debug\deps\hover_formats-45c74b220406e392.exe)
+
+running 4 tests
+test dbpf::tests::reports_partial_prefix_and_cancels_without_claiming_full_validation ... ok
+test dbpf::tests::all_constant_key_layouts_and_optional_compression_fields_stay_aligned ... ok
+test dbpf::tests::rejects_bad_versions_offsets_truncation_flags_and_budgets ... ok
+test dbpf::tests::deterministic_malformed_corpus_never_panics_or_exceeds_the_entry_cap ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\debug\deps\hover_render-aef0cbc9598ff6b6.exe)
+
+running 2 tests
+test tests::dirty_renderer_presents_only_when_dirty ... ok
+test tests::render_plan_tracks_zoom_quality ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\debug\deps\hover_settings-dcc3b1692fadb630.exe)
+
+running 2 tests
+test tests::invalid_settings_fall_back ... ok
+test tests::settings_parse_known_values ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\lib.rs (target\debug\deps\hover_win-6219a45b45bfea8b.exe)
+
+running 7 tests
+test platform::tests::pinned_native_window_lifecycle ... ignored, Dedicated hosted Windows runner only: creates Hover's own native window; not an Explorer or physical-input test
+test platform::tests::reload_preserves_actual_custom_zoom_pan_and_clamps_animation_frame ... ok
+test platform::tests::changed_dimensions_or_content_kind_do_not_inherit_stale_view ... ok
+test resolver::tests::decodes_file_url ... ok
+test resolver::tests::preserves_unicode_file_identity_and_rejects_malformed_urls ... ok
+test platform::tests::text_and_list_reload_keep_scroll_only_within_the_new_content ... ok
+test zip_limits::tests::permits_real_zip_listing_and_rejects_corrupt_or_hostile_directory ... ok
+
+test result: ok. 6 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\main.rs (target\debug\deps\hover-bab5d0811ec57bd0.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests hover_browser_host
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests hover_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests hover_decode
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests hover_formats
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests hover_render
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests hover_settings
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests hover_win
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling hover-win v0.1.0 ([workspace]\crates\hover-win)
+    Finished `release` profile [optimized] target(s) in 6.47s

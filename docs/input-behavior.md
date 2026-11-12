@@ -53,10 +53,16 @@ Required controls include Escape, L, F, W, H, 1, 0, plus/minus, and arrow-key pa
 Current status:
 
 - Escape hides the active preview through the foreground-gated timer path.
-- Video previews install a temporary keyboard hook only while external video playback is active.
+- Unpinned video previews install a temporary keyboard hook only while external video playback is active; forwarding requires that player's foreground process.
 - Space is forwarded to the video window for pause/play.
 - Left/right arrows are forwarded for backward/forward seek, using the configured ffplay seek step when ffplay is the active backend; up/down arrows are forwarded for native player controls.
-- [blocked] Locked-preview keyboard controls, fit-mode shortcuts, plus/minus zoom, and arrow-key pan are not wired yet.
+- Pinned previews use window-scoped messages: Escape closes, F5/Ctrl+R reloads,
+  Ctrl+P toggles pin and Tab reaches native controls. With content focused, 0
+  fits an image, 1 uses native scale, plus/minus zooms and arrows pan. Text/list
+  panels support arrows, Page Up/Down and Home/End. Enter/Space explicitly
+  starts prepared media. L/F/W/H fit shortcuts remain unimplemented.
+- These paths require physical keyboard and accessibility verification; native
+  message tests do not establish those acceptance gates. See [pin evidence](pinned-preview.md).
 
 ## Mouse Cancel
 
