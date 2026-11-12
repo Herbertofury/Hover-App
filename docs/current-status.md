@@ -38,6 +38,14 @@ were inspected; their scopes remain required and open.
 
 ## Current evidence
 
+The approved Git-history metadata cleanup replaced personal author addresses
+with GitHub no-reply identities without changing source trees. Local backups
+are retained. GitHub PR/internal/cache references can still retain old commits;
+the rewrite is not a guarantee that those historical views were purged. Before
+publishing further commits, run `./scripts/check-public-metadata.ps1` and verify
+the repository-local no-reply author and committer identity. Use local qualified
+merges with that identity rather than introducing account email metadata again.
+
 The imported baseline passed 22 tests on Windows with Rust 1.99.0. Added native
 tests verify exact WIC BMP pixels, unchanged input bytes, second-process
 rename/replace/delete with a held shared reader, byte limits, cancellation,
