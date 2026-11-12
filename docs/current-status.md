@@ -60,6 +60,15 @@ publishing further commits, run `./scripts/check-public-metadata.ps1` and verify
 the repository-local no-reply author and committer identity. Use local qualified
 merges with that identity rather than introducing account email metadata again.
 
+A concurrent documentation-only push reintroduced two personal metadata fields
+after the first cleanup. The approved follow-up changed only that commit's
+identity fields, preserving its parent, complete source tree and message, with a
+separate local backup. Its competitor research remains intact. CI now checks
+the full public branch history as well as local pre-publication checks. GitHub
+rejected the attempted server-side email ruleset (HTTP 422, invalid rule), so
+server-side prevention is not enabled. Other publishing clients must still use
+no-reply identities; these checks do not erase old GitHub cache/internal refs.
+
 The imported baseline passed 22 tests on Windows with Rust 1.99.0. Added native
 tests verify exact WIC BMP pixels, unchanged input bytes, second-process
 rename/replace/delete with a held shared reader, byte limits, cancellation,

@@ -14,6 +14,12 @@ jobs:
         rust: ['1.95.0', '1.99.0']
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - name: Verify public branch commit privacy
+        env:
+          PUBLIC_BRANCH_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: ./scripts/check-public-metadata.ps1 -Revision $env:PUBLIC_BRANCH_HEAD
       - name: Install exact Rust toolchain
         run: rustup toolchain install ${{ matrix.rust }} --profile minimal --component clippy,rustfmt
       - name: Format
