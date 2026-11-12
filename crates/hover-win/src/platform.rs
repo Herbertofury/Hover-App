@@ -504,12 +504,10 @@ impl App {
 
     unsafe fn on_timer(&mut self, timer_id: usize) {
         match timer_id {
-            TIMER_MEDIA => {
-                if self.pinned {
-                    self.maintain_active_video();
-                    self.maintain_active_audio();
-                    self.sync_pinned_media();
-                }
+            TIMER_MEDIA if self.pinned => {
+                self.maintain_active_video();
+                self.maintain_active_audio();
+                self.sync_pinned_media();
             }
             TIMER_CURSOR => {
                 if self.pinned || TRAY_MENU_OPEN.load(Ordering::Acquire) {
@@ -745,8 +743,8 @@ impl App {
             self.show_payload_inner(path.clone(), PreviewPayload::Text {
                 title: path.file_name().unwrap_or_default().to_string_lossy().into_owned(),
                 subtitle: format!("{label} · Playback paused"),
-                lines: vec!["Click this preview to play.".into(),
-                    "Playback uses your installed media player. Move away or press Escape to stop.".into()],
+                lines: vec!["Click to play, or press Enter/Space with pinned content focused.".into(),
+                    "Playback uses your installed media player. Close the preview or press Escape to stop.".into()],
                 truncated: false,
             });
             self.media_ready = Some(payload);
@@ -899,7 +897,7 @@ impl App {
                                 subtitle,
                                 lines: vec![
                                     "Audio preview playing".to_string(),
-                                    "Move away, press Escape, or click outside to stop playback."
+                                    "Close the preview or press Escape to stop playback."
                                         .to_string(),
                                 ],
                                 truncated: false,
@@ -1000,7 +998,11 @@ impl App {
                 Ok(Some(status)) => Some((video.rect, format!("Video player exited: {status}"))),
                 Err(error) => Some((video.rect, format!("Video player error: {error}"))),
                 Ok(None) => {
-                    sync_video_window(video);
+                    // A minimized pinned preview must not repeatedly reveal the
+                    // external player before sync_pinned_media hides it again.
+                    if !self.pinned || IsIconic(self.overlay) == 0 {
+                        sync_video_window(video);
+                    }
                     None
                 }
             }
@@ -1022,16 +1024,17 @@ impl App {
             content: OverlayContent::Text {
                 title: title.to_string(),
                 subtitle: String::new(),
-                lines: vec![
-                    message,
-                    "Move away and hover again to retry playback.".to_string(),
-                ],
+                lines: vec![message, "Reload the preview to retry playback.".to_string()],
                 truncated: false,
             },
             current_frame: 0,
             scroll_offset: 0,
         }));
-        self.place_overlay(rect);
+        self.place_overlay(if self.pinned {
+            overlay_screen_rect(self.overlay)
+        } else {
+            rect
+        });
         self.install_mouse_hook();
     }
 
@@ -1568,6 +1571,13 @@ unsafe fn preprocess_preview_message(msg: &MSG) -> bool {
 unsafe fn preview_content_key(hwnd: HWND, key: u32) -> bool {
     if VIDEO_PID.load(Ordering::Acquire) != 0 && is_video_control_key(key) {
         return post_video_key_tap(key);
+    }
+    if matches!(key, 0x0d | 0x20) {
+        let control = CONTROL_HWND.load(Ordering::Acquire) as HWND;
+        if !control.is_null() {
+            PostMessageW(control, WM_MEDIA_PLAY, 0, 0);
+            return true;
+        }
     }
     let rect = content_client_rect(hwnd);
     let mut guard = OVERLAY_MODEL

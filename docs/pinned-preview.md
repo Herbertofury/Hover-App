@@ -16,6 +16,7 @@ Unpin returns to a bounded glance window when the originating shell is eligible.
   toggles pin, and F5/Ctrl+R reloads. These commands are scoped to Hover's window.
 - With image content focused, arrows pan; plus/minus zoom; 0 fits; 1 selects
   native scale. Text/list content supports arrows, Page Up/Down and Home/End.
+  Enter/Space on pinned media content explicitly starts playback.
 - Explicit reload cancels obsolete work and keeps the old same-file content
   labelled as loading until replacement is ready. The saved view is keyed to
   the requested file and guarded by the existing generation/path checks.
