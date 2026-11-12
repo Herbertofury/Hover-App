@@ -1,0 +1,25 @@
+[package]
+name = "hover-decode"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[features]
+default = ["wic"]
+wic = []
+fallback-rust-image = []
+svg = []
+avif = []
+jxl = []
+
+[dependencies]
+gif.workspace = true
+hover-core = { path = "../hover-core" }
+thiserror.workspace = true
+windows = { workspace = true, features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Imaging",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Com",
+] }

@@ -1,0 +1,46 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/hover-core",
+    "crates/hover-settings",
+    "crates/hover-decode",
+    "crates/hover-render",
+    "crates/hover-win",
+    "crates/hover-browser-host",
+]
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.95"
+license = "MIT"
+repository = "https://github.com/Herbertofury/Hover-App"
+
+[workspace.dependencies]
+crossbeam-channel = "0.5"
+gif = "0.13"
+lru = "0.13"
+smallvec = "1"
+thiserror = "2"
+tracing = { version = "0.1", default-features = false }
+windows = "0.62"
+windows-sys = "0.61"
+zip = { version = "9", default-features = false, features = ["deflate"] }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+panic = "unwind"
+strip = "symbols"
+debug = false
+incremental = false
+
+[profile.release-small]
+inherits = "release"
+opt-level = "z"
+lto = "fat"
+codegen-units = 1
+panic = "unwind"
+strip = "symbols"
+debug = false
+incremental = false

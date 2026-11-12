@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-11-12",
+  "releaseVerified": false,
+  "note": "States reflect current source/evidence, not milestone completion. All per-game fixture and packaged-release gates remain open.",
+  "core": {
+    "image": "WIC BMP pixel test with generated fixture",
+    "browser": "skeleton, no remote preview fetch",
+    "artist3D": "not implemented",
+    "folder": "bounded enumeration, shell interaction unverified",
+    "media": "external playback after explicit click, interaction/security unverified",
+    "gif": "implemented, fidelity and limits need expanded tests",
+    "zip": "bounded metadata index, reader tests with generated fixtures",
+    "text": "implemented, shell interaction unverified"
+  },
+  "games": [
+    {
+      "name": "Skyrim",
+      "milestone": 2,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/2",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Starfield",
+      "milestone": 3,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/3",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Sims 4",
+      "milestone": 4,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/4",
+      "state": "partial metadata code, unverified DBPF 2.1 only",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Minecraft Java",
+      "milestone": 5,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/5",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Minecraft Bedrock",
+      "milestone": 6,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/6",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Hytale",
+      "milestone": 7,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/7",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Fallout 4",
+      "milestone": 8,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/8",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Unreal Engine",
+      "milestone": 9,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/9",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Unity",
+      "milestone": 10,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/10",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Cyberpunk 2077",
+      "milestone": 11,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/11",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "The Witcher 3",
+      "milestone": 12,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/12",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Oblivion original",
+      "milestone": 13,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/13",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Oblivion Remastered",
+      "milestone": 14,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/14",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Terraria and tModLoader",
+      "milestone": 15,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/15",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Stardew Valley",
+      "milestone": 16,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/16",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    },
+    {
+      "name": "Baldurs Gate 3",
+      "milestone": 17,
+      "url": "https://github.com/Herbertofury/Hover-App/milestone/17",
+      "state": "not implemented",
+      "verifiedFixtureVersions": [],
+      "embeddedImageVerified": false,
+      "decodedAssetVerified": false,
+      "interactiveRenderVerified": false,
+      "dependencyFidelityVerified": false
+    }
+  ]
+}
