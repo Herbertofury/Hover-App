@@ -97,6 +97,20 @@ common-controls structure size; the v5-compatible TOOLINFO layout and explicit
 Unicode notification contract fixed it. Retain failed logs alongside successes.
 Clean packaged artifacts and hosted results require their own subsequent checks.
 
+Clean source `f73914607fe16bd491df1380d76ab8ef9e56c091` was then packaged as
+development 0.1.2. The actual existing 0.1.1 installation (source `0a883d6`)
+passed 114 upgrade/failure/rollback/final-install assertions, ten 61-check
+single-preview suites, five 17-check resident suites and four 66-check
+comparison suites. Version 0.1.2 was left installed and launched normally from
+its Start Menu shortcut. All managed payload hashes matched; the existing
+user-added fixture survived byte-identical. This is a different-source local
+artifact upgrade, not an authenticated network update or verified release.
+
+See [retained installed evidence](evidence/native-comparison-installed-2026-11-12.json)
+and [51 installed performance samples](evidence/native-comparison-installed-performance-2026-11-12.json).
+
+![Actual installed native client render using generated files](evidence/native-comparison-client-2026-11-12.png)
+
 Primary references: [Shell selected items](https://learn.microsoft.com/en-us/windows/win32/shell/ishellfolderviewdual-selecteditems),
 [premultiplied alpha](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-blendfunction),
 [tool information](https://learn.microsoft.com/en-us/windows/win32/api/commctrl/ns-commctrl-tttoolinfow),

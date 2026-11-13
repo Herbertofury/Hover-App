@@ -7,6 +7,11 @@ controls, decoded-pixel masks, aligned displayed text, separate full-file byte
 differences and provenance tooltips. Both real app entry points passed 66 local
 checks with the public metadata fixture; independent GDI+/Git generated controls
 matched. See [comparison scope and remaining gates](native-comparison.md).
+Clean 0.1.2 is installed and running after 114 actual existing-installation
+upgrade/failure/rollback/final-install checks, including ten 61-check preview,
+five 17-check resident and four 66-check comparison suites. The retained
+[different-source installation evidence](evidence/native-comparison-installed-2026-11-12.json)
+does not establish authenticated network updates or release qualification.
 
 The native development MSI workflow now exercises actual Windows install,
 Start Menu launch/identity/icon, normal lifecycle, preview/LPAC behavior,

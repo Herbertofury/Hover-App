@@ -1,0 +1,606 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-12",
+  "channel": "unsigned-development",
+  "releaseVerified": false,
+  "sourceRevision": "f73914607fe16bd491df1380d76ab8ef9e56c091",
+  "installation": {
+    "schemaVersion": 1,
+    "passed": true,
+    "scope": "Exact existing older unsigned Windows development installation; failed incoming payload, different-source upgrade, denied downgrade, explicit local rollback, then final newer installation and normal Shell launch. Local artifacts only; no authenticated network update, physical Explorer/taskbar pin or release claim.",
+    "assertions": 114,
+    "checks": [
+      "Verified existing stable resident stops gracefully through its own scoped CLI",
+      "Upgrade begins from the exact already-installed older development artifact",
+      "Windows Installer registers version 0.1.1",
+      "Installed 0.1.1 hover.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.1 LICENSE matches packaged SHA-256",
+      "Installed 0.1.1 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.1 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.1 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.1",
+      "Windows Installer creates Start Menu shortcut",
+      "Start Menu shortcut points to stable installed executable and working directory",
+      "Installed shortcut icon resource can be extracted by Windows",
+      "Installed shortcut carries the same AppUserModelID as native windows",
+      "Windows Shell launches the installed Start Menu shortcut as a normal resident",
+      "Shortcut-launched resident accepts graceful first-party shutdown",
+      "Installed GUI passes native preview, cancellation, file-lock, LPAC decoder and lifecycle suite",
+      "Installed console agent passes the same native preview suite",
+      "MSI failed-upgrade-rolls-back-a returns expected 1603 (actual 1603)",
+      "Missing-file upgrade rolls back before removing the existing product",
+      "Windows Installer registers version 0.1.1",
+      "Installed 0.1.1 hover.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.1 LICENSE matches packaged SHA-256",
+      "Installed 0.1.1 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.1 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.1 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.1",
+      "Transaction preserves user-added file byte-for-byte",
+      "Failed upgrade leaves newer product unregistered",
+      "Installed GUI passes native preview, cancellation, file-lock, LPAC decoder and lifecycle suite",
+      "Installed console agent passes the same native preview suite",
+      "MSI upgrade-b returns expected 0 (actual 0)",
+      "Windows Installer registers version 0.1.2",
+      "Installed 0.1.2 hover.exe matches packaged SHA-256",
+      "Installed 0.1.2 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.2 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.2 LICENSE matches packaged SHA-256",
+      "Installed 0.1.2 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.2 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.2 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.2",
+      "Transaction preserves user-added file byte-for-byte",
+      "Windows Installer creates Start Menu shortcut",
+      "Start Menu shortcut points to stable installed executable and working directory",
+      "Installed shortcut icon resource can be extracted by Windows",
+      "Installed shortcut carries the same AppUserModelID as native windows",
+      "Successful upgrade removes old product registration",
+      "Installed GUI passes native preview, cancellation, file-lock, LPAC decoder and lifecycle suite",
+      "Installed console agent passes the same native preview suite",
+      "Installed GUI and console entries pass real comparison, difference, reload, cancellation, source-integrity and render checks",
+      "MSI downgrade-denied returns expected 1603 (actual 1603)",
+      "Windows Installer registers version 0.1.2",
+      "Installed 0.1.2 hover.exe matches packaged SHA-256",
+      "Installed 0.1.2 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.2 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.2 LICENSE matches packaged SHA-256",
+      "Installed 0.1.2 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.2 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.2 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.2",
+      "Transaction preserves user-added file byte-for-byte",
+      "MSI incomplete-rollback-denied returns expected 1603 (actual 1603)",
+      "Windows Installer registers version 0.1.2",
+      "Installed 0.1.2 hover.exe matches packaged SHA-256",
+      "Installed 0.1.2 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.2 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.2 LICENSE matches packaged SHA-256",
+      "Installed 0.1.2 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.2 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.2 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.2",
+      "Transaction preserves user-added file byte-for-byte",
+      "MSI explicit-local-rollback-a returns expected 0 (actual 0)",
+      "Windows Installer registers version 0.1.1",
+      "Installed 0.1.1 hover.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.1 LICENSE matches packaged SHA-256",
+      "Installed 0.1.1 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.1 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.1 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.1",
+      "Transaction preserves user-added file byte-for-byte",
+      "Windows Installer creates Start Menu shortcut",
+      "Start Menu shortcut points to stable installed executable and working directory",
+      "Installed shortcut icon resource can be extracted by Windows",
+      "Installed shortcut carries the same AppUserModelID as native windows",
+      "Installed GUI passes native preview, cancellation, file-lock, LPAC decoder and lifecycle suite",
+      "Installed console agent passes the same native preview suite",
+      "Explicit rollback removes newer product registration",
+      "MSI final-upgrade-b returns expected 0 (actual 0)",
+      "Windows Installer registers version 0.1.2",
+      "Installed 0.1.2 hover.exe matches packaged SHA-256",
+      "Installed 0.1.2 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.2 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.2 LICENSE matches packaged SHA-256",
+      "Installed 0.1.2 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.2 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.2 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.2",
+      "Transaction preserves user-added file byte-for-byte",
+      "Windows Installer creates Start Menu shortcut",
+      "Start Menu shortcut points to stable installed executable and working directory",
+      "Installed shortcut icon resource can be extracted by Windows",
+      "Installed shortcut carries the same AppUserModelID as native windows",
+      "Windows Shell launches the installed Start Menu shortcut as a normal resident",
+      "Shortcut-launched resident accepts graceful first-party shutdown",
+      "Installed GUI passes native preview, cancellation, file-lock, LPAC decoder and lifecycle suite",
+      "Installed console agent passes the same native preview suite",
+      "Installed GUI and console entries pass real comparison, difference, reload, cancellation, source-integrity and render checks",
+      "Final newer stable app launches normally from its installed Start Menu shortcut"
+    ],
+    "transactions": [
+      {
+        "name": "failed-upgrade-rolls-back-a",
+        "exitCode": 1603,
+        "expected": 1603,
+        "log": "failed-upgrade-rolls-back-a.log"
+      },
+      {
+        "name": "upgrade-b",
+        "exitCode": 0,
+        "expected": 0,
+        "log": "upgrade-b.log"
+      },
+      {
+        "name": "downgrade-denied",
+        "exitCode": 1603,
+        "expected": 1603,
+        "log": "downgrade-denied.log"
+      },
+      {
+        "name": "incomplete-rollback-denied",
+        "exitCode": 1603,
+        "expected": 1603,
+        "log": "incomplete-rollback-denied.log"
+      },
+      {
+        "name": "explicit-local-rollback-a",
+        "exitCode": 0,
+        "expected": 0,
+        "log": "explicit-local-rollback-a.log"
+      },
+      {
+        "name": "final-upgrade-b",
+        "exitCode": 0,
+        "expected": 0,
+        "log": "final-upgrade-b.log"
+      }
+    ],
+    "packageA": "50A7F3FB77494941F414410E4BD0D64E15130356FDB3F7D3EBA46FB18BC1405B",
+    "packageB": "4E199AC2542F3771AD6AA8929FA141B24CA73912D1C26C6C43470004D00CA721",
+    "sourceA": "0a883d67ffd08adc4dc236f34680e5e2a2acd1ea",
+    "sourceB": "f73914607fe16bd491df1380d76ab8ef9e56c091",
+    "finalVersion": "0.1.2",
+    "finalResidentRunning": true,
+    "userAddedFileSha256": "F420447F9CCEC8536CB8BCC33391C21D2C2C18D1301277FE0EBB2ABF611CE32A"
+  },
+  "packageA": {
+    "schemaVersion": 1,
+    "productCode": "{1005A5D4-A6C7-41D9-932A-35270BA46D3E}",
+    "upgradeCode": "{A67BBD1A-3042-41D4-9702-936EF1696D7E}",
+    "version": "0.1.1",
+    "installLeaf": "Hover-Development",
+    "perUser": true,
+    "customActions": false,
+    "releaseVerified": false,
+    "package": "Hover-Development-0.1.1-x64.msi",
+    "sha256": "50A7F3FB77494941F414410E4BD0D64E15130356FDB3F7D3EBA46FB18BC1405B",
+    "build": {
+      "agentProtocol": 1,
+      "app": "Hover",
+      "appUserModelId": "Herbertofury.Hover",
+      "architecture": "x86_64",
+      "cargoVersion": "0.1.0",
+      "packageVersion": "0.1.1",
+      "platform": "windows",
+      "profile": "release",
+      "releaseVerified": false,
+      "schemaVersion": 1,
+      "sourceRevision": "0a883d67ffd08adc4dc236f34680e5e2a2acd1ea"
+    },
+    "files": [
+      {
+        "name": "hover.exe",
+        "sha256": "B2BB5A9F7D3878FB9A8BCB74E5460E4F3B0D1F7FEAACDFE591BC853B83C1111C"
+      },
+      {
+        "name": "hover-agent.exe",
+        "sha256": "911FB3D49038AAB69954B9EBB56696D3EE1396DF8752564E6B9CEDCC4C39F412"
+      },
+      {
+        "name": "hover-browser-host.exe",
+        "sha256": "AF8228B3E9CA3F8B18556543B9D12E5AD9FDC5F3A232B0C88E6079B404675D87"
+      },
+      {
+        "name": "LICENSE",
+        "sha256": "F77F42C0DCDDD26F9231EB155FA49CE5094F99A98A510BD638931B6B74C687A8"
+      },
+      {
+        "name": "THIRD-PARTY-NOTICES.md",
+        "sha256": "ADEC04C999F5C35A61167650F612328238964B71FFF6D247668DE9AE406732A5"
+      },
+      {
+        "name": "DEPENDENCY-LICENSES.txt",
+        "sha256": "F2E4D582A9D3F6283F367DB4580BE3E6CF6D15C32188946211798C9D6A8372CE"
+      },
+      {
+        "name": "BUILD-INFO.json",
+        "sha256": "128618A9334EB08EAD9AEDA03014A1591B19C042D9EC27FD9274258DA8320C52"
+      }
+    ]
+  },
+  "packageB": {
+    "schemaVersion": 1,
+    "productCode": "{4BCCB8DB-2E3D-497D-BA19-ECB435E2AE1C}",
+    "upgradeCode": "{A67BBD1A-3042-41D4-9702-936EF1696D7E}",
+    "version": "0.1.2",
+    "installLeaf": "Hover-Development",
+    "perUser": true,
+    "customActions": false,
+    "releaseVerified": false,
+    "package": "Hover-Development-0.1.2-x64.msi",
+    "sha256": "4E199AC2542F3771AD6AA8929FA141B24CA73912D1C26C6C43470004D00CA721",
+    "build": {
+      "agentProtocol": 1,
+      "app": "Hover",
+      "appUserModelId": "Herbertofury.Hover",
+      "architecture": "x86_64",
+      "cargoVersion": "0.1.0",
+      "features": {
+        "nativeComparison": true
+      },
+      "packageVersion": "0.1.2",
+      "platform": "windows",
+      "profile": "release",
+      "releaseVerified": false,
+      "schemaVersion": 1,
+      "sourceRevision": "f73914607fe16bd491df1380d76ab8ef9e56c091"
+    },
+    "files": [
+      {
+        "name": "hover.exe",
+        "sha256": "D8929EF313AEF5ADD60F3041D734828A11EA32AD2AF71CD493299CC4FC8D3038"
+      },
+      {
+        "name": "hover-agent.exe",
+        "sha256": "0C68F9E5AD2D9760485322345E5D542A1558C63F2891A7854D5041F0FF0078D2"
+      },
+      {
+        "name": "hover-browser-host.exe",
+        "sha256": "7831FEC39186C08C477CDB63DF5AC960689B2A770224FE8694FD9F21E6FADEFB"
+      },
+      {
+        "name": "LICENSE",
+        "sha256": "F77F42C0DCDDD26F9231EB155FA49CE5094F99A98A510BD638931B6B74C687A8"
+      },
+      {
+        "name": "THIRD-PARTY-NOTICES.md",
+        "sha256": "ADEC04C999F5C35A61167650F612328238964B71FFF6D247668DE9AE406732A5"
+      },
+      {
+        "name": "DEPENDENCY-LICENSES.txt",
+        "sha256": "F2E4D582A9D3F6283F367DB4580BE3E6CF6D15C32188946211798C9D6A8372CE"
+      },
+      {
+        "name": "BUILD-INFO.json",
+        "sha256": "F858564B6189CB07C75BDCE5585E06A477A8A4A0C56E4C5C9BBECEA2FD803BAC"
+      }
+    ]
+  },
+  "installedComparisonSuites": [
+    {
+      "passed": true,
+      "assertions": 66,
+      "executableSha256": "D8929EF313AEF5ADD60F3041D734828A11EA32AD2AF71CD493299CC4FC8D3038",
+      "idleSamples": [
+        {
+          "phase": "settled_static_comparison",
+          "wallMs": 1009.1327,
+          "parentCpuMs": 0.0,
+          "privateBytesBefore": 8413184,
+          "privateBytesAfter": 8413184,
+          "workingSetBefore": 18821120,
+          "workingSetAfter": 18821120,
+          "handlesBefore": 231,
+          "handlesAfter": 231,
+          "gdiBefore": 17,
+          "gdiAfter": 17,
+          "parentLifetimePeakWorkingSet": 18821120
+        },
+        {
+          "phase": "paused_animated_comparison",
+          "wallMs": 1007.2149,
+          "parentCpuMs": 0.0,
+          "privateBytesBefore": 3231744,
+          "privateBytesAfter": 3231744,
+          "workingSetBefore": 16240640,
+          "workingSetAfter": 16240640,
+          "handlesBefore": 267,
+          "handlesAfter": 267,
+          "gdiBefore": 21,
+          "gdiAfter": 21,
+          "parentLifetimePeakWorkingSet": 25112576
+        },
+        {
+          "phase": "minimized_comparison",
+          "wallMs": 1009.835,
+          "parentCpuMs": 0.0,
+          "privateBytesBefore": 3207168,
+          "privateBytesAfter": 3149824,
+          "workingSetBefore": 16240640,
+          "workingSetAfter": 16240640,
+          "handlesBefore": 267,
+          "handlesAfter": 267,
+          "gdiBefore": 21,
+          "gdiAfter": 21,
+          "parentLifetimePeakWorkingSet": 25112576
+        }
+      ],
+      "timingScope": "JSON/native-state or client-export round trips; OS caches uncontrolled, not storage-cold or compositor/input timing",
+      "resourceScope": "Short owned-parent CPU, endpoint memory/handles/GDI samples; not concurrent peak, child/GPU/VRAM or long-run stability"
+    },
+    {
+      "passed": true,
+      "assertions": 66,
+      "executableSha256": "0C68F9E5AD2D9760485322345E5D542A1558C63F2891A7854D5041F0FF0078D2",
+      "idleSamples": [
+        {
+          "phase": "settled_static_comparison",
+          "wallMs": 1006.739,
+          "parentCpuMs": 0.0,
+          "privateBytesBefore": 8404992,
+          "privateBytesAfter": 8404992,
+          "workingSetBefore": 18841600,
+          "workingSetAfter": 18841600,
+          "handlesBefore": 233,
+          "handlesAfter": 233,
+          "gdiBefore": 17,
+          "gdiAfter": 17,
+          "parentLifetimePeakWorkingSet": 18890752
+        },
+        {
+          "phase": "paused_animated_comparison",
+          "wallMs": 1012.9073,
+          "parentCpuMs": 0.0,
+          "privateBytesBefore": 3305472,
+          "privateBytesAfter": 3305472,
+          "workingSetBefore": 16211968,
+          "workingSetAfter": 16211968,
+          "handlesBefore": 268,
+          "handlesAfter": 268,
+          "gdiBefore": 21,
+          "gdiAfter": 21,
+          "parentLifetimePeakWorkingSet": 25133056
+        },
+        {
+          "phase": "minimized_comparison",
+          "wallMs": 1001.1307,
+          "parentCpuMs": 0.0,
+          "privateBytesBefore": 3305472,
+          "privateBytesAfter": 3305472,
+          "workingSetBefore": 16228352,
+          "workingSetAfter": 16228352,
+          "handlesBefore": 268,
+          "handlesAfter": 268,
+          "gdiBefore": 21,
+          "gdiAfter": 21,
+          "parentLifetimePeakWorkingSet": 25133056
+        }
+      ],
+      "timingScope": "JSON/native-state or client-export round trips; OS caches uncontrolled, not storage-cold or compositor/input timing",
+      "resourceScope": "Short owned-parent CPU, endpoint memory/handles/GDI samples; not concurrent peak, child/GPU/VRAM or long-run stability"
+    },
+    {
+      "passed": true,
+      "assertions": 66,
+      "executableSha256": "0C68F9E5AD2D9760485322345E5D542A1558C63F2891A7854D5041F0FF0078D2",
+      "idleSamples": [
+        {
+          "phase": "settled_static_comparison",
+          "wallMs": 1004.056,
+          "parentCpuMs": 0.0,
+          "privateBytesBefore": 8474624,
+          "privateBytesAfter": 8474624,
+          "workingSetBefore": 18821120,
+          "workingSetAfter": 18821120,
+          "handlesBefore": 233,
+          "handlesAfter": 233,
+          "gdiBefore": 17,
+          "gdiAfter": 17,
+          "parentLifetimePeakWorkingSet": 18821120
+        },
+        {
+          "phase": "paused_animated_comparison",
+          "wallMs": 1003.1262,
+          "parentCpuMs": 0.0,
+          "privateBytesBefore": 3239936,
+          "privateBytesAfter": 3239936,
+          "workingSetBefore": 16138240,
+          "workingSetAfter": 16244736,
+          "handlesBefore": 268,
+          "handlesAfter": 269,
+          "gdiBefore": 21,
+          "gdiAfter": 21,
+          "parentLifetimePeakWorkingSet": 25104384
+        },
+        {
+          "phase": "minimized_comparison",
+          "wallMs": 1013.9974,
+          "parentCpuMs": 0.0,
+          "privateBytesBefore": 3239936,
+          "privateBytesAfter": 3182592,
+          "workingSetBefore": 16269312,
+          "workingSetAfter": 16269312,
+          "handlesBefore": 269,
+          "handlesAfter": 269,
+          "gdiBefore": 21,
+          "gdiAfter": 21,
+          "parentLifetimePeakWorkingSet": 25104384
+        }
+      ],
+      "timingScope": "JSON/native-state or client-export round trips; OS caches uncontrolled, not storage-cold or compositor/input timing",
+      "resourceScope": "Short owned-parent CPU, endpoint memory/handles/GDI samples; not concurrent peak, child/GPU/VRAM or long-run stability"
+    },
+    {
+      "passed": true,
+      "assertions": 66,
+      "executableSha256": "D8929EF313AEF5ADD60F3041D734828A11EA32AD2AF71CD493299CC4FC8D3038",
+      "idleSamples": [
+        {
+          "phase": "settled_static_comparison",
+          "wallMs": 1001.6336,
+          "parentCpuMs": 0.0,
+          "privateBytesBefore": 8404992,
+          "privateBytesAfter": 8404992,
+          "workingSetBefore": 18804736,
+          "workingSetAfter": 18804736,
+          "handlesBefore": 231,
+          "handlesAfter": 231,
+          "gdiBefore": 17,
+          "gdiAfter": 17,
+          "parentLifetimePeakWorkingSet": 18817024
+        },
+        {
+          "phase": "paused_animated_comparison",
+          "wallMs": 1008.5269,
+          "parentCpuMs": 0.0,
+          "privateBytesBefore": 3231744,
+          "privateBytesAfter": 3178496,
+          "workingSetBefore": 16113664,
+          "workingSetAfter": 16130048,
+          "handlesBefore": 266,
+          "handlesAfter": 266,
+          "gdiBefore": 21,
+          "gdiAfter": 21,
+          "parentLifetimePeakWorkingSet": 25079808
+        },
+        {
+          "phase": "minimized_comparison",
+          "wallMs": 1006.5369,
+          "parentCpuMs": 0.0,
+          "privateBytesBefore": 3207168,
+          "privateBytesAfter": 3207168,
+          "workingSetBefore": 16150528,
+          "workingSetAfter": 16150528,
+          "handlesBefore": 266,
+          "handlesAfter": 266,
+          "gdiBefore": 21,
+          "gdiAfter": 21,
+          "parentLifetimePeakWorkingSet": 25079808
+        }
+      ],
+      "timingScope": "JSON/native-state or client-export round trips; OS caches uncontrolled, not storage-cold or compositor/input timing",
+      "resourceScope": "Short owned-parent CPU, endpoint memory/handles/GDI samples; not concurrent peak, child/GPU/VRAM or long-run stability"
+    }
+  ],
+  "installedSinglePreviewSuites": [
+    {
+      "passed": true,
+      "assertions": 61
+    },
+    {
+      "passed": true,
+      "assertions": 61
+    },
+    {
+      "passed": true,
+      "assertions": 61
+    },
+    {
+      "passed": true,
+      "assertions": 61
+    },
+    {
+      "passed": true,
+      "assertions": 61
+    },
+    {
+      "passed": true,
+      "assertions": 61
+    },
+    {
+      "passed": true,
+      "assertions": 61
+    },
+    {
+      "passed": true,
+      "assertions": 61
+    },
+    {
+      "passed": true,
+      "assertions": 61
+    },
+    {
+      "passed": true,
+      "assertions": 61
+    }
+  ],
+  "installedResidentSuites": [
+    {
+      "passed": true,
+      "assertions": 17
+    },
+    {
+      "passed": true,
+      "assertions": 17
+    },
+    {
+      "passed": true,
+      "assertions": 17
+    },
+    {
+      "passed": true,
+      "assertions": 17
+    },
+    {
+      "passed": true,
+      "assertions": 17
+    }
+  ],
+  "independentGeneratedReferences": {
+    "schemaVersion": 1,
+    "passed": true,
+    "scope": "Independent Windows GDI+ decode/premultiplied-channel checks and external Git minimal line edit; generated fixtures only",
+    "nativeExecutableSha256": "0D60A7C9634483548DD2056CEE879FB59CDC5CCD8C9C8C4242F11D55190D6E6A",
+    "images": [
+      {
+        "fixture": "changed.bmp",
+        "gdiplusChangedPixels": 400,
+        "nativeExpected": 400,
+        "matches": true
+      },
+      {
+        "fixture": "same-pixels-different-bytes.bmp",
+        "gdiplusChangedPixels": 0,
+        "nativeExpected": 0,
+        "matches": true
+      }
+    ],
+    "alphaControl": {
+      "format": "Format32bppPArgb",
+      "red": 128,
+      "alpha": 128,
+      "matches": true
+    },
+    "text": {
+      "tool": "git version 2.55.0.windows.3",
+      "added": 1,
+      "removed": 0,
+      "nativeAlignedChangedRows": 1,
+      "matches": true
+    },
+    "notEstablished": [
+      "ImageMagick comparison: tool not installed",
+      "perceptual/colorimetric similarity",
+      "specialist game/3D fidelity",
+      "physical shell/keyboard/accessibility/DPI",
+      "fair cross-tool speed comparison"
+    ]
+  },
+  "remaining": [
+    "physical Explorer/safe activation",
+    "keyboard/accessibility/mixed DPI",
+    "real game/3D/dependency fidelity",
+    "taskbar pin",
+    "authenticated network update",
+    "interruption/power-loss recovery",
+    "hard parent I/O/startup/GPU bounds"
+  ]
+}
