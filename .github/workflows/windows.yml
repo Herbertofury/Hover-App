@@ -50,3 +50,6 @@ jobs:
       - name: Exercise native performance probe without timing thresholds
         shell: pwsh
         run: ./scripts/measure-agent.ps1 -Sessions 1 -WarmSamples 2 -IdleMilliseconds 1000 -Json
+      - name: Test actual development MSI install, upgrade, failure and rollback
+        shell: pwsh
+        run: ./scripts/test-development-installation.ps1 -RustToolchain '${{ matrix.rust }}' -DbpfFixture target/agent-fixtures/TestPackage.package

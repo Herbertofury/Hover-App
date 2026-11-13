@@ -84,7 +84,7 @@ use windows_sys::core::BOOL;
 use zip::ZipArchive;
 use zip::read::{ArchiveOffset, Config as ZipConfig};
 
-const CONTROL_CLASS: &str = "HoverControlWindow";
+pub(crate) const CONTROL_CLASS: &str = "HoverControlWindow";
 const OVERLAY_CLASS: &str = "HoverOverlayWindow";
 const OPTIONS_CLASS: &str = "HoverOptionsWindow";
 const WM_HOVER_FOREGROUND_CHANGED: u32 = WM_APP + 10;
@@ -326,6 +326,40 @@ pub(crate) fn run_agent(launch: crate::agent::Launch) -> Result<(), i32> {
 }
 
 fn run_inner(agent: Option<crate::agent::Launch>) -> Result<(), i32> {
+    // Normal launches share one resident per installation and user. Private
+    // stdio sessions remain independent and never signal a normal session.
+    let scope = if agent.is_none() {
+        Some(crate::resident::Scope::current().map_err(|error| {
+            eprintln!("{error}");
+            1
+        })?)
+    } else {
+        None
+    };
+    let _resident_guard = if let Some(scope) = &scope {
+        match scope.claim().map_err(|error| {
+            eprintln!("{error}");
+            1
+        })? {
+            Some(guard) => Some(guard),
+            None => {
+                // A simultaneous first launch may still be creating its window.
+                for _ in 0..50 {
+                    if scope.signal(true).map_err(|error| {
+                        eprintln!("{error}");
+                        1
+                    })? {
+                        return Ok(());
+                    }
+                    std::thread::sleep(Duration::from_millis(20));
+                }
+                eprintln!("Hover is already starting or its lifecycle window is unavailable.");
+                return Err(1);
+            }
+        }
+    } else {
+        None
+    };
     unsafe {
         let control_hwnd = match create_app_window() {
             Ok(hwnd) => hwnd,
@@ -336,6 +370,12 @@ fn run_inner(agent: Option<crate::agent::Launch>) -> Result<(), i32> {
                 return Err(code);
             }
         };
+        if let Some(scope) = scope {
+            windows_sys::Win32::UI::WindowsAndMessaging::SetWindowTextW(
+                control_hwnd,
+                wide(&scope.title).as_ptr(),
+            );
+        }
         if let Some(agent) = agent {
             let ptr = GetWindowLongPtrW(
                 control_hwnd,
@@ -379,7 +419,7 @@ fn run_inner(agent: Option<crate::agent::Launch>) -> Result<(), i32> {
 
 unsafe fn create_app_window() -> Result<HWND, i32> {
     let _ = windows::Win32::UI::Shell::SetCurrentProcessExplicitAppUserModelID(
-        windows::core::PCWSTR(wide("Herbertofury.Hover").as_ptr()),
+        windows::core::PCWSTR(wide(crate::cli::APP_USER_MODEL_ID).as_ptr()),
     );
     let hinstance = GetModuleHandleW(null());
     if hinstance.is_null() {
@@ -1783,6 +1823,18 @@ unsafe extern "system" fn control_window_proc(
         windows_sys::Win32::UI::WindowsAndMessaging::GWLP_USERDATA,
     ) as *mut App;
     match msg {
+        crate::resident::MESSAGE => {
+            if let Some(app) = ptr.as_mut()
+                && !app.agent_controlled
+            {
+                if wparam == 0 {
+                    PostQuitMessage(0);
+                } else if wparam == 1 {
+                    app.show_options();
+                }
+            }
+            0
+        }
         crate::agent::WM_AGENT_REQUEST => {
             if let Some(app) = ptr.as_mut() {
                 let request = app
@@ -2323,54 +2375,7 @@ unsafe fn add_tray_icon(hwnd: HWND, icon: HICON) -> bool {
 
 unsafe fn create_hover_tray_icon() -> Option<HICON> {
     const SIZE: usize = 64;
-    const MASK_STRIDE: usize = 8;
-    let mut pixels = vec![0u8; SIZE * SIZE * 4];
-    let mut mask = vec![0u8; SIZE * MASK_STRIDE];
-    for y in 0..SIZE {
-        for x in 0..SIZE {
-            let dx = x as f32 - 31.5;
-            let dy = y as f32 - 31.5;
-            let distance = (dx * dx + dy * dy).sqrt() / 31.5;
-            let idx = ((SIZE - 1 - y) * SIZE + x) * 4;
-            if distance > 1.0 {
-                let mask_idx = (SIZE - 1 - y) * MASK_STRIDE + x / 8;
-                mask[mask_idx] |= 0x80 >> (x % 8);
-                pixels[idx + 3] = 0;
-                continue;
-            }
-            let rim = (1.0 - distance).clamp(0.0, 1.0);
-            let glow = ((x as f32 / SIZE as f32) * 0.55 + (1.0 - y as f32 / SIZE as f32) * 0.45)
-                .clamp(0.0, 1.0);
-            let red = (42.0 + 58.0 * glow + 36.0 * rim) as u8;
-            let green = (124.0 + 64.0 * glow + 28.0 * rim) as u8;
-            let blue = (236.0 + 18.0 * rim) as u8;
-            pixels[idx] = blue;
-            pixels[idx + 1] = green;
-            pixels[idx + 2] = red;
-            pixels[idx + 3] = 255;
-        }
-    }
-
-    for y in 18..47 {
-        for x in 18..25 {
-            set_icon_pixel(&mut pixels, SIZE, x, y, [255, 255, 255, 255]);
-        }
-        for x in 39..46 {
-            set_icon_pixel(&mut pixels, SIZE, x, y, [255, 255, 255, 255]);
-        }
-    }
-    for y in 29..36 {
-        for x in 18..46 {
-            set_icon_pixel(&mut pixels, SIZE, x, y, [255, 255, 255, 255]);
-        }
-    }
-    for y in 20..45 {
-        for x in 49..54 {
-            if y > 31 || x < 52 {
-                set_icon_pixel(&mut pixels, SIZE, x, y, [207, 236, 255, 230]);
-            }
-        }
-    }
+    let (pixels, mask) = crate::branding::icon_image(SIZE);
 
     let icon = CreateIcon(
         null_mut(),
@@ -2382,11 +2387,6 @@ unsafe fn create_hover_tray_icon() -> Option<HICON> {
         pixels.as_ptr(),
     );
     (!icon.is_null()).then_some(icon)
-}
-
-fn set_icon_pixel(pixels: &mut [u8], size: usize, x: usize, y: usize, bgra: [u8; 4]) {
-    let idx = ((size - 1 - y) * size + x) * 4;
-    pixels[idx..idx + 4].copy_from_slice(&bgra);
 }
 
 unsafe fn remove_tray_icon(hwnd: HWND) {
@@ -4665,12 +4665,14 @@ unsafe fn register_window_class(
         cbClsExtra: 0,
         cbWndExtra: 0,
         hInstance: hinstance,
-        hIcon: null_mut(),
+        // Win32 MAKEINTRESOURCE(1) is a resource identifier, not a pointer
+        // that LoadIcon dereferences.
+        hIcon: LoadIconW(hinstance, std::ptr::without_provenance(1)),
         hCursor: null_mut(),
         hbrBackground: null_mut(),
         lpszMenuName: null(),
         lpszClassName: class.as_ptr(),
-        hIconSm: null_mut(),
+        hIconSm: LoadIconW(hinstance, std::ptr::without_provenance(1)),
     };
     if RegisterClassExW(&wc) == 0 {
         return Err(1);

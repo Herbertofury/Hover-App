@@ -12,6 +12,7 @@ $script:checks = [Collections.Generic.List[string]]::new()
 $script:responses = [Collections.Generic.List[object]]::new()
 $script:timings = [Collections.Generic.List[object]]::new()
 $script:sequence = 0
+$script:quitResult = $null
 $script:agentProcess = $null
 $sentinelConfig = Join-Path $runDirectory 'sentinel-appdata'
 $sentinelHover = Join-Path $sentinelConfig 'Hover'
@@ -268,7 +269,9 @@ try {
     Assert-That ((Get-FileHash -LiteralPath $textPath -Algorithm SHA256).Hash -eq $textHash) 'Externally updated source text remains byte-identical after preview/reload'
     Assert-That ((Get-FileHash -LiteralPath $sentinelSettings -Algorithm SHA256).Hash -eq $sentinelHash) 'Existing settings fixture remains byte-identical throughout the session'
     $null = Invoke-Hover @{command='quit'}
-    Assert-That ($script:agentProcess.WaitForExit(5000) -and $script:agentProcess.ExitCode -eq 0) 'Quit closes the owned real app cleanly'
+    $quitStopped = $script:agentProcess.WaitForExit(5000)
+    $script:quitResult = [ordered]@{stopped=$quitStopped;exitCode=$(if($quitStopped){$script:agentProcess.ExitCode}else{$null})}
+    Assert-That ($quitStopped -and $script:agentProcess.ExitCode -eq 0) 'Quit closes the owned real app cleanly'
     Stop-OwnedAgent $script:agentProcess; $script:agentProcess=$null
 
     $eofProcess = Start-OwnedAgent
@@ -292,7 +295,7 @@ try {
         schemaVersion=1; passed=$success; fixtureType=$(if ($DbpfFixture) {'generated files plus pinned public DBPF index fixture'} else {'generated synthetic files on disk'}); execution='real Windows app via private stdio and native UI thread';
         dbpfFixture=$(if ($DbpfFixture) { [ordered]@{source='https://github.com/Llama-Logic/LlamaLogic/blob/4a3d576f0afb776aba783db561760afb5b5de8b7/LlamaLogic.Packages.UnitTests/TestPackage.package';sha256=$dbpfHash;stage='DBPF 2.1 index metadata only';gameBuild='not established'} } else {$null});
         excludes=@('Explorer targeting','physical input','screen reader','mixed DPI','installer/update/rollback','real game fidelity');
-        executableSha256=(Get-FileHash -LiteralPath $executablePath -Algorithm SHA256).Hash;
+        executableSha256=(Get-FileHash -LiteralPath $executablePath -Algorithm SHA256).Hash; quitResult=$script:quitResult;
         entrypoint=([IO.Path]::GetFileName($executablePath) + ' ' + $AgentArguments);
         os=[Environment]::OSVersion.VersionString; processArchitecture=$env:PROCESSOR_ARCHITECTURE;
         checks=$script:checks; commandRoundTrips=$script:timings; responses=$script:responses

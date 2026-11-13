@@ -2,6 +2,14 @@
 
 Checkpoint: 2026-11-12. Development source; no verified release.
 
+The native development MSI workflow now exercises actual Windows install,
+Start Menu launch/identity/icon, normal lifecycle, preview/LPAC behavior,
+versioned same-source upgrade, incoming-payload failure, downgrade guards,
+explicit local rollback and uninstall. The complete private prototype passed
+93 installer assertions, eight 61-check installed GUI/console preview suites
+and four 17-check resident/isolation suites. These do not complete release
+qualification. See [native packaging evidence and limits](native-installation.md).
+
 The original desktop workspace was not a Git checkout. Remote main contained
 only the scaffold README and no open PRs. It was cloned separately, then source,
 manifests and historical docs were copied without binaries, reference checkouts
@@ -129,7 +137,10 @@ through that runtime. Unsupported UI injection is not a substitute.
   stalls, idle CPU/I/O, RAM/VRAM, cache and file-handle evidence on Windows.
 - Stable-path installation, taskbar launch, source-authenticated atomic updates,
   restart, interruption recovery and rollback against exact packaged artifacts.
-  The WiX/MSIX files are skeletons. No release or milestone is complete.
+  Native development MSI mechanics now have separate real Windows tests;
+  WiX/MSIX remain unused skeletons. Physical taskbar pinning, authenticated
+  network updates and interruption/power-loss recovery remain unverified.
+  No release or milestone is complete.
 
 The full user objective and existing [issues and milestones](https://github.com/Herbertofury/Hover-App/milestones)
 remain authoritative; this checkpoint does not narrow them. Other imported

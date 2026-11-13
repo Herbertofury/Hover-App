@@ -1,11 +1,16 @@
 #[cfg(windows)]
 mod agent;
 #[cfg(windows)]
+mod branding;
+pub mod cli;
+#[cfg(windows)]
 mod decoder_process;
 #[cfg(windows)]
 mod decoder_sandbox;
 #[cfg(windows)]
 mod platform;
+#[cfg(windows)]
+mod resident;
 #[cfg(windows)]
 mod resolver;
 #[cfg(windows)]

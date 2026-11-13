@@ -4,6 +4,13 @@
 uses the production App, Win32 windows/message loop, preview worker, local-read
 policy, decoders, view model and painter. No Computer Use runtime is required.
 The normal notification-area entry point remains `hover.exe`.
+Normal tray sessions also have first-party `--resident-status`, `--show` and
+`--shutdown` lifecycle commands, scoped to the current user and exact executable
+in the same installation directory. A protected per-user mutex prevents two
+normal residents in that folder. CLI replies are JSON; a duplicate normal
+launch shows the existing resident's options. `--version-json` reports embedded
+build identity without implying a signature or release verification. Unknown
+arguments exit with code 2. See [native installation tests](native-installation.md).
 That same GUI executable also accepts `--agent-stdio` when launched with
 redirected stdin/stdout. The end-to-end script tests this actual `hover.exe`
 release binary; `hover-agent.exe` is the convenient console entry point.

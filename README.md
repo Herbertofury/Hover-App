@@ -10,7 +10,7 @@ See the [Hover wiki](https://github.com/Herbertofury/Hover-App/wiki) for goals, 
 
 ## Status
 
-**In development. No verified installer or release is available.** The existing desktop source has been recovered here, preserving its development features. See [current evidence and remaining gates](docs/current-status.md).
+**In development; no verified release.** Native development MSI packages now have Windows install, preview, restart, upgrade, failure and local rollback tests. The existing desktop source has been preserved. See [current evidence and remaining gates](docs/current-status.md).
 
 The goal is responsive desktop previews with minimal idle CPU, memory, and disk activity, including useful mod-file metadata. Performance and file-format support must be demonstrated with repeatable tests, not assumed.
 
@@ -46,6 +46,13 @@ can inspect/control previews and export the actual painter's output. Run
 Use `./scripts/measure-agent.ps1 -Json` for repeatable startup, preview/state
 response and idle CPU/I/O/memory measurements; [scope and raw evidence](docs/native-performance.md).
 
+`hover-agent.exe --version-json`, `--resident-status`, `--show` and `--shutdown`
+inspect and control the normal tray app in the same installation under the
+current user. Normal launches reuse that resident; independent installations
+and private stdio sessions remain separate. Run `./scripts/test-resident.ps1`.
+For real Windows installation tests, use `./scripts/test-development-installation.ps1`;
+see [development MSI workflow and evidence limits](docs/native-installation.md).
+
 WIC/GIF decoding uses a separate native process with Windows job resource limits
 and bounded byte pipes, now inside a token-verified Windows LPAC. See
 [permission isolation and actual denial tests](docs/decoder-permissions.md) and
@@ -53,7 +60,8 @@ and bounded byte pipes, now inside a token-verified Windows LPAC. See
 and the remaining security boundaries.
 
 Native automated tests use generated fixtures; they do not prove Explorer,
-visual, accessibility, real-game fidelity or installation behavior. Every game
+visual, accessibility or real-game fidelity. Separate native MSI tests cover
+development installation behavior; release qualification remains open. Every game
 milestone remains an acceptance requirement, not a supported-games list.
 
 Source is MIT licensed. Retain [third-party notices](THIRD-PARTY-NOTICES.md)

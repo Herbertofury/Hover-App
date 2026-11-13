@@ -1,20 +1,11 @@
 #[cfg(windows)]
 fn main() {
-    let args = std::env::args().skip(1).collect::<Vec<_>>();
+    let args = std::env::args_os().skip(1).collect::<Vec<_>>();
+    if let Some(code) = hover_win::cli::inspect_arguments(&args, true) {
+        std::process::exit(code);
+    }
     if args == ["--decode-worker"] {
         std::process::exit(hover_win::run_decoder_worker());
-    }
-    if args == ["--help"] || args == ["-h"] {
-        println!(
-            "Usage: hover-agent --stdio\nSend one JSON command per line. Use capabilities to discover commands; quit or EOF closes only this session. See docs/agent-control.md."
-        );
-        return;
-    }
-    if args != ["--stdio"] {
-        eprintln!(
-            "Usage: hover-agent --stdio\nSend one JSON command per line; send quit or close stdin to stop this owned Hover session."
-        );
-        std::process::exit(2);
     }
     std::process::exit(hover_win::run_agent_stdio());
 }
