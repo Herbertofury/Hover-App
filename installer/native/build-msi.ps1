@@ -74,7 +74,10 @@ try{
     try{Invoke-Com $view 'Execute' @($null) | Out-Null;while($record=Invoke-Com $view 'Fetch' @()){
         try{$tables.Add($record.GetType().InvokeMember('StringData','GetProperty',$null,$record,@(1)))}finally{Release-Com $record}
     }}finally{Release-Com $view}
-    foreach($table in $tables){if($table -notin $keep){SQL ('DROP TABLE `'+$table+'`')}}
+    foreach($table in $tables){
+        if($table -notin $keep){SQL ('DROP TABLE `'+$table+'`')}
+        elseif($table -ne '_Validation'){SQL ('DELETE FROM `'+$table+'`')}
+    }
     Property 'ProductCode' $product; Property 'UpgradeCode' $upgrade
     Property 'ProductName' "Hover Development ($InstallLeaf)"; Property 'ProductVersion' $Version
     Property 'ProductLanguage' '1033'; Property 'Manufacturer' 'Hover contributors'

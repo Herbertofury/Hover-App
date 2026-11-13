@@ -2,7 +2,8 @@ param(
     [Parameter(Mandatory)][string]$PackageA,
     [Parameter(Mandatory)][string]$PackageB,
     [string]$DbpfFixture='',
-    [string]$OutputDirectory=(Join-Path $PSScriptRoot '../target/installation-evidence')
+    [string]$OutputDirectory=(Join-Path $PSScriptRoot '../target/installation-evidence'),
+    [switch]$StableDevelopmentChannel
 )
 $ErrorActionPreference='Stop'
 Add-Type -TypeDefinition @'
@@ -14,7 +15,9 @@ public static class HoverInstallNative {
 '@
 $a=Get-Content -LiteralPath (Join-Path $PackageA 'package.json') -Raw | ConvertFrom-Json
 $b=Get-Content -LiteralPath (Join-Path $PackageB 'package.json') -Raw | ConvertFrom-Json
-if($a.installLeaf -notmatch '^Hover-Test-[0-9a-f]{12}$' -or $a.installLeaf -ne $b.installLeaf -or $a.upgradeCode -ne $b.upgradeCode -or [version]$a.version -ge [version]$b.version){throw 'Use two ordered development versions with one unique Hover-Test-<12 hex> scope'}
+$scopeAllowed=$a.installLeaf -match '^Hover-Test-[0-9a-f]{12}$'
+if($StableDevelopmentChannel){$scopeAllowed=$a.installLeaf -eq 'Hover-Development' -and [guid]$a.upgradeCode -eq [guid]'A67BBD1A-3042-41D4-9702-936EF1696D7E'}
+if(-not $scopeAllowed -or $a.installLeaf -ne $b.installLeaf -or $a.upgradeCode -ne $b.upgradeCode -or [version]$a.version -ge [version]$b.version){throw 'Use ordered development versions with an exact allowed test scope; stable development requires its explicit switch and fixed product family'}
 foreach($pair in @(@($PackageA,$a),@($PackageB,$b))){
     $path=Join-Path $pair[0] $pair[1].package
     if((Get-FileHash -LiteralPath $path).Hash -ne $pair[1].sha256){throw 'MSI artifact hash mismatch'}
@@ -37,6 +40,10 @@ function Install([string]$Msi,[string]$Name,[string[]]$Extra=@(),[int]$Expected=
     $p=Start-Process -FilePath "$env:WINDIR\System32\msiexec.exe" -ArgumentList $arguments -WindowStyle Hidden -PassThru
     if(-not $p.WaitForExit(60000)){throw "MSI transaction $Name is still running; inspect before retrying"}
     $transactions.Add([ordered]@{name=$Name;exitCode=$p.ExitCode;expected=$Expected;log=[IO.Path]::GetFileName($log)})
+    if($p.ExitCode -ne $Expected){
+        # Keep useful native diagnostics in CI; no user profile or SID output.
+        Get-Content -LiteralPath $log -Tail 300 | Where-Object {$_ -match 'Error [0-9]+|Return value 3|LaunchConditions|Product:|ALLUSERS' -and $_ -notmatch 'S-1-5-21'} | Select-Object -Last 16 | ForEach-Object {Write-Host ($_ -replace '(?i)[A-Z]:\\Users\\[^\\]+','%USERPROFILE%')}
+    }
     Assert ($p.ExitCode -eq $Expected) "MSI $Name returns expected $Expected (actual $($p.ExitCode))"
 }
 function Check-Installed($Manifest){

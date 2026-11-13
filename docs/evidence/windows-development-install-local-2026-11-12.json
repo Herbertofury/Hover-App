@@ -1,0 +1,420 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-12",
+  "sourceRevision": "0a883d67ffd08adc4dc236f34680e5e2a2acd1ea",
+  "scope": "Actual Windows MSI install, native installed-app preview/restart, same-source versioned upgrade, transaction failure, downgrade guard, explicit local rollback, uninstall. Unsigned development fixtures; no network updater, Explorer input, taskbar pin or release qualification claim.",
+  "os": "Microsoft Windows NT 10.0.22631.0",
+  "callerElevated": false,
+  "installer": {
+    "schemaVersion": 1,
+    "passed": true,
+    "scope": "Actual Windows MSI install, native installed-app preview/restart, same-source versioned upgrade, transaction failure, downgrade guard, explicit local rollback, uninstall. Unsigned development fixtures; no network updater, Explorer input, taskbar pin or release qualification claim.",
+    "assertions": 93,
+    "checks": [
+      "MSI install-a returns expected 0 (actual 0)",
+      "Windows Installer registers version 0.1.0",
+      "Installed 0.1.0 hover.exe matches packaged SHA-256",
+      "Installed 0.1.0 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.0 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.0 LICENSE matches packaged SHA-256",
+      "Installed 0.1.0 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.0 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.0 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.0",
+      "Windows Installer creates Start Menu shortcut",
+      "Start Menu shortcut points to stable installed executable and working directory",
+      "Installed shortcut icon resource can be extracted by Windows",
+      "Installed shortcut carries the same AppUserModelID as native windows",
+      "Windows Shell launches the installed Start Menu shortcut as a normal resident",
+      "Shortcut-launched resident accepts graceful first-party shutdown",
+      "Installed GUI passes native preview, cancellation, file-lock, LPAC decoder and lifecycle suite",
+      "Installed console agent passes the same native preview suite",
+      "MSI failed-upgrade-rolls-back-a returns expected 1603 (actual 1603)",
+      "Missing-file upgrade rolls back before removing the existing product",
+      "Windows Installer registers version 0.1.0",
+      "Installed 0.1.0 hover.exe matches packaged SHA-256",
+      "Installed 0.1.0 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.0 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.0 LICENSE matches packaged SHA-256",
+      "Installed 0.1.0 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.0 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.0 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.0",
+      "Transaction preserves user-added file byte-for-byte",
+      "Failed upgrade leaves newer product unregistered",
+      "Installed GUI passes native preview, cancellation, file-lock, LPAC decoder and lifecycle suite",
+      "Installed console agent passes the same native preview suite",
+      "MSI upgrade-b returns expected 0 (actual 0)",
+      "Windows Installer registers version 0.1.1",
+      "Installed 0.1.1 hover.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.1 LICENSE matches packaged SHA-256",
+      "Installed 0.1.1 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.1 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.1 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.1",
+      "Transaction preserves user-added file byte-for-byte",
+      "Windows Installer creates Start Menu shortcut",
+      "Start Menu shortcut points to stable installed executable and working directory",
+      "Installed shortcut icon resource can be extracted by Windows",
+      "Installed shortcut carries the same AppUserModelID as native windows",
+      "Successful upgrade removes old product registration",
+      "Installed GUI passes native preview, cancellation, file-lock, LPAC decoder and lifecycle suite",
+      "Installed console agent passes the same native preview suite",
+      "MSI downgrade-denied returns expected 1603 (actual 1603)",
+      "Windows Installer registers version 0.1.1",
+      "Installed 0.1.1 hover.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.1 LICENSE matches packaged SHA-256",
+      "Installed 0.1.1 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.1 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.1 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.1",
+      "Transaction preserves user-added file byte-for-byte",
+      "MSI incomplete-rollback-denied returns expected 1603 (actual 1603)",
+      "Windows Installer registers version 0.1.1",
+      "Installed 0.1.1 hover.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.1 LICENSE matches packaged SHA-256",
+      "Installed 0.1.1 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.1 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.1 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.1",
+      "Transaction preserves user-added file byte-for-byte",
+      "MSI explicit-local-rollback-a returns expected 0 (actual 0)",
+      "Windows Installer registers version 0.1.0",
+      "Installed 0.1.0 hover.exe matches packaged SHA-256",
+      "Installed 0.1.0 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.0 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.0 LICENSE matches packaged SHA-256",
+      "Installed 0.1.0 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.0 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.0 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.0",
+      "Transaction preserves user-added file byte-for-byte",
+      "Windows Installer creates Start Menu shortcut",
+      "Start Menu shortcut points to stable installed executable and working directory",
+      "Installed shortcut icon resource can be extracted by Windows",
+      "Installed shortcut carries the same AppUserModelID as native windows",
+      "Installed GUI passes native preview, cancellation, file-lock, LPAC decoder and lifecycle suite",
+      "Installed console agent passes the same native preview suite",
+      "Explicit rollback removes newer product registration",
+      "Uninstall removes managed executable and shortcut",
+      "Uninstall preserves user-added file byte-for-byte"
+    ],
+    "transactions": [
+      {
+        "name": "install-a",
+        "exitCode": 0,
+        "expected": 0,
+        "log": "install-a.log"
+      },
+      {
+        "name": "failed-upgrade-rolls-back-a",
+        "exitCode": 1603,
+        "expected": 1603,
+        "log": "failed-upgrade-rolls-back-a.log"
+      },
+      {
+        "name": "upgrade-b",
+        "exitCode": 0,
+        "expected": 0,
+        "log": "upgrade-b.log"
+      },
+      {
+        "name": "downgrade-denied",
+        "exitCode": 1603,
+        "expected": 1603,
+        "log": "downgrade-denied.log"
+      },
+      {
+        "name": "incomplete-rollback-denied",
+        "exitCode": 1603,
+        "expected": 1603,
+        "log": "incomplete-rollback-denied.log"
+      },
+      {
+        "name": "explicit-local-rollback-a",
+        "exitCode": 0,
+        "expected": 0,
+        "log": "explicit-local-rollback-a.log"
+      }
+    ],
+    "packageA": "565787A3E08892D377D2E0B40F3403E5E8B204B60CEE84A738542B763A059088",
+    "packageB": "E7BB02DFBA3BA2C0439CA86D9607ABD6A1C1BA0D2B6C01B1F9F929DEFAA7238B",
+    "sourceA": "0a883d67ffd08adc4dc236f34680e5e2a2acd1ea",
+    "sourceB": "0a883d67ffd08adc4dc236f34680e5e2a2acd1ea"
+  },
+  "packages": [
+    {
+      "version": "0.1.0",
+      "sha256": "565787A3E08892D377D2E0B40F3403E5E8B204B60CEE84A738542B763A059088",
+      "sourceRevision": "0a883d67ffd08adc4dc236f34680e5e2a2acd1ea",
+      "iceCompleted": true,
+      "iceErrors": 0,
+      "iceWarnings": 9,
+      "files": [
+        {
+          "name": "hover.exe",
+          "sha256": "203FF3BDA7A86D1F697656D86636596F0C652234A5E33711B6C4E6229881E4C1"
+        },
+        {
+          "name": "hover-agent.exe",
+          "sha256": "4A40BE401989F621C3C93D481E81DE1585498564509499F02D94D3099F656107"
+        },
+        {
+          "name": "hover-browser-host.exe",
+          "sha256": "AF8228B3E9CA3F8B18556543B9D12E5AD9FDC5F3A232B0C88E6079B404675D87"
+        },
+        {
+          "name": "LICENSE",
+          "sha256": "F77F42C0DCDDD26F9231EB155FA49CE5094F99A98A510BD638931B6B74C687A8"
+        },
+        {
+          "name": "THIRD-PARTY-NOTICES.md",
+          "sha256": "ADEC04C999F5C35A61167650F612328238964B71FFF6D247668DE9AE406732A5"
+        },
+        {
+          "name": "DEPENDENCY-LICENSES.txt",
+          "sha256": "F2E4D582A9D3F6283F367DB4580BE3E6CF6D15C32188946211798C9D6A8372CE"
+        },
+        {
+          "name": "BUILD-INFO.json",
+          "sha256": "72F0BFB1D9559ECBBC85FEA2C77C3F66ADC0D67A939AE6560921E84CFADD973B"
+        }
+      ]
+    },
+    {
+      "version": "0.1.1",
+      "sha256": "E7BB02DFBA3BA2C0439CA86D9607ABD6A1C1BA0D2B6C01B1F9F929DEFAA7238B",
+      "sourceRevision": "0a883d67ffd08adc4dc236f34680e5e2a2acd1ea",
+      "iceCompleted": true,
+      "iceErrors": 0,
+      "iceWarnings": 9,
+      "files": [
+        {
+          "name": "hover.exe",
+          "sha256": "B2BB5A9F7D3878FB9A8BCB74E5460E4F3B0D1F7FEAACDFE591BC853B83C1111C"
+        },
+        {
+          "name": "hover-agent.exe",
+          "sha256": "911FB3D49038AAB69954B9EBB56696D3EE1396DF8752564E6B9CEDCC4C39F412"
+        },
+        {
+          "name": "hover-browser-host.exe",
+          "sha256": "AF8228B3E9CA3F8B18556543B9D12E5AD9FDC5F3A232B0C88E6079B404675D87"
+        },
+        {
+          "name": "LICENSE",
+          "sha256": "F77F42C0DCDDD26F9231EB155FA49CE5094F99A98A510BD638931B6B74C687A8"
+        },
+        {
+          "name": "THIRD-PARTY-NOTICES.md",
+          "sha256": "ADEC04C999F5C35A61167650F612328238964B71FFF6D247668DE9AE406732A5"
+        },
+        {
+          "name": "DEPENDENCY-LICENSES.txt",
+          "sha256": "F2E4D582A9D3F6283F367DB4580BE3E6CF6D15C32188946211798C9D6A8372CE"
+        },
+        {
+          "name": "BUILD-INFO.json",
+          "sha256": "128618A9334EB08EAD9AEDA03014A1591B19C042D9EC27FD9274258DA8320C52"
+        }
+      ]
+    }
+  ],
+  "agentSessions": [
+    {
+      "passed": true,
+      "entrypoint": "hover-agent.exe --stdio",
+      "assertions": 61,
+      "executableSha256": "4A40BE401989F621C3C93D481E81DE1585498564509499F02D94D3099F656107",
+      "quit": {
+        "stopped": true,
+        "exitCode": 0
+      }
+    },
+    {
+      "passed": true,
+      "entrypoint": "hover.exe --agent-stdio",
+      "assertions": 61,
+      "executableSha256": "203FF3BDA7A86D1F697656D86636596F0C652234A5E33711B6C4E6229881E4C1",
+      "quit": {
+        "stopped": true,
+        "exitCode": 0
+      }
+    },
+    {
+      "passed": true,
+      "entrypoint": "hover-agent.exe --stdio",
+      "assertions": 61,
+      "executableSha256": "911FB3D49038AAB69954B9EBB56696D3EE1396DF8752564E6B9CEDCC4C39F412",
+      "quit": {
+        "stopped": true,
+        "exitCode": 0
+      }
+    },
+    {
+      "passed": true,
+      "entrypoint": "hover.exe --agent-stdio",
+      "assertions": 61,
+      "executableSha256": "203FF3BDA7A86D1F697656D86636596F0C652234A5E33711B6C4E6229881E4C1",
+      "quit": {
+        "stopped": true,
+        "exitCode": 0
+      }
+    },
+    {
+      "passed": true,
+      "entrypoint": "hover.exe --agent-stdio",
+      "assertions": 61,
+      "executableSha256": "203FF3BDA7A86D1F697656D86636596F0C652234A5E33711B6C4E6229881E4C1",
+      "quit": {
+        "stopped": true,
+        "exitCode": 0
+      }
+    },
+    {
+      "passed": true,
+      "entrypoint": "hover-agent.exe --stdio",
+      "assertions": 61,
+      "executableSha256": "4A40BE401989F621C3C93D481E81DE1585498564509499F02D94D3099F656107",
+      "quit": {
+        "stopped": true,
+        "exitCode": 0
+      }
+    },
+    {
+      "passed": true,
+      "entrypoint": "hover.exe --agent-stdio",
+      "assertions": 61,
+      "executableSha256": "B2BB5A9F7D3878FB9A8BCB74E5460E4F3B0D1F7FEAACDFE591BC853B83C1111C",
+      "quit": {
+        "stopped": true,
+        "exitCode": 0
+      }
+    },
+    {
+      "passed": true,
+      "entrypoint": "hover-agent.exe --stdio",
+      "assertions": 61,
+      "executableSha256": "4A40BE401989F621C3C93D481E81DE1585498564509499F02D94D3099F656107",
+      "quit": {
+        "stopped": true,
+        "exitCode": 0
+      }
+    }
+  ],
+  "residentSessions": [
+    {
+      "passed": true,
+      "assertions": 17,
+      "executableSha256": "203FF3BDA7A86D1F697656D86636596F0C652234A5E33711B6C4E6229881E4C1",
+      "checks": [
+        "No prior resident in tested installation",
+        "CLI identifies build without claiming release certification",
+        "Normal GUI launch registers verified same-installation resident",
+        "A different installation cannot discover this resident as its own",
+        "A separate installation has an independent native resident",
+        "Separate installation preserves original resident identity",
+        "Shutdown in another installation leaves the original resident running",
+        "Duplicate normal launch exits successfully",
+        "Duplicate launch preserves original resident",
+        "First-party show request delivered",
+        "First-party shutdown request delivered",
+        "Normal tray app shuts down gracefully",
+        "Shutdown removes resident window and registration",
+        "Repeated shutdown has no unrelated process target",
+        "Normal GUI restarts after graceful shutdown",
+        "Restarted app shuts down gracefully",
+        "Lifecycle commands preserve isolated normal settings"
+      ]
+    },
+    {
+      "passed": true,
+      "assertions": 17,
+      "executableSha256": "203FF3BDA7A86D1F697656D86636596F0C652234A5E33711B6C4E6229881E4C1",
+      "checks": [
+        "No prior resident in tested installation",
+        "CLI identifies build without claiming release certification",
+        "Normal GUI launch registers verified same-installation resident",
+        "A different installation cannot discover this resident as its own",
+        "A separate installation has an independent native resident",
+        "Separate installation preserves original resident identity",
+        "Shutdown in another installation leaves the original resident running",
+        "Duplicate normal launch exits successfully",
+        "Duplicate launch preserves original resident",
+        "First-party show request delivered",
+        "First-party shutdown request delivered",
+        "Normal tray app shuts down gracefully",
+        "Shutdown removes resident window and registration",
+        "Repeated shutdown has no unrelated process target",
+        "Normal GUI restarts after graceful shutdown",
+        "Restarted app shuts down gracefully",
+        "Lifecycle commands preserve isolated normal settings"
+      ]
+    },
+    {
+      "passed": true,
+      "assertions": 17,
+      "executableSha256": "203FF3BDA7A86D1F697656D86636596F0C652234A5E33711B6C4E6229881E4C1",
+      "checks": [
+        "No prior resident in tested installation",
+        "CLI identifies build without claiming release certification",
+        "Normal GUI launch registers verified same-installation resident",
+        "A different installation cannot discover this resident as its own",
+        "A separate installation has an independent native resident",
+        "Separate installation preserves original resident identity",
+        "Shutdown in another installation leaves the original resident running",
+        "Duplicate normal launch exits successfully",
+        "Duplicate launch preserves original resident",
+        "First-party show request delivered",
+        "First-party shutdown request delivered",
+        "Normal tray app shuts down gracefully",
+        "Shutdown removes resident window and registration",
+        "Repeated shutdown has no unrelated process target",
+        "Normal GUI restarts after graceful shutdown",
+        "Restarted app shuts down gracefully",
+        "Lifecycle commands preserve isolated normal settings"
+      ]
+    },
+    {
+      "passed": true,
+      "assertions": 17,
+      "executableSha256": "B2BB5A9F7D3878FB9A8BCB74E5460E4F3B0D1F7FEAACDFE591BC853B83C1111C",
+      "checks": [
+        "No prior resident in tested installation",
+        "CLI identifies build without claiming release certification",
+        "Normal GUI launch registers verified same-installation resident",
+        "A different installation cannot discover this resident as its own",
+        "A separate installation has an independent native resident",
+        "Separate installation preserves original resident identity",
+        "Shutdown in another installation leaves the original resident running",
+        "Duplicate normal launch exits successfully",
+        "Duplicate launch preserves original resident",
+        "First-party show request delivered",
+        "First-party shutdown request delivered",
+        "Normal tray app shuts down gracefully",
+        "Shutdown removes resident window and registration",
+        "Repeated shutdown has no unrelated process target",
+        "Normal GUI restarts after graceful shutdown",
+        "Restarted app shuts down gracefully",
+        "Lifecycle commands preserve isolated normal settings"
+      ]
+    }
+  ],
+  "notEstablished": [
+    "physical Explorer input and safe activation",
+    "physical taskbar pinning",
+    "accessibility and mixed DPI",
+    "authenticated network update",
+    "different-production-source upgrade",
+    "power loss and failure inside old-product removal",
+    "real-game fidelity and 3D",
+    "storage-cold end-to-end performance"
+  ],
+  "releaseVerified": false
+}
