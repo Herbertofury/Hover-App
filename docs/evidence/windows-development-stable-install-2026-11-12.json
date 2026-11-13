@@ -1,0 +1,277 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-12",
+  "sourceRevision": "0a883d67ffd08adc4dc236f34680e5e2a2acd1ea",
+  "channel": "unsigned-development",
+  "stableDefaultLeaf": "Hover-Development",
+  "releaseVerified": false,
+  "installer": {
+    "schemaVersion": 1,
+    "passed": true,
+    "scope": "Actual Windows MSI install, native installed-app preview/restart, same-source versioned upgrade, transaction failure, downgrade guard, explicit local rollback, uninstall. Unsigned development fixtures; no network updater, Explorer input, taskbar pin or release qualification claim.",
+    "assertions": 93,
+    "checks": [
+      "MSI install-a returns expected 0 (actual 0)",
+      "Windows Installer registers version 0.1.0",
+      "Installed 0.1.0 hover.exe matches packaged SHA-256",
+      "Installed 0.1.0 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.0 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.0 LICENSE matches packaged SHA-256",
+      "Installed 0.1.0 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.0 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.0 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.0",
+      "Windows Installer creates Start Menu shortcut",
+      "Start Menu shortcut points to stable installed executable and working directory",
+      "Installed shortcut icon resource can be extracted by Windows",
+      "Installed shortcut carries the same AppUserModelID as native windows",
+      "Windows Shell launches the installed Start Menu shortcut as a normal resident",
+      "Shortcut-launched resident accepts graceful first-party shutdown",
+      "Installed GUI passes native preview, cancellation, file-lock, LPAC decoder and lifecycle suite",
+      "Installed console agent passes the same native preview suite",
+      "MSI failed-upgrade-rolls-back-a returns expected 1603 (actual 1603)",
+      "Missing-file upgrade rolls back before removing the existing product",
+      "Windows Installer registers version 0.1.0",
+      "Installed 0.1.0 hover.exe matches packaged SHA-256",
+      "Installed 0.1.0 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.0 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.0 LICENSE matches packaged SHA-256",
+      "Installed 0.1.0 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.0 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.0 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.0",
+      "Transaction preserves user-added file byte-for-byte",
+      "Failed upgrade leaves newer product unregistered",
+      "Installed GUI passes native preview, cancellation, file-lock, LPAC decoder and lifecycle suite",
+      "Installed console agent passes the same native preview suite",
+      "MSI upgrade-b returns expected 0 (actual 0)",
+      "Windows Installer registers version 0.1.1",
+      "Installed 0.1.1 hover.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.1 LICENSE matches packaged SHA-256",
+      "Installed 0.1.1 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.1 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.1 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.1",
+      "Transaction preserves user-added file byte-for-byte",
+      "Windows Installer creates Start Menu shortcut",
+      "Start Menu shortcut points to stable installed executable and working directory",
+      "Installed shortcut icon resource can be extracted by Windows",
+      "Installed shortcut carries the same AppUserModelID as native windows",
+      "Successful upgrade removes old product registration",
+      "Installed GUI passes native preview, cancellation, file-lock, LPAC decoder and lifecycle suite",
+      "Installed console agent passes the same native preview suite",
+      "MSI downgrade-denied returns expected 1603 (actual 1603)",
+      "Windows Installer registers version 0.1.1",
+      "Installed 0.1.1 hover.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.1 LICENSE matches packaged SHA-256",
+      "Installed 0.1.1 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.1 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.1 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.1",
+      "Transaction preserves user-added file byte-for-byte",
+      "MSI incomplete-rollback-denied returns expected 1603 (actual 1603)",
+      "Windows Installer registers version 0.1.1",
+      "Installed 0.1.1 hover.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.1 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.1 LICENSE matches packaged SHA-256",
+      "Installed 0.1.1 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.1 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.1 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.1",
+      "Transaction preserves user-added file byte-for-byte",
+      "MSI explicit-local-rollback-a returns expected 0 (actual 0)",
+      "Windows Installer registers version 0.1.0",
+      "Installed 0.1.0 hover.exe matches packaged SHA-256",
+      "Installed 0.1.0 hover-agent.exe matches packaged SHA-256",
+      "Installed 0.1.0 hover-browser-host.exe matches packaged SHA-256",
+      "Installed 0.1.0 LICENSE matches packaged SHA-256",
+      "Installed 0.1.0 THIRD-PARTY-NOTICES.md matches packaged SHA-256",
+      "Installed 0.1.0 DEPENDENCY-LICENSES.txt matches packaged SHA-256",
+      "Installed 0.1.0 BUILD-INFO.json matches packaged SHA-256",
+      "Installed CLI reports 0.1.0",
+      "Transaction preserves user-added file byte-for-byte",
+      "Windows Installer creates Start Menu shortcut",
+      "Start Menu shortcut points to stable installed executable and working directory",
+      "Installed shortcut icon resource can be extracted by Windows",
+      "Installed shortcut carries the same AppUserModelID as native windows",
+      "Installed GUI passes native preview, cancellation, file-lock, LPAC decoder and lifecycle suite",
+      "Installed console agent passes the same native preview suite",
+      "Explicit rollback removes newer product registration",
+      "Uninstall removes managed executable and shortcut",
+      "Uninstall preserves user-added file byte-for-byte"
+    ],
+    "transactions": [
+      {
+        "name": "install-a",
+        "exitCode": 0,
+        "expected": 0,
+        "log": "install-a.log"
+      },
+      {
+        "name": "failed-upgrade-rolls-back-a",
+        "exitCode": 1603,
+        "expected": 1603,
+        "log": "failed-upgrade-rolls-back-a.log"
+      },
+      {
+        "name": "upgrade-b",
+        "exitCode": 0,
+        "expected": 0,
+        "log": "upgrade-b.log"
+      },
+      {
+        "name": "downgrade-denied",
+        "exitCode": 1603,
+        "expected": 1603,
+        "log": "downgrade-denied.log"
+      },
+      {
+        "name": "incomplete-rollback-denied",
+        "exitCode": 1603,
+        "expected": 1603,
+        "log": "incomplete-rollback-denied.log"
+      },
+      {
+        "name": "explicit-local-rollback-a",
+        "exitCode": 0,
+        "expected": 0,
+        "log": "explicit-local-rollback-a.log"
+      }
+    ],
+    "packageA": "EEA0EDB599FD755039DEADA36D7AFF13DE478D25DAF2D3586103A3349FF1E5FD",
+    "packageB": "50A7F3FB77494941F414410E4BD0D64E15130356FDB3F7D3EBA46FB18BC1405B",
+    "sourceA": "0a883d67ffd08adc4dc236f34680e5e2a2acd1ea",
+    "sourceB": "0a883d67ffd08adc4dc236f34680e5e2a2acd1ea"
+  },
+  "packages": [
+    {
+      "schemaVersion": 1,
+      "productCode": "{97564E84-3250-4B61-9182-512B85711561}",
+      "upgradeCode": "{A67BBD1A-3042-41D4-9702-936EF1696D7E}",
+      "version": "0.1.0",
+      "installLeaf": "Hover-Development",
+      "perUser": true,
+      "customActions": false,
+      "releaseVerified": false,
+      "package": "Hover-Development-0.1.0-x64.msi",
+      "sha256": "EEA0EDB599FD755039DEADA36D7AFF13DE478D25DAF2D3586103A3349FF1E5FD",
+      "build": {
+        "agentProtocol": 1,
+        "app": "Hover",
+        "appUserModelId": "Herbertofury.Hover",
+        "architecture": "x86_64",
+        "cargoVersion": "0.1.0",
+        "packageVersion": "0.1.0",
+        "platform": "windows",
+        "profile": "release",
+        "releaseVerified": false,
+        "schemaVersion": 1,
+        "sourceRevision": "0a883d67ffd08adc4dc236f34680e5e2a2acd1ea"
+      },
+      "files": [
+        {
+          "name": "hover.exe",
+          "sha256": "203FF3BDA7A86D1F697656D86636596F0C652234A5E33711B6C4E6229881E4C1"
+        },
+        {
+          "name": "hover-agent.exe",
+          "sha256": "4A40BE401989F621C3C93D481E81DE1585498564509499F02D94D3099F656107"
+        },
+        {
+          "name": "hover-browser-host.exe",
+          "sha256": "AF8228B3E9CA3F8B18556543B9D12E5AD9FDC5F3A232B0C88E6079B404675D87"
+        },
+        {
+          "name": "LICENSE",
+          "sha256": "F77F42C0DCDDD26F9231EB155FA49CE5094F99A98A510BD638931B6B74C687A8"
+        },
+        {
+          "name": "THIRD-PARTY-NOTICES.md",
+          "sha256": "ADEC04C999F5C35A61167650F612328238964B71FFF6D247668DE9AE406732A5"
+        },
+        {
+          "name": "DEPENDENCY-LICENSES.txt",
+          "sha256": "F2E4D582A9D3F6283F367DB4580BE3E6CF6D15C32188946211798C9D6A8372CE"
+        },
+        {
+          "name": "BUILD-INFO.json",
+          "sha256": "72F0BFB1D9559ECBBC85FEA2C77C3F66ADC0D67A939AE6560921E84CFADD973B"
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "productCode": "{1005A5D4-A6C7-41D9-932A-35270BA46D3E}",
+      "upgradeCode": "{A67BBD1A-3042-41D4-9702-936EF1696D7E}",
+      "version": "0.1.1",
+      "installLeaf": "Hover-Development",
+      "perUser": true,
+      "customActions": false,
+      "releaseVerified": false,
+      "package": "Hover-Development-0.1.1-x64.msi",
+      "sha256": "50A7F3FB77494941F414410E4BD0D64E15130356FDB3F7D3EBA46FB18BC1405B",
+      "build": {
+        "agentProtocol": 1,
+        "app": "Hover",
+        "appUserModelId": "Herbertofury.Hover",
+        "architecture": "x86_64",
+        "cargoVersion": "0.1.0",
+        "packageVersion": "0.1.1",
+        "platform": "windows",
+        "profile": "release",
+        "releaseVerified": false,
+        "schemaVersion": 1,
+        "sourceRevision": "0a883d67ffd08adc4dc236f34680e5e2a2acd1ea"
+      },
+      "files": [
+        {
+          "name": "hover.exe",
+          "sha256": "B2BB5A9F7D3878FB9A8BCB74E5460E4F3B0D1F7FEAACDFE591BC853B83C1111C"
+        },
+        {
+          "name": "hover-agent.exe",
+          "sha256": "911FB3D49038AAB69954B9EBB56696D3EE1396DF8752564E6B9CEDCC4C39F412"
+        },
+        {
+          "name": "hover-browser-host.exe",
+          "sha256": "AF8228B3E9CA3F8B18556543B9D12E5AD9FDC5F3A232B0C88E6079B404675D87"
+        },
+        {
+          "name": "LICENSE",
+          "sha256": "F77F42C0DCDDD26F9231EB155FA49CE5094F99A98A510BD638931B6B74C687A8"
+        },
+        {
+          "name": "THIRD-PARTY-NOTICES.md",
+          "sha256": "ADEC04C999F5C35A61167650F612328238964B71FFF6D247668DE9AE406732A5"
+        },
+        {
+          "name": "DEPENDENCY-LICENSES.txt",
+          "sha256": "F2E4D582A9D3F6283F367DB4580BE3E6CF6D15C32188946211798C9D6A8372CE"
+        },
+        {
+          "name": "BUILD-INFO.json",
+          "sha256": "128618A9334EB08EAD9AEDA03014A1591B19C042D9EC27FD9274258DA8320C52"
+        }
+      ]
+    }
+  ],
+  "finalInstall": {
+    "version": "0.1.1",
+    "allPayloadHashesMatched": true,
+    "nativeGuiChecks": 61,
+    "residentChecks": 17,
+    "normalStartMenuLaunch": true,
+    "processRemainedRunning": true,
+    "executableSha256": "B2BB5A9F7D3878FB9A8BCB74E5460E4F3B0D1F7FEAACDFE591BC853B83C1111C"
+  },
+  "limitations": [
+    "same-source versioned upgrade fixture",
+    "no authenticated network update",
+    "physical taskbar pin/Explorer/accessibility/DPI remain open"
+  ]
+}

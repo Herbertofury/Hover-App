@@ -121,8 +121,12 @@ impl Drop for RegistryFixture {
     }
 }
 fn registry_fixture(id: &str) -> (RegistryFixture, String) {
+    // RegCreateKeyEx applies REG_OPTION_VOLATILE to intermediate keys too.
+    // Keep the volatile leaf directly under existing Software: creating it
+    // below the real app namespace can make that namespace volatile on a
+    // fresh profile and prevent a later installer from creating stable keys.
     let path = wide(std::ffi::OsStr::new(&format!(
-        "Software\\Hover\\SandboxTests\\{id}"
+        "Software\\HoverDecoderPermissionProbe-{id}"
     )));
     let (mut key, mut disposition) = (null_mut(), 0);
     win32(
@@ -170,7 +174,7 @@ fn registry_fixture(id: &str) -> (RegistryFixture, String) {
         length += 1;
     }
     let sid = String::from_utf16(unsafe { std::slice::from_raw_parts(text, length) }).unwrap();
-    let absolute = format!("{sid}\\Software\\Hover\\SandboxTests\\{id}");
+    let absolute = format!("{sid}\\Software\\HoverDecoderPermissionProbe-{id}");
     let absolute_wide = wide(std::ffi::OsStr::new(&absolute));
     let mut check = null_mut();
     win32(

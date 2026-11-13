@@ -93,7 +93,7 @@ local operator action, not a security boundary or an automatic updater.
 
 ## Evidence boundaries
 
-The private prototype passed 93 installer assertions, plus eight 61-check
+Clean source `0a883d67ffd08adc4dc236f34680e5e2a2acd1ea` passed 93 installer assertions, plus eight 61-check
 installed-app suites and four 17-check normal lifecycle suites with the public
 DBPF fixture. Without that fixture each preview suite has 56 checks. These
 counts cover actual Windows processes and native installer transactions,
@@ -103,6 +103,24 @@ mixed DPI, taskbar pinning, real game/3D fidelity, storage-cold performance or
 authenticated network updates. One earlier prototype app-suite quit check
 failed; explicit quit exit diagnostics are now retained rather than weakening
 the assertion. Later complete prototype runs passed it.
+
+Retained public summaries: [clean-source Windows test](evidence/windows-development-install-local-2026-11-12.json),
+[exact stable development packages and final install](evidence/windows-development-stable-install-2026-11-12.json),
+and [51 installed-app performance samples](evidence/windows-development-installed-performance-2026-11-12.json).
+The stable default packages also passed the full 93-check transaction suite;
+version 0.1.1 was then installed again, passed 61 preview and 17 lifecycle checks,
+and launched normally through its Start Menu shortcut. The performance probe
+labels caches as uncontrolled and command/response timing separately from
+screen latency; it is not an Explorer speed claim. Public CI acceptance is
+tracked in PR #46 and must pass before this branch enters protected main.
+
+The first hosted installer jobs exposed a test-fixture collision: the decoder
+permission test created a volatile intermediate `Software\Hover` registry key
+on fresh profiles. Windows rejects permanent installation keys beneath a
+volatile parent. A local isolated probe reproduced that exact restriction;
+the disposable decoder sentinel now lives directly beneath existing Software,
+outside Hover's real namespace. No ACL, security policy or privilege change is
+used to resolve this test isolation defect.
 
 Taskbar pinning and source-authenticated update delivery remain release gates.
 No signing certificate or trust-store entry is installed. No GitHub release is
