@@ -1,0 +1,16 @@
+verify (1.95.0)	Test real Hover through private agent control	﻿2026-11-13T00:15:14.3864155Z ##[group]Run New-Item -ItemType Directory -Path target/agent-fixtures -Force | Out-Null
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:15:14.3864967Z ^[[36;1mNew-Item -ItemType Directory -Path target/agent-fixtures -Force | Out-Null^[[0m
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:15:14.3866654Z ^[[36;1mInvoke-WebRequest -Uri https://raw.githubusercontent.com/Llama-Logic/LlamaLogic/4a3d576f0afb776aba783db561760afb5b5de8b7/LlamaLogic.Packages.UnitTests/TestPackage.package -OutFile target/agent-fixtures/TestPackage.package^[[0m
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:15:14.3868036Z ^[[36;1m./scripts/test-agent.ps1 -DbpfFixture target/agent-fixtures/TestPackage.package^[[0m
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:15:14.3935912Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:15:14.3936381Z ##[endgroup]
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:15:17.8714215Z Agent test evidence: D:\a\Hover-App\Hover-App\target\agent-evidence\session-2f8d2b8462d14ab8a1486cb015f6682a
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:15:17.8729640Z Passed checks: 60; success: True
+verify (1.99.0)	Test real Hover through private agent control	﻿2026-11-13T00:15:44.3759971Z ##[group]Run New-Item -ItemType Directory -Path target/agent-fixtures -Force | Out-Null
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:15:44.3760737Z ^[[36;1mNew-Item -ItemType Directory -Path target/agent-fixtures -Force | Out-Null^[[0m
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:15:44.3761951Z ^[[36;1mInvoke-WebRequest -Uri https://raw.githubusercontent.com/Llama-Logic/LlamaLogic/4a3d576f0afb776aba783db561760afb5b5de8b7/LlamaLogic.Packages.UnitTests/TestPackage.package -OutFile target/agent-fixtures/TestPackage.package^[[0m
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:15:44.3763833Z ^[[36;1m./scripts/test-agent.ps1 -DbpfFixture target/agent-fixtures/TestPackage.package^[[0m
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:15:44.3849252Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:15:44.3849724Z ##[endgroup]
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:15:48.4491187Z Agent test evidence: D:\a\Hover-App\Hover-App\target\agent-evidence\session-248892514a4c4cbbaf164163604210ce
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:15:48.4507248Z Passed checks: 60; success: True

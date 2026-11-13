@@ -43,6 +43,8 @@ For repeatable tests without Computer Use, build `hover-agent.exe --stdio` and
 use its private JSON command interface. It owns a real native Hover session and
 can inspect/control previews and export the actual painter's output. Run
 `./scripts/test-agent.ps1`; see the [agent protocol and evidence limits](docs/agent-control.md).
+Use `./scripts/measure-agent.ps1 -Json` for repeatable startup, preview/state
+response and idle CPU/I/O/memory measurements; [scope and raw evidence](docs/native-performance.md).
 
 WIC/GIF decoding uses a separate native process with Windows job resource limits
 and bounded byte pipes. See [decoder containment and measured cost](docs/decoder-containment.md)

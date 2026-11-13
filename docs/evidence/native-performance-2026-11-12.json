@@ -1,0 +1,1265 @@
+{
+  "schemaVersion": 1,
+  "measuredAtUtc": "2026-11-13T00:19:01.8079533Z",
+  "passed": true,
+  "executableName": "hover.exe",
+  "executableSha256": "272D84E75E9ED8B0DB14824122F48C75A65489AAD776D81D5089CBC7A8E75CB2",
+  "fixture": {
+    "classification": "generated synthetic BMP, 800x600",
+    "sha256": "78B3BAF201908F828F88ACED1D609459DBEDB308C9FB1E18E0CF99A72987FD7C",
+    "byteIdentical": true
+  },
+  "environment": {
+    "os": "Microsoft Windows 11 Pro",
+    "version": "10.0.22631",
+    "build": "22631",
+    "architecture": "64-bit",
+    "cpu": "13th Gen Intel(R) Core(TM) i9-13900K",
+    "logicalProcessors": 32
+  },
+  "cache": "OS caches uncontrolled; generated fixture was just written; new process does not mean storage-cold",
+  "timing": "External stopwatch; JSON command/response plus real native UI-thread/worker scheduling. Wait polls at 20 ms. Ack verifies file identity/phase, not pixels painted to screen.",
+  "resourceScope": "Owned parent CPU/private bytes/working set/handles and GetProcessIoCounters deltas; decoder job accounting separately. I/O includes pipes and cached operations, not physical-disk activity. CPU timer granularity applies; endpoint memory is not a concurrent peak.",
+  "excludes": [
+    "Explorer hover",
+    "screen/compositor latency",
+    "cold-storage results",
+    "3D/GPU/VRAM",
+    "real game fidelity",
+    "long-run resource stability",
+    "installer/update/rollback"
+  ],
+  "samples": [
+    {
+      "session": 0,
+      "iteration": 0,
+      "mode": "new_process_first_open",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 89.7487,
+      "commandToSettledResponseMs": 116.6919,
+      "parentPrivateBytes": 4460544,
+      "parentWorkingSetBytes": 13176832,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5414912,
+        "pid": 169688,
+        "user_cpu_ms": 0,
+        "wall_ms": 48.5455
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 1,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 7.2334,
+      "commandToSettledResponseMs": 56.8369,
+      "parentPrivateBytes": 4460544,
+      "parentWorkingSetBytes": 13185024,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5419008,
+        "pid": 88852,
+        "user_cpu_ms": 0,
+        "wall_ms": 35.428599999999996
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 2,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 4.9494,
+      "commandToSettledResponseMs": 67.4748,
+      "parentPrivateBytes": 4460544,
+      "parentWorkingSetBytes": 13201408,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5410816,
+        "pid": 151304,
+        "user_cpu_ms": 0,
+        "wall_ms": 42.646499999999996
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 3,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 9.5869,
+      "commandToSettledResponseMs": 84.6822,
+      "parentPrivateBytes": 4407296,
+      "parentWorkingSetBytes": 13213696,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5414912,
+        "pid": 66304,
+        "user_cpu_ms": 0,
+        "wall_ms": 41.5673
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 4,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 7.6635,
+      "commandToSettledResponseMs": 71.5313,
+      "parentPrivateBytes": 4411392,
+      "parentWorkingSetBytes": 13213696,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5459968,
+        "pid": 63416,
+        "user_cpu_ms": 0,
+        "wall_ms": 43.3819
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 5,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 7.974,
+      "commandToSettledResponseMs": 75.8711,
+      "parentPrivateBytes": 4411392,
+      "parentWorkingSetBytes": 13213696,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5423104,
+        "pid": 75780,
+        "user_cpu_ms": 0,
+        "wall_ms": 45.7849
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 6,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 6.789,
+      "commandToSettledResponseMs": 70.7093,
+      "parentPrivateBytes": 4407296,
+      "parentWorkingSetBytes": 13213696,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5414912,
+        "pid": 251128,
+        "user_cpu_ms": 0,
+        "wall_ms": 42.5292
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 7,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 8.253,
+      "commandToSettledResponseMs": 122.22,
+      "parentPrivateBytes": 4411392,
+      "parentWorkingSetBytes": 13230080,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5451776,
+        "pid": 53420,
+        "user_cpu_ms": 0,
+        "wall_ms": 98.9968
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 8,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 6.8114,
+      "commandToSettledResponseMs": 83.692,
+      "parentPrivateBytes": 4407296,
+      "parentWorkingSetBytes": 13234176,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5410816,
+        "pid": 136572,
+        "user_cpu_ms": 0,
+        "wall_ms": 33.686800000000005
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 9,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 8.0865,
+      "commandToSettledResponseMs": 56.7755,
+      "parentPrivateBytes": 4411392,
+      "parentWorkingSetBytes": 13221888,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5398528,
+        "pid": 118208,
+        "user_cpu_ms": 0,
+        "wall_ms": 36.614
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 10,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 6.1031,
+      "commandToSettledResponseMs": 52.7191,
+      "parentPrivateBytes": 4411392,
+      "parentWorkingSetBytes": 13234176,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5464064,
+        "pid": 89916,
+        "user_cpu_ms": 0,
+        "wall_ms": 34.2803
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 11,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 10.2136,
+      "commandToSettledResponseMs": 55.569,
+      "parentPrivateBytes": 4407296,
+      "parentWorkingSetBytes": 13234176,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5459968,
+        "pid": 141400,
+        "user_cpu_ms": 0,
+        "wall_ms": 33.8012
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 12,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 6.1436,
+      "commandToSettledResponseMs": 59.4365,
+      "parentPrivateBytes": 4411392,
+      "parentWorkingSetBytes": 13246464,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5439488,
+        "pid": 246052,
+        "user_cpu_ms": 0,
+        "wall_ms": 33.7565
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 13,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 7.0571,
+      "commandToSettledResponseMs": 52.3793,
+      "parentPrivateBytes": 4407296,
+      "parentWorkingSetBytes": 13230080,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5459968,
+        "pid": 241064,
+        "user_cpu_ms": 0,
+        "wall_ms": 33.6967
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 14,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 5.1349,
+      "commandToSettledResponseMs": 68.1951,
+      "parentPrivateBytes": 4411392,
+      "parentWorkingSetBytes": 13234176,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5451776,
+        "pid": 11508,
+        "user_cpu_ms": 0,
+        "wall_ms": 50.088300000000004
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 15,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 5.8591,
+      "commandToSettledResponseMs": 54.6724,
+      "parentPrivateBytes": 4407296,
+      "parentWorkingSetBytes": 13234176,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5423104,
+        "pid": 203988,
+        "user_cpu_ms": 0,
+        "wall_ms": 36.276700000000005
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 16,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 72.9266,
+      "openOrReloadAckMs": 5.6669,
+      "commandToSettledResponseMs": 90.6512,
+      "parentPrivateBytes": 4415488,
+      "parentWorkingSetBytes": 13250560,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5419008,
+        "pid": 153500,
+        "user_cpu_ms": 0,
+        "wall_ms": 38.470400000000005
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 0,
+      "mode": "new_process_first_open",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 57.1562,
+      "commandToSettledResponseMs": 81.2188,
+      "parentPrivateBytes": 4476928,
+      "parentWorkingSetBytes": 13172736,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5414912,
+        "pid": 109652,
+        "user_cpu_ms": 0,
+        "wall_ms": 39.0113
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 1,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 7.6566,
+      "commandToSettledResponseMs": 70.4207,
+      "parentPrivateBytes": 3989504,
+      "parentWorkingSetBytes": 13160448,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5419008,
+        "pid": 137404,
+        "user_cpu_ms": 0,
+        "wall_ms": 39.5303
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 2,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 6.0078,
+      "commandToSettledResponseMs": 50.8588,
+      "parentPrivateBytes": 4476928,
+      "parentWorkingSetBytes": 13197312,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5423104,
+        "pid": 116348,
+        "user_cpu_ms": 0,
+        "wall_ms": 32.1151
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 3,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 22.018,
+      "commandToSettledResponseMs": 103.7033,
+      "parentPrivateBytes": 4427776,
+      "parentWorkingSetBytes": 13213696,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5447680,
+        "pid": 236524,
+        "user_cpu_ms": 0,
+        "wall_ms": 41.860099999999996
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 4,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 16.3302,
+      "commandToSettledResponseMs": 81.9969,
+      "parentPrivateBytes": 4431872,
+      "parentWorkingSetBytes": 13201408,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5398528,
+        "pid": 122108,
+        "user_cpu_ms": 0,
+        "wall_ms": 44.2122
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 5,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 7.7691,
+      "commandToSettledResponseMs": 81.1062,
+      "parentPrivateBytes": 4427776,
+      "parentWorkingSetBytes": 13213696,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5402624,
+        "pid": 120364,
+        "user_cpu_ms": 0,
+        "wall_ms": 34.3469
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 6,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 9.9051,
+      "commandToSettledResponseMs": 65.1912,
+      "parentPrivateBytes": 4431872,
+      "parentWorkingSetBytes": 13217792,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5439488,
+        "pid": 163200,
+        "user_cpu_ms": 0,
+        "wall_ms": 37.2489
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 7,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 5.9344,
+      "commandToSettledResponseMs": 65.3865,
+      "parentPrivateBytes": 4427776,
+      "parentWorkingSetBytes": 13217792,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5410816,
+        "pid": 150984,
+        "user_cpu_ms": 0,
+        "wall_ms": 33.1476
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 8,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 7.0657,
+      "commandToSettledResponseMs": 74.5067,
+      "parentPrivateBytes": 4431872,
+      "parentWorkingSetBytes": 13217792,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5455872,
+        "pid": 177744,
+        "user_cpu_ms": 0,
+        "wall_ms": 41.9155
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 9,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 9.6273,
+      "commandToSettledResponseMs": 63.1458,
+      "parentPrivateBytes": 4427776,
+      "parentWorkingSetBytes": 13217792,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5414912,
+        "pid": 26872,
+        "user_cpu_ms": 0,
+        "wall_ms": 36.8478
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 10,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 8.5237,
+      "commandToSettledResponseMs": 71.3023,
+      "parentPrivateBytes": 4431872,
+      "parentWorkingSetBytes": 13217792,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5447680,
+        "pid": 244560,
+        "user_cpu_ms": 0,
+        "wall_ms": 39.16589999999999
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 11,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 4.7994,
+      "commandToSettledResponseMs": 69.8635,
+      "parentPrivateBytes": 4427776,
+      "parentWorkingSetBytes": 13217792,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5447680,
+        "pid": 117828,
+        "user_cpu_ms": 0,
+        "wall_ms": 40.5285
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 12,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 14.7716,
+      "commandToSettledResponseMs": 79.2749,
+      "parentPrivateBytes": 4431872,
+      "parentWorkingSetBytes": 13217792,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5402624,
+        "pid": 243776,
+        "user_cpu_ms": 0,
+        "wall_ms": 43.6789
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 13,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 7.9176,
+      "commandToSettledResponseMs": 70.223,
+      "parentPrivateBytes": 4427776,
+      "parentWorkingSetBytes": 13221888,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5406720,
+        "pid": 241300,
+        "user_cpu_ms": 0,
+        "wall_ms": 46.840199999999996
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 14,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 19.1154,
+      "commandToSettledResponseMs": 65.8124,
+      "parentPrivateBytes": 4431872,
+      "parentWorkingSetBytes": 13221888,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5406720,
+        "pid": 120992,
+        "user_cpu_ms": 0,
+        "wall_ms": 33.550799999999995
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 15,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 5.1545,
+      "commandToSettledResponseMs": 55.9859,
+      "parentPrivateBytes": 4427776,
+      "parentWorkingSetBytes": 13221888,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5451776,
+        "pid": 167948,
+        "user_cpu_ms": 0,
+        "wall_ms": 36.0484
+      }
+    },
+    {
+      "session": 1,
+      "iteration": 16,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.3258,
+      "openOrReloadAckMs": 5.3334,
+      "commandToSettledResponseMs": 48.9751,
+      "parentPrivateBytes": 4440064,
+      "parentWorkingSetBytes": 13230080,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5443584,
+        "pid": 245864,
+        "user_cpu_ms": 0,
+        "wall_ms": 32.073499999999996
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 0,
+      "mode": "new_process_first_open",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 77.3921,
+      "commandToSettledResponseMs": 99.5878,
+      "parentPrivateBytes": 4435968,
+      "parentWorkingSetBytes": 13189120,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5447680,
+        "pid": 19996,
+        "user_cpu_ms": 0,
+        "wall_ms": 44.4613
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 1,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 4.602,
+      "commandToSettledResponseMs": 55.2471,
+      "parentPrivateBytes": 4440064,
+      "parentWorkingSetBytes": 13193216,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5435392,
+        "pid": 243112,
+        "user_cpu_ms": 0,
+        "wall_ms": 35.408500000000004
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 2,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 4.5112,
+      "commandToSettledResponseMs": 54.3805,
+      "parentPrivateBytes": 4444160,
+      "parentWorkingSetBytes": 13213696,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5435392,
+        "pid": 14220,
+        "user_cpu_ms": 0,
+        "wall_ms": 34.5402
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 3,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 11.6102,
+      "commandToSettledResponseMs": 59.2479,
+      "parentPrivateBytes": 4448256,
+      "parentWorkingSetBytes": 13234176,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5439488,
+        "pid": 97772,
+        "user_cpu_ms": 0,
+        "wall_ms": 36.9093
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 4,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 4.7126,
+      "commandToSettledResponseMs": 55.5103,
+      "parentPrivateBytes": 4444160,
+      "parentWorkingSetBytes": 13234176,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5439488,
+        "pid": 140632,
+        "user_cpu_ms": 0,
+        "wall_ms": 35.9574
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 5,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 5.3564,
+      "commandToSettledResponseMs": 52.8827,
+      "parentPrivateBytes": 4440064,
+      "parentWorkingSetBytes": 13234176,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5419008,
+        "pid": 5960,
+        "user_cpu_ms": 0,
+        "wall_ms": 31.9893
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 6,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 5.584,
+      "commandToSettledResponseMs": 59.7839,
+      "parentPrivateBytes": 4444160,
+      "parentWorkingSetBytes": 13254656,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5455872,
+        "pid": 241008,
+        "user_cpu_ms": 0,
+        "wall_ms": 38.2066
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 7,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 5.7999,
+      "commandToSettledResponseMs": 51.0093,
+      "parentPrivateBytes": 4440064,
+      "parentWorkingSetBytes": 13254656,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5439488,
+        "pid": 241892,
+        "user_cpu_ms": 0,
+        "wall_ms": 30.3877
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 8,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 7.0187,
+      "commandToSettledResponseMs": 52.6893,
+      "parentPrivateBytes": 4448256,
+      "parentWorkingSetBytes": 13271040,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5398528,
+        "pid": 240188,
+        "user_cpu_ms": 0,
+        "wall_ms": 31.811100000000003
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 9,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 6.3026,
+      "commandToSettledResponseMs": 52.0933,
+      "parentPrivateBytes": 4452352,
+      "parentWorkingSetBytes": 13271040,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5468160,
+        "pid": 171448,
+        "user_cpu_ms": 0,
+        "wall_ms": 32.0068
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 10,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 5.9084,
+      "commandToSettledResponseMs": 56.8814,
+      "parentPrivateBytes": 4448256,
+      "parentWorkingSetBytes": 13242368,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5402624,
+        "pid": 66620,
+        "user_cpu_ms": 0,
+        "wall_ms": 34.4842
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 11,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 4.8725,
+      "commandToSettledResponseMs": 51.9557,
+      "parentPrivateBytes": 4444160,
+      "parentWorkingSetBytes": 13275136,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5402624,
+        "pid": 124176,
+        "user_cpu_ms": 0,
+        "wall_ms": 36.634600000000006
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 12,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 5.8137,
+      "commandToSettledResponseMs": 51.469,
+      "parentPrivateBytes": 4448256,
+      "parentWorkingSetBytes": 13275136,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5431296,
+        "pid": 153456,
+        "user_cpu_ms": 0,
+        "wall_ms": 34.7665
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 13,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 4.9447,
+      "commandToSettledResponseMs": 67.1678,
+      "parentPrivateBytes": 4452352,
+      "parentWorkingSetBytes": 13287424,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5406720,
+        "pid": 76868,
+        "user_cpu_ms": 0,
+        "wall_ms": 37.582
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 14,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 7.9982,
+      "commandToSettledResponseMs": 57.9379,
+      "parentPrivateBytes": 4444160,
+      "parentWorkingSetBytes": 13275136,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5435392,
+        "pid": 128800,
+        "user_cpu_ms": 0,
+        "wall_ms": 37.7434
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 15,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 5.1878,
+      "commandToSettledResponseMs": 67.2716,
+      "parentPrivateBytes": 4448256,
+      "parentWorkingSetBytes": 13287424,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5447680,
+        "pid": 170432,
+        "user_cpu_ms": 0,
+        "wall_ms": 38.0645
+      }
+    },
+    {
+      "session": 2,
+      "iteration": 16,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 42.1391,
+      "openOrReloadAckMs": 5.8501,
+      "commandToSettledResponseMs": 56.9089,
+      "parentPrivateBytes": 4444160,
+      "parentWorkingSetBytes": 13262848,
+      "parentHandles": 179,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5451776,
+        "pid": 153952,
+        "user_cpu_ms": 0,
+        "wall_ms": 33.9565
+      }
+    }
+  ],
+  "idleIntervals": [
+    {
+      "phase": "dormant_controlled_session",
+      "wallMs": 3012.415,
+      "processCpuMs": 0.0,
+      "cpuPercentOfOneLogicalProcessor": 0.0,
+      "cpuPercentOfMachine": 0.0,
+      "privateBytesBefore": 1675264,
+      "privateBytesAfter": 1675264,
+      "workingSetBytesBefore": 8957952,
+      "workingSetBytesAfter": 8957952,
+      "handlesBefore": 170,
+      "handlesAfter": 170,
+      "ioReadOperations": 0,
+      "ioWriteOperations": 0,
+      "ioOtherOperations": 0,
+      "ioReadBytes": 0,
+      "ioWriteBytes": 0,
+      "ioOtherBytes": 0,
+      "processLifetimePeakWorkingSetBytes": 8957952
+    },
+    {
+      "phase": "pinned_static_image",
+      "wallMs": 3006.418,
+      "processCpuMs": 0.0,
+      "cpuPercentOfOneLogicalProcessor": 0.0,
+      "cpuPercentOfMachine": 0.0,
+      "privateBytesBefore": 4411392,
+      "privateBytesAfter": 4411392,
+      "workingSetBytesBefore": 13242368,
+      "workingSetBytesAfter": 13242368,
+      "handlesBefore": 179,
+      "handlesAfter": 179,
+      "ioReadOperations": 0,
+      "ioWriteOperations": 0,
+      "ioOtherOperations": 0,
+      "ioReadBytes": 0,
+      "ioWriteBytes": 0,
+      "ioOtherBytes": 0,
+      "processLifetimePeakWorkingSetBytes": 16179200
+    },
+    {
+      "phase": "minimized_static_image",
+      "wallMs": 3002.8883,
+      "processCpuMs": 0.0,
+      "cpuPercentOfOneLogicalProcessor": 0.0,
+      "cpuPercentOfMachine": 0.0,
+      "privateBytesBefore": 4411392,
+      "privateBytesAfter": 4411392,
+      "workingSetBytesBefore": 13242368,
+      "workingSetBytesAfter": 13242368,
+      "handlesBefore": 179,
+      "handlesAfter": 179,
+      "ioReadOperations": 0,
+      "ioWriteOperations": 0,
+      "ioOtherOperations": 0,
+      "ioReadBytes": 0,
+      "ioWriteBytes": 0,
+      "ioOtherBytes": 0,
+      "processLifetimePeakWorkingSetBytes": 16179200
+    }
+  ],
+  "interactions": [
+    {
+      "command": "pan",
+      "roundTripMs": 0.9794,
+      "panX": 5.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 1.2209,
+      "panX": 0.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 2.7288,
+      "panX": 5.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 3.2063,
+      "panX": 0.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 2.2033,
+      "panX": 5.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 1.5417,
+      "panX": 0.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 1.3699,
+      "panX": 5.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 1.3711,
+      "panX": 0.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 1.5307,
+      "panX": 5.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 1.9222,
+      "panX": 0.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 2.3765,
+      "panX": 5.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 2.1402,
+      "panX": 0.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 1.8267,
+      "panX": 5.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 1.2131,
+      "panX": 0.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 1.4402,
+      "panX": 5.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 1.3124,
+      "panX": 0.0,
+      "panY": 0.0
+    }
+  ]
+}

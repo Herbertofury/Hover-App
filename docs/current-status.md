@@ -53,13 +53,20 @@ The app-native `hover-agent --stdio` interface can launch/control its own real
 Windows session independently of Computer Use. The current release-build suite
 passed 60 local checks using generated files and the pinned public DBPF index
 fixture, including recovery of zoom/pan/scroll after repeated reload errors.
-Both Rust 1.95 and 1.99 hosted Windows jobs passed the preceding 55-check suite,
+Both Rust 1.95 and 1.99 hosted Windows jobs passed the 60-check suite,
 native decoder fault/CPU tests, source tests, native lifecycle test, lint and
-release build in run 43334578860 at `13f309f`. PR #42 was published to protected
-main as that exact tested commit. Earlier agent-control PR #40 preserved the
+release build in run 43335239471 at `ad0c1fa`. PR #43 was published to protected
+main as that exact tested commit; decoder containment PR #42 passed the earlier
+55-check suite in run 43334578860. Earlier agent-control PR #40 preserved the
 concurrent competitor research. Captures are real client render exports.
 See [agent control and boundaries](agent-control.md). This advances app-native
 testing; actual Explorer, physical input and packaged release gates remain open.
+
+The repeatable [native performance probe](native-performance.md) retains 51
+synthetic image measurements, 16 pan round trips and three short idle intervals
+with parent CPU/I/O/memory/handle counters plus separate decoder job accounting.
+It measures controlled real-app command/state responses, not Explorer hover,
+physical frame presentation, storage-cold behavior or full release performance.
 
 The approved Git-history metadata cleanup replaced personal author addresses
 with GitHub no-reply identities without changing source trees. Local backups

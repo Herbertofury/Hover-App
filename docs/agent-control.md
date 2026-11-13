@@ -20,6 +20,7 @@ and resident process. This is a development interface, not release certification
 cargo build --release --workspace --locked
 ./target/release/hover-agent.exe --help
 ./scripts/test-agent.ps1
+./scripts/measure-agent.ps1 -Json
 ```
 
 The test generates its own on-disk files and keeps evidence in
@@ -46,6 +47,14 @@ qualified merge. [Retained CI summary](evidence/agent-ci-2026-11-12.json) and
 [native-app log](evidence/agent-native-ci-2026-11-12.txt) record both actual runs.
 The readable log has trailing whitespace removed; the linked run retains the
 original. See also [local raw results](evidence/agent-local-2026-11-12.json).
+
+The later 60-check recovery suite passed on both toolchains at `ad0c1fa` in
+[Windows run 43335239471](https://github.com/Herbertofury/Hover-App/actions/runs/43335239471).
+[Retained recovery CI summary](evidence/reload-recovery-ci-2026-11-12.json) and
+[native log](evidence/reload-recovery-native-ci-2026-11-12.txt) include the actual
+results; trailing log whitespace is removed. PR #43 was published as that exact
+tested commit. See also [repeatable native performance measurements](native-performance.md)
+for startup, acknowledgments, settled responses, idle CPU/I/O and memory scope.
 
 ![Native DBPF metadata client render](evidence/agent-dbpf-preview-2026-11-12.png)
 

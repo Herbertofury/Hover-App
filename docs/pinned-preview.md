@@ -48,6 +48,9 @@ repeated missing-source errors. After the fix, the same CLI-driven suite passed
 failed reloads, byte preservation and the decoder process checks. See
 [retained recovery results](evidence/reload-recovery-local-2026-11-12.json).
 This exercises production windows/worker code without physical input injection.
+Both Rust toolchains then passed all 60 real-app assertions in
+[Windows run 43335239471](https://github.com/Herbertofury/Hover-App/actions/runs/43335239471);
+see the [retained CI summary](evidence/reload-recovery-ci-2026-11-12.json).
 
 Source revision `71b38a7960b84ca92b700f1f319afa0208b8776b` passed formatting,
 strict Clippy, 39 workspace parent tests plus the source-sharing subprocess,
