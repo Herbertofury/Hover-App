@@ -41,6 +41,10 @@ were inspected; their scopes remain required and open.
   features with source tests; see [pinned-preview evidence](pinned-preview.md).
 - ZIP upgraded from 2.4.2 to 9.5.1 after four RustSec advisories. Full reference
   and Cargo license notices are retained. Advisory scans do not prove safety.
+- WIC/GIF image decoding runs in a short-lived, resource-limited native process
+  with bounded byte pipes, wall-time supervision and independent cancellation.
+  Local real-app checks and native fault tests pass; permission sandboxing and
+  hard storage/GPU boundaries remain open. See [decoder evidence](decoder-containment.md).
 
 ## Current evidence
 
@@ -70,7 +74,7 @@ identity fields, preserving its parent, complete source tree and message, with a
 separate local backup. Its competitor research remains intact. CI now checks
 the full public branch history as well as local pre-publication checks. GitHub
 rejected the attempted server-side email ruleset (HTTP 422, invalid rule), so
-server-side prevention is not enabled. Other publishing clients must still use
+that email-pattern rule is not enabled. Other publishing clients must still use
 no-reply identities; these checks do not erase old GitHub cache/internal refs.
 
 A second direct documentation update bypassed local checks and was caught by
@@ -98,10 +102,10 @@ through that runtime. Unsupported UI injection is not a substitute.
   and modal flows; physical pinning/keyboard/reload interaction verification,
   accessibility/high contrast, DPI/monitors, deeper camera/swatch continuity,
   shelf, copying and synchronized multi-file comparison.
-- Hard decoder isolation and time/memory/process limits. Cooperative worker
-  cancellation cannot terminate a stuck native codec. Native codec allocation,
-  concurrent changes, external media security and parser fuzz/stress coverage
-  remain incomplete. Existing settings/checklists do not prove these features.
+- Decoder filesystem/network permissions, hard source-I/O and GPU boundaries,
+  concurrent-change handling, external media security and expanded malformed-file
+  stress/fuzz coverage. WIC/GIF process/job limits do not establish these broader
+  boundaries. Existing settings/checklists do not prove these features.
 - Each game milestone with pinned licensed specialists, versioned permitted
   fixtures and retained differential/visual failures. DBPF 2.1 has partial index
   metadata tests and a 20-entry specialist comparison, not CC resolution, image

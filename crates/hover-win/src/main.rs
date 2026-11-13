@@ -2,6 +2,9 @@
 
 #[cfg(windows)]
 fn main() {
+    if std::env::args().skip(1).collect::<Vec<_>>() == ["--decode-worker"] {
+        std::process::exit(hover_win::run_decoder_worker());
+    }
     if std::env::args().skip(1).collect::<Vec<_>>() == ["--agent-stdio"] {
         std::process::exit(hover_win::run_agent_stdio());
     }

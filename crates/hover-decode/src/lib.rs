@@ -125,13 +125,36 @@ pub fn decode_gif_animation(
 
     let bytes =
         local_io::read_local_snapshot(path, limits.max_local_file_size_bytes, cancellation)?;
+    decode_gif_snapshot(&bytes, target_width, target_height, limits, cancellation)
+}
+
+/// Decode only the already-authorized bounded snapshot; no filesystem access.
+pub fn decode_gif_snapshot(
+    bytes: &[u8],
+    target_width: u32,
+    target_height: u32,
+    limits: DecodeLimits,
+    cancellation: &CancellationToken,
+) -> Result<DecodedAnimation, DecodeError> {
+    if cancellation.is_cancelled() {
+        return Err(DecodeError::Cancelled);
+    }
+    if bytes.len() as u64 > limits.max_local_file_size_bytes {
+        return Err(DecodeError::FileTooLarge {
+            actual: bytes.len() as u64,
+            limit: limits.max_local_file_size_bytes,
+        });
+    }
+    if sniff_image_format(bytes) != ImageFormat::Gif {
+        return Err(DecodeError::UnsupportedFormat);
+    }
     let mut options = gif::DecodeOptions::new();
     options.set_color_output(gif::ColorOutput::RGBA);
     options.set_memory_limit(gif::MemoryLimit::Bytes(
         std::num::NonZeroU64::new(32 * 1024 * 1024).unwrap(),
     ));
     let mut decoder = options
-        .read_info(Cursor::new(&bytes))
+        .read_info(Cursor::new(bytes))
         .map_err(|_| DecodeError::UnsupportedFormat)?;
     let width = u32::from(decoder.width());
     let height = u32::from(decoder.height());
@@ -448,6 +471,63 @@ fn fit_decode_size(
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn snapshot_gif_keeps_exact_pixels_timing_and_cancellation() {
+        let mut bytes = Vec::new();
+        {
+            let mut encoder = gif::Encoder::new(&mut bytes, 2, 1, &[255, 0, 0, 0, 255, 0]).unwrap();
+            for (pixels, delay) in [(vec![0, 1], 12), (vec![1, 0], 6)] {
+                encoder
+                    .write_frame(&gif::Frame {
+                        width: 2,
+                        height: 1,
+                        delay,
+                        dispose: DisposalMethod::Keep,
+                        buffer: std::borrow::Cow::Owned(pixels),
+                        ..Default::default()
+                    })
+                    .unwrap();
+            }
+        }
+        let original = bytes.clone();
+        let animation = decode_gif_snapshot(
+            &bytes,
+            2,
+            1,
+            DecodeLimits::default(),
+            &CancellationToken::new(),
+        )
+        .unwrap();
+        assert_eq!(animation.frames.len(), 2);
+        assert_eq!(
+            animation.frames[0].pixels_bgra,
+            [0, 0, 255, 255, 0, 255, 0, 255]
+        );
+        assert_eq!(
+            animation.frames[1].pixels_bgra,
+            [0, 255, 0, 255, 0, 0, 255, 255]
+        );
+        assert_eq!(
+            (animation.frames[0].delay_ms, animation.frames[1].delay_ms),
+            (120, 60)
+        );
+        assert_eq!(bytes, original);
+        let token = CancellationToken::new();
+        token.cancel();
+        assert!(matches!(
+            decode_gif_snapshot(&bytes, 2, 1, DecodeLimits::default(), &token),
+            Err(DecodeError::Cancelled)
+        ));
+        let limits = DecodeLimits {
+            max_local_file_size_bytes: 1,
+            ..Default::default()
+        };
+        assert!(matches!(
+            decode_gif_snapshot(&bytes, 2, 1, limits, &CancellationToken::new()),
+            Err(DecodeError::FileTooLarge { .. })
+        ));
+    }
 
     #[test]
     fn sniffs_common_formats() {

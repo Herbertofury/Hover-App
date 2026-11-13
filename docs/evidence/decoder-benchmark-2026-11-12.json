@@ -1,0 +1,1214 @@
+{
+  "schemaVersion": 1,
+  "measuredAtUtc": "2026-11-13T00:07:20.7258249Z",
+  "classification": "synthetic component comparison; caches uncontrolled",
+  "toolchain": "rustc 1.99.0 (b940084d7 2026-09-28)",
+  "os": {
+    "caption": "Microsoft Windows 11 Pro",
+    "version": "10.0.22631",
+    "build": "22631",
+    "architecture": "64-bit"
+  },
+  "cpu": {
+    "model": "13th Gen Intel(R) Core(TM) i9-13900K",
+    "logicalProcessors": 32
+  },
+  "physicalMemoryBytes": 68456087552,
+  "benchmarkExecutableSha256": "20FDD0D1A5BD15DC9BD6DFC56AB72842B26131A0B5853AEADA4C366C3CE44EAE",
+  "excludes": [
+    "Explorer latency",
+    "storage-cold tests",
+    "real game fidelity",
+    "3D frames",
+    "compositor capture",
+    "installer/update/rollback"
+  ],
+  "comparisons": [
+    {
+      "fixtureType": "generated synthetic",
+      "format": "BMP",
+      "fixtureFile": "quadrants.bmp",
+      "fixtureSha256": "1433A7A9AF366D1D63F324895FD1286F8E18076B6D7A115355C0D28F99A653B3",
+      "statistics": [
+        {
+          "mode": "in_process_reference",
+          "samples": 16,
+          "p50_ms": 6.7258,
+          "p95_ms": 13.2881,
+          "percentileMethod": "nearest rank"
+        },
+        {
+          "mode": "isolated_process",
+          "samples": 16,
+          "p50_ms": 40.8173,
+          "p95_ms": 57.7571,
+          "percentileMethod": "nearest rank"
+        }
+      ],
+      "raw": {
+        "all_outputs_equal": true,
+        "cache": "OS cache uncontrolled; fixtures may already be cached",
+        "comparison": "exact geometry, stride, delay and pixel byte comparison after stopping each timer",
+        "digest_is_cryptographic": false,
+        "order": "reference samples then isolated samples; same process",
+        "samples": [
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "in_process_reference",
+            "wall_ms": 13.2881,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "in_process_reference",
+            "wall_ms": 7.6505,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "in_process_reference",
+            "wall_ms": 7.2149,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "in_process_reference",
+            "wall_ms": 7.0422,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 4,
+            "mode": "in_process_reference",
+            "wall_ms": 9.627500000000001,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 5,
+            "mode": "in_process_reference",
+            "wall_ms": 9.0571,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 6,
+            "mode": "in_process_reference",
+            "wall_ms": 7.0522,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 7,
+            "mode": "in_process_reference",
+            "wall_ms": 7.7476,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 8,
+            "mode": "in_process_reference",
+            "wall_ms": 6.5727,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 9,
+            "mode": "in_process_reference",
+            "wall_ms": 6.6578,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 10,
+            "mode": "in_process_reference",
+            "wall_ms": 6.5045,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 11,
+            "mode": "in_process_reference",
+            "wall_ms": 6.6998999999999995,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 12,
+            "mode": "in_process_reference",
+            "wall_ms": 6.7258,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 13,
+            "mode": "in_process_reference",
+            "wall_ms": 6.5971,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 14,
+            "mode": "in_process_reference",
+            "wall_ms": 6.334099999999999,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 15,
+            "mode": "in_process_reference",
+            "wall_ms": 6.1348,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "isolated_process",
+            "wall_ms": 38.2701,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5668864,
+                "pid": 165908,
+                "user_cpu_ms": 0,
+                "wall_ms": 36.613800000000005
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "isolated_process",
+            "wall_ms": 38.523,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5701632,
+                "pid": 249704,
+                "user_cpu_ms": 0,
+                "wall_ms": 36.814
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "isolated_process",
+            "wall_ms": 35.1875,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5697536,
+                "pid": 243312,
+                "user_cpu_ms": 0,
+                "wall_ms": 33.5401
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "isolated_process",
+            "wall_ms": 35.9725,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5685248,
+                "pid": 240636,
+                "user_cpu_ms": 0,
+                "wall_ms": 34.5168
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 4,
+            "mode": "isolated_process",
+            "wall_ms": 36.1497,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5693440,
+                "pid": 123288,
+                "user_cpu_ms": 0,
+                "wall_ms": 34.675900000000006
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 5,
+            "mode": "isolated_process",
+            "wall_ms": 37.881499999999996,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5705728,
+                "pid": 70056,
+                "user_cpu_ms": 0,
+                "wall_ms": 36.4974
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 6,
+            "mode": "isolated_process",
+            "wall_ms": 42.8539,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5689344,
+                "pid": 79780,
+                "user_cpu_ms": 0,
+                "wall_ms": 40.9997
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 7,
+            "mode": "isolated_process",
+            "wall_ms": 46.8063,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5722112,
+                "pid": 7044,
+                "user_cpu_ms": 0,
+                "wall_ms": 45.324000000000005
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 8,
+            "mode": "isolated_process",
+            "wall_ms": 41.299299999999995,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5693440,
+                "pid": 155164,
+                "user_cpu_ms": 0,
+                "wall_ms": 39.618100000000005
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 9,
+            "mode": "isolated_process",
+            "wall_ms": 40.838100000000004,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5701632,
+                "pid": 251260,
+                "user_cpu_ms": 0,
+                "wall_ms": 39.0843
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 10,
+            "mode": "isolated_process",
+            "wall_ms": 41.024499999999996,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5693440,
+                "pid": 38988,
+                "user_cpu_ms": 0,
+                "wall_ms": 39.4353
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 11,
+            "mode": "isolated_process",
+            "wall_ms": 40.8173,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5718016,
+                "pid": 132312,
+                "user_cpu_ms": 0,
+                "wall_ms": 38.872299999999996
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 12,
+            "mode": "isolated_process",
+            "wall_ms": 38.0137,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5693440,
+                "pid": 188860,
+                "user_cpu_ms": 0,
+                "wall_ms": 36.4221
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 13,
+            "mode": "isolated_process",
+            "wall_ms": 54.394600000000004,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5697536,
+                "pid": 52944,
+                "user_cpu_ms": 0,
+                "wall_ms": 52.379799999999996
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 14,
+            "mode": "isolated_process",
+            "wall_ms": 48.010999999999996,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5722112,
+                "pid": 183756,
+                "user_cpu_ms": 0,
+                "wall_ms": 44.465900000000005
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "1d7f5fbbb72337c2",
+            "frames": 1,
+            "iteration": 15,
+            "mode": "isolated_process",
+            "wall_ms": 57.7571,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5697536,
+                "pid": 78044,
+                "user_cpu_ms": 0,
+                "wall_ms": 56.2263
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          }
+        ],
+        "schema": 1,
+        "scope": "source-read/decode/process exchange component; no UI or Explorer timing"
+      }
+    },
+    {
+      "fixtureType": "generated synthetic",
+      "format": "GIF",
+      "fixtureFile": "two-frame.gif",
+      "fixtureSha256": "0C61EE4EEAEE522A1BBE18D2E31EC17FCDFE143EEA15F6F4B9DE1B6888ACC6EB",
+      "statistics": [
+        {
+          "mode": "in_process_reference",
+          "samples": 16,
+          "p50_ms": 1.0725,
+          "p95_ms": 2.3967,
+          "percentileMethod": "nearest rank"
+        },
+        {
+          "mode": "isolated_process",
+          "samples": 16,
+          "p50_ms": 30.1723,
+          "p95_ms": 35.6383,
+          "percentileMethod": "nearest rank"
+        }
+      ],
+      "raw": {
+        "all_outputs_equal": true,
+        "cache": "OS cache uncontrolled; fixtures may already be cached",
+        "comparison": "exact geometry, stride, delay and pixel byte comparison after stopping each timer",
+        "digest_is_cryptographic": false,
+        "order": "reference samples then isolated samples; same process",
+        "samples": [
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 0,
+            "mode": "in_process_reference",
+            "wall_ms": 2.3398999999999996,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 1,
+            "mode": "in_process_reference",
+            "wall_ms": 0.9084,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 2,
+            "mode": "in_process_reference",
+            "wall_ms": 0.9125,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 3,
+            "mode": "in_process_reference",
+            "wall_ms": 0.94,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 4,
+            "mode": "in_process_reference",
+            "wall_ms": 0.8302999999999999,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 5,
+            "mode": "in_process_reference",
+            "wall_ms": 0.8752,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 6,
+            "mode": "in_process_reference",
+            "wall_ms": 1.5372000000000001,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 7,
+            "mode": "in_process_reference",
+            "wall_ms": 2.2793,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 8,
+            "mode": "in_process_reference",
+            "wall_ms": 2.2649,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 9,
+            "mode": "in_process_reference",
+            "wall_ms": 2.3967,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 10,
+            "mode": "in_process_reference",
+            "wall_ms": 1.0725,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 11,
+            "mode": "in_process_reference",
+            "wall_ms": 1.0686,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 12,
+            "mode": "in_process_reference",
+            "wall_ms": 2.2238,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 13,
+            "mode": "in_process_reference",
+            "wall_ms": 1.8153,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 14,
+            "mode": "in_process_reference",
+            "wall_ms": 1.0722,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 15,
+            "mode": "in_process_reference",
+            "wall_ms": 2.2623,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 0,
+            "mode": "isolated_process",
+            "wall_ms": 35.6383,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5701632,
+                "pid": 204520,
+                "user_cpu_ms": 0,
+                "wall_ms": 34.2663
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 1,
+            "mode": "isolated_process",
+            "wall_ms": 31.7127,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 15,
+                "outcome": "success",
+                "peak_commit_bytes": 5693440,
+                "pid": 221100,
+                "user_cpu_ms": 0,
+                "wall_ms": 30.5654
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 2,
+            "mode": "isolated_process",
+            "wall_ms": 33.323699999999995,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5709824,
+                "pid": 247348,
+                "user_cpu_ms": 0,
+                "wall_ms": 32.5266
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 3,
+            "mode": "isolated_process",
+            "wall_ms": 30.1723,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5705728,
+                "pid": 221820,
+                "user_cpu_ms": 0,
+                "wall_ms": 29.477
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 4,
+            "mode": "isolated_process",
+            "wall_ms": 32.2265,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5689344,
+                "pid": 211456,
+                "user_cpu_ms": 0,
+                "wall_ms": 31.394900000000003
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 5,
+            "mode": "isolated_process",
+            "wall_ms": 32.208,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5701632,
+                "pid": 176040,
+                "user_cpu_ms": 0,
+                "wall_ms": 31.367199999999997
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 6,
+            "mode": "isolated_process",
+            "wall_ms": 32.9769,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5693440,
+                "pid": 227284,
+                "user_cpu_ms": 0,
+                "wall_ms": 31.543000000000003
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 7,
+            "mode": "isolated_process",
+            "wall_ms": 30.504199999999997,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5713920,
+                "pid": 196364,
+                "user_cpu_ms": 0,
+                "wall_ms": 29.881999999999998
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 8,
+            "mode": "isolated_process",
+            "wall_ms": 27.3283,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5713920,
+                "pid": 92344,
+                "user_cpu_ms": 0,
+                "wall_ms": 26.6632
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 9,
+            "mode": "isolated_process",
+            "wall_ms": 26.1459,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5730304,
+                "pid": 196148,
+                "user_cpu_ms": 0,
+                "wall_ms": 25.347
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 10,
+            "mode": "isolated_process",
+            "wall_ms": 26.6448,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5705728,
+                "pid": 242660,
+                "user_cpu_ms": 0,
+                "wall_ms": 25.9303
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 11,
+            "mode": "isolated_process",
+            "wall_ms": 26.096500000000002,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5722112,
+                "pid": 170512,
+                "user_cpu_ms": 0,
+                "wall_ms": 25.391299999999998
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 12,
+            "mode": "isolated_process",
+            "wall_ms": 26.1686,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5697536,
+                "pid": 4832,
+                "user_cpu_ms": 0,
+                "wall_ms": 25.5475
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 13,
+            "mode": "isolated_process",
+            "wall_ms": 27.6075,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5701632,
+                "pid": 45664,
+                "user_cpu_ms": 0,
+                "wall_ms": 26.983
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 14,
+            "mode": "isolated_process",
+            "wall_ms": 26.1305,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5701632,
+                "pid": 204432,
+                "user_cpu_ms": 0,
+                "wall_ms": 25.4647
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "675599a8013002f1",
+            "frames": 2,
+            "iteration": 15,
+            "mode": "isolated_process",
+            "wall_ms": 30.1799,
+            "worker": {
+              "active_pid": 0,
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5705728,
+                "pid": 35452,
+                "user_cpu_ms": 0,
+                "wall_ms": 29.391000000000002
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": false,
+              "poisoned": false,
+              "wall_limit_ms": 8000
+            }
+          }
+        ],
+        "schema": 1,
+        "scope": "source-read/decode/process exchange component; no UI or Explorer timing"
+      }
+    }
+  ]
+}

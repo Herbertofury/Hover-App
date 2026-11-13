@@ -7,8 +7,8 @@ use hover_core::{
     CancellationToken, HoverState, PlacementConfig, Point as HoverPoint, PreviewWorker,
     Rect as HoverRect, ResourceCounters, Size, WheelModifier, ZoomConfig, ZoomState, place_preview,
 };
+use hover_decode::DecodedFrame;
 use hover_decode::local_io::{local_metadata, open_preview_file};
-use hover_decode::{DecodeLimits, DecodedFrame, DecodedImage, decode_gif_animation};
 use hover_settings::{PreviewTypeSettings, Settings, VideoSettings};
 use std::collections::HashMap;
 use std::env;
@@ -2556,39 +2556,24 @@ fn build_preview_payload(
         }
         return text_preview(path);
     }
-    if is_gif_path(path) {
-        if !preview_types.images {
-            return Err("Image previews are disabled in Hover options.".to_string());
-        }
-        let animation = decode_gif_animation(
-            path,
-            MAX_ANIMATED_IMAGE_PREVIEW_WIDTH,
-            MAX_ANIMATED_IMAGE_PREVIEW_HEIGHT,
-            DecodeLimits::default(),
-            token,
-        )
-        .map_err(|error| error.to_string())?;
-        return Ok(PreviewPayload::Frames {
-            frames: animation
-                .frames
-                .into_iter()
-                .map(frame_from_decoded_frame)
-                .collect(),
-        });
-    }
     if !preview_types.images {
         return Err("Image previews are disabled in Hover options.".to_string());
     }
-    let image = hover_decode::wic::decode_local_file(
-        path,
-        MAX_STATIC_IMAGE_PREVIEW_DIMENSION,
-        MAX_STATIC_IMAGE_PREVIEW_DIMENSION,
-        DecodeLimits::default(),
-        token,
-    )
-    .map_err(|error| error.to_string())?;
+    let animated = is_gif_path(path);
+    let (width, height) = if animated {
+        (
+            MAX_ANIMATED_IMAGE_PREVIEW_WIDTH,
+            MAX_ANIMATED_IMAGE_PREVIEW_HEIGHT,
+        )
+    } else {
+        (
+            MAX_STATIC_IMAGE_PREVIEW_DIMENSION,
+            MAX_STATIC_IMAGE_PREVIEW_DIMENSION,
+        )
+    };
+    let frames = crate::decoder_process::decode_file(path, animated, width, height, token)?;
     Ok(PreviewPayload::Frames {
-        frames: vec![frame_from_decoded_image(image)],
+        frames: frames.into_iter().map(frame_from_decoded_frame).collect(),
     })
 }
 
@@ -3009,16 +2994,6 @@ fn text_kind_label(path: &Path) -> &'static str {
             "Source text"
         }
         _ => "Text file",
-    }
-}
-
-fn frame_from_decoded_image(image: DecodedImage) -> OverlayFrame {
-    OverlayFrame {
-        width: image.width,
-        height: image.height,
-        stride: image.stride,
-        pixels_bgra: image.pixels_bgra,
-        delay_ms: 0,
     }
 }
 

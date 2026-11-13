@@ -26,8 +26,9 @@ The test generates its own on-disk files and keeps evidence in
 `target/agent-evidence`. It starts real Windows processes and windows, checking
 identity, decode output, native styles/focus, reload continuity, rename and byte
 preservation, cancellation, malformed requests, no autoplay, minimize/restore,
-render capture and owned shutdown. The local release build passed 45 generated
-fixture assertions, or 50 with the optional pinned DBPF fixture below.
+render capture and owned shutdown. The current local release build passed 50
+generated-fixture assertions, or 55 with the optional pinned DBPF fixture below,
+including the separate WIC/GIF decoder process and job accounting.
 CI invokes the same script after each toolchain's build; check its actual result
 before claiming hosted success. The test does not send physical input or operate
 Explorer.
@@ -37,7 +38,7 @@ Use `-DbpfFixture <path>` with the reviewed LlamaLogic TestPackage.package from
 The script requires its exact SHA-256. CI explicitly downloads this single file
 at the pinned upstream revision and verifies it; Hover never downloads fixtures
 on hover. This checks 20 package index resources, not real-game rendering or a
-known Sims game/build. The final 50-check suite passed on both Rust 1.95.0
+known Sims game/build. The earlier 50-check suite passed on both Rust 1.95.0
 and 1.99.0 in [Windows CI run 43324046891](https://github.com/Herbertofury/Hover-App/actions/runs/43324046891),
 at source revision `3402b6ed70feb3ff65413937ed597e267a707a06`, before the
 qualified merge. [Retained CI summary](evidence/agent-ci-2026-11-12.json) and
@@ -75,7 +76,9 @@ can have `phase: error`; inspect that field as well as RPC `ok`.
 
 - `capabilities`, `support`, `settings`, `status`: discover commands, retrieve
   the bundled game-support matrix, inspect effective ephemeral settings, or
-  inspect native/application state.
+  inspect native/application state. `status.decoder_process` reports the active
+  decoder PID, limits and last task's actual Windows job accounting; see
+  [decoder containment and its boundaries](decoder-containment.md).
 - `open`: absolute `path`; `pin` defaults true; `activate` defaults false.
   Local/cloud/link read policy still applies. `pin` sets `value` (default true),
   optionally `activate`. Explicit activation can focus Hover.

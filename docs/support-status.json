@@ -4,14 +4,15 @@
   "releaseVerified": false,
   "note": "States reflect current source/evidence, not milestone completion. All per-game fixture and packaged-release gates remain open.",
   "core": {
-    "image": "WIC BMP pixel test and native-app color/viewport validation with generated fixtures",
+    "image": "WIC in bounded native child process; generated BMP pixels/native-app validation; permission sandbox and broader fidelity gates open",
+    "decoder": "WIC/GIF separate process, enforced job resource limits, bounded pipes and cancellation; filesystem/network/GPU and source-I/O isolation incomplete",
     "interaction": "native pin/reload/keyboard/view continuity; actual Windows app tests; shell/physical accessibility/DPI gates open",
     "agent": "private stdio controls real hover.exe; decoded/native state and client render exports; see docs/agent-control.md",
     "browser": "skeleton, no remote preview fetch",
     "artist3D": "not implemented",
     "folder": "bounded enumeration, shell interaction unverified",
     "media": "external playback after explicit click, interaction/security unverified",
-    "gif": "implemented, fidelity and limits need expanded tests",
+    "gif": "bounded native child process; generated two-frame pixels/timing and app test; expanded real-file fidelity gates open",
     "zip": "bounded metadata index, reader tests with generated fixtures",
     "text": "implemented, shell interaction unverified"
   },

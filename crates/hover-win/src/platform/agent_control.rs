@@ -305,7 +305,7 @@ impl App {
             "content_rect":{"width":client.right-client.left,"height":client.bottom-client.top},
             "scroll":model.map(|model|model.scroll_offset),"content":content,"controls":controls,
             "content_focused":GetFocus()==self.overlay,"media_waiting":self.media_ready.is_some(),"video_running":self.video.is_some(),"audio_running":self.audio.is_some(),
-            "worker_busy":self.decode_worker.as_ref().is_some_and(PreviewWorker::is_busy)})
+            "worker_busy":self.decode_worker.as_ref().is_some_and(PreviewWorker::is_busy),"decoder_process":crate::decoder_process::diagnostics()})
     }
 }
 

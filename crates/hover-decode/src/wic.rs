@@ -50,6 +50,31 @@ fn decode_local_file_inner(
 ) -> Result<DecodedImage, DecodeError> {
     let bytes =
         crate::local_io::read_local_snapshot(path, limits.max_local_file_size_bytes, cancellation)?;
+    decode_snapshot(&bytes, target_width, target_height, limits, cancellation).map(|mut image| {
+        image.format = format;
+        image
+    })
+}
+
+/// The codec sees memory only. The caller owns source authorization/lifetime.
+#[cfg(windows)]
+pub fn decode_snapshot(
+    bytes: &[u8],
+    target_width: u32,
+    target_height: u32,
+    limits: DecodeLimits,
+    cancellation: &CancellationToken,
+) -> Result<DecodedImage, DecodeError> {
+    if bytes.len() as u64 > limits.max_local_file_size_bytes {
+        return Err(DecodeError::FileTooLarge {
+            actual: bytes.len() as u64,
+            limit: limits.max_local_file_size_bytes,
+        });
+    }
+    let format = crate::sniff_image_format(bytes);
+    if format == ImageFormat::Unknown {
+        return Err(DecodeError::UnsupportedFormat);
+    }
     // The guard is declared before all COM interfaces so they drop first.
     unsafe { CoInitializeEx(None, COINIT_MULTITHREADED) }
         .ok()
@@ -72,7 +97,7 @@ fn decode_local_file_inner(
     };
     let stream = unsafe { factory.CreateStream() }
         .map_err(|error| DecodeError::Wic(error.message().to_string()))?;
-    unsafe { stream.InitializeFromMemory(&bytes) }
+    unsafe { stream.InitializeFromMemory(bytes) }
         .map_err(|error| DecodeError::Wic(error.message().to_string()))?;
     let decoder = unsafe {
         factory

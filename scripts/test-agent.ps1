@@ -75,6 +75,12 @@ function Stop-OwnedAgent($Process) {
 
 $textPath = Join-Path $runDirectory ('fixture-' + [char]0x96ea + '.txt')
 $imagePath = Join-Path $runDirectory 'quadrants.bmp'
+$gifPath = Join-Path $runDirectory 'two-frame.gif'
+$gifHex = '47494638396102000100800000ff000000ff0021ff0b4e45545343415045322e30030100000021f904040c0000002c0000000002000100000202440a0021f90404060000002c00000000020001000002020c0a003b'
+$gifBytes=[byte[]]::new($gifHex.Length/2)
+for($i=0;$i-lt $gifBytes.Length;$i++){$gifBytes[$i]=[Convert]::ToByte($gifHex.Substring($i*2,2),16)}
+[IO.File]::WriteAllBytes($gifPath,$gifBytes)
+$gifHash=(Get-FileHash -LiteralPath $gifPath -Algorithm SHA256).Hash
 $badPath = Join-Path $runDirectory 'corrupt.bin'
 $videoPath = Join-Path $runDirectory 'paused.mp4'
 [IO.File]::WriteAllLines($textPath, (0..119 | ForEach-Object { "original line $_" }), [Text.UTF8Encoding]::new($false))
@@ -151,6 +157,8 @@ try {
     $state = Invoke-Hover @{command='wait'}
     Assert-That ($state.phase -eq 'ready' -and $state.content.kind -eq 'image' -and $state.content.image_width -eq 800 -and $state.content.image_height -eq 600) 'WIC decodes generated BMP through the real application'
     Assert-That ($state.content.viewport_width -eq $state.content_rect.width -and $state.content.viewport_height -eq $state.content_rect.height) 'First pinned image fits the actual native client area including caption and border'
+    Assert-That ($state.decoder_process.active_pid-eq 0 -and $state.decoder_process.last_task.pid-ne $state.pid -and $state.decoder_process.last_task.pid-gt 0 -and $state.decoder_process.last_task.outcome-eq 'success') 'WIC runs in a separate decoder process that exits before ready'
+    Assert-That ($state.decoder_process.last_task.active_after_stop-eq 0 -and $state.decoder_process.last_task.peak_commit_bytes-gt 0 -and -not $state.decoder_process.poisoned) 'Windows job accounting confirms no decoder remains active after output'
     $null = Invoke-Hover @{command='resize';width=500;height=400}
     $null = Invoke-Hover @{command='zoom';mode='native'}
     $state = Invoke-Hover @{command='pan';dx=90;dy=-60}
@@ -199,6 +207,11 @@ try {
     Start-Sleep -Milliseconds 100
     $state = Invoke-Hover @{command='status'}
     Assert-That ($state.phase -eq 'empty' -and -not $state.visible) 'Cancelled native decode cannot reopen a closed preview'
+    $null = Invoke-Hover @{command='open';path=$gifPath}
+    $state = Invoke-Hover @{command='wait'}
+    Assert-That ($state.phase-eq 'ready' -and $state.content.kind-eq 'image' -and $state.content.frames-eq 2 -and $state.content.image_width-eq 2) 'Animated GIF survives the process boundary with both decoded frames'
+    Assert-That ($state.decoder_process.last_task.outcome-eq 'success' -and $state.decoder_process.last_task.active_after_stop-eq 0) 'GIF decoder exits while the native app retains and animates its output'
+    Assert-That ((Get-FileHash -LiteralPath $gifPath -Algorithm SHA256).Hash-eq $gifHash) 'Animated source remains byte-identical'
     $null = Invoke-Hover @{command='open';path=$badPath}
     $state = Invoke-Hover @{command='wait'}
     Assert-That ($state.phase -eq 'error' -and $state.error -and -not $state.loading) 'Corrupt/unsupported input terminates in an explicit error'

@@ -44,6 +44,10 @@ use its private JSON command interface. It owns a real native Hover session and
 can inspect/control previews and export the actual painter's output. Run
 `./scripts/test-agent.ps1`; see the [agent protocol and evidence limits](docs/agent-control.md).
 
+WIC/GIF decoding uses a separate native process with Windows job resource limits
+and bounded byte pipes. See [decoder containment and measured cost](docs/decoder-containment.md)
+for tests and the remaining permission-sandbox boundaries.
+
 Native automated tests use generated fixtures; they do not prove Explorer,
 visual, accessibility, real-game fidelity or installation behavior. Every game
 milestone remains an acceptance requirement, not a supported-games list.
