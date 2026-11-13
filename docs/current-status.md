@@ -44,14 +44,16 @@ were inspected; their scopes remain required and open.
   and Cargo license notices are retained. Advisory scans do not prove safety.
 - WIC/GIF image decoding runs in a short-lived, resource-limited native process
   with bounded byte pipes, wall-time supervision and independent cancellation.
-  Local real-app checks and native fault tests pass; permission sandboxing and
-  hard storage/GPU boundaries remain open. See [decoder evidence](decoder-containment.md).
+  Its LPAC token and effective authorization are verified before code/input runs.
+  Local private-resource/loopback denial, native fault tests and both 61-check
+  app entry points pass; hard storage/startup/GPU/profile-write boundaries and
+  wider codec/version evidence remain open. See [permission evidence](decoder-permissions.md).
 
 ## Current evidence
 
 The app-native `hover-agent --stdio` interface can launch/control its own real
 Windows session independently of Computer Use. The current release-build suite
-passed 60 local checks using generated files and the pinned public DBPF index
+passed 61 local checks using generated files and the pinned public DBPF index
 fixture, including recovery of zoom/pan/scroll after repeated reload errors.
 Both Rust 1.95 and 1.99 hosted Windows jobs passed the 60-check suite,
 native decoder fault/CPU tests, source tests, native lifecycle test, lint and
@@ -110,10 +112,10 @@ through that runtime. Unsupported UI injection is not a substitute.
   and modal flows; physical pinning/keyboard/reload interaction verification,
   accessibility/high contrast, DPI/monitors, deeper camera/swatch continuity,
   shelf, copying and synchronized multi-file comparison.
-- Decoder filesystem/network permissions, hard source-I/O and GPU boundaries,
-  concurrent-change handling, external media security and expanded malformed-file
-  stress/fuzz coverage. WIC/GIF process/job limits do not establish these broader
-  boundaries. Existing settings/checklists do not prove these features.
+- Expanded LPAC/codec/version evidence, profile-write and GPU/broker boundaries,
+  hard parent source-I/O/startup stalls, concurrent-change handling, external
+  media security and expanded malformed-file stress/fuzz coverage. The observed
+  LPAC denials and job limits do not establish these broader boundaries.
 - Each game milestone with pinned licensed specialists, versioned permitted
   fixtures and retained differential/visual failures. DBPF 2.1 has partial index
   metadata tests and a 20-entry specialist comparison, not CC resolution, image

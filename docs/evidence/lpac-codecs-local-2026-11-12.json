@@ -1,0 +1,1108 @@
+{
+  "schemaVersion": 1,
+  "measuredAtUtc": "2026-11-13T01:27:25.6670945Z",
+  "passed": true,
+  "classification": "Generated synthetic Windows GDI+ encoded images and a generated PNG-in-ICO frame",
+  "comparison": "Exact WIC/reference versus LPAC process pixels, geometry, stride and frame delays; GIF uses the same Rust reference decoder",
+  "benchmarkExecutableSha256": "9FEA1DA9CD04EDE1B688FE411360C292012CE9EB771039835191BCA2525DE3F3",
+  "os": "Microsoft Windows NT 10.0.22631.0",
+  "architecture": "AMD64",
+  "cache": "Generated fixtures were just written; OS caches uncontrolled; sequential component comparison",
+  "excludes": [
+    "independent specialist rendering",
+    "real game/artist files",
+    "installed third-party codec certification",
+    "Explorer",
+    "physical frames",
+    "storage-cold",
+    "installer/update/rollback"
+  ],
+  "cases": [
+    {
+      "format": "png",
+      "fixture": "generated.png",
+      "sha256": "8107A8E3EA0EFA9A4808233B44886524370A6664DEA473DC57463F0BB8CA61AE",
+      "sourceUnchanged": true,
+      "comparison": {
+        "all_outputs_equal": true,
+        "cache": "OS cache uncontrolled; fixtures may already be cached",
+        "comparison": "exact geometry, stride, delay and pixel byte comparison after stopping each timer",
+        "digest_is_cryptographic": false,
+        "order": "reference samples then isolated samples; same process",
+        "samples": [
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "in_process_reference",
+            "wall_ms": 7.08,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "in_process_reference",
+            "wall_ms": 5.9467,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "in_process_reference",
+            "wall_ms": 5.564,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "in_process_reference",
+            "wall_ms": 6.0743,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "isolated_process",
+            "wall_ms": 65.7358,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5595136,
+                "permission_token_verified": true,
+                "pid": 48556,
+                "user_cpu_ms": 0,
+                "wall_ms": 64.7269
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "isolated_process",
+            "wall_ms": 72.2675,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 15,
+                "outcome": "success",
+                "peak_commit_bytes": 5607424,
+                "permission_token_verified": true,
+                "pid": 202112,
+                "user_cpu_ms": 0,
+                "wall_ms": 70.4285
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "isolated_process",
+            "wall_ms": 62.764,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5599232,
+                "permission_token_verified": true,
+                "pid": 188172,
+                "user_cpu_ms": 0,
+                "wall_ms": 61.1494
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "isolated_process",
+            "wall_ms": 52.7062,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 15,
+                "outcome": "success",
+                "peak_commit_bytes": 5619712,
+                "permission_token_verified": true,
+                "pid": 243488,
+                "user_cpu_ms": 0,
+                "wall_ms": 51.7708
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          }
+        ],
+        "schema": 1,
+        "scope": "source-read/decode/process exchange component; no UI or Explorer timing"
+      }
+    },
+    {
+      "format": "jpg",
+      "fixture": "generated.jpg",
+      "sha256": "60F8BF3486438ABE662FFA83E4650036029284478DB09AFB8D5597F04AF19282",
+      "sourceUnchanged": true,
+      "comparison": {
+        "all_outputs_equal": true,
+        "cache": "OS cache uncontrolled; fixtures may already be cached",
+        "comparison": "exact geometry, stride, delay and pixel byte comparison after stopping each timer",
+        "digest_is_cryptographic": false,
+        "order": "reference samples then isolated samples; same process",
+        "samples": [
+          {
+            "digest_fnv1a64": "3a346d6208f68a3b",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "in_process_reference",
+            "wall_ms": 6.8061,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "3a346d6208f68a3b",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "in_process_reference",
+            "wall_ms": 5.2801,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "3a346d6208f68a3b",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "in_process_reference",
+            "wall_ms": 6.2047,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "3a346d6208f68a3b",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "in_process_reference",
+            "wall_ms": 5.3382000000000005,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "3a346d6208f68a3b",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "isolated_process",
+            "wall_ms": 66.1742,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5603328,
+                "permission_token_verified": true,
+                "pid": 78712,
+                "user_cpu_ms": 0,
+                "wall_ms": 65.30189999999999
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "3a346d6208f68a3b",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "isolated_process",
+            "wall_ms": 52.0435,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5603328,
+                "permission_token_verified": true,
+                "pid": 66312,
+                "user_cpu_ms": 0,
+                "wall_ms": 51.199
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "3a346d6208f68a3b",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "isolated_process",
+            "wall_ms": 46.222699999999996,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 15,
+                "outcome": "success",
+                "peak_commit_bytes": 5615616,
+                "permission_token_verified": true,
+                "pid": 206884,
+                "user_cpu_ms": 0,
+                "wall_ms": 45.3033
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "3a346d6208f68a3b",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "isolated_process",
+            "wall_ms": 50.1749,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 15,
+                "outcome": "success",
+                "peak_commit_bytes": 5619712,
+                "permission_token_verified": true,
+                "pid": 230816,
+                "user_cpu_ms": 0,
+                "wall_ms": 49.2465
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          }
+        ],
+        "schema": 1,
+        "scope": "source-read/decode/process exchange component; no UI or Explorer timing"
+      }
+    },
+    {
+      "format": "bmp",
+      "fixture": "generated.bmp",
+      "sha256": "9A8A245F347B50F3064970D5CA0B8FE7AA9BE9F16F2B8B1F2EAC53F21C1D94AE",
+      "sourceUnchanged": true,
+      "comparison": {
+        "all_outputs_equal": true,
+        "cache": "OS cache uncontrolled; fixtures may already be cached",
+        "comparison": "exact geometry, stride, delay and pixel byte comparison after stopping each timer",
+        "digest_is_cryptographic": false,
+        "order": "reference samples then isolated samples; same process",
+        "samples": [
+          {
+            "digest_fnv1a64": "abbc719c53a040d5",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "in_process_reference",
+            "wall_ms": 6.8393999999999995,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "abbc719c53a040d5",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "in_process_reference",
+            "wall_ms": 6.2654,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "abbc719c53a040d5",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "in_process_reference",
+            "wall_ms": 6.015000000000001,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "abbc719c53a040d5",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "in_process_reference",
+            "wall_ms": 5.2585,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "abbc719c53a040d5",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "isolated_process",
+            "wall_ms": 60.7891,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5603328,
+                "permission_token_verified": true,
+                "pid": 226900,
+                "user_cpu_ms": 0,
+                "wall_ms": 59.8647
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "abbc719c53a040d5",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "isolated_process",
+            "wall_ms": 55.199400000000004,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5615616,
+                "permission_token_verified": true,
+                "pid": 242180,
+                "user_cpu_ms": 0,
+                "wall_ms": 53.5773
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "abbc719c53a040d5",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "isolated_process",
+            "wall_ms": 50.044,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5603328,
+                "permission_token_verified": true,
+                "pid": 247796,
+                "user_cpu_ms": 0,
+                "wall_ms": 49.1224
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "abbc719c53a040d5",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "isolated_process",
+            "wall_ms": 48.1375,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5607424,
+                "permission_token_verified": true,
+                "pid": 67004,
+                "user_cpu_ms": 0,
+                "wall_ms": 46.5061
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          }
+        ],
+        "schema": 1,
+        "scope": "source-read/decode/process exchange component; no UI or Explorer timing"
+      }
+    },
+    {
+      "format": "tiff",
+      "fixture": "generated.tiff",
+      "sha256": "CD5499F9432C66D1A542A72E156C1A811A3D0A300D25CCD0C08B9C66BCAA0197",
+      "sourceUnchanged": true,
+      "comparison": {
+        "all_outputs_equal": true,
+        "cache": "OS cache uncontrolled; fixtures may already be cached",
+        "comparison": "exact geometry, stride, delay and pixel byte comparison after stopping each timer",
+        "digest_is_cryptographic": false,
+        "order": "reference samples then isolated samples; same process",
+        "samples": [
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "in_process_reference",
+            "wall_ms": 15.585099999999999,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "in_process_reference",
+            "wall_ms": 10.9756,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "in_process_reference",
+            "wall_ms": 11.8643,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "in_process_reference",
+            "wall_ms": 16.568800000000003,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "isolated_process",
+            "wall_ms": 63.684599999999996,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5599232,
+                "permission_token_verified": true,
+                "pid": 237372,
+                "user_cpu_ms": 0,
+                "wall_ms": 62.016799999999996
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "isolated_process",
+            "wall_ms": 56.6756,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5582848,
+                "permission_token_verified": true,
+                "pid": 119120,
+                "user_cpu_ms": 15,
+                "wall_ms": 55.7738
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "isolated_process",
+            "wall_ms": 51.312200000000004,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 15,
+                "outcome": "success",
+                "peak_commit_bytes": 5595136,
+                "permission_token_verified": true,
+                "pid": 187904,
+                "user_cpu_ms": 0,
+                "wall_ms": 50.3354
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "isolated_process",
+            "wall_ms": 49.553,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5607424,
+                "permission_token_verified": true,
+                "pid": 227872,
+                "user_cpu_ms": 0,
+                "wall_ms": 48.2951
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          }
+        ],
+        "schema": 1,
+        "scope": "source-read/decode/process exchange component; no UI or Explorer timing"
+      }
+    },
+    {
+      "format": "gif",
+      "fixture": "generated.gif",
+      "sha256": "B28B06117474353DDEA6D6B44A4B009EED5AA6978B6D643EB19342294166CF72",
+      "sourceUnchanged": true,
+      "comparison": {
+        "all_outputs_equal": true,
+        "cache": "OS cache uncontrolled; fixtures may already be cached",
+        "comparison": "exact geometry, stride, delay and pixel byte comparison after stopping each timer",
+        "digest_is_cryptographic": false,
+        "order": "reference samples then isolated samples; same process",
+        "samples": [
+          {
+            "digest_fnv1a64": "8bf7dac736d1a69f",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "in_process_reference",
+            "wall_ms": 2.8669,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "8bf7dac736d1a69f",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "in_process_reference",
+            "wall_ms": 2.1503,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "8bf7dac736d1a69f",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "in_process_reference",
+            "wall_ms": 2.1378999999999997,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "8bf7dac736d1a69f",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "in_process_reference",
+            "wall_ms": 2.3745,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "8bf7dac736d1a69f",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "isolated_process",
+            "wall_ms": 62.743599999999994,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5603328,
+                "permission_token_verified": true,
+                "pid": 244252,
+                "user_cpu_ms": 0,
+                "wall_ms": 61.591699999999996
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "8bf7dac736d1a69f",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "isolated_process",
+            "wall_ms": 41.7996,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5603328,
+                "permission_token_verified": true,
+                "pid": 225316,
+                "user_cpu_ms": 0,
+                "wall_ms": 40.2388
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "8bf7dac736d1a69f",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "isolated_process",
+            "wall_ms": 41.479299999999995,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5591040,
+                "permission_token_verified": true,
+                "pid": 82720,
+                "user_cpu_ms": 0,
+                "wall_ms": 40.0125
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "8bf7dac736d1a69f",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "isolated_process",
+            "wall_ms": 40.732699999999994,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5591040,
+                "permission_token_verified": true,
+                "pid": 125252,
+                "user_cpu_ms": 0,
+                "wall_ms": 39.9503
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          }
+        ],
+        "schema": 1,
+        "scope": "source-read/decode/process exchange component; no UI or Explorer timing"
+      }
+    },
+    {
+      "format": "ico",
+      "fixture": "generated.ico",
+      "sha256": "DC97FD97AF47ED018C44B09AF95FB0D5A394B4FFC5EEB3B70357DF9911328C6D",
+      "sourceUnchanged": true,
+      "comparison": {
+        "all_outputs_equal": true,
+        "cache": "OS cache uncontrolled; fixtures may already be cached",
+        "comparison": "exact geometry, stride, delay and pixel byte comparison after stopping each timer",
+        "digest_is_cryptographic": false,
+        "order": "reference samples then isolated samples; same process",
+        "samples": [
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "in_process_reference",
+            "wall_ms": 7.4866,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "in_process_reference",
+            "wall_ms": 6.138,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "in_process_reference",
+            "wall_ms": 9.874799999999999,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "in_process_reference",
+            "wall_ms": 5.4051,
+            "worker": null
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 0,
+            "mode": "isolated_process",
+            "wall_ms": 58.7357,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5591040,
+                "permission_token_verified": true,
+                "pid": 202620,
+                "user_cpu_ms": 0,
+                "wall_ms": 57.935300000000005
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 1,
+            "mode": "isolated_process",
+            "wall_ms": 50.052800000000005,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5595136,
+                "permission_token_verified": true,
+                "pid": 69864,
+                "user_cpu_ms": 0,
+                "wall_ms": 48.8124
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 2,
+            "mode": "isolated_process",
+            "wall_ms": 47.0134,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5603328,
+                "permission_token_verified": true,
+                "pid": 233116,
+                "user_cpu_ms": 0,
+                "wall_ms": 46.2063
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          },
+          {
+            "digest_fnv1a64": "fac05dc01dae080d",
+            "frames": 1,
+            "iteration": 3,
+            "mode": "isolated_process",
+            "wall_ms": 50.144,
+            "worker": {
+              "active_pid": 0,
+              "capabilities": [
+                "lpacCom",
+                "registryRead"
+              ],
+              "cpu_rate_percent": 50,
+              "cpu_user_limit_ms": 5000,
+              "last_task": {
+                "accounting_available": true,
+                "active_after_stop": 0,
+                "kernel_cpu_ms": 0,
+                "outcome": "success",
+                "peak_commit_bytes": 5599232,
+                "permission_token_verified": true,
+                "pid": 228260,
+                "user_cpu_ms": 0,
+                "wall_ms": 48.6874
+              },
+              "memory_limit_bytes": 2147483648,
+              "output_limit_bytes": 268435456,
+              "permission_sandbox": true,
+              "poisoned": false,
+              "sandbox_kind": "Windows LPAC",
+              "wall_limit_ms": 8000
+            }
+          }
+        ],
+        "schema": 1,
+        "scope": "source-read/decode/process exchange component; no UI or Explorer timing"
+      }
+    }
+  ]
+}

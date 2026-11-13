@@ -47,8 +47,10 @@ Use `./scripts/measure-agent.ps1 -Json` for repeatable startup, preview/state
 response and idle CPU/I/O/memory measurements; [scope and raw evidence](docs/native-performance.md).
 
 WIC/GIF decoding uses a separate native process with Windows job resource limits
-and bounded byte pipes. See [decoder containment and measured cost](docs/decoder-containment.md)
-for tests and the remaining permission-sandbox boundaries.
+and bounded byte pipes, now inside a token-verified Windows LPAC. See
+[permission isolation and actual denial tests](docs/decoder-permissions.md) and
+[decoder containment and measured cost](docs/decoder-containment.md) for evidence
+and the remaining security boundaries.
 
 Native automated tests use generated fixtures; they do not prove Explorer,
 visual, accessibility, real-game fidelity or installation behavior. Every game

@@ -163,6 +163,7 @@ try {
     Assert-That ($state.content.viewport_width -eq $state.content_rect.width -and $state.content.viewport_height -eq $state.content_rect.height) 'First pinned image fits the actual native client area including caption and border'
     Assert-That ($state.decoder_process.active_pid-eq 0 -and $state.decoder_process.last_task.pid-ne $state.pid -and $state.decoder_process.last_task.pid-gt 0 -and $state.decoder_process.last_task.outcome-eq 'success') 'WIC runs in a separate decoder process that exits before ready'
     Assert-That ($state.decoder_process.last_task.active_after_stop-eq 0 -and $state.decoder_process.last_task.peak_commit_bytes-gt 0 -and -not $state.decoder_process.poisoned) 'Windows job accounting confirms no decoder remains active after output'
+    Assert-That ($state.decoder_process.permission_sandbox -and $state.decoder_process.capabilities.Count-eq 2 -and $state.decoder_process.capabilities -contains 'lpacCom' -and $state.decoder_process.capabilities -contains 'registryRead' -and $state.decoder_process.last_task.permission_token_verified) 'Parent verifies the real LPAC token, low integrity, expected SID and only the two required system capabilities before decoding'
     $null = Invoke-Hover @{command='resize';width=500;height=400}
     $null = Invoke-Hover @{command='zoom';mode='native'}
     $state = Invoke-Hover @{command='pan';dx=90;dy=-60}

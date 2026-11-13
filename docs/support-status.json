@@ -4,8 +4,8 @@
   "releaseVerified": false,
   "note": "States reflect current source/evidence, not milestone completion. All per-game fixture and packaged-release gates remain open.",
   "core": {
-    "image": "WIC in bounded native child process; generated BMP pixels/native-app validation; permission sandbox and broader fidelity gates open",
-    "decoder": "WIC/GIF separate process, enforced job resource limits, bounded pipes and cancellation; filesystem/network/GPU and source-I/O isolation incomplete",
+    "image": "WIC in verified LPAC/job child; generated six-format pixel comparison and native-app checks; broader real-file fidelity gates open",
+    "decoder": "WIC/GIF LPAC with exact token/authorization checks; private-resource and loopback denial probes, job budgets and cancellation; profile/GPU/broker and parent-I/O/startup boundaries incomplete",
     "interaction": "native pin/reload/keyboard/view continuity; actual Windows app tests; shell/physical accessibility/DPI gates open",
     "agent": "private stdio controls real hover.exe; decoded/native state and client render exports; see docs/agent-control.md",
     "browser": "skeleton, no remote preview fetch",

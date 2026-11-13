@@ -1,30 +1,42 @@
 use super::*;
 use std::io::{BufRead, BufReader, Cursor};
+use std::os::windows::process::CommandExt;
+use std::process::{Command, Stdio};
 use std::sync::Arc;
+const CREATE_NO_WINDOW: u32 = 0x08000000;
 
 const READY: &[u8] = b"HOVER_DECODER_PROBE_READY";
+
+#[test]
+fn an_ordinary_appcontainer_is_rejected_before_any_input_or_child_code() {
+    let entered = Arc::new(AtomicBool::new(false));
+    let signal = entered.clone();
+    let report = exchange(
+        Launch::RegularAppContainerControl,
+        &CancellationToken::new(),
+        Duration::from_secs(3),
+        64 * 1024 * 1024,
+        move |_, _| {
+            signal.store(true, Ordering::Release);
+            Ok(())
+        },
+    );
+    assert!(!entered.load(Ordering::Acquire));
+    assert!(!report.permission_verified);
+    assert_eq!(report.reason, "startup_error");
+    assert!(report.result.unwrap_err().contains("not LPAC"));
+    assert!(report.elapsed > Duration::ZERO);
+}
 
 fn read_response(reader: &mut impl Read) -> Result<Vec<DecodedFrame>, String> {
     read_response_limited(reader, 8192, 8192, MAX_FRAMES)
 }
 
-fn probe_command(case: &str) -> Command {
-    let mut command = Command::new(std::env::current_exe().unwrap());
-    command
-        .args([
-            "--exact",
-            "decoder_process::tests::fault_probe",
-            "--ignored",
-            "--nocapture",
-            "--test-threads=1",
-        ])
-        .env("HOVER_DECODER_PROBE_CASE", case);
-    command
+fn probe_command(case: &'static str) -> Launch {
+    Launch::FaultProbe(case)
 }
 
-fn probe_transfer(
-    ready: Arc<AtomicBool>,
-) -> impl FnOnce(std::process::ChildStdin, std::process::ChildStdout) -> Result<Vec<u8>, String> {
+fn probe_transfer(ready: Arc<AtomicBool>) -> impl FnOnce(File, File) -> Result<Vec<u8>, String> {
     move |mut input, output| {
         input.write_all(&[1]).map_err(|e| e.to_string())?;
         drop(input);

@@ -2,6 +2,9 @@
 #[cfg(all(windows, not(test)))]
 #[path = "../src/decoder_process.rs"]
 mod decoder_process;
+#[cfg(all(windows, not(test)))]
+#[path = "../src/decoder_sandbox.rs"]
+mod decoder_sandbox;
 
 #[cfg(all(windows, not(test)))]
 fn main() {

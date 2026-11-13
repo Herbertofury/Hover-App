@@ -3,6 +3,8 @@ mod agent;
 #[cfg(windows)]
 mod decoder_process;
 #[cfg(windows)]
+mod decoder_sandbox;
+#[cfg(windows)]
 mod platform;
 #[cfg(windows)]
 mod resolver;

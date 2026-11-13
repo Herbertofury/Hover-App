@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "measuredAtUtc": "2026-11-13T01:27:33.8474320Z",
+  "passed": true,
+  "executableName": "hover.exe",
+  "executableSha256": "991811CD91575AE9F1579A4F747A59942992DC1EB414C5B8EA74FDA6EC79AA9E",
+  "fixture": {
+    "classification": "generated synthetic BMP, 800x600",
+    "sha256": "78B3BAF201908F828F88ACED1D609459DBEDB308C9FB1E18E0CF99A72987FD7C",
+    "byteIdentical": true
+  },
+  "environment": {
+    "os": "Microsoft Windows 11 Pro",
+    "version": "10.0.22631",
+    "build": "22631",
+    "architecture": "64-bit",
+    "cpu": "13th Gen Intel(R) Core(TM) i9-13900K",
+    "logicalProcessors": 32
+  },
+  "cache": "OS caches uncontrolled; generated fixture was just written; new process does not mean storage-cold",
+  "timing": "External stopwatch; JSON command/response plus real native UI-thread/worker scheduling. Wait polls at 20 ms. Ack verifies file identity/phase, not pixels painted to screen.",
+  "resourceScope": "Owned parent CPU/private bytes/working set/handles and GetProcessIoCounters deltas; decoder job accounting separately. I/O includes pipes and cached operations, not physical-disk activity. CPU timer granularity applies; endpoint memory is not a concurrent peak.",
+  "excludes": [
+    "Explorer hover",
+    "screen/compositor latency",
+    "cold-storage results",
+    "3D/GPU/VRAM",
+    "real game fidelity",
+    "long-run resource stability",
+    "installer/update/rollback"
+  ],
+  "samples": [
+    {
+      "session": 0,
+      "iteration": 0,
+      "mode": "new_process_first_open",
+      "processStartupToCapabilitiesMs": 40.0073,
+      "openOrReloadAckMs": 41.0336,
+      "commandToSettledResponseMs": 104.9907,
+      "parentPrivateBytes": 4218880,
+      "parentWorkingSetBytes": 14868480,
+      "parentHandles": 218,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5378048,
+        "permission_token_verified": true,
+        "pid": 71192,
+        "user_cpu_ms": 15,
+        "wall_ms": 63.5362
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 1,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 40.0073,
+      "openOrReloadAckMs": 4.3355,
+      "commandToSettledResponseMs": 46.8227,
+      "parentPrivateBytes": 4288512,
+      "parentWorkingSetBytes": 14897152,
+      "parentHandles": 218,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5419008,
+        "permission_token_verified": true,
+        "pid": 117180,
+        "user_cpu_ms": 0,
+        "wall_ms": 34.4636
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 2,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 40.0073,
+      "openOrReloadAckMs": 4.6374,
+      "commandToSettledResponseMs": 49.6262,
+      "parentPrivateBytes": 4345856,
+      "parentWorkingSetBytes": 14893056,
+      "parentHandles": 218,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5369856,
+        "permission_token_verified": true,
+        "pid": 250488,
+        "user_cpu_ms": 0,
+        "wall_ms": 37.034699999999994
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 3,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 40.0073,
+      "openOrReloadAckMs": 4.2733,
+      "commandToSettledResponseMs": 48.3677,
+      "parentPrivateBytes": 4358144,
+      "parentWorkingSetBytes": 14962688,
+      "parentHandles": 218,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5369856,
+        "permission_token_verified": true,
+        "pid": 243132,
+        "user_cpu_ms": 0,
+        "wall_ms": 36.3688
+      }
+    },
+    {
+      "session": 0,
+      "iteration": 4,
+      "mode": "warm_process_reload",
+      "processStartupToCapabilitiesMs": 40.0073,
+      "openOrReloadAckMs": 3.3782,
+      "commandToSettledResponseMs": 46.2803,
+      "parentPrivateBytes": 4354048,
+      "parentWorkingSetBytes": 14974976,
+      "parentHandles": 218,
+      "decoder": {
+        "accounting_available": true,
+        "active_after_stop": 0,
+        "kernel_cpu_ms": 0,
+        "outcome": "success",
+        "peak_commit_bytes": 5386240,
+        "permission_token_verified": true,
+        "pid": 164604,
+        "user_cpu_ms": 0,
+        "wall_ms": 34.642199999999995
+      }
+    }
+  ],
+  "idleIntervals": [
+    {
+      "phase": "dormant_controlled_session",
+      "wallMs": 1001.208,
+      "processCpuMs": 0.0,
+      "cpuPercentOfOneLogicalProcessor": 0.0,
+      "cpuPercentOfMachine": 0.0,
+      "privateBytesBefore": 1687552,
+      "privateBytesAfter": 1687552,
+      "workingSetBytesBefore": 9048064,
+      "workingSetBytesAfter": 9048064,
+      "handlesBefore": 171,
+      "handlesAfter": 171,
+      "ioReadOperations": 0,
+      "ioWriteOperations": 0,
+      "ioOtherOperations": 0,
+      "ioReadBytes": 0,
+      "ioWriteBytes": 0,
+      "ioOtherBytes": 0,
+      "processLifetimePeakWorkingSetBytes": 9048064
+    },
+    {
+      "phase": "pinned_static_image",
+      "wallMs": 1008.1088,
+      "processCpuMs": 0.0,
+      "cpuPercentOfOneLogicalProcessor": 0.0,
+      "cpuPercentOfMachine": 0.0,
+      "privateBytesBefore": 4358144,
+      "privateBytesAfter": 4304896,
+      "workingSetBytesBefore": 14974976,
+      "workingSetBytesAfter": 14979072,
+      "handlesBefore": 218,
+      "handlesAfter": 218,
+      "ioReadOperations": 0,
+      "ioWriteOperations": 0,
+      "ioOtherOperations": 0,
+      "ioReadBytes": 0,
+      "ioWriteBytes": 0,
+      "ioOtherBytes": 0,
+      "processLifetimePeakWorkingSetBytes": 17907712
+    },
+    {
+      "phase": "minimized_static_image",
+      "wallMs": 1010.2862,
+      "processCpuMs": 0.0,
+      "cpuPercentOfOneLogicalProcessor": 0.0,
+      "cpuPercentOfMachine": 0.0,
+      "privateBytesBefore": 4304896,
+      "privateBytesAfter": 4304896,
+      "workingSetBytesBefore": 14979072,
+      "workingSetBytesAfter": 14979072,
+      "handlesBefore": 218,
+      "handlesAfter": 218,
+      "ioReadOperations": 0,
+      "ioWriteOperations": 0,
+      "ioOtherOperations": 0,
+      "ioReadBytes": 0,
+      "ioWriteBytes": 0,
+      "ioOtherBytes": 0,
+      "processLifetimePeakWorkingSetBytes": 17907712
+    }
+  ],
+  "interactions": [
+    {
+      "command": "pan",
+      "roundTripMs": 0.6761,
+      "panX": 5.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 0.77,
+      "panX": 0.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 1.2574,
+      "panX": 5.0,
+      "panY": 0.0
+    },
+    {
+      "command": "pan",
+      "roundTripMs": 6.6855,
+      "panX": 0.0,
+      "panY": 0.0
+    }
+  ]
+}

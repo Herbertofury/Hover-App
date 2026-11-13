@@ -27,10 +27,13 @@ The test generates its own on-disk files and keeps evidence in
 `target/agent-evidence`. It starts real Windows processes and windows, checking
 identity, decode output, native styles/focus, reload continuity, rename and byte
 preservation, cancellation, malformed requests, no autoplay, minimize/restore,
-render capture and owned shutdown. The current local release build passed 55
-generated-fixture assertions, or 60 with the optional pinned DBPF fixture below,
+render capture and owned shutdown. The current local release build passed 56
+generated-fixture assertions, or 61 with the optional pinned DBPF fixture below,
 including the separate WIC/GIF decoder process, job accounting and recovery of
 zoom/pan/scroll after repeated missing or corrupt-source reload errors.
+Both GUI and console entry points passed the local LPAC suite; the additional
+check verifies the actual permission token before image decoding. See
+[decoder permission evidence](decoder-permissions.md).
 CI invokes the same script after each toolchain's build; check its actual result
 before claiming hosted success. The test does not send physical input or operate
 Explorer.

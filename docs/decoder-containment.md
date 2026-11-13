@@ -1,5 +1,9 @@
 # Native image decoder containment
 
+Current source adds [LPAC permission isolation and its native evidence](decoder-permissions.md)
+to the original PR #42 resource worker described here. Retained PR #42 results
+describe that earlier revision; they do not assert its old worker was sandboxed.
+
 WIC images and animated GIFs in the actual Hover Windows app now decode in a
 short-lived copy of its own executable. The preview worker reads one authorized
 local snapshot, closes the source file, then sends bytes over private anonymous
@@ -25,11 +29,12 @@ oversized and unexpected trailing output fail explicitly. Input remains capped
 at 512 MiB. CLI `status.decoder_process` exposes the actual active PID, last
 outcome, job accounting and configured limits; unavailable accounting is explicit.
 
-This is crash and resource containment, not a permission sandbox. The child
-still has the user's Windows token and inherited environment. Filesystem,
-network, registry, broker and GPU access are not restricted by this job. Source
-snapshot I/O happens before the transaction deadline and still needs a hard
-storage-stall boundary. External media is separate. These remain release gates.
+PR #42 provided crash/resource containment alone. Its child still used the
+user's normal token/environment; the job did not restrict filesystem, network,
+registry, broker or GPU access. Current source replaces that launch with LPAC;
+see the permission document above for actual tests and remaining boundaries.
+Source snapshot I/O and parent startup APIs still need hard stall boundaries.
+External media is separate. These remain release gates.
 Host job restrictions are preserved; Hover never requests breakaway. UI limits
 are not set because Windows job nesting does not support them. See Microsoft's
 [job objects](https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects),

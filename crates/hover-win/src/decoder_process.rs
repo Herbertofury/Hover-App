@@ -1,13 +1,12 @@
 //! One authorized memory snapshot per short-lived, resource-limited decoder.
-//! A Windows job is crash/resource containment, not a filesystem/network sandbox.
+//! LPAC provides permissions; the Windows job provides crash/resource limits.
 use hover_core::CancellationToken;
 use hover_decode::{DecodeLimits, DecodedFrame};
 use serde_json::{Value, json};
+use std::fs::File;
 use std::io::{Read, Write};
 use std::os::windows::io::AsRawHandle;
-use std::os::windows::process::CommandExt;
 use std::path::Path;
-use std::process::{Child, Command, Stdio};
 use std::ptr::{null, null_mut};
 use std::sync::Mutex;
 use std::sync::atomic::{AtomicBool, AtomicU32, Ordering};
@@ -24,7 +23,6 @@ const MAX_OUTPUT: u64 = 256 * 1024 * 1024;
 const MAX_FRAMES: u32 = 1_000;
 const MEMORY_LIMIT: usize = 2 * 1024 * 1024 * 1024;
 const WALL_LIMIT: Duration = Duration::from_secs(8);
-const CREATE_NO_WINDOW: u32 = 0x08000000;
 static ACTIVE_PID: AtomicU32 = AtomicU32::new(0);
 static POISONED: AtomicBool = AtomicBool::new(false);
 static LAST_REPORT: Mutex<Option<Value>> = Mutex::new(None);
@@ -133,18 +131,19 @@ struct Exchange<T> {
     elapsed: Duration,
     reason: &'static str,
     active_after_stop: Option<u32>,
+    permission_verified: bool,
 }
+
+use crate::decoder_sandbox::{Child as ManagedChild, Entry as Launch};
 
 // The closure owns only this child's pipes. The supervising worker can terminate
 // the job even when native code or a pipe operation does not cooperate.
 fn exchange<T: Send + 'static>(
-    mut command: Command,
+    launch: Launch,
     token: &CancellationToken,
     wall: Duration,
     memory: usize,
-    transfer: impl FnOnce(std::process::ChildStdin, std::process::ChildStdout) -> Result<T, String>
-    + Send
-    + 'static,
+    transfer: impl FnOnce(File, File) -> Result<T, String> + Send + 'static,
 ) -> Exchange<T> {
     let start = Instant::now();
     let mut report = Exchange {
@@ -156,54 +155,44 @@ fn exchange<T: Send + 'static>(
         elapsed: Duration::ZERO,
         reason: "startup_error",
         active_after_stop: None,
+        permission_verified: false,
     };
     if token.is_cancelled() {
         report.result = Err("Preview was cancelled".into());
         report.reason = "cancelled";
+        report.elapsed = start.elapsed();
         return report;
     }
     if POISONED.load(Ordering::Acquire) {
         report.result = Err(
             "Decoder cleanup did not finish. Restart Hover before decoding another image.".into(),
         );
+        report.elapsed = start.elapsed();
         return report;
     }
     let job = match Job::new(memory) {
         Ok(job) => job,
         Err(error) => {
             report.result = Err(error);
+            report.elapsed = start.elapsed();
             return report;
         }
     };
-    command
-        .stdin(Stdio::piped())
-        .stdout(Stdio::piped())
-        .stderr(Stdio::null())
-        .creation_flags(CREATE_NO_WINDOW);
-    let mut child = match command.spawn() {
+    let spawned = crate::decoder_sandbox::spawn(job.0, launch);
+    let mut child = match spawned {
         Ok(child) => child,
         Err(error) => {
             report.result = Err(format!("Cannot launch decoder: {error}"));
+            report.elapsed = start.elapsed();
             return report;
         }
     };
     report.pid = child.id();
-    // No input is sent until assignment succeeds. The trusted child waits on
-    // stdin, so image parsing/allocation cannot precede the enforced job limits.
-    if unsafe { AssignProcessToJobObject(job.0, child.as_raw_handle()) } == 0 {
-        report.result = Err(format!(
-            "Cannot contain decoder; no image was sent: {}",
-            std::io::Error::last_os_error()
-        ));
-        let _ = child.kill();
-        if !wait_for_exit(&mut child, Duration::from_secs(1)) {
-            POISONED.store(true, Ordering::Release);
-        }
-        return report;
-    }
+    report.permission_verified = true;
+    // Native production creation atomically applies the job and AppContainer;
+    // no input is sent before its actual Windows token has been verified.
     ACTIVE_PID.store(child.id(), Ordering::Release);
-    let input = child.stdin.take().unwrap();
-    let output = child.stdout.take().unwrap();
+    let (input, output) = child.pipes();
     let (send, receive) = mpsc::sync_channel(1);
     let io = match std::thread::Builder::new()
         .name("hover-decoder-pipe".into())
@@ -328,7 +317,7 @@ fn exchange<T: Send + 'static>(
     report
 }
 
-fn wait_for_exit(child: &mut Child, timeout: Duration) -> bool {
+fn wait_for_exit(child: &mut ManagedChild, timeout: Duration) -> bool {
     let deadline = Instant::now() + timeout;
     loop {
         match child.try_wait() {
@@ -346,7 +335,7 @@ fn wait_for_exit(child: &mut Child, timeout: Duration) -> bool {
 pub(crate) fn diagnostics() -> Value {
     json!({"active_pid":ACTIVE_PID.load(Ordering::Acquire),"last_task":LAST_REPORT.lock().unwrap().clone(),
         "memory_limit_bytes":MEMORY_LIMIT,"output_limit_bytes":MAX_OUTPUT,"wall_limit_ms":WALL_LIMIT.as_millis(),
-        "cpu_user_limit_ms":5000,"cpu_rate_percent":50,"permission_sandbox":false,"poisoned":POISONED.load(Ordering::Acquire)})
+        "cpu_user_limit_ms":5000,"cpu_rate_percent":50,"permission_sandbox":true,"sandbox_kind":"Windows LPAC","capabilities":["lpacCom","registryRead"],"poisoned":POISONED.load(Ordering::Acquire)})
 }
 
 pub(crate) fn decode_file(
@@ -358,10 +347,8 @@ pub(crate) fn decode_file(
 ) -> Result<Vec<DecodedFrame>, String> {
     let bytes = hover_decode::local_io::read_local_snapshot(path, MAX_INPUT, token)
         .map_err(|e| e.to_string())?;
-    let mut command = Command::new(std::env::current_exe().map_err(|e| e.to_string())?);
-    command.arg("--decode-worker");
     let report = exchange(
-        command,
+        Launch::Decoder,
         token,
         WALL_LIMIT,
         MEMORY_LIMIT,
@@ -392,7 +379,7 @@ pub(crate) fn decode_file(
     );
     *LAST_REPORT.lock().unwrap() = Some(
         json!({"pid":report.pid,"outcome":report.reason,"peak_commit_bytes":report.peak_bytes,
-        "user_cpu_ms":report.cpu_user_100ns/10000,"kernel_cpu_ms":report.cpu_kernel_100ns/10000,"wall_ms":report.elapsed.as_secs_f64()*1000.0,"active_after_stop":report.active_after_stop,"accounting_available":report.active_after_stop.is_some()}),
+        "user_cpu_ms":report.cpu_user_100ns/10000,"kernel_cpu_ms":report.cpu_kernel_100ns/10000,"wall_ms":report.elapsed.as_secs_f64()*1000.0,"active_after_stop":report.active_after_stop,"accounting_available":report.active_after_stop.is_some(),"permission_token_verified":report.permission_verified}),
     );
     report.result
 }
@@ -487,6 +474,9 @@ pub(crate) fn worker_entry() -> i32 {
     let mut input = std::io::stdin().lock();
     let mut output = std::io::stdout().lock();
     let decoded = (|| -> Result<Vec<DecodedFrame>, String> {
+        crate::decoder_sandbox::verify_token(unsafe {
+            windows_sys::Win32::System::Threading::GetCurrentProcess()
+        })?;
         let mut magic = [0; 8];
         input.read_exact(&mut magic).map_err(|e| e.to_string())?;
         if &magic != REQUEST_MAGIC {
@@ -570,3 +560,71 @@ pub(crate) fn worker_entry() -> i32 {
 #[cfg(test)]
 #[path = "decoder_process/tests.rs"]
 mod tests;
+
+#[cfg(test)]
+pub(crate) fn permission_probe(request: &Value) -> Result<Value, String> {
+    use std::io::Read;
+    let unlisted = request["unlisted_handle"]
+        .as_u64()
+        .and_then(|h| usize::try_from(h).ok())
+        .ok_or("Invalid test handle")?;
+    let request = serde_json::to_vec(request).map_err(|e| e.to_string())?;
+    let report = exchange(
+        Launch::PermissionProbe(unlisted),
+        &CancellationToken::new(),
+        Duration::from_secs(8),
+        64 * 1024 * 1024,
+        move |mut input, mut output| {
+            input.write_all(&request).map_err(|e| e.to_string())?;
+            drop(input);
+            use std::io::BufRead;
+            let mut bytes = Vec::new();
+            let mut reader = std::io::BufReader::new(&mut output);
+            while bytes.len() < 65537 {
+                let mut line = Vec::new();
+                let count = Read::take(&mut reader, (65537 - bytes.len()) as u64)
+                    .read_until(b'\n', &mut line)
+                    .map_err(|e| e.to_string())?;
+                if count == 0 {
+                    break;
+                }
+                if let Some(stage) = String::from_utf8_lossy(&line)
+                    .split_once("HOVER_PROBE_STAGE=")
+                    .map(|(_, s)| s.trim().to_owned())
+                {
+                    eprintln!("Native permission probe stage: {stage}");
+                }
+                bytes.extend(line);
+            }
+            if bytes.len() > 65536 {
+                return Err("Permission probe exceeded output budget".into());
+            }
+            let text = String::from_utf8(bytes).map_err(|e| e.to_string())?;
+            let result = text
+                .split_once("HOVER_PERMISSION_RESULT=")
+                .ok_or_else(|| {
+                    format!(
+                        "Permission probe did not produce its marker: {}",
+                        text.chars().take(4096).collect::<String>()
+                    )
+                })?
+                .1
+                .lines()
+                .next()
+                .ok_or("Missing permission results")?;
+            serde_json::from_str::<Value>(result).map_err(|e| e.to_string())
+        },
+    );
+    assert!(
+        report.permission_verified,
+        "Parent never verified the native token: {:?}",
+        report.result
+    );
+    assert_eq!(report.reason, "success", "{:?}", report.result);
+    assert_eq!(report.active_after_stop, Some(0));
+    assert!(!POISONED.load(Ordering::Acquire));
+    report.result.map(|mut value| {
+        value["private_handle_inherited"] = json!(false);
+        value
+    })
+}
