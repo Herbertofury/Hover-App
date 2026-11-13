@@ -24,6 +24,11 @@ Unpin returns to a bounded glance window when the originating shell is eligible.
   index. Text/list scroll is preserved within the new content bounds. A changed
   content kind or image dimensions resets the view with an explanatory caption.
   This is not a full animation-time or 3D camera/swatch restoration system.
+- Missing or corrupt files replace old content with a named error. A same-file
+  reload keeps only the small last-successful view snapshot through repeated
+  failures. A successful retry restores that view when compatible; closing or
+  opening another target clears it. Error panels cannot overwrite saved scroll
+  or image zoom/pan. A retained view is explained in the retry hint.
 - Pinned static content has no cursor/media poll. GIF timing is visible-only;
   minimization suspends it without shrinking the saved image viewport. A running
   external player has a separate bounded-frequency maintenance timer. Pinned
@@ -36,6 +41,13 @@ Unpin returns to a bounded glance window when the originating shell is eligible.
 Local source checks include view-model regressions for custom zoom/pan,
 dimension/type changes, frame clamping and shrinking text/list content. These
 tests do not prove native control usability or visual correctness.
+
+The real Windows app regression test first reproduced loss of text scroll after
+repeated missing-source errors. After the fix, the same CLI-driven suite passed
+60 assertions locally, including successful text and image recovery after two
+failed reloads, byte preservation and the decoder process checks. See
+[retained recovery results](evidence/reload-recovery-local-2026-11-12.json).
+This exercises production windows/worker code without physical input injection.
 
 Source revision `71b38a7960b84ca92b700f1f319afa0208b8776b` passed formatting,
 strict Clippy, 39 workspace parent tests plus the source-sharing subprocess,

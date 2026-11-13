@@ -1,0 +1,64 @@
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	﻿2026-11-13T00:09:33.7844220Z ##[group]Run cargo +1.99.0 test -p hover-win --locked decoder_process::tests::native_cpu_limit -- --ignored --exact --nocapture
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:33.7845243Z ^[[36;1mcargo +1.99.0 test -p hover-win --locked decoder_process::tests::native_cpu_limit -- --ignored --exact --nocapture^[[0m
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:33.7912674Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:33.7913025Z ##[endgroup]
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:34.1490897Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:34.1525820Z      Running unittests src\lib.rs (target\debug\deps\hover_win-30ba6163e8d1b0c0.exe)
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:34.1620598Z
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:34.1620961Z running 1 test
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3215795Z test decoder_process::tests::native_cpu_limit ... ok
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3216084Z
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3216335Z test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 14 filtered out; finished in 5.16s
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3216671Z
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3242228Z      Running unittests src\main.rs (target\debug\deps\hover-1065a887cde89617.exe)
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3294655Z
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3294985Z running 0 tests
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3295206Z
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3295532Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3295852Z
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3310387Z      Running unittests src\agent_main.rs (target\debug\deps\hover_agent-50e0f389c22aa17f.exe)
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3361215Z
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3361463Z running 0 tests
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3361961Z
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3362351Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+verify (1.99.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:39.3362899Z
+verify (1.99.0)	Test real Hover through private agent control	﻿2026-11-13T00:10:32.3796300Z ##[group]Run New-Item -ItemType Directory -Path target/agent-fixtures -Force | Out-Null
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:10:32.3797110Z ^[[36;1mNew-Item -ItemType Directory -Path target/agent-fixtures -Force | Out-Null^[[0m
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:10:32.3798224Z ^[[36;1mInvoke-WebRequest -Uri https://raw.githubusercontent.com/Llama-Logic/LlamaLogic/4a3d576f0afb776aba783db561760afb5b5de8b7/LlamaLogic.Packages.UnitTests/TestPackage.package -OutFile target/agent-fixtures/TestPackage.package^[[0m
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:10:32.3799375Z ^[[36;1m./scripts/test-agent.ps1 -DbpfFixture target/agent-fixtures/TestPackage.package^[[0m
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:10:32.3867063Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:10:32.3867421Z ##[endgroup]
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:10:35.6544458Z Agent test evidence: D:\a\Hover-App\Hover-App\target\agent-evidence\session-f20d55ce539540f49a8b32a89541306c
+verify (1.99.0)	Test real Hover through private agent control	2026-11-13T00:10:35.6558135Z Passed checks: 55; success: True
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	﻿2026-11-13T00:09:40.3701825Z ##[group]Run cargo +1.95.0 test -p hover-win --locked decoder_process::tests::native_cpu_limit -- --ignored --exact --nocapture
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:40.3703226Z ^[[36;1mcargo +1.95.0 test -p hover-win --locked decoder_process::tests::native_cpu_limit -- --ignored --exact --nocapture^[[0m
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:40.3780903Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:40.3781264Z ##[endgroup]
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:40.7839903Z     Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:40.7900562Z      Running unittests src\lib.rs (target\debug\deps\hover_win-4f808f7986a06c04.exe)
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:40.8015625Z
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:40.8016095Z running 1 test
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0292718Z test decoder_process::tests::native_cpu_limit ... ok
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0293204Z
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0293537Z test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 14 filtered out; finished in 6.23s
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0294021Z
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0323363Z      Running unittests src\main.rs (target\debug\deps\hover-76d403b024cea9e4.exe)
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0382965Z
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0383285Z running 0 tests
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0383546Z
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0383998Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0384882Z
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0400400Z      Running unittests src\agent_main.rs (target\debug\deps\hover_agent-a176c4ecafc68391.exe)
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0457791Z
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0458110Z running 0 tests
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0459110Z
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0459431Z test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+verify (1.95.0)	Test native decoder CPU containment on dedicated Windows runner	2026-11-13T00:09:47.0459798Z
+verify (1.95.0)	Test real Hover through private agent control	﻿2026-11-13T00:10:45.6497390Z ##[group]Run New-Item -ItemType Directory -Path target/agent-fixtures -Force | Out-Null
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:10:45.6498141Z ^[[36;1mNew-Item -ItemType Directory -Path target/agent-fixtures -Force | Out-Null^[[0m
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:10:45.6499401Z ^[[36;1mInvoke-WebRequest -Uri https://raw.githubusercontent.com/Llama-Logic/LlamaLogic/4a3d576f0afb776aba783db561760afb5b5de8b7/LlamaLogic.Packages.UnitTests/TestPackage.package -OutFile target/agent-fixtures/TestPackage.package^[[0m
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:10:45.6500649Z ^[[36;1m./scripts/test-agent.ps1 -DbpfFixture target/agent-fixtures/TestPackage.package^[[0m
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:10:45.6575410Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:10:45.6575806Z ##[endgroup]
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:10:49.3958617Z Agent test evidence: D:\a\Hover-App\Hover-App\target\agent-evidence\session-af1a2d3409c041018c49bae019fd5f47
+verify (1.95.0)	Test real Hover through private agent control	2026-11-13T00:10:49.3973220Z Passed checks: 55; success: True

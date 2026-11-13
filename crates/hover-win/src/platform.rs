@@ -443,6 +443,8 @@ struct App {
     pinned: bool,
     origin_foreground: HWND,
     preview_anchor: Option<HoverPoint>,
+    // Last successful same-file view while reloading or displaying a retryable
+    // error. Error panels never replace this small snapshot with their scroll.
     reload_view: Option<(PathBuf, SavedView)>,
     glance_rect: Option<HoverRect>,
     agent_controlled: bool,
@@ -745,6 +747,14 @@ impl App {
             }
             Err(message) => {
                 self.preview_error = Some(message.clone());
+                let mut lines = vec![message];
+                if self
+                    .reload_view
+                    .as_ref()
+                    .is_some_and(|(identity, _)| identity == &path)
+                {
+                    lines.push("Your previous view is saved. Reload to retry.".into());
+                }
                 self.show_payload(
                     path.clone(),
                     PreviewPayload::Text {
@@ -754,13 +764,12 @@ impl App {
                             .to_string_lossy()
                             .into_owned(),
                         subtitle: "Preview unavailable".into(),
-                        lines: vec![message],
+                        lines,
                         truncated: false,
                     },
                 );
             }
         }
-        self.reload_view = None;
     }
 
     unsafe fn cancel_decode(&mut self) {
@@ -1257,12 +1266,19 @@ impl App {
         let Some(path) = self.current_path.clone() else {
             return;
         };
-        let saved = OVERLAY_MODEL
-            .get_or_init(|| Mutex::new(None))
-            .lock()
-            .unwrap()
-            .as_ref()
-            .map(OverlayModel::save_view);
+        let saved = if self.preview_error.is_some() {
+            self.reload_view
+                .take()
+                .filter(|(identity, _)| identity == &path)
+                .map(|(_, view)| view)
+        } else {
+            OVERLAY_MODEL
+                .get_or_init(|| Mutex::new(None))
+                .lock()
+                .unwrap()
+                .as_ref()
+                .map(OverlayModel::save_view)
+        };
         self.cancel_decode();
         if let Some(saved) = saved {
             self.reload_view = Some((path.clone(), saved));

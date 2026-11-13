@@ -150,9 +150,13 @@ try {
     $null = Invoke-Hover @{command='reload'}
     $state = Invoke-Hover @{command='wait'}
     Assert-That ($state.phase -eq 'error' -and $state.path -eq $textPath -and $state.error) 'Rename succeeds during preview; missing source produces a named error'
+    $null = Invoke-Hover @{command='reload'}
+    $state = Invoke-Hover @{command='wait'}
+    Assert-That ($state.phase -eq 'error' -and $state.path -eq $textPath) 'Repeated missing-source retry stays a named error without stale text'
     Move-Item -LiteralPath $renamed -Destination $textPath
     $null = Invoke-Hover @{command='reload'}
-    $null = Invoke-Hover @{command='wait'}
+    $state = Invoke-Hover @{command='wait'}
+    Assert-That ($state.phase -eq 'ready' -and $state.scroll -eq 20) 'Successful retry after repeated missing-source errors restores the last good text scroll'
     $null = Invoke-Hover @{command='open';path=$imagePath}
     $state = Invoke-Hover @{command='wait'}
     Assert-That ($state.phase -eq 'ready' -and $state.content.kind -eq 'image' -and $state.content.image_width -eq 800 -and $state.content.image_height -eq 600) 'WIC decodes generated BMP through the real application'
@@ -181,6 +185,19 @@ try {
     $null = Invoke-Hover @{command='reload'}
     $state = Invoke-Hover @{command='wait'}
     Assert-That ($state.content.scale -eq 1 -and $state.content.pan_x -eq $savedPanX -and $state.content.pan_y -eq $savedPanY) 'Compatible image reload preserves actual zoom and pan'
+    $savedImageBytes = [IO.File]::ReadAllBytes($imagePath)
+    [IO.File]::WriteAllBytes($imagePath,[byte[]](66,77,0,0,0))
+    $null = Invoke-Hover @{command='reload'}
+    $state = Invoke-Hover @{command='wait'}
+    $content = Invoke-Hover @{command='inspect';limit=8}
+    Assert-That ($state.phase -eq 'error' -and $state.path -eq $imagePath -and $state.content.kind -eq 'text' -and $content.content.lines -contains 'Your previous view is saved. Reload to retry.') 'Truncated image reload replaces pixels with a precise same-file error and saved-view retry hint'
+    $null = Invoke-Hover @{command='reload'}
+    $state = Invoke-Hover @{command='wait'}
+    Assert-That ($state.phase -eq 'error') 'Repeated corrupt image retry preserves explicit error state'
+    [IO.File]::WriteAllBytes($imagePath,$savedImageBytes)
+    $null = Invoke-Hover @{command='reload'}
+    $state = Invoke-Hover @{command='wait'}
+    Assert-That ($state.phase -eq 'ready' -and $state.content.scale -eq 1 -and $state.content.pan_x -eq $savedPanX -and $state.content.pan_y -eq $savedPanY) 'Successful retry after corrupt image errors restores the last good zoom and pan'
     $null = Invoke-Hover @{command='minimize'}
     $null = Invoke-Hover @{command='reload'}
     $state = Invoke-Hover @{command='wait'}

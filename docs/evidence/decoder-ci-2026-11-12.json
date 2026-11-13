@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "run": 43334578860,
+  "sourceRevision": "13f309f0250467d5c110c31e16f8289f2cea2114",
+  "conclusion": "success",
+  "url": "https://github.com/Herbertofury/Hover-App/actions/runs/43334578860",
+  "scope": "source checks, native fault tests, CPU containment, owned window lifecycle, release build and 55 real-app assertions; no installer/release claim",
+  "jobs": [
+    {
+      "name": "verify (1.99.0)",
+      "conclusion": "success",
+      "url": "https://github.com/Herbertofury/Hover-App/actions/runs/43334578860/job/131587409274",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:08:04Z",
+          "completedAt": "2026-11-13T00:08:05Z"
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:08:05Z",
+          "completedAt": "2026-11-13T00:08:10Z"
+        },
+        {
+          "name": "Verify public branch commit privacy",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:08:10Z",
+          "completedAt": "2026-11-13T00:08:15Z"
+        },
+        {
+          "name": "Install exact Rust toolchain",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:08:15Z",
+          "completedAt": "2026-11-13T00:08:27Z"
+        },
+        {
+          "name": "Format",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:08:27Z",
+          "completedAt": "2026-11-13T00:08:28Z"
+        },
+        {
+          "name": "Lint",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:08:28Z",
+          "completedAt": "2026-11-13T00:09:03Z"
+        },
+        {
+          "name": "Test native Windows readers",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:09:03Z",
+          "completedAt": "2026-11-13T00:09:33Z"
+        },
+        {
+          "name": "Test native decoder CPU containment on dedicated Windows runner",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:09:33Z",
+          "completedAt": "2026-11-13T00:09:39Z"
+        },
+        {
+          "name": "Test Hover window lifecycle on dedicated Windows runner",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:09:39Z",
+          "completedAt": "2026-11-13T00:09:40Z"
+        },
+        {
+          "name": "Build release",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:09:40Z",
+          "completedAt": "2026-11-13T00:10:32Z"
+        },
+        {
+          "name": "Test real Hover through private agent control",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:10:32Z",
+          "completedAt": "2026-11-13T00:10:35Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:10:35Z",
+          "completedAt": "2026-11-13T00:10:37Z"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:10:37Z",
+          "completedAt": "2026-11-13T00:10:37Z"
+        }
+      ]
+    },
+    {
+      "name": "verify (1.95.0)",
+      "conclusion": "success",
+      "url": "https://github.com/Herbertofury/Hover-App/actions/runs/43334578860/job/131587409808",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:08:04Z",
+          "completedAt": "2026-11-13T00:08:04Z"
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:08:04Z",
+          "completedAt": "2026-11-13T00:08:10Z"
+        },
+        {
+          "name": "Verify public branch commit privacy",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:08:10Z",
+          "completedAt": "2026-11-13T00:08:11Z"
+        },
+        {
+          "name": "Install exact Rust toolchain",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:08:11Z",
+          "completedAt": "2026-11-13T00:08:22Z"
+        },
+        {
+          "name": "Format",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:08:22Z",
+          "completedAt": "2026-11-13T00:08:24Z"
+        },
+        {
+          "name": "Lint",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:08:24Z",
+          "completedAt": "2026-11-13T00:09:02Z"
+        },
+        {
+          "name": "Test native Windows readers",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:09:02Z",
+          "completedAt": "2026-11-13T00:09:40Z"
+        },
+        {
+          "name": "Test native decoder CPU containment on dedicated Windows runner",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:09:40Z",
+          "completedAt": "2026-11-13T00:09:47Z"
+        },
+        {
+          "name": "Test Hover window lifecycle on dedicated Windows runner",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:09:47Z",
+          "completedAt": "2026-11-13T00:09:47Z"
+        },
+        {
+          "name": "Build release",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:09:47Z",
+          "completedAt": "2026-11-13T00:10:45Z"
+        },
+        {
+          "name": "Test real Hover through private agent control",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:10:45Z",
+          "completedAt": "2026-11-13T00:10:49Z"
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:10:49Z",
+          "completedAt": "2026-11-13T00:10:51Z"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success",
+          "startedAt": "2026-11-13T00:10:51Z",
+          "completedAt": "2026-11-13T00:10:51Z"
+        }
+      ]
+    }
+  ]
+}

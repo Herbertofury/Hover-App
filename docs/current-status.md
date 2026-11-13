@@ -36,7 +36,8 @@ were inspected; their scopes remain required and open.
 - Native Pin/Unpin, Reload and Close controls support an explicitly activated,
   resizable preview that retains its identity across app switches. Compatible
   same-file reloads restore image zoom/pan and clamped animation frame or
-  text/list scroll; changed kinds/dimensions explain their reset. Window-scoped
+  text/list scroll, including successful retries after repeated missing/corrupt
+  source errors; changed kinds/dimensions explain their reset. Window-scoped
   keyboard controls and tray commands are implemented. These are development
   features with source tests; see [pinned-preview evidence](pinned-preview.md).
 - ZIP upgraded from 2.4.2 to 9.5.1 after four RustSec advisories. Full reference
@@ -49,14 +50,14 @@ were inspected; their scopes remain required and open.
 ## Current evidence
 
 The app-native `hover-agent --stdio` interface can launch/control its own real
-Windows session independently of Computer Use. The release-build suite passed
-50 checks using generated files and the pinned public DBPF index fixture,
-including decoded content,
-native view/focus, reload continuity, rename/source hashes, cancellation,
-nonblank renderer/control pixel checks and shutdown. Both Rust 1.95 and 1.99
-hosted Windows jobs passed the same 50 checks, source tests, native lifecycle
-test, lint and release build in run 43324046891. PR #40 is merged, preserving
-the concurrent competitor research. Captures are real client render exports.
+Windows session independently of Computer Use. The current release-build suite
+passed 60 local checks using generated files and the pinned public DBPF index
+fixture, including recovery of zoom/pan/scroll after repeated reload errors.
+Both Rust 1.95 and 1.99 hosted Windows jobs passed the preceding 55-check suite,
+native decoder fault/CPU tests, source tests, native lifecycle test, lint and
+release build in run 43334578860 at `13f309f`. PR #42 was published to protected
+main as that exact tested commit. Earlier agent-control PR #40 preserved the
+concurrent competitor research. Captures are real client render exports.
 See [agent control and boundaries](agent-control.md). This advances app-native
 testing; actual Explorer, physical input and packaged release gates remain open.
 

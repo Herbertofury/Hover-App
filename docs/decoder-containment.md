@@ -47,7 +47,15 @@ Six additional source tests cover actual stalled children, cancellation, abrupt
 exit and recovery, denied native allocation, ordinary descendant creation,
 non-spinning supervision and hostile/truncated output packets. Fault helpers
 exist only in the test executable. A dedicated hosted Windows test additionally
-checks actual CPU-time termination; inspect CI before claiming it passed.
+checked actual CPU-time termination on both Rust 1.95 and 1.99. Both complete
+jobs passed the 55-check real-app suite at source `13f309f0250467d5c110c31e16f8289f2cea2114`
+in [Windows run 43334578860](https://github.com/Herbertofury/Hover-App/actions/runs/43334578860).
+See [retained CI summary](evidence/decoder-ci-2026-11-12.json) and
+[native CPU/app log](evidence/decoder-native-ci-2026-11-12.txt). Log trailing
+whitespace is removed; the linked run retains the original. PR #42 was published
+to protected main by fast-forwarding to that exact tested commit. The later
+reload-recovery suite adds five checks; its local evidence is documented in
+[pinned-preview evidence](pinned-preview.md).
 
 The [raw component samples](evidence/decoder-benchmark-2026-11-12.json) compare
 the same source-read/decoder path in-process and through the isolated process.
