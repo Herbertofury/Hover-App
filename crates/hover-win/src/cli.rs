@@ -9,7 +9,7 @@ pub fn build_info() -> Value {
         "sourceRevision":option_env!("HOVER_SOURCE_REVISION"),
         "architecture":std::env::consts::ARCH,"platform":std::env::consts::OS,
         "profile":if cfg!(debug_assertions){"debug"}else{"release"},
-        "appUserModelId":APP_USER_MODEL_ID,"agentProtocol":1,"releaseVerified":false})
+        "appUserModelId":APP_USER_MODEL_ID,"agentProtocol":1,"features":{"nativeComparison":cfg!(windows)},"releaseVerified":false})
 }
 
 pub fn inspect_arguments(args: &[std::ffi::OsString], console: bool) -> Option<i32> {

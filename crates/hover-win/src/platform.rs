@@ -1,8 +1,10 @@
 #![allow(unsafe_op_in_unsafe_fn)]
 
 mod agent_control;
+mod comparison;
+mod comparison_data;
 
-use crate::resolver::resolve_hover_path;
+use crate::resolver::{HoverTarget, resolve_hover_target};
 use hover_core::{
     CancellationToken, HoverState, PlacementConfig, Point as HoverPoint, PreviewWorker,
     Rect as HoverRect, ResourceCounters, Size, WheelModifier, ZoomConfig, ZoomState, place_preview,
@@ -400,6 +402,16 @@ fn run_inner(agent: Option<crate::agent::Launch>) -> Result<(), i32> {
 
         let mut msg = MSG::default();
         while GetMessageW(&mut msg, null_mut(), 0, 0) > 0 {
+            let ptr = GetWindowLongPtrW(
+                control_hwnd,
+                windows_sys::Win32::UI::WindowsAndMessaging::GWLP_USERDATA,
+            ) as *const App;
+            if let Some(app) = ptr.as_ref()
+                && let Some(comparison) = &app.comparison
+                && comparison.preprocess(&msg)
+            {
+                continue;
+            }
             if preprocess_preview_message(&msg) {
                 continue;
             }
@@ -467,6 +479,10 @@ struct App {
     counters: ResourceCounters,
     tray_added: bool,
     candidate_path: Option<PathBuf>,
+    candidate_comparison: Vec<PathBuf>,
+    candidate_selected_total: usize,
+    comparison_hover_identity: Option<Vec<PathBuf>>,
+    dismissed_comparison: Option<Vec<PathBuf>>,
     dismissed_path: Option<PathBuf>,
     candidate_since: Instant,
     current_path: Option<PathBuf>,
@@ -490,9 +506,48 @@ struct App {
     agent_controlled: bool,
     agent_requests: Option<std::sync::mpsc::Receiver<crate::agent::Request>>,
     preview_error: Option<String>,
+    comparison: Option<comparison::Session>,
 }
 
 impl App {
+    unsafe fn start_comparison(
+        &mut self,
+        paths: Vec<PathBuf>,
+        selected_total: usize,
+        activate: bool,
+    ) -> Result<(), String> {
+        if !(2..=comparison_data::MAX_PANES).contains(&paths.len()) {
+            return Err("Compare two to four local files at a time".into());
+        }
+        for (index, path) in paths.iter().enumerate() {
+            if !path.is_absolute()
+                || path.as_os_str().is_empty()
+                || path.as_os_str().encode_wide().any(|ch| ch == 0)
+            {
+                return Err("Each comparison path must be an absolute path without NUL".into());
+            }
+            if paths[..index]
+                .iter()
+                .any(|other| other.as_os_str().eq_ignore_ascii_case(path.as_os_str()))
+            {
+                return Err("Choose different files for each pane".into());
+            }
+        }
+        self.cancel_decode();
+        self.hide_preview();
+        self.candidate_path = None;
+        self.dismissed_path = None;
+        if self.comparison.is_none() {
+            self.comparison = Some(comparison::Session::new(self.hwnd)?);
+        }
+        self.comparison.as_ref().unwrap().open(
+            paths,
+            selected_total,
+            self.settings.preview_types.clone(),
+            activate,
+        );
+        Ok(())
+    }
     unsafe fn new(hwnd: HWND) -> Self {
         let overlay = create_overlay_window();
         let mut settings = load_settings();
@@ -508,6 +563,10 @@ impl App {
             counters: ResourceCounters::default(),
             tray_added: false,
             candidate_path: None,
+            candidate_comparison: Vec::new(),
+            candidate_selected_total: 0,
+            comparison_hover_identity: None,
+            dismissed_comparison: None,
             dismissed_path: None,
             candidate_since: Instant::now(),
             current_path: None,
@@ -529,6 +588,7 @@ impl App {
             agent_controlled: false,
             agent_requests: None,
             preview_error: None,
+            comparison: None,
         };
         if app.settings.general.show_tray_icon {
             app.tray_added = add_tray_icon(hwnd, app.tray_icon);
@@ -625,7 +685,13 @@ impl App {
     }
 
     unsafe fn update_hover_target(&mut self) {
-        if self.pinned || self.agent_controlled {
+        if self.pinned
+            || self.agent_controlled
+            || self
+                .comparison
+                .as_ref()
+                .is_some_and(comparison::Session::visible)
+        {
             return;
         }
         if self.current_path.is_some() && self.cursor_inside_active_preview() {
@@ -635,31 +701,51 @@ impl App {
             return;
         }
 
-        let target =
-            resolve_hover_path().or_else(|| env::var_os("HOVER_PREVIEW_PATH").map(PathBuf::from));
-        let Some(path) = target else {
+        let target = resolve_hover_target().or_else(|| {
+            env::var_os("HOVER_PREVIEW_PATH").map(|value| HoverTarget {
+                path: PathBuf::from(value),
+                comparison: Vec::new(),
+                selected_total: 0,
+            })
+        });
+        let Some(target) = target else {
             self.dismissed_path = None;
             if self.current_path.is_some() || self.pending_path.is_some() {
                 self.cancel_decode();
                 self.hide_preview();
             }
             self.candidate_path = None;
+            self.candidate_comparison.clear();
+            self.dismissed_comparison = None;
             if self.state != HoverState::ForegroundEligible {
                 self.state = HoverState::ForegroundEligible;
             }
             return;
         };
+        let path = target.path;
+        if !target.comparison.is_empty()
+            && self.dismissed_comparison.as_ref() == Some(&target.comparison)
+        {
+            return;
+        }
+        if self.dismissed_comparison.as_ref() != Some(&target.comparison) {
+            self.dismissed_comparison = None;
+        }
 
         if self.dismissed_path.as_ref() == Some(&path) {
             return;
         }
         self.dismissed_path = None;
 
-        if self.candidate_path.as_ref() != Some(&path) {
+        if self.candidate_path.as_ref() != Some(&path)
+            || self.candidate_comparison != target.comparison
+        {
             // Revoke old identity immediately, before the new dwell interval.
             self.cancel_decode();
             self.hide_preview();
             self.candidate_path = Some(path);
+            self.candidate_comparison = target.comparison;
+            self.candidate_selected_total = target.selected_total;
             self.candidate_since = Instant::now();
             self.state = HoverState::HoverCandidate;
             return;
@@ -671,6 +757,17 @@ impl App {
         }
 
         let path = self.candidate_path.clone().unwrap();
+        if self.candidate_comparison.len() >= 2 {
+            let paths = self.candidate_comparison.clone();
+            let identity = paths.clone();
+            if self
+                .start_comparison(paths, self.candidate_selected_total, false)
+                .is_ok()
+            {
+                self.comparison_hover_identity = Some(identity);
+            }
+            return;
+        }
         if self.current_path.as_ref() == Some(&path) || self.pending_path.as_ref() == Some(&path) {
             return;
         }
@@ -1823,6 +1920,32 @@ unsafe extern "system" fn control_window_proc(
         windows_sys::Win32::UI::WindowsAndMessaging::GWLP_USERDATA,
     ) as *mut App;
     match msg {
+        comparison::CLOSED => {
+            if let Some(app) = ptr.as_mut()
+                && !app
+                    .comparison
+                    .as_ref()
+                    .is_some_and(comparison::Session::visible)
+            {
+                app.dismissed_comparison = app.comparison_hover_identity.take();
+            }
+            0
+        }
+        comparison::OPEN_SINGLE => {
+            if let Some(app) = ptr.as_mut()
+                && let Some(path) = app
+                    .comparison
+                    .as_ref()
+                    .and_then(comparison::Session::take_single)
+            {
+                app.comparison.as_ref().unwrap().close();
+                app.start_decode(path);
+                if !app.pinned {
+                    app.toggle_pin_with_activation(true);
+                }
+            }
+            0
+        }
         crate::resident::MESSAGE => {
             if let Some(app) = ptr.as_mut()
                 && !app.agent_controlled

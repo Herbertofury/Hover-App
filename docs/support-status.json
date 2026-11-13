@@ -7,6 +7,7 @@
     "image": "WIC in verified LPAC/job child; generated six-format pixel comparison and native-app checks; broader real-file fidelity gates open",
     "decoder": "WIC/GIF LPAC with exact token/authorization checks; private-resource and loopback denial probes, job budgets and cancellation; profile/GPU/broker and parent-I/O/startup boundaries incomplete",
     "interaction": "native pin/reload/keyboard/view continuity; actual Windows app tests; shell/physical accessibility/DPI gates open",
+    "comparison": "native 2–4 independent panes, linked image views/animation controls, decoded PBGRA masks, bounded displayed-line and full-byte differences; generated native/reference tests; physical Explorer/game dependencies/3D unverified",
     "agent": "private stdio controls real hover.exe; same-user/same-install resident lifecycle CLI, build identity and client render exports; see docs/agent-control.md",
     "installation": "unsigned development MSI: Windows install/Shell launch/upgrade/failure/local rollback/uninstall and installed GUI/console tests; same-source version fixtures; authenticated updates/taskbar pin/release gates open",
     "browser": "skeleton, no remote preview fetch",

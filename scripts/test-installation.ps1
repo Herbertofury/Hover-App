@@ -3,7 +3,8 @@ param(
     [Parameter(Mandatory)][string]$PackageB,
     [string]$DbpfFixture='',
     [string]$OutputDirectory=(Join-Path $PSScriptRoot '../target/installation-evidence'),
-    [switch]$StableDevelopmentChannel
+    [switch]$StableDevelopmentChannel,
+    [switch]$UpgradeInstalledDevelopment
 )
 $ErrorActionPreference='Stop'
 Add-Type -TypeDefinition @'
@@ -15,6 +16,7 @@ public static class HoverInstallNative {
 '@
 $a=Get-Content -LiteralPath (Join-Path $PackageA 'package.json') -Raw | ConvertFrom-Json
 $b=Get-Content -LiteralPath (Join-Path $PackageB 'package.json') -Raw | ConvertFrom-Json
+if($UpgradeInstalledDevelopment){$StableDevelopmentChannel=$true}
 $scopeAllowed=$a.installLeaf -match '^Hover-Test-[0-9a-f]{12}$'
 if($StableDevelopmentChannel){$scopeAllowed=$a.installLeaf -eq 'Hover-Development' -and [guid]$a.upgradeCode -eq [guid]'A67BBD1A-3042-41D4-9702-936EF1696D7E'}
 if(-not $scopeAllowed -or $a.installLeaf -ne $b.installLeaf -or $a.upgradeCode -ne $b.upgradeCode -or [version]$a.version -ge [version]$b.version){throw 'Use ordered development versions with an exact allowed test scope; stable development requires its explicit switch and fixed product family'}
@@ -26,8 +28,13 @@ foreach($pair in @(@($PackageA,$a),@($PackageB,$b))){
 }
 $target=Join-Path $env:LOCALAPPDATA "Programs\$($a.installLeaf)"
 $link=Join-Path ([Environment]::GetFolderPath('Programs')) "$($a.installLeaf)\Hover Development.lnk"
-if(Test-Path -LiteralPath $target){throw 'Installation test requires a fresh exact target'}
-if([HoverInstallNative]::MsiQueryProductState($a.productCode) -eq 5 -or [HoverInstallNative]::MsiQueryProductState($b.productCode) -eq 5){throw 'Test product is already installed'}
+if($UpgradeInstalledDevelopment){
+    if([HoverInstallNative]::MsiQueryProductState($a.productCode) -ne 5 -or [HoverInstallNative]::MsiQueryProductState($b.productCode) -in @(1,5)){throw 'Stable upgrade requires the exact package A installed and package B absent'}
+    foreach($file in $a.files){if((Get-FileHash -LiteralPath (Join-Path $target $file.name)).Hash -ne $file.sha256){throw 'Existing stable managed payload differs from package A; preserve it and inspect before testing'}}
+}else{
+    if(Test-Path -LiteralPath $target){throw 'Installation test requires a fresh exact target'}
+    if([HoverInstallNative]::MsiQueryProductState($a.productCode) -eq 5 -or [HoverInstallNative]::MsiQueryProductState($b.productCode) -eq 5){throw 'Test product is already installed'}
+}
 $run=Join-Path ([IO.Path]::GetFullPath($OutputDirectory)) ('session-'+[guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $run -Force | Out-Null
 $checks=[Collections.Generic.List[string]]::new();$transactions=[Collections.Generic.List[object]]::new()
@@ -94,16 +101,42 @@ function Exercise-App {
     & (Join-Path $PSScriptRoot 'test-agent.ps1') @agentParams | Out-Null
     if($LASTEXITCODE -ne 0){throw 'Installed console agent checks failed'}
     Assert $true 'Installed console agent passes the same native preview suite'
+    $identity=& $cli --version-json | ConvertFrom-Json
+    if($LASTEXITCODE -ne 0){throw 'Installed feature identity unavailable'}
+    if($identity.features.nativeComparison){
+        $comparisonParams=@{Executable=$exe;OutputDirectory=(Join-Path $run 'comparison')}
+        if($DbpfFixture){$comparisonParams.DbpfFixture=$DbpfFixture}
+        & (Join-Path $PSScriptRoot 'test-comparison.ps1') @comparisonParams | Out-Null
+        if($LASTEXITCODE -ne 0){throw 'Installed native GUI comparison suite failed'}
+        $comparisonParams.Executable=$cli;$comparisonParams.AgentArguments='--stdio'
+        & (Join-Path $PSScriptRoot 'test-comparison.ps1') @comparisonParams | Out-Null
+        if($LASTEXITCODE -ne 0){throw 'Installed console comparison suite failed'}
+        Assert $true 'Installed GUI and console entries pass real comparison, difference, reload, cancellation, source-integrity and render checks'
+    }
 }
 $msiA=Join-Path $PackageA $a.package;$msiB=Join-Path $PackageB $b.package
 $success=$false
 try{
-    Install $msiA 'install-a';Check-Installed $a;Check-Shortcut;Exercise-Shortcut;Exercise-App
-    [IO.File]::WriteAllText($marker,'User-owned fixture; installer must preserve this.');$markerHash=(Get-FileHash -LiteralPath $marker).Hash
+    if($UpgradeInstalledDevelopment){
+        $resident=& $cli --resident-status | ConvertFrom-Json
+        if($LASTEXITCODE -ne 0){throw 'Existing stable resident status failed'}
+        if($resident.running){
+            $owned=Get-Process -Id $resident.pid
+            $reply=& $cli --shutdown | ConvertFrom-Json
+            Assert ($LASTEXITCODE -eq 0 -and $reply.sent -and $owned.WaitForExit(5000)) 'Verified existing stable resident stops gracefully through its own scoped CLI'
+        }
+        Assert $true 'Upgrade begins from the exact already-installed older development artifact'
+    }else{Install $msiA 'install-a'}
+    Check-Installed $a;Check-Shortcut;Exercise-Shortcut;Exercise-App
+    if(-not(Test-Path -LiteralPath $marker)){
+        $stream=[IO.File]::Open($marker,[IO.FileMode]::CreateNew)
+        try{$bytes=[Text.Encoding]::UTF8.GetBytes('User-owned fixture; installer must preserve this.');$stream.Write($bytes)}finally{$stream.Dispose()}
+    }
+    $markerHash=(Get-FileHash -LiteralPath $marker).Hash
     # Deliberately malformed CAB negative fixture. This is a direct MSI
     # transaction test, not an authenticated updater accepting a changed hash.
     $fault=Join-Path $run 'broken-upgrade';New-Item -ItemType Directory -Path $fault | Out-Null
-    $ddf=@('.OPTION EXPLICIT','.Set CabinetNameTemplate=Broken.cab','.Set DiskDirectoryTemplate=.','.Set CompressionType=MSZIP','.Set Cabinet=on','.Set Compress=on')
+    $ddf=@('.OPTION EXPLICIT','.Set CabinetNameTemplate=Broken.cab','.Set DiskDirectoryTemplate=.','.Set MaxDiskSize=0','.Set MaxCabinetSize=0','.Set CompressionType=MSZIP','.Set Cabinet=on','.Set Compress=on')
     $ids=@{ 'hover-agent.exe'='AgentExe';'hover-browser-host.exe'='BrowserExe';'LICENSE'='License';'THIRD-PARTY-NOTICES.md'='Notices';'DEPENDENCY-LICENSES.txt'='DependencyLicenses';'BUILD-INFO.json'='BuildInfo' }
     foreach($file in $b.files){$name=$file.name;if($ids.ContainsKey($name)){$ddf+='"'+[IO.Path]::GetFullPath((Join-Path $PackageB "payload/$name"))+'" '+$ids[$name]}}
     [IO.File]::WriteAllLines((Join-Path $fault 'broken.ddf'),$ddf,[Text.Encoding]::ASCII)
@@ -135,6 +168,21 @@ try{
     Assert ([HoverInstallNative]::MsiQueryProductState($b.productCode) -ne 5) 'Explicit rollback removes newer product registration'
     $success=$true
 }finally{
+    # An existing daily installation must never be removed by test cleanup.
+    # On failure keep its current state and every log for investigation.
+    if($UpgradeInstalledDevelopment){
+        if($success){
+            Install $msiB 'final-upgrade-b';Check-Installed $b;Check-Shortcut;Exercise-Shortcut;Exercise-App
+            $start=[Diagnostics.ProcessStartInfo]::new($link);$start.UseShellExecute=$true
+            $null=[Diagnostics.Process]::Start($start)
+            $resident=$null
+            for($n=0;$n -lt 100;$n++){$resident=& $cli --resident-status | ConvertFrom-Json;if($LASTEXITCODE -ne 0){throw 'Final resident status failed'};if($resident.running){break};Start-Sleep -Milliseconds 50}
+            Assert ([bool]$resident.running) 'Final newer stable app launches normally from its installed Start Menu shortcut'
+            $result=[ordered]@{schemaVersion=1;passed=$true;scope='Exact existing older unsigned Windows development installation; failed incoming payload, different-source upgrade, denied downgrade, explicit local rollback, then final newer installation and normal Shell launch. Local artifacts only; no authenticated network update, physical Explorer/taskbar pin or release claim.';assertions=$checks.Count;checks=$checks;transactions=$transactions;packageA=$a.sha256;packageB=$b.sha256;sourceA=$a.build.sourceRevision;sourceB=$b.build.sourceRevision;finalVersion=$b.version;finalResidentRunning=[bool]$resident.running;userAddedFileSha256=$markerHash}
+            $result|ConvertTo-Json -Depth 8|Set-Content -LiteralPath (Join-Path $run 'result.json') -Encoding utf8
+            Write-Host "Existing development upgrade passed ($($checks.Count) checks); retained evidence: $run"
+        }else{Write-Warning "Existing development test stopped; current installation retained. Inspect $run before retrying."}
+    }else{
     # Uninstall only these two exact test product codes through Windows
     # Installer. User-added files and raw evidence remain for inspection.
     foreach($product in @($a.productCode,$b.productCode)){
@@ -149,6 +197,7 @@ try{
         $result=[ordered]@{schemaVersion=1;passed=$true;scope='Actual Windows MSI install, native installed-app preview/restart, same-source versioned upgrade, transaction failure, downgrade guard, explicit local rollback, uninstall. Unsigned development fixtures; no network updater, Explorer input, taskbar pin or release qualification claim.';assertions=$checks.Count;checks=$checks;transactions=$transactions;packageA=$a.sha256;packageB=$b.sha256;sourceA=$a.build.sourceRevision;sourceB=$b.build.sourceRevision}
         $result | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $run 'result.json') -Encoding utf8
         Write-Host "Installation test passed ($($checks.Count) checks); retained evidence: $run"
+    }
     }
 }
 exit 0

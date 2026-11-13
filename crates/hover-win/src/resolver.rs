@@ -8,11 +8,18 @@ use windows::Win32::System::Variant::{
     VARIANT, VARIANT_0, VARIANT_0_0, VARIANT_0_0_0, VT_I4, VariantClear,
 };
 use windows::Win32::UI::Accessibility::{AccessibleObjectFromPoint, IAccessible};
-use windows::Win32::UI::Shell::{IShellWindows, ShellWindows};
+use windows::Win32::UI::Shell::{IShellFolderViewDual, IShellWindows, ShellWindows};
 use windows::Win32::UI::WindowsAndMessaging::{GetCursorPos, GetForegroundWindow};
 use windows::core::Interface;
 
-pub fn resolve_hover_path() -> Option<PathBuf> {
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct HoverTarget {
+    pub path: PathBuf,
+    pub comparison: Vec<PathBuf>,
+    pub selected_total: usize,
+}
+
+pub fn resolve_hover_target() -> Option<HoverTarget> {
     unsafe { CoInitializeEx(None, COINIT_APARTMENTTHREADED) }
         .ok()
         .ok()?;
@@ -24,15 +31,22 @@ pub fn resolve_hover_path() -> Option<PathBuf> {
     }
     let _com = ComGuard;
     let item = item_name_or_path_under_cursor()?;
-    if let Some(path) = existing_absolute_path(&item) {
-        return Some(path);
-    }
-    let folder = foreground_explorer_folder()?;
-    let direct = folder.join(item.trim());
-    if direct.exists() {
-        return Some(direct);
-    }
-    None
+    let view = foreground_explorer_view();
+    let path = existing_absolute_path(&item).or_else(|| {
+        view.as_ref()
+            .and_then(|view| existing_absolute_path(&view.0.join(item.trim()).to_string_lossy()))
+    })?;
+    let (comparison, selected_total) = view
+        .map(|(_, paths, total)| {
+            let comparison = selected_comparison(&path, &paths);
+            (comparison, total)
+        })
+        .unwrap_or_default();
+    Some(HoverTarget {
+        path,
+        comparison,
+        selected_total,
+    })
 }
 
 fn item_name_or_path_under_cursor() -> Option<String> {
@@ -71,7 +85,7 @@ fn item_name_or_path_under_cursor() -> Option<String> {
     }
 }
 
-fn foreground_explorer_folder() -> Option<PathBuf> {
+fn foreground_explorer_view() -> Option<(PathBuf, Vec<PathBuf>, usize)> {
     unsafe {
         let foreground = GetForegroundWindow();
         if foreground.is_invalid() {
@@ -80,19 +94,44 @@ fn foreground_explorer_folder() -> Option<PathBuf> {
         let shell_windows: IShellWindows =
             CoCreateInstance(&ShellWindows, None, CLSCTX_ALL).ok()?;
         let count = shell_windows.Count().ok()?;
-        for index in 0..count {
+        for index in 0..count.clamp(0, 64) {
             let variant = variant_i4(index);
-            let disp = shell_windows.Item(&variant).ok()?;
-            let browser = disp
-                .cast::<windows::Win32::UI::Shell::IWebBrowser2>()
-                .ok()?;
-            let browser_hwnd = browser.HWND().ok()?;
+            let Ok(disp) = shell_windows.Item(&variant) else {
+                continue;
+            };
+            let Ok(browser) = disp.cast::<windows::Win32::UI::Shell::IWebBrowser2>() else {
+                continue;
+            };
+            let Ok(browser_hwnd) = browser.HWND() else {
+                continue;
+            };
             if HWND(browser_hwnd.0 as *mut _) != foreground {
                 continue;
             }
             let url = browser.LocationURL().ok()?.to_string();
             if let Some(path) = file_url_to_path(&url) {
-                return Some(path);
+                let mut paths = Vec::new();
+                let mut total = 0;
+                if let Ok(document) = browser.Document()
+                    && let Ok(view) = document.cast::<IShellFolderViewDual>()
+                    && let Ok(items) = view.SelectedItems()
+                    && let Ok(count) = items.Count()
+                {
+                    total = count.max(0) as usize;
+                    for index in 0..count.clamp(0, 4) {
+                        let variant = variant_i4(index);
+                        if let Ok(item) = items.Item(&variant)
+                            && let Ok(value) = item.Path()
+                            && value.len() <= 32768
+                        {
+                            let candidate = PathBuf::from(value.to_string());
+                            if candidate.is_absolute() {
+                                paths.push(candidate);
+                            }
+                        }
+                    }
+                }
+                return Some((path, paths, total));
             }
         }
         None
@@ -115,11 +154,34 @@ unsafe fn variant_i4(value: i32) -> VARIANT {
 
 fn existing_absolute_path(value: &str) -> Option<PathBuf> {
     let path = PathBuf::from(value.trim());
-    if path.is_absolute() && path.exists() {
+    if path.is_absolute() && hover_decode::local_io::local_metadata(&path).is_ok() {
         Some(path)
     } else {
         None
     }
+}
+
+fn selected_comparison(hovered: &Path, selected: &[PathBuf]) -> Vec<PathBuf> {
+    if selected.len() < 2
+        || !selected
+            .iter()
+            .any(|path| path.as_os_str().eq_ignore_ascii_case(hovered.as_os_str()))
+    {
+        return Vec::new();
+    }
+    let mut result: Vec<PathBuf> = Vec::new();
+    for path in selected.iter().take(4) {
+        if !result
+            .iter()
+            .any(|prior| prior.as_os_str().eq_ignore_ascii_case(path.as_os_str()))
+        {
+            result.push(path.clone());
+        }
+    }
+    if result.len() < 2 {
+        result.clear();
+    }
+    result
 }
 
 fn usable_item_text(value: &str) -> bool {
@@ -169,6 +231,31 @@ fn percent_decode(value: &str) -> Option<String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn selection_comparison_requires_hovered_membership_and_keeps_bounded_view_order() {
+        let paths = [
+            r"C:\Fixtures\b.png",
+            r"C:\Fixtures\a.png",
+            r"C:\Fixtures\c.png",
+            r"C:\Fixtures\d.png",
+            r"C:\Fixtures\e.png",
+        ]
+        .map(PathBuf::from);
+        assert_eq!(
+            selected_comparison(Path::new(r"c:\fixtures\A.PNG"), &paths),
+            paths[..4]
+        );
+        assert!(selected_comparison(Path::new(r"C:\Fixtures\other.png"), &paths).is_empty());
+        assert!(selected_comparison(&paths[0], &paths[..1]).is_empty());
+        assert!(
+            selected_comparison(
+                &paths[0],
+                &[paths[0].clone(), PathBuf::from(r"c:\fixtures\B.PNG")]
+            )
+            .is_empty()
+        );
+    }
 
     #[test]
     fn decodes_file_url() {

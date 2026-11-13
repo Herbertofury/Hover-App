@@ -36,7 +36,7 @@ fn number(command: &Value, key: &str) -> Result<f32, String> {
         .ok_or_else(|| format!("{key} must be finite and within +/-1000000"))
 }
 
-unsafe fn window_text(hwnd: HWND) -> String {
+pub(super) unsafe fn window_text(hwnd: HWND) -> String {
     let mut text = [0u16; 1024];
     let len = windows_sys::Win32::UI::WindowsAndMessaging::GetWindowTextW(
         hwnd,
@@ -49,13 +49,35 @@ unsafe fn window_text(hwnd: HWND) -> String {
 impl App {
     pub(super) unsafe fn execute_agent_command(&mut self, command: Value) -> Result<Value, String> {
         let name = required_string(&command, "command")?;
+        if matches!(
+            name,
+            "reload"
+                | "close"
+                | "capture"
+                | "zoom"
+                | "pan"
+                | "scroll"
+                | "resize"
+                | "minimize"
+                | "restore"
+                | "focus"
+        ) && let Some(comparison) = self.comparison.as_ref().filter(|c| c.visible())
+        {
+            let mut routed = command.clone();
+            routed["action"] = json!(name);
+            let result = comparison.command(&routed)?;
+            if name == "capture" {
+                return Ok(result);
+            }
+            return Ok(self.agent_status());
+        }
         match name {
             "capabilities" => {
                 validate_fields(&command, &["command"])?;
                 return Ok(
                     json!({"protocol":1,"transport":"private_stdio","owns_session":true,
                     "configuration":"ephemeral_defaults_no_startup_mutation",
-                    "commands":["capabilities","support","settings","status","inspect","open","pin","reload","close","wait","zoom","pan","scroll","resize","minimize","restore","focus","play","activation","capture","quit"],
+                    "commands":["capabilities","support","settings","status","inspect","open","compare","comparison","pin","reload","close","wait","zoom","pan","scroll","resize","minimize","restore","focus","play","activation","capture","quit"],
                     "limitations":["No external-window input injection","Controlled activation by default; activation can enable production shell targeting","No claim of physical-input, accessibility or packaged-release certification"]}),
                 );
             }
@@ -100,6 +122,9 @@ impl App {
                 }
                 let pin = boolean(&command, "pin", true)?;
                 let activate = boolean(&command, "activate", false)?;
+                if let Some(comparison) = &self.comparison {
+                    comparison.close();
+                }
                 self.cancel_decode();
                 self.hide_preview();
                 self.candidate_path = Some(path.clone());
@@ -108,6 +133,33 @@ impl App {
                 if pin && !self.pinned {
                     self.toggle_pin_with_activation(activate);
                 }
+            }
+            "compare" => {
+                validate_fields(&command, &["command", "paths", "activate"])?;
+                let paths = command
+                    .get("paths")
+                    .and_then(Value::as_array)
+                    .ok_or("paths must be an array of absolute paths")?;
+                if !(2..=comparison_data::MAX_PANES).contains(&paths.len()) {
+                    return Err("Compare two to four files at a time".into());
+                }
+                let paths = paths
+                    .iter()
+                    .map(|p| {
+                        p.as_str()
+                            .map(PathBuf::from)
+                            .ok_or("Each comparison path must be a string")
+                    })
+                    .collect::<Result<Vec<_>, _>>()?;
+                let total = paths.len();
+                self.start_comparison(paths, total, boolean(&command, "activate", false)?)?;
+            }
+            "comparison" => {
+                return self
+                    .comparison
+                    .as_ref()
+                    .ok_or("No comparison session exists")?
+                    .command(&command);
             }
             "pin" => {
                 validate_fields(&command, &["command", "value", "activate"])?;
@@ -296,16 +348,44 @@ impl App {
             ScreenToClient(self.overlay, &mut origin);
             json!({"id":id,"label":window_text(hwnd),"visible":IsWindowVisible(hwnd)!=0,"enabled":IsWindowEnabled(hwnd)!=0,"focused":GetFocus()==hwnd,"rect":{"x":origin.x,"y":origin.y,"width":rect.right-rect.left,"height":rect.bottom-rect.top}})
         });
-        json!({"pid":std::process::id(),"version":env!("CARGO_PKG_VERSION"),"profile":if cfg!(debug_assertions){"debug"}else{"release"},
+        let comparison = self
+            .comparison
+            .as_ref()
+            .filter(|c| c.visible())
+            .map(|c| c.status(false, 0, 0));
+        let comparison_loading = self
+            .comparison
+            .as_ref()
+            .is_some_and(comparison::Session::loading);
+        let mut result = json!({"pid":std::process::id(),"version":env!("CARGO_PKG_VERSION"),"profile":if cfg!(debug_assertions){"debug"}else{"release"},
             "state":format!("{:?}",self.state),"phase":if self.pending_path.is_some(){"loading"}else if self.preview_error.is_some(){"error"}else if self.current_path.is_some(){"ready"}else{"empty"},
-            "path":self.current_path,"pending_path":self.pending_path,"loading":self.pending_path.is_some(),"error":self.preview_error,
+            "path":self.current_path,"pending_path":self.pending_path,"loading":self.pending_path.is_some()||comparison_loading,"error":self.preview_error,"comparison":comparison,
             "pinned":self.pinned,"automatic_activation":!self.agent_controlled,"visible":IsWindowVisible(self.overlay)!=0,"minimized":IsIconic(self.overlay)!=0,
             "caption":window_text(self.overlay),"no_activate":GetWindowLongPtrW(self.overlay,GWL_EXSTYLE) as u32 & WS_EX_NOACTIVATE !=0,
             "rect":{"left":rect.left,"top":rect.top,"width":rect.width(),"height":rect.height()},
             "content_rect":{"width":client.right-client.left,"height":client.bottom-client.top},
             "scroll":model.map(|model|model.scroll_offset),"content":content,"controls":controls,
             "content_focused":GetFocus()==self.overlay,"media_waiting":self.media_ready.is_some(),"video_running":self.video.is_some(),"audio_running":self.audio.is_some(),
-            "worker_busy":self.decode_worker.as_ref().is_some_and(PreviewWorker::is_busy),"decoder_process":crate::decoder_process::diagnostics()})
+            "worker_busy":self.decode_worker.as_ref().is_some_and(PreviewWorker::is_busy),"decoder_process":crate::decoder_process::diagnostics()});
+        if !result["comparison"].is_null() {
+            let compare = result["comparison"].clone();
+            result["state"] = json!("Comparison");
+            result["phase"] = json!(if comparison_loading {
+                "loading"
+            } else {
+                "ready"
+            });
+            result["visible"] = compare["visible"].clone();
+            result["minimized"] = compare["minimized"].clone();
+            result["pinned"] = json!(true);
+            result["caption"] = compare["caption"].clone();
+            result["no_activate"] = compare["no_activate"].clone();
+            result["content"] =
+                json!({"kind":"comparison","panes":compare["panes"].as_array().map(Vec::len)});
+            result["worker_busy"] = json!(comparison_loading);
+            result["error"] = Value::Null;
+        }
+        result
     }
 }
 
@@ -340,6 +420,25 @@ fn inspect_content(offset: usize, limit: usize) -> Value {
 }
 
 unsafe fn capture_preview(hwnd: HWND, path: &Path) -> Result<Value, String> {
+    capture_window(
+        hwnd,
+        path,
+        paint_overlay,
+        &[
+            ID_PREVIEW_TITLE,
+            ID_PREVIEW_PIN as i32,
+            ID_PREVIEW_RELOAD as i32,
+            ID_PREVIEW_CLOSE as i32,
+        ],
+    )
+}
+
+pub(super) unsafe fn capture_window(
+    hwnd: HWND,
+    path: &Path,
+    painter: unsafe fn(HWND, windows_sys::Win32::Graphics::Gdi::HDC, &RECT),
+    controls: &[i32],
+) -> Result<Value, String> {
     use windows_sys::Win32::Graphics::Gdi::{
         CreateCompatibleDC, CreateDIBSection, DeleteDC, HBITMAP, HDC, HGDIOBJ, SelectObject,
         SetViewportOrgEx,
@@ -463,13 +562,8 @@ unsafe fn capture_preview(hwnd: HWND, path: &Path) -> Result<Value, String> {
     }
     // The actual preview painter, viewport and native controls render into this
     // bounded surface. This does not capture the desktop or another app.
-    paint_overlay(hwnd, surface.dc, &rect);
-    for id in [
-        ID_PREVIEW_TITLE,
-        ID_PREVIEW_PIN as i32,
-        ID_PREVIEW_RELOAD as i32,
-        ID_PREVIEW_CLOSE as i32,
-    ] {
+    painter(hwnd, surface.dc, &rect);
+    for id in controls.iter().copied() {
         let child = GetDlgItem(hwnd, id);
         if IsWindowVisible(child) == 0 {
             continue;

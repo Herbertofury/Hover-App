@@ -30,7 +30,13 @@ Explorer hover is the intended activation path. Image zoom, scrolling panels,
 GIF, folder/ZIP lists, bounded text, DBPF metadata and optional external media
 paths exist in source. Media waits for a click. Separately installed ffplay,
 mpv or VLC are optional and not bundled. Full game support, 3D rendering,
-dependency resolution and comparisons remain unfinished.
+dependency resolution and game/3D comparisons remain unfinished.
+
+Native two-to-four-file comparison now supports progressive independent panes,
+linked image zoom/pan, paused animation with linked controls, decoded-pixel masks,
+displayed-line alignment and separate file-byte differences. Run
+`./scripts/test-comparison.ps1 -ReferenceChecks` to test the actual Windows app;
+see [comparison behavior, budgets and evidence limits](docs/native-comparison.md).
 
 The development preview now has Pin, Reload and Close controls. Pin opens an
 activated, resizable inspection window that survives app switches. F5/Ctrl+R

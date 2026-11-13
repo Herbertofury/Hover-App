@@ -1,4 +1,5 @@
 pub mod cache;
+pub mod comparison;
 pub mod decode_job;
 pub mod geometry;
 pub mod placement;

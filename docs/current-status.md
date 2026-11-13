@@ -2,6 +2,12 @@
 
 Checkpoint: 2026-11-12. Development source; no verified release.
 
+Native two-to-four-file comparison now has linked image views and animation
+controls, decoded-pixel masks, aligned displayed text, separate full-file byte
+differences and provenance tooltips. Both real app entry points passed 66 local
+checks with the public metadata fixture; independent GDI+/Git generated controls
+matched. See [comparison scope and remaining gates](native-comparison.md).
+
 The native development MSI workflow now exercises actual Windows install,
 Start Menu launch/identity/icon, normal lifecycle, preview/LPAC behavior,
 versioned same-source upgrade, incoming-payload failure, downgrade guards,

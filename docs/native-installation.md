@@ -130,3 +130,21 @@ Windows, format, safety and delivery acceptance evidence.
 Primary API references: [SDK validation](https://learn.microsoft.com/en-us/windows/win32/msi/validation-automation),
 [Evalcom2](https://learn.microsoft.com/en-us/windows/win32/msi/using-evalcom2),
 [companion files](https://learn.microsoft.com/en-us/windows/win32/msi/companion-files).
+
+The comparison prototype exposed makecab's default disk-size split after the
+executable grew: the fixed cabinet name was overwritten with a chained cabinet
+missing HoverExe. Actual installation failed with 1334 despite zero ICE errors.
+Both package and negative-fixture builders now disable disk/cabinet splitting.
+`installer/native/check-cabinet.ps1` rejects chained/spanning cabinets and verifies
+every logical ID, size and sequence against the MSI File table before authoring.
+This checks cabinet structure, not decompressed content; installed-file hashes
+remain required. The corrected prototype passed 97 installer assertions.
+
+For the daily unsigned development installation, `test-installation.ps1
+-UpgradeInstalledDevelopment` requires the exact package A already installed,
+validates every managed file hash, and stops its resident through the scoped CLI.
+It exercises failure, upgrade and explicit rollback, then installs package B
+again and launches it from the Start Menu. It preserves existing user-added
+files and never uninstalls this daily app in test cleanup. On failure it retains
+the installation and logs for inspection. This is explicit local artifact
+testing; it does not establish authenticated network updates or release trust.

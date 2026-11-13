@@ -27,6 +27,7 @@ and resident process. This is a development interface, not release certification
 cargo build --release --workspace --locked
 ./target/release/hover-agent.exe --help
 ./scripts/test-agent.ps1
+./scripts/test-comparison.ps1 -ReferenceChecks
 ./scripts/measure-agent.ps1 -Json
 ```
 
@@ -82,6 +83,28 @@ Example batch (replace the local input/output paths):
 ```
 
 ## Protocol version 1
+
+Comparison extends the same protocol: `{"command":"compare","paths":[...]}`
+accepts two to four distinct absolute local paths and starts the actual native
+comparison window. `wait` settles preview/difference work; `status` identifies
+the active comparison. Paths retain explicit order, with pane 0 as reference.
+`{"command":"comparison","action":"status"}` returns all pane identities,
+preview stages, errors, views, limits, controls and the selected pair's results.
+Use `action: "inspect"` with bounded `offset`/`limit` for displayed text.
+
+Other comparison actions are `select` (`pane`), `link`/`difference`/`play`
+(`value` boolean), `frame` (`index`), `zoom` (`mode`: fit/native/fit_width/fit_height), `pan`
+(`dx`,`dy`), `scroll` (`offset`), `resize` (`width`,`height`), `focus` (`target`:
+content/pane/next/previous), `minimize`, `restore`, `reload`, `close`, and `capture`
+(`path`, new bounded local client BMP). `tooltip` (`pane`) retrieves text through
+the actual native tooltip callback. `invoke` (`control`: link/differences/previous/
+play/next/reload/single/close) clicks an owned native button through BM_CLICK.
+`key` (`key`: left/right/up/down/page_up/page_down/home/end/plus/minus/tab/escape/
+reload) posts a known navigation message to this session's window. Unknown fields
+or ranges fail. No external window handles or arbitrary key/program execution
+are accepted. Discover exact current fields/errors before driving the protocol.
+Common preview commands route to the active comparison where applicable.
+See [native comparison tests and limits](native-comparison.md).
 
 Send one UTF-8 JSON object per line, at most 16 KiB including newline. Optional
 `id` is echoed unchanged. Replies contain `protocol: 1`, `id`, `ok`, and either

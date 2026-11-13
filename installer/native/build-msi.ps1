@@ -24,11 +24,14 @@ $identity=& (Join-Path $payload 'hover-agent.exe') --version-json | ConvertFrom-
 if($LASTEXITCODE -ne 0 -or $identity.packageVersion -ne $Version -or $identity.releaseVerified){throw 'Payload build identity/version mismatch'}
 $staged=Join-Path $output 'payload'; New-Item -ItemType Directory -Path $staged | Out-Null
 foreach($file in $files){Copy-Item -LiteralPath (Join-Path $payload $file[1]) -Destination (Join-Path $staged $file[1])}
-$ddf=@('.OPTION EXPLICIT','.Set CabinetNameTemplate=Hover.cab','.Set DiskDirectoryTemplate=.','.Set CompressionType=MSZIP','.Set Cabinet=on','.Set Compress=on')
+$ddf=@('.OPTION EXPLICIT','.Set CabinetNameTemplate=Hover.cab','.Set DiskDirectoryTemplate=.','.Set MaxDiskSize=0','.Set MaxCabinetSize=0','.Set CompressionType=MSZIP','.Set Cabinet=on','.Set Compress=on')
 foreach($file in $files){$ddf+='"payload\'+$file[1]+'" '+$file[0]}
 [IO.File]::WriteAllLines((Join-Path $output 'payload.ddf'),$ddf,[Text.Encoding]::ASCII)
 Push-Location $output
 try{ & "$env:WINDIR\System32\makecab.exe" /f payload.ddf | Out-Null; if($LASTEXITCODE -ne 0){throw 'Windows cabinet creation failed'} }finally{Pop-Location}
+$expectedFiles=@($files.ForEach({[pscustomobject]@{id=$_[0];size=(Get-Item -LiteralPath (Join-Path $staged $_[1])).Length}}))
+$cabinet=& (Join-Path $PSScriptRoot 'check-cabinet.ps1') -Path (Join-Path $output 'Hover.cab') -ExpectedFiles $expectedFiles
+$cabinet | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $output 'cabinet-validation.json') -Encoding utf8
 $msi=Join-Path $output "Hover-Development-$Version-x64.msi"
 # Empty standard schema supplied with the installed Windows SDK. No SDK tool,
 # validation cube, third-party installer engine, or custom action is shipped.
