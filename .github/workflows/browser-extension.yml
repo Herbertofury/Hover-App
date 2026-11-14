@@ -1,0 +1,13 @@
+name: Browser companion lifecycle
+on:
+  push:
+    branches: [main, 'work/**']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  content-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - run: node --test tests/browser/*.test.cjs
