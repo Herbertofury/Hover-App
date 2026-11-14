@@ -1,5 +1,11 @@
 let currentUrl = null;
 
+function clearHover() {
+  if (!currentUrl) return;
+  currentUrl = null;
+  chrome.runtime.sendMessage({ type: "exit" });
+}
+
 function bestImageSource(element) {
   if (!element) return null;
   if (element.currentSrc) return element.currentSrc;
@@ -23,6 +29,13 @@ document.addEventListener("mouseout", (event) => {
   if (!currentUrl) return;
   const related = event.relatedTarget;
   if (related && event.target && event.target.contains && event.target.contains(related)) return;
-  currentUrl = null;
-  chrome.runtime.sendMessage({ type: "exit" });
+  clearHover();
 }, { passive: true });
+
+// Pointer events are not guaranteed when a tab is hidden or its window loses
+// focus. Clear only active state; returning must require a new hover event.
+window.addEventListener("blur", clearHover);
+window.addEventListener("pagehide", clearHover);
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) clearHover();
+});
