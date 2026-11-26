@@ -265,6 +265,7 @@ enum EntryKind {
 enum PreviewPayload {
     Frames {
         frames: Vec<OverlayFrame>,
+        source: &'static str,
     },
     Text {
         title: String,
@@ -969,8 +970,12 @@ impl App {
                 PlacementConfig::default(),
             )
         };
+        let source = match &payload {
+            PreviewPayload::Frames { source, .. } => *source,
+            _ => "",
+        };
         match payload {
-            PreviewPayload::Frames { frames } => {
+            PreviewPayload::Frames { frames, .. } => {
                 configure_overlay_for_image(self.overlay);
                 let is_animated = frames.len() > 1;
                 let image_size = frames
@@ -1119,7 +1124,7 @@ impl App {
         // Pinning adds a caption/border. A same-outer-size payload replacement
         // need not generate WM_SIZE, so use the actual client viewport here.
         resize_overlay_view(self.overlay);
-        update_preview_chrome(self.overlay, &path, self.pinned, false, "");
+        update_preview_chrome(self.overlay, &path, self.pinned, false, source);
         self.current_path = Some(path);
         self.state = if self.pinned {
             HoverState::PreviewLocked
@@ -2698,6 +2703,25 @@ fn build_preview_payload(
     if !preview_types.images {
         return Err("Image previews are disabled in Hover options.".to_string());
     }
+    if path
+        .extension()
+        .and_then(|ext| ext.to_str())
+        .is_some_and(|ext| ext.eq_ignore_ascii_case("blend"))
+    {
+        return match crate::decoder_process::decode_blend_saved(path, token) {
+            Ok(frames) => Ok(PreviewPayload::Frames {
+                frames: frames.into_iter().map(frame_from_decoded_frame).collect(),
+                source: "Saved Blender preview",
+            }),
+            Err(error) if !token.is_cancelled() => Ok(PreviewPayload::Text {
+                title: "Blender file".into(),
+                subtitle: format!("Metadata only · {}", format_bytes(metadata.len())),
+                lines: vec![error, "Hover did not open or render the scene.".into()],
+                truncated: false,
+            }),
+            Err(error) => Err(error),
+        };
+    }
     let animated = is_gif_path(path);
     let (width, height) = if animated {
         (
@@ -2713,6 +2737,7 @@ fn build_preview_payload(
     let frames = crate::decoder_process::decode_file(path, animated, width, height, token)?;
     Ok(PreviewPayload::Frames {
         frames: frames.into_iter().map(frame_from_decoded_frame).collect(),
+        source: "",
     })
 }
 
@@ -3148,7 +3173,7 @@ fn frame_from_decoded_frame(frame: DecodedFrame) -> OverlayFrame {
 
 fn payload_size(payload: &PreviewPayload) -> Size {
     match payload {
-        PreviewPayload::Frames { frames } => frames
+        PreviewPayload::Frames { frames, .. } => frames
             .first()
             .map(|frame| Size::new(frame.width as f32, frame.height as f32))
             .unwrap_or_else(|| Size::new(520.0, 320.0)),

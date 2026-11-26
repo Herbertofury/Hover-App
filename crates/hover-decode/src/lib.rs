@@ -4,6 +4,7 @@ use hover_core::cache::ByteSized;
 use std::io::{Cursor, Read};
 use std::path::Path;
 use thiserror::Error;
+pub mod blend_saved;
 pub mod local_io;
 
 #[cfg(all(windows, feature = "wic"))]
