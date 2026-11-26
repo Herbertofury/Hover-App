@@ -347,6 +347,29 @@ pub(crate) fn decode_file(
 ) -> Result<Vec<DecodedFrame>, String> {
     let bytes = hover_decode::local_io::read_local_snapshot(path, MAX_INPUT, token)
         .map_err(|e| e.to_string())?;
+    decode_snapshot(bytes, u8::from(animated), width, height, token)
+}
+
+pub(crate) fn decode_blend_saved(
+    path: &Path,
+    token: &CancellationToken,
+) -> Result<Vec<DecodedFrame>, String> {
+    let bytes = hover_decode::local_io::read_local_prefix(
+        path,
+        hover_decode::blend_saved::PREFIX_BYTES,
+        token,
+    )
+    .map_err(|error| error.to_string())?;
+    decode_snapshot(bytes, 2, 512, 512, token)
+}
+
+fn decode_snapshot(
+    bytes: Vec<u8>,
+    kind: u8,
+    width: u32,
+    height: u32,
+    token: &CancellationToken,
+) -> Result<Vec<DecodedFrame>, String> {
     let report = exchange(
         Launch::Decoder,
         token,
@@ -355,7 +378,7 @@ pub(crate) fn decode_file(
         move |mut input, mut output| {
             input.write_all(REQUEST_MAGIC).map_err(|e| e.to_string())?;
             input
-                .write_all(&[u8::from(animated)])
+                .write_all(&[kind])
                 .map_err(|e| e.to_string())?;
             input
                 .write_all(&width.to_le_bytes())
@@ -373,7 +396,7 @@ pub(crate) fn decode_file(
                 &mut output,
                 width,
                 height,
-                if animated { MAX_FRAMES } else { 1 },
+                if kind == 1 { MAX_FRAMES } else { 1 },
             )
         },
     );
@@ -487,7 +510,8 @@ pub(crate) fn worker_entry() -> i32 {
         let width = read_u32(&mut input)?;
         let height = read_u32(&mut input)?;
         let size = read_u64(&mut input)?;
-        if kind[0] > 1
+        if kind[0] > 2
+            || (kind[0] == 2 && size > hover_decode::blend_saved::PREFIX_BYTES as u64)
             || !(1..=8192).contains(&width)
             || !(1..=8192).contains(&height)
             || size > MAX_INPUT
@@ -511,6 +535,14 @@ pub(crate) fn worker_entry() -> i32 {
             )
             .map(|a| a.frames)
             .map_err(|e| e.to_string())
+        } else if kind[0] == 2 {
+            use hover_decode::blend_saved::{SavedPreview, inspect};
+            match inspect(&bytes, DecodeLimits::default()) {
+                SavedPreview::Image(frame) => Ok(vec![frame]),
+                SavedPreview::NoSavedImage => Err("No saved thumbnail in the initial Blender metadata.".into()),
+                SavedPreview::UnsupportedContainer => Err("Saved preview not supported for this container. This build reads uncompressed little-endian Blender files only.".into()),
+                SavedPreview::InvalidMetadata => Err("The saved thumbnail metadata was unreadable or exceeded the preview bounds.".into()),
+            }
         } else {
             hover_decode::wic::decode_snapshot(
                 &bytes,

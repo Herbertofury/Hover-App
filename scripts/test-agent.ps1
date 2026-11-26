@@ -237,6 +237,46 @@ try {
     $null = Invoke-Hover @{command='open';path=$videoPath}
     $state = Invoke-Hover @{command='wait'}
     Assert-That ($state.media_waiting -and -not $state.video_running -and -not $state.audio_running) 'Media recognition never starts an external player without explicit play'
+    # Synthetic format fixture: newer container header, one saved image, no scene code.
+    $blendPath = Join-Path $runDirectory 'asymmetric-saved-preview.blend'
+    $blankPath = Join-Path $runDirectory 'no-saved-preview.blend'
+    $blendHeader = [Text.Encoding]::ASCII.GetBytes('BLENDER17-01v0503')
+    $imageBlock = [byte[]]::new(32)
+    [Text.Encoding]::ASCII.GetBytes('TEST').CopyTo($imageBlock,0)
+    [BitConverter]::GetBytes([int64](8+32*16*4)).CopyTo($imageBlock,16)
+    $imageBody = [byte[]]::new(8+32*16*4)
+    [BitConverter]::GetBytes([int]32).CopyTo($imageBody,0)
+    [BitConverter]::GetBytes([int]16).CopyTo($imageBody,4)
+    for ($p=8; $p -lt $imageBody.Length; $p+=4) {
+        $isBottom = $p -lt (8+32*8*4)
+        $imageBody[$p] = if ($isBottom) { [byte]229 } else { [byte]11 }
+        $imageBody[$p+1] = [byte]57
+        $imageBody[$p+2] = if ($isBottom) { [byte]19 } else { [byte]241 }
+        $imageBody[$p+3] = [byte]255
+    }
+    [IO.File]::WriteAllBytes($blendPath,[byte[]]($blendHeader+$imageBlock+$imageBody))
+    $emptyBlock = [byte[]]::new(32)
+    [Text.Encoding]::ASCII.GetBytes('GLOB').CopyTo($emptyBlock,0)
+    [IO.File]::WriteAllBytes($blankPath,[byte[]]($blendHeader+$emptyBlock))
+    $blendHash = (Get-FileHash -LiteralPath $blendPath -Algorithm SHA256).Hash
+    $null = Invoke-Hover @{command='open';path=$blendPath}
+    $blendState = Invoke-Hover @{command='wait'}
+    Assert-That ($blendState.phase -eq 'ready' -and $blendState.content.kind -eq 'image' -and $blendState.content.image_width -eq 32 -and $blendState.content.image_height -eq 16) 'Saved Blender image appears in the real native overlay'
+    Assert-That ($blendState.decoder_process.last_task.permission_token_verified -and $blendState.decoder_process.last_task.active_after_stop -eq 0) 'Saved Blender snapshot uses the existing LPAC worker and leaves no child running'
+    $blendCapture = Join-Path $runDirectory 'saved-blender-preview.bmp'
+    $null = Invoke-Hover @{command='capture';path=$blendCapture}
+    $blendPixels = [IO.File]::ReadAllBytes($blendCapture)
+    $firstColor = 0; $secondColor = 0
+    for ($p=54; $p -lt $blendPixels.Length; $p+=4) {
+        if ($blendPixels[$p] -eq 229 -and $blendPixels[$p+1] -eq 57 -and $blendPixels[$p+2] -eq 19) { $firstColor++ }
+        if ($blendPixels[$p] -eq 11 -and $blendPixels[$p+1] -eq 57 -and $blendPixels[$p+2] -eq 241) { $secondColor++ }
+    }
+    Assert-That ($firstColor -gt 0 -and $secondColor -gt 0) 'Native Blender image painter retains both source colors'
+    $null = Invoke-Hover @{command='open';path=$blankPath}
+    $blankState = Invoke-Hover @{command='wait'}
+    $blank = Invoke-Hover @{command='inspect';limit=4}
+    Assert-That ($blankState.phase -eq 'ready' -and $blankState.content.kind -eq 'text' -and $blank.content.lines -contains 'No saved thumbnail in the initial Blender metadata.') 'Blender file without a saved image shows an honest metadata fallback'
+    Assert-That ((Get-FileHash -LiteralPath $blendPath -Algorithm SHA256).Hash -eq $blendHash) 'Saved Blender preview left the source file unchanged'
     if ($DbpfFixture) {
         $dbpfPath = (Resolve-Path -LiteralPath $DbpfFixture).Path
         $dbpfHash = (Get-FileHash -LiteralPath $dbpfPath -Algorithm SHA256).Hash

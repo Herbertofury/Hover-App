@@ -116,6 +116,47 @@ pub fn read_local_snapshot(
     Ok(bytes)
 }
 
+/// Read a bounded prefix of an already local file without recalling cloud content.
+pub fn read_local_prefix(
+    path: &Path,
+    max_bytes: usize,
+    cancellation: &CancellationToken,
+) -> Result<Vec<u8>, DecodeError> {
+    if cancellation.is_cancelled() {
+        return Err(DecodeError::Cancelled);
+    }
+    let mut file = open_preview_file(path).map_err(|error| DecodeError::Source(error.to_string()))?;
+    let before = file.metadata().map_err(|_| DecodeError::NotReadable)?;
+    if !before.is_file() {
+        return Err(DecodeError::NotReadable);
+    }
+    let mut left = before.len().min(max_bytes as u64) as usize;
+    let mut result = Vec::with_capacity(left);
+    let mut buffer = [0; 64 * 1024];
+    while left > 0 {
+        if cancellation.is_cancelled() {
+            return Err(DecodeError::Cancelled);
+        }
+        let available = left.min(buffer.len());
+        let count = file.read(&mut buffer[..available]).map_err(|_| DecodeError::NotReadable)?;
+        if count == 0 {
+            return Err(DecodeError::SourceChanged);
+        }
+        result.extend_from_slice(&buffer[..count]);
+        left -= count;
+    }
+    let after = file.metadata().map_err(|_| DecodeError::SourceChanged)?;
+    let current = local_metadata(path).map_err(|_| DecodeError::SourceChanged)?;
+    if before.len() != after.len()
+        || before.modified().ok() != after.modified().ok()
+        || after.len() != current.len()
+        || after.modified().ok() != current.modified().ok()
+    {
+        return Err(DecodeError::SourceChanged);
+    }
+    Ok(result)
+}
+
 fn unavailable(message: &str) -> std::io::Error {
     std::io::Error::new(std::io::ErrorKind::PermissionDenied, message)
 }
